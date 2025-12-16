@@ -1,0 +1,87 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Environment variables (NEVER commit secrets!)
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Old brownfield code (keeping for reference but not tracking changes)
+core/
+parsers/
+schemas/
+pipeline_*/
+utilities/
+tests/
+dump/
+migration_backup/
+reference/
+input/
+output/
+
+# Old Python scripts (brownfield)
+audit_*.py
+final_*.py
+fix_*.py
+main.py
+test_*.py
+reconstruct_*.py
+rigorous_*.py
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# pytest
+.coverage
+htmlcov/
+.pytest_cache/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Ruff
+.ruff_cache/
+
+# Alembic
+alembic/versions/__pycache__/
