@@ -4,6 +4,8 @@
 **Approach:** Option B (Balanced) - 18 sessions, 1.5 hours each
 **Total Duration:** 26-30 hours over 3-4 weeks
 
+**🔗 Linear Project:** [Deep Fin](https://linear.app/deepfin/project/deep-fin-17d251686130)
+
 ---
 
 ## 🎯 Session Overview
@@ -41,8 +43,9 @@ This manifest tracks all 18 development sessions for the LLM Financial Pipeline 
 ## ✅ Session 1: Core Configuration & Logging (COMPLETE)
 
 **Status:** ✅ Complete
+**Linear Issue:** [BUD-5](https://linear.app/deepfin/issue/BUD-5)
 **Duration:** 1.5 hours
-**Date Completed:** 2025-12-15
+**Date Completed:** 2025-12-16
 **Token Usage:** ~75K / 200K
 **Git Commit:** d07dab0
 **Checkpoint:** [CHECKPOINT_01_Config_Logging.md](./CHECKPOINT_01_Config_Logging.md)
@@ -87,6 +90,7 @@ Build the foundational configuration and logging infrastructure using profession
 ## 🔄 Session 2: Database & Shared Models (IN PROGRESS)
 
 **Status:** 🔄 In Progress
+**Linear Issue:** [BUD-6](https://linear.app/deepfin/issue/BUD-6)
 **Duration:** 1.5 hours (estimated)
 **Token Estimate:** ~10K
 **Started:** 2025-12-16

@@ -4,6 +4,8 @@
 **Current Session:** Session 2 - Database & Models
 **Overall Progress:** 6% (1/18 sessions complete)
 
+**🔗 Linear Project:** [Deep Fin](https://linear.app/deepfin/project/deep-fin-17d251686130)
+
 ---
 
 ## 🎯 Quick Overview
@@ -42,27 +44,27 @@ Phase 10 (Deploy):       [░░░░░░░░░░] 0% (0/5 files)
 
 ## 📋 Session Status Table
 
-| # | Session Name | Status | Files | Tests | Duration | Checkpoint | Updated |
-|---|--------------|--------|-------|-------|----------|------------|---------|
-| **Setup** | Environment Setup | ✅ Complete | - | All Pass | 1-2h | [CHECKPOINT_SETUP_COMPLETE.md](./CHECKPOINT_SETUP_COMPLETE.md) | 2025-12-15 |
-| **1** | Core Config & Logging | ✅ Complete | 6 | 25/25 | 1.5h | [CHECKPOINT_01_Config_Logging.md](./CHECKPOINT_01_Config_Logging.md) | 2025-12-15 |
-| **2** | Database & Models | 🔄 In Progress | 0/6 | 0/20 | 1.5h | - | - |
-| **3** | FastAPI & Health | ⏸️ Pending | 0/5 | 0/12 | 1.5h | - | - |
-| **4** | LLMWhisperer Client | ⏸️ Pending | 0/4 | 0/10 | 1.5h | - | - |
-| **5** | Detection Models | ⏸️ Pending | 0/4 | 0/8 | 1h | - | - |
-| **6** | Detection Service | ⏸️ Pending | 0/5 | 0/12 | 1.5h | - | - |
-| **7** | Statements Models | ⏸️ Pending | 0/4 | 0/8 | 1h | - | - |
-| **8** | Statements Service | ⏸️ Pending | 0/5 | 0/15 | 1.5h | - | - |
-| **9** | Extraction Models | ⏸️ Pending | 0/5 | 0/10 | 1.5h | - | - |
-| **10** | Extraction Service | ⏸️ Pending | 0/6 | 0/18 | 2h | - | - |
-| **11** | Consolidation Models | ⏸️ Pending | 0/4 | 0/8 | 1h | - | - |
-| **12** | Consolidation Service | ⏸️ Pending | 0/5 | 0/12 | 1.5h | - | - |
-| **13** | Background Jobs | ⏸️ Pending | 0/5 | 0/10 | 1.5h | - | - |
-| **14** | Authentication | ⏸️ Pending | 0/6 | 0/15 | 2h | - | - |
-| **15** | Email & Notifications | ⏸️ Pending | 0/4 | 0/8 | 1.5h | - | - |
-| **16** | Integration Tests | ⏸️ Pending | 0/5 | 0/20 | 2h | - | - |
-| **17** | Documentation & Polish | ⏸️ Pending | 0/3 | 0/5 | 1.5h | - | - |
-| **18** | Deployment & CI/CD | ⏸️ Pending | 0/5 | 0/10 | 2h | - | - |
+| # | Session Name | Status | Linear | Files | Tests | Duration | Checkpoint | Updated |
+|---|--------------|--------|--------|-------|-------|----------|------------|---------|
+| **Setup** | Environment Setup | ✅ Complete | - | - | All Pass | 1-2h | [CHECKPOINT_SETUP_COMPLETE.md](./CHECKPOINT_SETUP_COMPLETE.md) | 2025-12-15 |
+| **1** | Core Config & Logging | ✅ Complete | [BUD-5](https://linear.app/deepfin/issue/BUD-5) | 6 | 25/25 | 1.5h | [CHECKPOINT_01_Config_Logging.md](./CHECKPOINT_01_Config_Logging.md) | 2025-12-16 |
+| **2** | Database & Models | 🔄 In Progress | [BUD-6](https://linear.app/deepfin/issue/BUD-6) | 0/6 | 0/20 | 1.5h | - | - |
+| **3** | FastAPI & Health | ⏸️ Pending | [BUD-7](https://linear.app/deepfin/issue/BUD-7) | 0/5 | 0/12 | 1.5h | - | - |
+| **4** | LLMWhisperer Client | ⏸️ Pending | [BUD-8](https://linear.app/deepfin/issue/BUD-8) | 0/4 | 0/10 | 1.5h | - | - |
+| **5** | Detection Models | ⏸️ Pending | [BUD-9](https://linear.app/deepfin/issue/BUD-9) | 0/4 | 0/8 | 1h | - | - |
+| **6** | Detection Service | ⏸️ Pending | [BUD-10](https://linear.app/deepfin/issue/BUD-10) | 0/5 | 0/12 | 1.5h | - | - |
+| **7** | Statements Models | ⏸️ Pending | [BUD-11](https://linear.app/deepfin/issue/BUD-11) | 0/4 | 0/8 | 1h | - | - |
+| **8** | Statements Service | ⏸️ Pending | [BUD-12](https://linear.app/deepfin/issue/BUD-12) | 0/5 | 0/15 | 1.5h | - | - |
+| **9** | Extraction Models | ⏸️ Pending | [BUD-13](https://linear.app/deepfin/issue/BUD-13) | 0/5 | 0/10 | 1.5h | - | - |
+| **10** | Extraction Service | ⏸️ Pending | [BUD-14](https://linear.app/deepfin/issue/BUD-14) | 0/6 | 0/18 | 2h | - | - |
+| **11** | Consolidation Models | ⏸️ Pending | [BUD-15](https://linear.app/deepfin/issue/BUD-15) | 0/4 | 0/8 | 1h | - | - |
+| **12** | Consolidation Service | ⏸️ Pending | [BUD-16](https://linear.app/deepfin/issue/BUD-16) | 0/5 | 0/12 | 1.5h | - | - |
+| **13** | Background Jobs | ⏸️ Pending | [BUD-17](https://linear.app/deepfin/issue/BUD-17) | 0/5 | 0/10 | 1.5h | - | - |
+| **14** | Authentication | ⏸️ Pending | [BUD-18](https://linear.app/deepfin/issue/BUD-18) | 0/6 | 0/15 | 2h | - | - |
+| **15** | Email & Notifications | ⏸️ Pending | [BUD-19](https://linear.app/deepfin/issue/BUD-19) | 0/4 | 0/8 | 1.5h | - | - |
+| **16** | Integration Tests | ⏸️ Pending | [BUD-20](https://linear.app/deepfin/issue/BUD-20) | 0/5 | 0/20 | 2h | - | - |
+| **17** | Documentation & Polish | ⏸️ Pending | [BUD-21](https://linear.app/deepfin/issue/BUD-21) | 0/3 | 0/5 | 1.5h | - | - |
+| **18** | Deployment & CI/CD | ⏸️ Pending | [BUD-22](https://linear.app/deepfin/issue/BUD-22) | 0/5 | 0/10 | 2h | - | - |
 
 **Legend:**
 - ✅ Complete - All tests passing, checkpoint created
@@ -233,6 +235,10 @@ Phase 10 (Deploy):       [░░░░░░░░░░] 0% (0/5 files)
 
 ## 🔗 Quick Links
 
+### Project Management
+- [Linear Project: Deep Fin](https://linear.app/deepfin/project/deep-fin-17d251686130) - Live progress tracking
+- [All Linear Issues](https://linear.app/deepfin/team/BUD/active) - Session issues (BUD-5 through BUD-22)
+
 ### Documentation
 - [Start Here](./START_HERE.md) - Project overview
 - [Refactoring Plan](./REFACTORING_PLAN.md) - Technical spec
@@ -257,16 +263,22 @@ Phase 10 (Deploy):       [░░░░░░░░░░] 0% (0/5 files)
 ## 💡 How to Use This Tracker
 
 **For You (Developer):**
-1. Check current session status
+1. Check current session status in both GitHub and Linear
 2. Review blockers before starting work
-3. Update after each session completes
+3. Update Linear issue status as you work
 4. Run tests and verify green before moving forward
+5. Update this file after each session completes
 
 **For Your Team:**
-1. Open this file in GitHub to see progress
-2. Check "Session Status Table" for overview
-3. Click checkpoint links for detailed session info
+1. **Linear (Recommended):** Visit [Deep Fin Project](https://linear.app/deepfin/project/deep-fin-17d251686130) for live tracking
+2. **GitHub:** Open this file to see detailed progress and links
+3. Click Linear issue IDs in the table to see session details
 4. Review git commits for code changes
+
+**Dual Tracking System:**
+- **Linear:** Real-time progress, team collaboration, comments
+- **GitHub:** Detailed documentation, checkpoint files, code references
+- Both stay in sync after each session completion
 
 **Update Frequency:**
 - After each session completes
@@ -276,6 +288,6 @@ Phase 10 (Deploy):       [░░░░░░░░░░] 0% (0/5 files)
 
 ---
 
-**Last Updated:** 2025-12-16 12:30 SGT
+**Last Updated:** 2025-12-16 13:55 SGT
 **Next Update:** After Session 2 completion
 **Maintained By:** Marconi Sim + Claude Sonnet 4.5
