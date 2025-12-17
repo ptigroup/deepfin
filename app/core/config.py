@@ -240,6 +240,20 @@ class Settings(BaseSettings):
     Total possible connections = pool_size + max_overflow = 15
     """
 
+    database_echo: bool = Field(
+        default=False,
+        description="Log all SQL statements (useful for debugging)",
+    )
+    """
+    When True, SQLAlchemy logs all SQL statements to stdout.
+    Useful for development and debugging, but should be False in production
+    for performance and to avoid logging sensitive data.
+
+    Example log output when True:
+    INFO sqlalchemy.engine.Engine SELECT users.id, users.email FROM users
+    INFO sqlalchemy.engine.Engine [cached since 0.001s ago] {}
+    """
+
     # ============================================================================
     # SECURITY SETTINGS
     # ============================================================================

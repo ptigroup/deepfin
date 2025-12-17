@@ -44,26 +44,27 @@ temp/
 *.tmp
 
 # Old brownfield code (keeping for reference but not tracking changes)
-core/
-parsers/
-schemas/
+# NOTE: Using / prefix to only match at root level, not in subdirectories
+/core/
+/parsers/
+/schemas/
 pipeline_*/
-utilities/
-tests/
-dump/
-migration_backup/
-reference/
-input/
-output/
+/utilities/
+/tests/
+/dump/
+/migration_backup/
+/reference/
+/input/
+/output/
 
-# Old Python scripts (brownfield)
-audit_*.py
-final_*.py
-fix_*.py
-main.py
-test_*.py
-reconstruct_*.py
-rigorous_*.py
+# Old Python scripts (brownfield - only in root directory)
+/audit_*.py
+/final_*.py
+/fix_*.py
+/main.py
+/test_*.py
+/reconstruct_*.py
+/rigorous_*.py
 
 # Backup files
 *.backup
