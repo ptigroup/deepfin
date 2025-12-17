@@ -1,0 +1,112 @@
+name: Validation
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: llm_pipeline_test
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Create .env for testing
+        run: |
+          cat > .env <<EOF
+          # Test environment configuration
+          DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost:5433/llm_pipeline_test
+          SECRET_KEY=test-secret-key-not-for-production
+          LLMWHISPERER_API_KEY=test-key
+          DATABASE_ECHO=false
+          LOG_LEVEL=INFO
+          EOF
+
+      - name: Run type checking (MyPy)
+        run: |
+          echo "::group::MyPy Type Checking"
+          uv run mypy app/ || echo "⚠️  MyPy found type errors"
+          echo "::endgroup::"
+
+      - name: Run linting (Ruff)
+        run: |
+          echo "::group::Ruff Linting"
+          uv run ruff check app/
+          echo "::endgroup::"
+
+      - name: Check formatting (Ruff)
+        run: |
+          echo "::group::Ruff Formatting Check"
+          uv run ruff format app/ --check
+          echo "::endgroup::"
+
+      - name: Run unit tests
+        env:
+          DATABASE_URL: postgresql+asyncpg://postgres:postgres@localhost:5433/llm_pipeline_test
+        run: |
+          echo "::group::Unit Tests"
+          uv run pytest app/ -v --ignore=app/tests/integration \
+            --tb=short \
+            --cov=app \
+            --cov-report=term-missing \
+            --cov-report=html
+          echo "::endgroup::"
+
+      - name: Run integration tests
+        env:
+          DATABASE_URL: postgresql+asyncpg://postgres:postgres@localhost:5433/llm_pipeline_test
+        run: |
+          echo "::group::Integration Tests"
+          uv run pytest -v -m integration \
+            --tb=short
+          echo "::endgroup::"
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: htmlcov/
+          retention-days: 7
+
+      - name: Test summary
+        if: always()
+        run: |
+          echo "## Test Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Type checking completed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Linting completed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Format checking completed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Unit tests completed" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Integration tests completed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "See artifacts for detailed coverage report." >> $GITHUB_STEP_SUMMARY

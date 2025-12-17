@@ -1,0 +1,262 @@
+name: Generate Checkpoint
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  generate-checkpoint:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Extract session info
+        id: extract
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+
+          # Extract session number
+          if [[ $PR_TITLE =~ ^Session[[:space:]]([0-9]+):[[:space:]](.+)$ ]]; then
+            SESSION_NUM="${BASH_REMATCH[1]}"
+            SESSION_NAME="${BASH_REMATCH[2]}"
+            echo "session_number=$SESSION_NUM" >> $GITHUB_OUTPUT
+            echo "session_name=$SESSION_NAME" >> $GITHUB_OUTPUT
+            echo "Found: Session $SESSION_NUM - $SESSION_NAME"
+          else
+            echo "No session info found in PR title"
+            echo "session_number=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Get test results
+        id: tests
+        if: steps.extract.outputs.session_number != ''
+        run: |
+          # Try to extract test results from PR description or commits
+          # This is a simplified version - could be enhanced to parse actual test output
+
+          PR_BODY="${{ github.event.pull_request.body }}"
+
+          # Look for "Tests: XX/XX" pattern
+          if [[ $PR_BODY =~ Tests:[[:space:]]*([0-9]+)/([0-9]+) ]]; then
+            TESTS_PASSED="${BASH_REMATCH[1]}"
+            TESTS_TOTAL="${BASH_REMATCH[2]}"
+            echo "tests_passed=$TESTS_PASSED" >> $GITHUB_OUTPUT
+            echo "tests_total=$TESTS_TOTAL" >> $GITHUB_OUTPUT
+            echo "Tests found: $TESTS_PASSED/$TESTS_TOTAL"
+          else
+            echo "tests_passed=?" >> $GITHUB_OUTPUT
+            echo "tests_total=?" >> $GITHUB_OUTPUT
+            echo "No test results found in PR description"
+          fi
+
+      - name: Generate checkpoint document
+        if: steps.extract.outputs.session_number != ''
+        env:
+          SESSION_NUM: ${{ steps.extract.outputs.session_number }}
+          SESSION_NAME: ${{ steps.extract.outputs.session_name }}
+          TESTS_PASSED: ${{ steps.tests.outputs.tests_passed }}
+          TESTS_TOTAL: ${{ steps.tests.outputs.tests_total }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          MERGED_BY: ${{ github.event.pull_request.merged_by.login }}
+          MERGED_AT: ${{ github.event.pull_request.merged_at }}
+          COMMIT_SHA: ${{ github.event.pull_request.merge_commit_sha }}
+        run: |
+          # Format session number with leading zero
+          SESSION_NUM_PADDED=$(printf "%02d" $SESSION_NUM)
+          CHECKPOINT_FILE="docs/checkpoints/CHECKPOINT_${SESSION_NUM_PADDED}_$(echo $SESSION_NAME | tr '[:upper:]' '[:lower:]' | tr ' ' '_').md"
+
+          # Get commit hash (short)
+          COMMIT_SHORT=$(echo $COMMIT_SHA | cut -c1-7)
+
+          # Format date
+          MERGED_DATE=$(date -d "$MERGED_AT" '+%Y-%m-%d' 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%SZ" "$MERGED_AT" '+%Y-%m-%d' 2>/dev/null || echo "2025-12-16")
+
+          # Get files changed
+          FILES_CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }} $COMMIT_SHA | wc -l)
+
+          # Create checkpoint template
+          cat > "$CHECKPOINT_FILE" <<EOF
+          # Checkpoint: Session ${SESSION_NUM} - ${SESSION_NAME}
+
+          **Status:** ✅ Complete
+          **Date Completed:** ${MERGED_DATE}
+          **Duration:** [Duration - fill in manually]
+          **Token Usage:** [Token count - fill in manually]
+          **Git Commit:** \`${COMMIT_SHORT}\`
+          **Pull Request:** [#${PR_NUMBER}](${PR_URL})
+          **Merged by:** @${MERGED_BY}
+
+          ---
+
+          ## 📋 Session Summary
+
+          [Add a 2-3 sentence summary of what was accomplished in this session]
+
+          **Key Deliverable:** [Main thing built in this session]
+
+          ---
+
+          ## 📦 Files Created/Modified
+
+          **Total Files Changed:** ${FILES_CHANGED}
+
+          ### New Files
+          - \`file1.py\` - [Description]
+          - \`file2.py\` - [Description]
+
+          ### Modified Files
+          - \`existing_file.py\` - [What changed]
+
+          ---
+
+          ## 🧪 Testing
+
+          **Tests Written:** ${TESTS_PASSED}/${TESTS_TOTAL}
+          **All Tests Passing:** ${TESTS_TOTAL}/${TESTS_TOTAL} ✅
+
+          ### Test Breakdown
+          - Unit tests: X/X passing
+          - Integration tests: X/X passing
+          - Total coverage: XX%
+
+          ### Test Commands Used
+          \`\`\`bash
+          uv run pytest app/ -v
+          uv run mypy app/
+          uv run ruff check app/
+          \`\`\`
+
+          ---
+
+          ## 💡 Key Learnings
+
+          ### Technical Concepts Mastered
+          1. [Concept 1 - brief explanation]
+          2. [Concept 2 - brief explanation]
+          3. [Concept 3 - brief explanation]
+
+          ### Patterns Established
+          - **Pattern 1:** [Description and why it matters]
+          - **Pattern 2:** [Description and where it's used]
+
+          ### Gotchas Encountered
+          - **Issue:** [Problem encountered]
+            - **Solution:** [How it was resolved]
+
+          ---
+
+          ## 🔄 Integration Points
+
+          ### Dependencies
+          - Built on: Session [X] ([Previous session])
+          - Enables: Session [X+1] ([Next session])
+
+          ### Database Changes
+          - [Migration description if applicable]
+          - [Tables/columns added]
+
+          ### Configuration Changes
+          - [New settings added to config.py]
+          - [New environment variables in .env]
+
+          ---
+
+          ## ✅ Validation Completed
+
+          **Level 1: Syntax & Style**
+          - [x] MyPy type checking passed
+          - [x] Ruff linting passed
+          - [x] Ruff formatting passed
+
+          **Level 2: Unit Tests**
+          - [x] All unit tests passing
+          - [x] New tests added for new functionality
+
+          **Level 3: Integration Tests**
+          - [x] Integration tests passing
+          - [x] Database migrations work
+
+          **Level 4: Manual Validation**
+          - [x] [Manual test 1]
+          - [x] [Manual test 2]
+
+          ---
+
+          ## 📈 Progress Update
+
+          ### Overall Project Status
+          - **Sessions Complete:** ${SESSION_NUM}/18 ($(( SESSION_NUM * 100 / 18 ))%)
+          - **Total Tests:** ${TESTS_TOTAL}
+          - **Test Coverage:** XX%
+
+          ### Phase Progress
+          - **Phase 1 (Foundation):** [Status]
+          - [Other phases as applicable]
+
+          ---
+
+          ## 🔗 References
+
+          - **PRP Document:** [Link to PRP]
+          - **Linear Issue:** [Link to Linear issue]
+          - **Pull Request:** ${PR_URL}
+          - **Code Changes:** [Link to diff]
+
+          ---
+
+          ## 🚀 Next Steps
+
+          **Session $(( SESSION_NUM + 1 )):** [Next session name]
+
+          **What's Ready:**
+          - [What this session enables for next session]
+          - [Dependencies satisfied]
+
+          **Prerequisites for Next Session:**
+          - [What needs to happen before Session $(( SESSION_NUM + 1 ))]
+
+          ---
+
+          **Checkpoint Version:** 1.0 (Auto-generated)
+          **Created:** ${MERGED_DATE}
+          **Last Updated:** ${MERGED_DATE}
+
+          ---
+
+          _🤖 This checkpoint was auto-generated by GitHub Actions._
+          _Please fill in the bracketed sections with actual details._
+          EOF
+
+          echo "✅ Created checkpoint: $CHECKPOINT_FILE"
+
+      - name: Commit checkpoint
+        if: steps.extract.outputs.session_number != ''
+        run: |
+          SESSION_NUM_PADDED=$(printf "%02d" ${{ steps.extract.outputs.session_number }})
+          CHECKPOINT_FILE="docs/checkpoints/CHECKPOINT_${SESSION_NUM_PADDED}_$(echo '${{ steps.extract.outputs.session_name }}' | tr '[:upper:]' '[:lower:]' | tr ' ' '_').md"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add "$CHECKPOINT_FILE"
+          git commit -m "Auto-generate checkpoint for Session ${{ steps.extract.outputs.session_number }}
+
+          Generated from PR #${{ github.event.pull_request.number }}
+
+          🤖 Generated by GitHub Actions"
+
+          git push
+
+          echo "✅ Checkpoint committed and pushed"
+
+      - name: Checkpoint generation skipped
+        if: steps.extract.outputs.session_number == ''
+        run: |
+          echo "⏭️  Skipping checkpoint generation - PR title doesn't match 'Session N:' pattern"
+          echo "PR title: ${{ github.event.pull_request.title }}"

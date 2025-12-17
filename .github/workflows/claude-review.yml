@@ -1,0 +1,118 @@
+name: Claude Code Review
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+
+jobs:
+  claude-review:
+    if: |
+      (
+        github.event_name == 'issue_comment' ||
+        github.event_name == 'pull_request_review_comment'
+      ) &&
+      contains(github.event.comment.body, '@claude-review')
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get PR number
+        run: |
+          if [ "${{ github.event_name }}" == "issue_comment" ]; then
+            echo "PR_NUM=${{ github.event.issue.number }}" >> $GITHUB_ENV
+          else
+            echo "PR_NUM=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+          fi
+
+      - name: Load review instructions
+        id: load-instructions
+        run: |
+          cat > review_prompt.md <<'EOF'
+          # Code Review Instructions
+
+          You are reviewing a pull request for the LLM Financial Pipeline v2.0 project.
+
+          ## Project Context
+          - **Architecture:** FastAPI + PostgreSQL + SQLAlchemy 2.0
+          - **Sessions:** 18 development sessions (vertical slice architecture)
+          - **Current Focus:** Database infrastructure and financial document processing
+
+          ## Review Checklist
+
+          ### 1. PRP Compliance
+          - [ ] All files from PRP created
+          - [ ] Implementation matches PRP blueprint
+          - [ ] All success criteria met
+          - [ ] No anti-patterns from PRP present
+
+          ### 2. Code Quality
+          - [ ] Type hints complete (MyPy strict mode)
+          - [ ] No linting errors (Ruff)
+          - [ ] Follows existing patterns (config.py, logging.py)
+          - [ ] Google-style docstrings on all public functions
+          - [ ] No hardcoded values (uses Settings)
+
+          ### 3. Testing
+          - [ ] All new tests passing
+          - [ ] Test coverage adequate (80%+ goal)
+          - [ ] Integration tests use @pytest.mark.integration
+          - [ ] Edge cases covered
+
+          ### 4. Database (if applicable)
+          - [ ] Uses async SQLAlchemy 2.0 patterns
+          - [ ] Migrations created and applied
+          - [ ] TimestampMixin used on models
+          - [ ] No SQL injection vulnerabilities
+
+          ### 5. Documentation
+          - [ ] Checkpoint document created
+          - [ ] PROGRESS_TRACKER.md updated
+          - [ ] Linear issue updated
+          - [ ] README updated if needed
+
+          ## Review Instructions
+
+          1. Read the linked PRP document
+          2. Check each file against PRP requirements
+          3. Verify all validation levels passed
+          4. Look for security issues, performance problems
+          5. Suggest improvements following existing patterns
+          6. Be constructive and specific in feedback
+
+          ## Focus Areas
+
+          - Async/await correctness
+          - Type safety (no `Any` without justification)
+          - Database session management
+          - Error handling
+          - Test coverage
+
+          **Repository:** ${{ github.repository }}
+          **PR:** #${PR_NUM}
+          **Triggered by:** ${{ github.event.comment.user.login }}
+
+          Please provide a detailed code review focusing on the checklist above.
+          EOF
+
+          DELIMITER="INSTRUCTIONS_$(date +%s)_EOF"
+          echo "CUSTOM_INSTRUCTIONS<<${DELIMITER}" >> $GITHUB_OUTPUT
+          cat review_prompt.md >> $GITHUB_OUTPUT
+          echo "${DELIMITER}" >> $GITHUB_OUTPUT
+
+      - name: Run Claude Code Review
+        uses: anthropics/claude-code-action@beta
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          custom_instructions: ${{ steps.load-instructions.outputs.CUSTOM_INSTRUCTIONS }}
+          direct_prompt: "true"

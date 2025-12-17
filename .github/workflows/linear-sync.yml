@@ -1,0 +1,216 @@
+name: Linear Sync
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  update-linear:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install requests python-dotenv
+
+      - name: Extract session number from PR
+        id: extract-session
+        run: |
+          # Extract session number from PR title (e.g., "Session 2: Database & Models")
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          if [[ $PR_TITLE =~ ^Session[[:space:]]([0-9]+): ]]; then
+            SESSION_NUM="${BASH_REMATCH[1]}"
+            echo "session_number=$SESSION_NUM" >> $GITHUB_OUTPUT
+            echo "Found session number: $SESSION_NUM"
+          else
+            echo "No session number found in PR title"
+            echo "session_number=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update Linear issue
+        if: steps.extract-session.outputs.session_number != ''
+        env:
+          LINEAR_API_KEY: ${{ secrets.LINEAR_API_KEY }}
+          SESSION_NUMBER: ${{ steps.extract-session.outputs.session_number }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          MERGED_BY: ${{ github.event.pull_request.merged_by.login }}
+          MERGED_AT: ${{ github.event.pull_request.merged_at }}
+        run: |
+          python - <<'EOF'
+          import os
+          import json
+          import requests
+          from datetime import datetime
+
+          # Configuration
+          LINEAR_API_KEY = os.environ['LINEAR_API_KEY']
+          SESSION_NUMBER = int(os.environ['SESSION_NUMBER'])
+          PR_NUMBER = os.environ['PR_NUMBER']
+          PR_URL = os.environ['PR_URL']
+          MERGED_BY = os.environ['MERGED_BY']
+          MERGED_AT = os.environ['MERGED_AT']
+
+          LINEAR_API_URL = "https://api.linear.app/graphql"
+          TEAM_ID = "ea035580-a2a3-4c39-9789-10a89d852428"  # DeepFin team
+
+          headers = {
+              "Authorization": LINEAR_API_KEY,
+              "Content-Type": "application/json",
+          }
+
+          def execute_query(query, variables=None):
+              """Execute GraphQL query against Linear API."""
+              payload = {"query": query}
+              if variables:
+                  payload["variables"] = variables
+              response = requests.post(LINEAR_API_URL, json=payload, headers=headers)
+              response.raise_for_status()
+              data = response.json()
+              if "errors" in data:
+                  raise Exception(f"GraphQL errors: {data['errors']}")
+              return data.get("data", {})
+
+          # Calculate issue identifier (BUD-5 for Session 1, BUD-6 for Session 2, etc.)
+          issue_number = SESSION_NUMBER + 4  # Offset because BUD-5 is Session 1
+          issue_identifier = f"BUD-{issue_number}"
+          next_issue_identifier = f"BUD-{issue_number + 1}"
+
+          print(f"Updating Linear issue {issue_identifier} for Session {SESSION_NUMBER}")
+
+          # Step 1: Get "Done" state ID
+          get_states_query = """
+          query GetWorkflowStates($teamId: String!) {
+              workflowStates(filter: { team: { id: { eq: $teamId } } }) {
+                  nodes {
+                      id
+                      name
+                      type
+                  }
+              }
+          }
+          """
+          states_result = execute_query(get_states_query, {"teamId": TEAM_ID})
+          done_state = next((s for s in states_result["workflowStates"]["nodes"] if s["type"] == "completed"), None)
+          in_progress_state = next((s for s in states_result["workflowStates"]["nodes"] if s["type"] == "started"), None)
+
+          if not done_state or not in_progress_state:
+              print("Could not find required workflow states")
+              exit(1)
+
+          print(f"Found states - Done: {done_state['id']}, In Progress: {in_progress_state['id']}")
+
+          # Step 2: Get current issue ID
+          get_issue_query = """
+          query GetIssue($identifier: String!) {
+              issue(id: $identifier) {
+                  id
+                  identifier
+                  title
+              }
+          }
+          """
+          issue_result = execute_query(get_issue_query, {"identifier": issue_identifier})
+
+          if not issue_result.get("issue"):
+              print(f"Issue {issue_identifier} not found")
+              exit(1)
+
+          issue_id = issue_result["issue"]["id"]
+          print(f"Found issue: {issue_result['issue']['title']}")
+
+          # Step 3: Update issue to Done
+          update_issue_query = """
+          mutation UpdateIssue($issueId: String!, $stateId: String!) {
+              issueUpdate(id: $issueId, input: { stateId: $stateId }) {
+                  success
+                  issue {
+                      id
+                      identifier
+                      state {
+                          name
+                      }
+                  }
+              }
+          }
+          """
+          update_result = execute_query(update_issue_query, {
+              "issueId": issue_id,
+              "stateId": done_state["id"]
+          })
+
+          if update_result["issueUpdate"]["success"]:
+              print(f"✅ Updated {issue_identifier} to Done")
+          else:
+              print(f"❌ Failed to update {issue_identifier}")
+
+          # Step 4: Add comment with PR link
+          merged_date = datetime.fromisoformat(MERGED_AT.replace('Z', '+00:00')).strftime('%Y-%m-%d')
+          comment_body = f"""## ✅ Session Complete!
+
+          **Completed:** {merged_date}
+          **Merged by:** @{MERGED_BY}
+          **Pull Request:** {PR_URL}
+
+          This session has been completed and merged. Check the PR for:
+          - Test results
+          - Code review feedback
+          - Checkpoint document
+
+          🤖 Automated update via GitHub Actions
+          """
+
+          create_comment_query = """
+          mutation CreateComment($issueId: String!, $body: String!) {
+              commentCreate(input: { issueId: $issueId, body: $body }) {
+                  success
+                  comment {
+                      id
+                  }
+              }
+          }
+          """
+          comment_result = execute_query(create_comment_query, {
+              "issueId": issue_id,
+              "body": comment_body
+          })
+
+          if comment_result["commentCreate"]["success"]:
+              print(f"✅ Added comment to {issue_identifier}")
+          else:
+              print(f"❌ Failed to add comment to {issue_identifier}")
+
+          # Step 5: Move next session to "In Progress" (if it exists)
+          if SESSION_NUMBER < 18:
+              next_issue_result = execute_query(get_issue_query, {"identifier": next_issue_identifier})
+
+              if next_issue_result.get("issue"):
+                  next_issue_id = next_issue_result["issue"]["id"]
+                  next_update_result = execute_query(update_issue_query, {
+                      "issueId": next_issue_id,
+                      "stateId": in_progress_state["id"]
+                  })
+
+                  if next_update_result["issueUpdate"]["success"]:
+                      print(f"✅ Moved {next_issue_identifier} to In Progress")
+                  else:
+                      print(f"❌ Failed to move {next_issue_identifier}")
+              else:
+                  print(f"Next issue {next_issue_identifier} not found")
+
+          print("✅ Linear sync complete!")
+          EOF
+
+      - name: Linear sync skipped
+        if: steps.extract-session.outputs.session_number == ''
+        run: |
+          echo "⏭️  Skipping Linear sync - PR title doesn't match 'Session N:' pattern"
+          echo "PR title: ${{ github.event.pull_request.title }}"
