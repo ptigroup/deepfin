@@ -11,10 +11,35 @@ import asyncio
 from datetime import UTC, datetime
 
 import pytest
+from sqlalchemy import text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.database import AsyncSessionLocal, Base, engine
 from app.shared.models import TimestampMixin, utcnow
+
+
+# Check if database is available
+def is_db_available():
+    """Check if PostgreSQL database is available for testing."""
+
+    async def check():
+        try:
+            async with engine.begin() as conn:
+                await conn.execute(text("SELECT 1"))
+            return True
+        except Exception:
+            return False
+
+    try:
+        return asyncio.run(check())
+    except Exception:
+        return False
+
+
+# Skip marker for tests that require database
+requires_db = pytest.mark.skipif(
+    not is_db_available(), reason="PostgreSQL database not available"
+)
 
 
 class TimestampTestModel(Base, TimestampMixin):
@@ -69,6 +94,7 @@ def test_utcnow_current_time():
     assert before <= now <= after, "Should return current time"
 
 
+@requires_db
 @pytest.mark.asyncio
 async def test_timestamp_mixin_fields_exist(setup_test_table):
     """Test that TimestampMixin adds created_at and updated_at fields.
@@ -82,6 +108,7 @@ async def test_timestamp_mixin_fields_exist(setup_test_table):
     assert hasattr(TimestampTestModel, "updated_at"), "Should have updated_at field"
 
 
+@requires_db
 @pytest.mark.asyncio
 async def test_timestamps_auto_populate_on_create(setup_test_table):
     """Test that timestamps are automatically set when creating a record.
@@ -114,6 +141,7 @@ async def test_timestamps_auto_populate_on_create(setup_test_table):
         assert time_diff < 1, "Timestamps should be nearly identical on creation"
 
 
+@requires_db
 @pytest.mark.asyncio
 async def test_updated_at_changes_on_update(setup_test_table):
     """Test that updated_at changes when record is modified.
@@ -146,6 +174,7 @@ async def test_updated_at_changes_on_update(setup_test_table):
         assert test_obj.updated_at > test_obj.created_at, "updated_at should be after created_at"
 
 
+@requires_db
 @pytest.mark.asyncio
 async def test_timestamps_timezone_aware(setup_test_table):
     """Test that timestamp fields are timezone-aware.
@@ -165,6 +194,7 @@ async def test_timestamps_timezone_aware(setup_test_table):
         assert test_obj.updated_at.tzinfo is not None, "updated_at should be timezone-aware"
 
 
+@requires_db
 @pytest.mark.asyncio
 async def test_multiple_updates_update_timestamp(setup_test_table):
     """Test that multiple updates continue to update timestamp.

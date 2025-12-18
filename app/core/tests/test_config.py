@@ -209,8 +209,9 @@ class TestSettings:
         monkeypatch.setenv("LLMWHISPERER_API_KEY", "test-api-key")
 
         # Act & Assert: Creating Settings should fail
+        # Use _env_file=None to prevent loading from .env file
         with pytest.raises(ValidationError) as exc_info:
-            Settings()
+            Settings(_env_file=None)
 
         # Verify error mentions database_url field
         error = str(exc_info.value)
@@ -234,8 +235,9 @@ class TestSettings:
         monkeypatch.setenv("LLMWHISPERER_API_KEY", "test-api-key")
 
         # Act & Assert: Creating Settings should fail
+        # Use _env_file=None to prevent loading from .env file
         with pytest.raises(ValidationError) as exc_info:
-            Settings()
+            Settings(_env_file=None)
 
         error = str(exc_info.value)
         assert "secret_key" in error.lower()

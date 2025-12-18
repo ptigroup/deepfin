@@ -25,6 +25,34 @@ from app.core.database import (
 )
 
 
+# Check if database is available
+def is_db_available():
+    """Check if PostgreSQL database is available for testing."""
+    import asyncio
+
+    async def check():
+        try:
+            async with engine.begin() as conn:
+                await conn.execute(text("SELECT 1"))
+            return True
+        except Exception:
+            return False
+
+    try:
+        return asyncio.run(check())
+    except Exception:
+        return False
+
+
+# Skip marker for tests that require database
+requires_db = pytest.mark.skipif(
+    not is_db_available(), reason="PostgreSQL database not available"
+)
+
+# Mark all tests as asyncio
+pytestmark = pytest.mark.asyncio
+
+
 class SampleModel(Base):
     """Sample model for database testing.
 
@@ -66,7 +94,7 @@ async def test_base_model():
     assert Base.metadata is not None, "Base metadata should be initialized"
 
 
-@pytest.mark.asyncio
+@requires_db
 async def test_session_factory():
     """Test that async session factory creates valid sessions.
 
@@ -85,7 +113,7 @@ async def test_session_factory():
         assert value == 1, "Should execute simple query"
 
 
-@pytest.mark.asyncio
+@requires_db
 async def test_get_db_dependency():
     """Test FastAPI database dependency.
 
@@ -138,7 +166,7 @@ async def test_get_db_rollback_on_exception():
     assert True, "Rollback should complete without errors"
 
 
-@pytest.mark.asyncio
+@requires_db
 async def test_init_db():
     """Test database initialization creates tables.
 
@@ -182,7 +210,7 @@ async def test_close_db():
     # For tests, we just verify the function doesn't error
 
 
-@pytest.mark.asyncio
+@requires_db
 async def test_session_isolation():
     """Test that database sessions are properly isolated.
 
