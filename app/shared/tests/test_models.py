@@ -31,7 +31,7 @@ class TimestampTestModel(Base, TimestampMixin):
     name: Mapped[str] = mapped_column()
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture
 async def setup_test_table():
     """Create test table before test and drop after."""
     async with engine.begin() as conn:

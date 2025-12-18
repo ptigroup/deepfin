@@ -96,7 +96,7 @@ async def test_get_db_dependency():
     - Session can execute queries
     """
     gen = get_db()
-    session = await gen.__anext__()
+    session = await anext(gen)
 
     try:
         assert isinstance(session, AsyncSession), "Should yield AsyncSession"
@@ -107,9 +107,11 @@ async def test_get_db_dependency():
         assert value == 1, "Session should execute queries"
 
     finally:
-        # Clean up the generator
+        # Clean up the generator - this triggers the finally block in get_db
         with contextlib.suppress(StopAsyncIteration):
-            await gen.__anext__()
+            await anext(gen)
+        # Properly close the async generator
+        await gen.aclose()
 
 
 @pytest.mark.asyncio
@@ -122,7 +124,7 @@ async def test_get_db_rollback_on_exception():
     - Exceptions are re-raised
     """
     gen = get_db()
-    _session = await gen.__anext__()  # Session creation (unused but needed to trigger generator)
+    _session = await anext(gen)  # Session creation (unused but needed to trigger generator)
 
     try:
         # Simulate an error during database operation
@@ -133,7 +135,8 @@ async def test_get_db_rollback_on_exception():
     finally:
         # Clean up the generator
         with contextlib.suppress(StopAsyncIteration):
-            await gen.__anext__()
+            await anext(gen)
+        await gen.aclose()
 
     # If we reach here, rollback worked correctly
     assert True, "Rollback should complete without errors"
