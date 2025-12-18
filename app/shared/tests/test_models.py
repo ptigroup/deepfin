@@ -11,12 +11,10 @@ import asyncio
 from datetime import UTC, datetime
 
 import pytest
-from sqlalchemy import text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.database import AsyncSessionLocal, Base, engine
 from app.shared.models import TimestampMixin, utcnow
-
 
 # Database tests - will run when PostgreSQL is available
 

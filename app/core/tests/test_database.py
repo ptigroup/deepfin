@@ -24,7 +24,6 @@ from app.core.database import (
     init_db,
 )
 
-
 # Mark all tests as asyncio
 pytestmark = pytest.mark.asyncio
 
