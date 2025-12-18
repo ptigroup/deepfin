@@ -75,15 +75,12 @@ from structlog.types import EventDict, Processor
 
 from app.core.config import get_settings
 
-
 # ============================================================================
 # STRUCTLOG PROCESSORS
 # ============================================================================
 
 
-def add_app_context(
-    logger: logging.Logger, method_name: str, event_dict: EventDict
-) -> EventDict:
+def add_app_context(_logger: logging.Logger, _method_name: str, event_dict: EventDict) -> EventDict:
     """
     Add application context to every log entry.
 
@@ -120,7 +117,7 @@ def add_app_context(
 
 
 def rename_event_key(
-    logger: logging.Logger, method_name: str, event_dict: EventDict
+    _logger: logging.Logger, _method_name: str, event_dict: EventDict
 ) -> EventDict:
     """
     Rename structlog's 'event' key to 'message' for clarity.

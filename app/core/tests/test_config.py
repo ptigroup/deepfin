@@ -163,9 +163,7 @@ class TestSettings:
         assert "Invalid log level" in error
         assert "Must be one of" in error
 
-    def test_settings_validates_environment(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_settings_validates_environment(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that Settings validates environment is a known value.
 
@@ -195,9 +193,7 @@ class TestSettings:
         error = str(exc_info.value)
         assert "Invalid environment" in error
 
-    def test_settings_requires_database_url(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_settings_requires_database_url(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that Settings requires DATABASE_URL to be set.
 
@@ -207,13 +203,15 @@ class TestSettings:
         Args:
             monkeypatch: pytest fixture for modifying environment
         """
-        # Arrange: Set all required settings EXCEPT DATABASE_URL
+        # Arrange: Clear DATABASE_URL and set other required settings
+        monkeypatch.delenv("DATABASE_URL", raising=False)
         monkeypatch.setenv("SECRET_KEY", "test-secret-key-min-32-chars-long")
         monkeypatch.setenv("LLMWHISPERER_API_KEY", "test-api-key")
 
         # Act & Assert: Creating Settings should fail
+        # Use _env_file=None to prevent loading from .env file
         with pytest.raises(ValidationError) as exc_info:
-            Settings()
+            Settings(_env_file=None)
 
         # Verify error mentions database_url field
         error = str(exc_info.value)
@@ -228,7 +226,8 @@ class TestSettings:
         Args:
             monkeypatch: pytest fixture for modifying environment
         """
-        # Arrange: Set all required settings EXCEPT SECRET_KEY
+        # Arrange: Clear SECRET_KEY and set other required settings
+        monkeypatch.delenv("SECRET_KEY", raising=False)
         monkeypatch.setenv(
             "DATABASE_URL",
             "postgresql+asyncpg://test:test@localhost:5433/test_db",
@@ -236,15 +235,14 @@ class TestSettings:
         monkeypatch.setenv("LLMWHISPERER_API_KEY", "test-api-key")
 
         # Act & Assert: Creating Settings should fail
+        # Use _env_file=None to prevent loading from .env file
         with pytest.raises(ValidationError) as exc_info:
-            Settings()
+            Settings(_env_file=None)
 
         error = str(exc_info.value)
         assert "secret_key" in error.lower()
 
-    def test_allowed_origins_list_property(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_allowed_origins_list_property(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that allowed_origins_list property correctly parses comma-separated string.
 
@@ -315,9 +313,7 @@ class TestGetSettings:
     singleton pattern using @lru_cache.
     """
 
-    def test_get_settings_returns_settings_instance(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_get_settings_returns_settings_instance(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that get_settings() returns a Settings instance.
 
@@ -340,9 +336,7 @@ class TestGetSettings:
         # Assert: Should be a Settings instance
         assert isinstance(settings, Settings)
 
-    def test_get_settings_returns_same_instance(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_get_settings_returns_same_instance(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that get_settings() implements singleton pattern.
 
@@ -370,9 +364,7 @@ class TestGetSettings:
         # Assert: Should be the EXACT SAME object (same memory address)
         assert settings1 is settings2  # 'is' checks identity, not equality
 
-    def test_cache_clear_creates_new_instance(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_cache_clear_creates_new_instance(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that cache_clear() allows creating a new Settings instance.
 
