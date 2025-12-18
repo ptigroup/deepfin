@@ -37,9 +37,7 @@ def is_db_available():
 
 
 # Skip marker for tests that require database
-requires_db = pytest.mark.skipif(
-    not is_db_available(), reason="PostgreSQL database not available"
-)
+requires_db = pytest.mark.skipif(not is_db_available(), reason="PostgreSQL database not available")
 
 
 class TimestampTestModel(Base, TimestampMixin):
