@@ -86,3 +86,7 @@ dmypy.json
 
 # Alembic
 alembic/versions/__pycache__/
+
+# Secret files
+key.txt
+install.sh
