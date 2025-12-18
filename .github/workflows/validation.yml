@@ -50,6 +50,12 @@ jobs:
           LOG_LEVEL=INFO
           EOF
 
+      - name: Wait for PostgreSQL
+        run: |
+          echo "Waiting for PostgreSQL to be ready..."
+          timeout 30 bash -c 'until uv run python -c "import asyncpg; import asyncio; asyncio.run(asyncpg.connect(\"postgresql://postgres:postgres@localhost:5433/llm_pipeline_test\"))" 2>/dev/null; do sleep 1; done'
+          echo "PostgreSQL is ready!"
+
       - name: Run type checking (MyPy)
         run: |
           echo "::group::MyPy Type Checking"
