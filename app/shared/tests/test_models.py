@@ -8,7 +8,7 @@ This module tests:
 """
 
 import asyncio
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 from sqlalchemy.orm import Mapped, mapped_column
@@ -52,7 +52,7 @@ def test_utcnow_returns_datetime():
     now = utcnow()
     assert isinstance(now, datetime), "Should return datetime instance"
     assert now.tzinfo is not None, "Should be timezone-aware"
-    assert now.tzinfo == timezone.utc, "Should be UTC timezone"
+    assert now.tzinfo == UTC, "Should be UTC timezone"
 
 
 def test_utcnow_current_time():
@@ -62,9 +62,9 @@ def test_utcnow_current_time():
     - Returned time is close to actual current time
     - Time is in UTC
     """
-    before = datetime.now(timezone.utc)
+    before = datetime.now(UTC)
     now = utcnow()
-    after = datetime.now(timezone.utc)
+    after = datetime.now(UTC)
 
     assert before <= now <= after, "Should return current time"
 
@@ -92,7 +92,7 @@ async def test_timestamps_auto_populate_on_create(setup_test_table):
     - Both timestamps are close to current time
     - Both timestamps are equal on creation
     """
-    before = datetime.now(timezone.utc)
+    before = datetime.now(UTC)
 
     async with AsyncSessionLocal() as session:
         test_obj = TimestampTestModel(name="test")
@@ -100,7 +100,7 @@ async def test_timestamps_auto_populate_on_create(setup_test_table):
         await session.commit()
         await session.refresh(test_obj)
 
-        after = datetime.now(timezone.utc)
+        after = datetime.now(UTC)
 
         assert test_obj.created_at is not None, "created_at should be set"
         assert test_obj.updated_at is not None, "updated_at should be set"
@@ -192,5 +192,7 @@ async def test_multiple_updates_update_timestamp(setup_test_table):
             timestamps.append(test_obj.updated_at)
 
         # Verify timestamps are increasing
-        assert timestamps[0] < timestamps[1] < timestamps[2], "Timestamps should increase with each update"
+        assert timestamps[0] < timestamps[1] < timestamps[2], (
+            "Timestamps should increase with each update"
+        )
         assert test_obj.created_at == original_created_at, "created_at should never change"

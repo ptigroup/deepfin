@@ -8,7 +8,7 @@ This module tests:
 - ORM mode functionality
 """
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 from pydantic import ValidationError
@@ -73,7 +73,9 @@ def test_base_schema_strips_whitespace():
     data = {"id": 1, "name": "  test  name  "}
     schema = SampleModelSchema(**data)
 
-    assert schema.name == "test  name", "Should strip leading/trailing whitespace but preserve internal"
+    assert schema.name == "test  name", (
+        "Should strip leading/trailing whitespace but preserve internal"
+    )
 
 
 def test_timestamp_schema_includes_timestamps():
@@ -85,7 +87,7 @@ def test_timestamp_schema_includes_timestamps():
     - Timestamps can be parsed from strings
     - Timestamps are datetime objects
     """
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     data = {
         "id": 1,
         "name": "test",
@@ -194,12 +196,13 @@ def test_timestamp_schema_from_orm():
     - All fields are properly mapped
     - Timestamps are preserved
     """
+
     # Simulate an ORM model instance
     class MockORMModel:
         id = 1
         name = "test"
-        created_at = datetime(2025, 1, 1, 12, 0, 0, tzinfo=timezone.utc)
-        updated_at = datetime(2025, 1, 1, 12, 0, 0, tzinfo=timezone.utc)
+        created_at = datetime(2025, 1, 1, 12, 0, 0, tzinfo=UTC)
+        updated_at = datetime(2025, 1, 1, 12, 0, 0, tzinfo=UTC)
 
     orm_obj = MockORMModel()
     schema = SampleTimestampModelSchema.model_validate(orm_obj)

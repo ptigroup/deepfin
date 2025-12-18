@@ -60,7 +60,6 @@ Example:
 """
 
 from functools import lru_cache
-from typing import Any
 
 from pydantic import Field, PostgresDsn, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -486,9 +485,7 @@ class Settings(BaseSettings):
         v_upper = v.upper()
 
         if v_upper not in allowed_levels:
-            raise ValueError(
-                f"Invalid log level: {v}. Must be one of: {', '.join(allowed_levels)}"
-            )
+            raise ValueError(f"Invalid log level: {v}. Must be one of: {', '.join(allowed_levels)}")
 
         return v_upper
 
@@ -511,9 +508,7 @@ class Settings(BaseSettings):
         v_lower = v.lower()
 
         if v_lower not in allowed_envs:
-            raise ValueError(
-                f"Invalid environment: {v}. Must be one of: {', '.join(allowed_envs)}"
-            )
+            raise ValueError(f"Invalid environment: {v}. Must be one of: {', '.join(allowed_envs)}")
 
         return v_lower
 

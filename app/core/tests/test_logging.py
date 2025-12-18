@@ -32,7 +32,6 @@ binding functions correctly.
 import logging
 
 import pytest
-import structlog
 
 from app.core.logging import (
     bind_correlation_id,
@@ -52,9 +51,7 @@ class TestConfigureLogging:
     the structured logging system.
     """
 
-    def test_configure_logging_runs_without_error(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_configure_logging_runs_without_error(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that configure_logging() completes successfully.
 
@@ -234,9 +231,7 @@ class TestCorrelationId:
     to the logging context.
     """
 
-    def test_bind_correlation_id_adds_to_context(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_bind_correlation_id_adds_to_context(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that bind_correlation_id() adds correlation_id to log context.
 
@@ -307,9 +302,7 @@ class TestUserContext:
     bound/unbound to the logging context.
     """
 
-    def test_bind_user_context_adds_to_context(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_bind_user_context_adds_to_context(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that bind_user_context() adds user info to log context.
 
@@ -340,9 +333,7 @@ class TestUserContext:
             # Cleanup: Always unbind
             unbind_user_context()
 
-    def test_bind_user_context_without_email(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_bind_user_context_without_email(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that bind_user_context() works with just user_id (no email).
 
@@ -406,9 +397,7 @@ class TestContextIsolation:
     other tests (context is properly cleaned up).
     """
 
-    def test_context_cleanup_between_tests_1(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_context_cleanup_between_tests_1(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test 1: Bind context and clean up.
 
@@ -436,9 +425,7 @@ class TestContextIsolation:
             unbind_correlation_id()
             unbind_user_context()
 
-    def test_context_cleanup_between_tests_2(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_context_cleanup_between_tests_2(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test 2: Verify context from test 1 doesn't leak here.
 

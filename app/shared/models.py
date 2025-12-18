@@ -15,7 +15,7 @@ Example:
         # created_at and updated_at automatically included via TimestampMixin
 """
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import DateTime, func
 from sqlalchemy.orm import Mapped, mapped_column
@@ -35,7 +35,7 @@ def utcnow() -> datetime:
         >>> print(now.tzinfo)
         datetime.timezone.utc
     """
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 class TimestampMixin:

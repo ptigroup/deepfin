@@ -163,9 +163,7 @@ class TestSettings:
         assert "Invalid log level" in error
         assert "Must be one of" in error
 
-    def test_settings_validates_environment(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_settings_validates_environment(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that Settings validates environment is a known value.
 
@@ -195,9 +193,7 @@ class TestSettings:
         error = str(exc_info.value)
         assert "Invalid environment" in error
 
-    def test_settings_requires_database_url(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_settings_requires_database_url(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that Settings requires DATABASE_URL to be set.
 
@@ -242,9 +238,7 @@ class TestSettings:
         error = str(exc_info.value)
         assert "secret_key" in error.lower()
 
-    def test_allowed_origins_list_property(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_allowed_origins_list_property(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that allowed_origins_list property correctly parses comma-separated string.
 
@@ -315,9 +309,7 @@ class TestGetSettings:
     singleton pattern using @lru_cache.
     """
 
-    def test_get_settings_returns_settings_instance(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_get_settings_returns_settings_instance(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that get_settings() returns a Settings instance.
 
@@ -340,9 +332,7 @@ class TestGetSettings:
         # Assert: Should be a Settings instance
         assert isinstance(settings, Settings)
 
-    def test_get_settings_returns_same_instance(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_get_settings_returns_same_instance(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that get_settings() implements singleton pattern.
 
@@ -370,9 +360,7 @@ class TestGetSettings:
         # Assert: Should be the EXACT SAME object (same memory address)
         assert settings1 is settings2  # 'is' checks identity, not equality
 
-    def test_cache_clear_creates_new_instance(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    def test_cache_clear_creates_new_instance(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
         Test that cache_clear() allows creating a new Settings instance.
 

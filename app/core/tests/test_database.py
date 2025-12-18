@@ -8,6 +8,8 @@ This module tests:
 - Database initialization and cleanup
 """
 
+import contextlib
+
 import pytest
 from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -105,10 +107,8 @@ async def test_get_db_dependency():
 
     finally:
         # Clean up the generator
-        try:
+        with contextlib.suppress(StopAsyncIteration):
             await gen.__anext__()
-        except StopAsyncIteration:
-            pass
 
 
 @pytest.mark.asyncio
@@ -121,7 +121,7 @@ async def test_get_db_rollback_on_exception():
     - Exceptions are re-raised
     """
     gen = get_db()
-    session = await gen.__anext__()
+    _session = await gen.__anext__()  # Session creation (unused but needed to trigger generator)
 
     try:
         # Simulate an error during database operation
@@ -131,10 +131,8 @@ async def test_get_db_rollback_on_exception():
         pass
     finally:
         # Clean up the generator
-        try:
+        with contextlib.suppress(StopAsyncIteration):
             await gen.__anext__()
-        except StopAsyncIteration:
-            pass
 
     # If we reach here, rollback worked correctly
     assert True, "Rollback should complete without errors"
@@ -156,9 +154,11 @@ async def test_init_db():
     async with AsyncSessionLocal() as session:
         # This should not raise an exception if table exists
         result = await session.execute(
-            text("SELECT table_name FROM information_schema.tables WHERE table_name = 'test_models'")
+            text(
+                "SELECT table_name FROM information_schema.tables WHERE table_name = 'test_models'"
+            )
         )
-        tables = result.fetchall()
+        _tables = result.fetchall()  # Fetch results to verify query works
 
         # Clean up test table
         await session.execute(text("DROP TABLE IF EXISTS test_models"))
