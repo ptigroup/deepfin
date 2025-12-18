@@ -203,7 +203,8 @@ class TestSettings:
         Args:
             monkeypatch: pytest fixture for modifying environment
         """
-        # Arrange: Set all required settings EXCEPT DATABASE_URL
+        # Arrange: Clear DATABASE_URL and set other required settings
+        monkeypatch.delenv("DATABASE_URL", raising=False)
         monkeypatch.setenv("SECRET_KEY", "test-secret-key-min-32-chars-long")
         monkeypatch.setenv("LLMWHISPERER_API_KEY", "test-api-key")
 
@@ -224,7 +225,8 @@ class TestSettings:
         Args:
             monkeypatch: pytest fixture for modifying environment
         """
-        # Arrange: Set all required settings EXCEPT SECRET_KEY
+        # Arrange: Clear SECRET_KEY and set other required settings
+        monkeypatch.delenv("SECRET_KEY", raising=False)
         monkeypatch.setenv(
             "DATABASE_URL",
             "postgresql+asyncpg://test:test@localhost:5433/test_db",

@@ -25,8 +25,8 @@ from app.core.database import (
 )
 
 
-class TestModel(Base):
-    """Test model for database operations.
+class SampleModel(Base):
+    """Sample model for database testing.
 
     This model is used only for testing and is not part of the production schema.
     """
@@ -197,13 +197,13 @@ async def test_session_isolation():
 
     # Session 1: Insert a record
     async with AsyncSessionLocal() as session1:
-        test_obj = TestModel(name="test1")
+        test_obj = SampleModel(name="test1")
         session1.add(test_obj)
         await session1.flush()  # Flush but don't commit
 
         # Session 2: Should not see uncommitted changes from session1
         async with AsyncSessionLocal() as session2:
-            result = await session2.execute(select(TestModel).where(TestModel.name == "test1"))
+            result = await session2.execute(select(SampleModel).where(SampleModel.name == "test1"))
             obj = result.scalar_one_or_none()
             assert obj is None, "Session 2 should not see uncommitted changes"
 
