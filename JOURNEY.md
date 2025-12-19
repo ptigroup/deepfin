@@ -71,23 +71,50 @@ def get_settings() -> Settings:
 - FastAPI dependency injection: `settings: Settings = Depends(get_settings)`
 - Easy to mock in tests
 
+### 🎯 Milestone Achieved
+**Type-safe configuration system** - Application validates settings at startup, preventing runtime errors
+
 ### Files Created
 ```
-app/core/config.py          # Pydantic Settings with validation
-app/core/logging.py         # Structured logging setup
-app/core/tests/test_config.py     # 11 tests
-app/core/tests/test_logging.py    # 8 tests
+app/core/config.py               # Pydantic Settings (620 lines)
+app/core/logging.py              # Structured logging setup (158 lines)
+app/core/tests/test_config.py   # Configuration tests (11 tests, 285 lines)
+app/core/tests/test_logging.py  # Logging tests (8 tests, 195 lines)
+```
+
+### Challenges Faced
+
+**Challenge 1: Environment Variable Testing**
+- **Issue:** Tests modifying environment variables affected each other
+- **Solution:** Use `monkeypatch` fixture to safely modify and restore env vars
+```python
+def test_missing_required_field(monkeypatch):
+    monkeypatch.delenv("DATABASE_URL", raising=False)
+    with pytest.raises(ValidationError):
+        Settings()
+```
+
+**Challenge 2: Log Format for Different Environments**
+- **Issue:** JSON logs hard to read during development
+- **Solution:** Human-readable format in dev, JSON in production
+```python
+if settings.environment == "development":
+    processors.append(ConsoleRenderer())  # Pretty print
+else:
+    processors.append(JSONRenderer())  # Machine-readable
 ```
 
 ### Lessons Learned
-- Validation at startup prevents runtime surprises
-- Comprehensive tests document expected behavior
-- Good foundation = faster development later
+- **Validation at startup prevents runtime surprises:** Better to crash on startup than in production
+- **Comprehensive tests document expected behavior:** Tests serve as executable documentation
+- **Good foundation = faster development later:** Time invested in Sessions 1-2 pays dividends
+- **Environment-based configuration is critical:** Dev and prod have different needs
 
 ### Testing Insights
 - Used `monkeypatch` to safely modify environment variables in tests
 - Tests verify both happy path and error cases
 - Config validation catches issues before they reach production
+- Singleton pattern testing requires cache clearing between tests
 
 ---
 
@@ -366,6 +393,393 @@ CI passes first try! ✅
 
 ---
 
+## Session 4: LLMWhisperer Client
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-8
+
+### What We'll Build
+- LLMWhisperer API client using httpx
+- Async file caching system for API responses
+- Pydantic schemas for API requests/responses
+- Comprehensive error handling and retries
+- 10+ unit tests
+
+### Key Files to Create
+```
+app/llm/__init__.py
+app/llm/clients.py          # LLMWhisperer HTTP client
+app/llm/schemas.py          # Request/response models
+app/llm/cache.py            # Async file caching
+app/llm/tests/test_clients.py
+```
+
+### Expected Concepts
+- HTTP client configuration with httpx
+- API key management and security
+- File caching strategies for expensive API calls
+- Async file I/O operations
+- Retry logic with exponential backoff
+
+---
+
+## Session 5: Detection Models
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-9
+
+### What We'll Build
+- Database models for table detection feature
+- SQLAlchemy relationships and enums
+- Pydantic schemas for validation
+- Alembic migration for new tables
+- 8+ tests
+
+### Key Files to Create
+```
+app/detection/__init__.py
+app/detection/models.py     # Document, DetectionResult models
+app/detection/schemas.py    # Validation schemas
+alembic/versions/XXX_detection_tables.py
+app/detection/tests/
+```
+
+### Expected Concepts
+- SQLAlchemy relationship definitions
+- Enum types for status fields
+- Foreign key constraints
+- Migration best practices
+
+---
+
+## Session 6: Detection Service
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-10
+
+### What We'll Build
+- Table detection service layer
+- File upload handling
+- PyMuPDF integration for PDF processing
+- REST API endpoints for detection
+- 15+ tests
+
+### Key Files to Create
+```
+app/detection/service.py    # Business logic
+app/detection/detector.py   # PyMuPDF integration
+app/detection/routes.py     # API endpoints
+app/detection/tests/test_service.py
+```
+
+### Expected Milestone
+**Can detect tables in PDF documents via API**
+
+---
+
+## Session 7: Statements Models
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-11
+
+### What We'll Build
+- Models for financial statements (Income Statement, Balance Sheet, Cash Flow)
+- Complex SQLAlchemy relationships
+- Validation rules for financial data
+- Alembic migration
+- 12+ tests
+
+### Key Files to Create
+```
+app/statements/__init__.py
+app/statements/models.py    # Statement models
+app/statements/schemas.py   # Validation schemas
+alembic/versions/XXX_statements_tables.py
+```
+
+---
+
+## Session 8: Statements Service
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-12
+
+### What We'll Build
+- Statements processing service
+- Integration with LLMWhisperer client
+- API endpoints for statement processing
+- Document type detection logic
+- 15+ tests
+
+### Key Files to Create
+```
+app/statements/service.py   # Processing logic
+app/statements/routes.py    # API endpoints
+app/statements/tests/
+```
+
+---
+
+## Session 9: Extraction Models
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-13
+
+### What We'll Build
+- Models for extracted financial data
+- Complex validation rules for line items
+- Schemas for hierarchical data
+- 10+ tests
+
+### Key Files to Create
+```
+app/extraction/__init__.py
+app/extraction/models.py    # LineItem, Account models
+app/extraction/schemas.py   # Complex validation
+alembic/versions/XXX_extraction_tables.py
+```
+
+---
+
+## Session 10: Extraction Service
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-14
+
+### What We'll Build
+- Direct parsing engine for raw text
+- Data extraction logic (100% accuracy)
+- Service layer for extraction
+- API endpoints
+- 18+ tests
+
+### Key Files to Create
+```
+app/extraction/service.py   # Orchestration
+app/extraction/parser.py    # Direct parsing logic
+app/extraction/routes.py    # API endpoints
+app/extraction/tests/
+```
+
+### Expected Milestone
+**Direct parsing achieves 100% data accuracy**
+
+---
+
+## Session 11: Consolidation Models
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-15
+
+### What We'll Build
+- Models for multi-period data aggregation
+- Consolidated financial statements
+- Period-over-period comparison schemas
+- 8+ tests
+
+### Key Files to Create
+```
+app/consolidation/__init__.py
+app/consolidation/models.py
+app/consolidation/schemas.py
+alembic/versions/XXX_consolidation_tables.py
+```
+
+---
+
+## Session 12: Consolidation Service
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-16
+
+### What We'll Build
+- Data aggregation service
+- Excel export with formatting (openpyxl)
+- Multi-period consolidation logic
+- API endpoints
+- 12+ tests
+
+### Key Files to Create
+```
+app/consolidation/service.py
+app/consolidation/exporter.py    # Excel generation
+app/consolidation/routes.py
+app/consolidation/tests/
+```
+
+### Expected Milestone
+**Can export structured data to formatted Excel**
+
+---
+
+## Session 13: Background Jobs
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-17
+
+### What We'll Build
+- Background job processing system
+- Task queue implementation
+- Async workers for long-running tasks
+- Job status tracking
+- 10+ tests
+
+### Key Files to Create
+```
+app/jobs/__init__.py
+app/jobs/worker.py          # Background worker
+app/jobs/tasks.py           # Task definitions
+app/jobs/models.py          # Job status tracking
+app/jobs/tests/
+```
+
+---
+
+## Session 14: Authentication
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-18
+
+### What We'll Build
+- JWT token authentication
+- Password hashing with bcrypt
+- OAuth2 password flow
+- Protected route decorators
+- User management API
+- 15+ tests
+
+### Key Files to Create
+```
+app/auth/__init__.py
+app/auth/models.py          # User model
+app/auth/service.py         # Authentication logic
+app/auth/routes.py          # Login/register endpoints
+app/auth/dependencies.py    # Protected route decorator
+app/auth/tests/
+```
+
+### Expected Milestone
+**Secure API with authentication and authorization**
+
+---
+
+## Session 15: Email & Notifications
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-19
+
+### What We'll Build
+- Email service integration
+- Jinja2 template rendering for emails
+- Notification system for job completion
+- Email templates (HTML + plain text)
+- 8+ tests
+
+### Key Files to Create
+```
+app/notifications/__init__.py
+app/notifications/service.py    # Email sending
+app/notifications/templates/    # Jinja2 templates
+app/notifications/tests/
+```
+
+---
+
+## Session 16: Integration Tests
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-20
+
+### What We'll Build
+- End-to-end integration tests
+- Full workflow testing (PDF → JSON/Excel)
+- Integration test fixtures
+- Test data management
+- 20+ integration tests
+
+### Key Files to Create
+```
+tests/integration/__init__.py
+tests/integration/test_full_pipeline.py
+tests/integration/test_workflows.py
+tests/integration/conftest.py
+tests/fixtures/                 # Sample PDFs and expected outputs
+```
+
+### Expected Milestone
+**80%+ test coverage across entire codebase**
+
+---
+
+## Session 17: Documentation & Polish
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-21
+
+### What We'll Build
+- Comprehensive README.md
+- Architecture documentation
+- API documentation with examples
+- Code cleanup and polish
+- Developer setup guide
+
+### Key Files to Create/Update
+```
+README.md                   # Complete project documentation
+ARCHITECTURE.md             # System design and patterns
+API.md                      # API endpoint documentation
+CONTRIBUTING.md             # Development guidelines
+```
+
+---
+
+## Session 18: Deployment & CI/CD
+
+📋 **Ready to Start**
+**PR:** TBD
+**Linear:** BUD-22
+
+### What We'll Build
+- Docker containerization
+- docker-compose for local development
+- Enhanced GitHub Actions workflows
+- Cloud deployment configuration (AWS/GCP/Azure)
+- Production deployment guide
+- 10+ deployment tests
+
+### Key Files to Create
+```
+Dockerfile
+docker-compose.yml
+.dockerignore
+.github/workflows/deploy.yml
+docs/DEPLOYMENT.md
+```
+
+### Expected Milestone
+🎉 **FINAL MILESTONE: Production-Ready Application**
+- Containerized application
+- Automated CI/CD pipeline
+- Cloud deployment ready
+- Complete documentation
+- **Project Complete!**
+
+---
+
 ## Key Technical Decisions Reference
 
 ### Why This Tech Stack?
@@ -460,10 +874,25 @@ git branch -D session-XX-feature-name
 |---------|--------|----|--------------| --------------|
 | Session 1: Core Configuration & Logging | ✅ Done | [#1](https://github.com/ptigroup/deepfin/pull/1) | BUD-5 | 2025-12-16 |
 | Session 2: Database & Shared Models | ✅ Done | [#2](https://github.com/ptigroup/deepfin/pull/2) | BUD-6 | 2025-12-18 |
-| Session 3: FastAPI Application & Health Checks | 📋 Next | - | BUD-7 | - |
-| Session 4-18 | ⏳ Pending | - | BUD-8 to BUD-22 | - |
+| Session 3: FastAPI Application & Health Checks | ✅ Done | [#3](https://github.com/ptigroup/deepfin/pull/3) | BUD-7 | 2025-12-18 |
+| Session 4: LLMWhisperer Client | 📋 Next | - | BUD-8 | - |
+| Session 5: Detection Models | ⏳ Pending | - | BUD-9 | - |
+| Session 6: Detection Service | ⏳ Pending | - | BUD-10 | - |
+| Session 7: Statements Models | ⏳ Pending | - | BUD-11 | - |
+| Session 8: Statements Service | ⏳ Pending | - | BUD-12 | - |
+| Session 9: Extraction Models | ⏳ Pending | - | BUD-13 | - |
+| Session 10: Extraction Service | ⏳ Pending | - | BUD-14 | - |
+| Session 11: Consolidation Models | ⏳ Pending | - | BUD-15 | - |
+| Session 12: Consolidation Service | ⏳ Pending | - | BUD-16 | - |
+| Session 13: Background Jobs | ⏳ Pending | - | BUD-17 | - |
+| Session 14: Authentication | ⏳ Pending | - | BUD-18 | - |
+| Session 15: Email & Notifications | ⏳ Pending | - | BUD-19 | - |
+| Session 16: Integration Tests | ⏳ Pending | - | BUD-20 | - |
+| Session 17: Documentation & Polish | ⏳ Pending | - | BUD-21 | - |
+| Session 18: Deployment & CI/CD | ⏳ Pending | - | BUD-22 | - |
 
-**Completion:** 2/18 sessions (11%)
+**Completion:** 3/18 sessions (17%)
+**Phase 1 (Foundation):** 3/5 complete (60%)
 
 ---
 
@@ -541,21 +970,25 @@ class ItemResponse(BaseResponse):
 
 ## Next Steps
 
-**Before Session 3:**
-- ✅ Verify PostgreSQL is running locally
-- ✅ Ensure all Session 2 tests passing: `uv run pytest app/`
-- ✅ Review BUD-7 requirements in Linear
+**Before Session 4:**
+- ✅ All Session 3 work complete and merged
+- ✅ API running at http://localhost:8123
+- ✅ Validation scripts created and documented
+- [ ] Review BUD-8 requirements in Linear
+- [ ] Obtain LLMWhisperer API key from Unstract
 
-**Session 3 Focus:**
-- Implement health check endpoints
-- Add request ID middleware for traceability
-- Setup CORS for frontend integration
-- Test health checks work with database connection
+**Session 4 Focus:**
+- Create LLMWhisperer HTTP client with httpx
+- Implement async file caching for API responses
+- Add comprehensive error handling and retries
+- Test client integration with API key management
 
 **Future Considerations:**
-- API authentication/authorization (Session 11-12)
-- Rate limiting (Session 15)
-- Monitoring/observability (Session 17)
+- Document type detection (Session 7-8)
+- Direct parsing for 100% accuracy (Session 10)
+- API authentication/authorization (Session 14)
+- Background job processing (Session 13)
+- Integration tests and 80% coverage (Session 16)
 - Production deployment (Session 18)
 
 ---
@@ -592,6 +1025,7 @@ class ItemResponse(BaseResponse):
 
 ---
 
-**Last Updated:** 2025-12-18
-**Current Session:** Preparing for Session 3
-**Next Milestone:** Working API with health checks
+**Last Updated:** 2025-12-19
+**Current Session:** Session 3 Complete - Ready for Session 4
+**Next Milestone:** LLMWhisperer Client Integration (Session 4)
+**Progress:** 3/18 sessions (17% complete)
