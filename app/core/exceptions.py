@@ -65,9 +65,7 @@ def create_error_response(
     )
 
 
-async def validation_exception_handler(
-    request: Request, exc: ValidationError
-) -> JSONResponse:
+async def validation_exception_handler(request: Request, exc: ValidationError) -> JSONResponse:
     """Handle Pydantic validation errors.
 
     Pydantic ValidationError occurs when:
@@ -114,9 +112,7 @@ async def validation_exception_handler(
     )
 
 
-async def sqlalchemy_exception_handler(
-    request: Request, exc: SQLAlchemyError
-) -> JSONResponse:
+async def sqlalchemy_exception_handler(request: Request, exc: SQLAlchemyError) -> JSONResponse:
     """Handle SQLAlchemy database errors.
 
     SQLAlchemyError occurs when:
