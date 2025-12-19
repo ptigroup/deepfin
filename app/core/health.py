@@ -10,7 +10,7 @@ Health checks help ensure the application is:
 2. Connected to critical dependencies like database (/health/db)
 """
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from fastapi import APIRouter, Depends, status
@@ -45,7 +45,7 @@ async def health_check() -> dict[str, Any]:
     """
     return {
         "status": "healthy",
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(UTC).isoformat(),
     }
 
 
@@ -96,7 +96,7 @@ async def database_health_check(
         return {
             "status": "healthy",
             "database": "connected",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
         }
     except Exception as e:
         # Database is not accessible - return 503 Service Unavailable
@@ -109,6 +109,6 @@ async def database_health_check(
                 "status": "unhealthy",
                 "database": "disconnected",
                 "error": str(e),
-                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "timestamp": datetime.now(UTC).isoformat(),
             },
         ) from e

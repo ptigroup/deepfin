@@ -14,7 +14,6 @@ integration tests verify that all components work together properly.
 import pytest
 from fastapi import status
 from fastapi.testclient import TestClient
-from sqlalchemy import text
 
 from app.main import app
 
@@ -220,7 +219,7 @@ def test_not_found_error(client: TestClient) -> None:
     assert "detail" in data
 
 
-def test_exception_handler_format(client: TestClient) -> None:
+def test_exception_handler_format(_client: TestClient) -> None:
     """Test that exceptions return properly formatted error responses.
 
     Note: This test is a placeholder. In a real scenario, you would:
@@ -231,7 +230,7 @@ def test_exception_handler_format(client: TestClient) -> None:
     by checking the app's exception handlers.
 
     Args:
-        client: FastAPI test client
+        _client: FastAPI test client (unused but required by fixture)
     """
     # Verify exception handlers are registered
     from pydantic import ValidationError

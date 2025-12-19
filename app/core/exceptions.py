@@ -14,7 +14,7 @@ Benefits:
 - Consistent error handling without repetitive try/except blocks
 """
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from fastapi import Request, status
@@ -51,7 +51,7 @@ def create_error_response(
     error_response: dict[str, Any] = {
         "success": False,
         "message": message,
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(UTC).isoformat(),
         "request_id": request_id,
     }
 
