@@ -377,6 +377,27 @@ class Settings(BaseSettings):
     )
     """Password for SMTP authentication. Keep this secret!"""
 
+    @property
+    def unstract_api_key(self) -> str:
+        """Alias for llmwhisperer_api_key for compatibility."""
+        return self.llmwhisperer_api_key
+
+    # ============================================================================
+    # CACHE SETTINGS
+    # ============================================================================
+
+    cache_dir: str = Field(
+        default=".cache",
+        description="Directory to store cache files",
+    )
+    """
+    Directory where cache files are stored (e.g., LLMWhisperer API responses).
+    Created automatically if it doesn't exist.
+    Relative to project root.
+
+    Caching expensive API calls saves time and money on reprocessing.
+    """
+
     # ============================================================================
     # FILE UPLOAD SETTINGS
     # ============================================================================
