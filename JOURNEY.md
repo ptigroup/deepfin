@@ -396,8 +396,8 @@ CI passes first try! ✅
 ## Session 4: LLMWhisperer Client
 
 **Completed:** 2025-12-22
-**PR:** TBD (will be updated after merge)
-**Linear:** BUD-8 → In Progress
+**PR:** https://github.com/ptigroup/deepfin/pull/4
+**Linear:** BUD-8 → Done
 
 ### 🎯 Milestone Achieved
 **LLMWhisperer API client with intelligent caching** - Can extract text from PDFs with automatic caching to avoid redundant API calls
@@ -1000,7 +1000,7 @@ git branch -D session-XX-feature-name
 | Session 1: Core Configuration & Logging | ✅ Done | [#1](https://github.com/ptigroup/deepfin/pull/1) | BUD-5 | 2025-12-16 |
 | Session 2: Database & Shared Models | ✅ Done | [#2](https://github.com/ptigroup/deepfin/pull/2) | BUD-6 | 2025-12-18 |
 | Session 3: FastAPI Application & Health Checks | ✅ Done | [#3](https://github.com/ptigroup/deepfin/pull/3) | BUD-7 | 2025-12-18 |
-| Session 4: LLMWhisperer Client | ✅ Done | TBD | BUD-8 | 2025-12-22 |
+| Session 4: LLMWhisperer Client | ✅ Done | [#4](https://github.com/ptigroup/deepfin/pull/4) | BUD-8 | 2025-12-22 |
 | Session 5: Detection Models | 📋 Next | - | BUD-9 | - |
 | Session 6: Detection Service | ⏳ Pending | - | BUD-10 | - |
 | Session 7: Statements Models | ⏳ Pending | - | BUD-11 | - |
