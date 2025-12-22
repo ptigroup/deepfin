@@ -43,6 +43,9 @@ tmp/
 temp/
 *.tmp
 
+# Cache
+.cache/
+
 # Old brownfield code (keeping for reference but not tracking changes)
 # NOTE: Using / prefix to only match at root level, not in subdirectories
 /core/
