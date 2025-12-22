@@ -116,6 +116,39 @@ class PaginationParams(BaseSchema):
     )
 
 
+class BaseResponse(BaseSchema):
+    """Base response schema for all API responses.
+
+    Provides consistent response format with success status and optional message.
+
+    Attributes:
+        success: Whether the operation was successful
+        message: Optional message about the operation
+        timestamp: When the response was generated
+
+    Example:
+        class UserResponse(BaseResponse):
+            data: UserSchema
+
+        return UserResponse(
+            success=True,
+            message="User retrieved successfully",
+            data=user
+        )
+    """
+
+    success: bool = Field(
+        default=True, description="Whether the operation was successful"
+    )
+    message: str | None = Field(
+        default=None, description="Optional message about the operation"
+    )
+    timestamp: datetime = Field(
+        default_factory=datetime.now,
+        description="When the response was generated",
+    )
+
+
 class ErrorResponse(BaseSchema):
     """Standard error response schema.
 
