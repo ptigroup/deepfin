@@ -552,7 +552,7 @@ class ProcessingMode(str, Enum):
 ## Session 5: Detection Models
 
 **Completed:** 2025-12-22
-**PR:** TBD (Session 5)
+**PR:** https://github.com/ptigroup/deepfin/pull/5
 **Linear:** BUD-9 → Done
 
 ### 🎯 Milestone Achieved
