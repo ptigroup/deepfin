@@ -4,16 +4,24 @@ This checklist ensures consistency across all session completions.
 
 ## 🚀 AUTOMATED WORKFLOW (Recommended)
 
-**ONE COMMAND DOES EVERYTHING:**
+**BASH VERSION (Recommended - Works on Git Bash/WSL):**
 
-```powershell
-.\scripts\complete-session.ps1 -SessionNum <N>
+```bash
+bash ./scripts/create-session-pr.sh <N> --auto-merge
 ```
 
 **Example:**
-```powershell
-.\scripts\complete-session.ps1 -SessionNum 6
+```bash
+bash ./scripts/create-session-pr.sh 7 --auto-merge
 ```
+
+**PowerShell VERSION (Requires PowerShell Core 7+):**
+
+```powershell
+pwsh .\scripts\complete-session.ps1 -SessionNum <N>
+```
+
+**Note:** Windows PowerShell 5.1 has emoji encoding issues. Use PowerShell Core (`pwsh`) or the bash version above.
 
 **What it does automatically:**
 1. ✅ Runs validation (ruff format, ruff check, pytest)
