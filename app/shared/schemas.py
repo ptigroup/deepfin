@@ -137,12 +137,8 @@ class BaseResponse(BaseSchema):
         )
     """
 
-    success: bool = Field(
-        default=True, description="Whether the operation was successful"
-    )
-    message: str | None = Field(
-        default=None, description="Optional message about the operation"
-    )
+    success: bool = Field(default=True, description="Whether the operation was successful")
+    message: str | None = Field(default=None, description="Optional message about the operation")
     timestamp: datetime = Field(
         default_factory=datetime.now,
         description="When the response was generated",
