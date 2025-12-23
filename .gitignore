@@ -43,6 +43,9 @@ tmp/
 temp/
 *.tmp
 
+# Uploaded files
+uploads/
+
 # Cache
 .cache/
 
