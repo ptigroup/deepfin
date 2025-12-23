@@ -108,26 +108,29 @@ jobs:
 
           print(f"Found states - Done: {done_state['id']}, In Progress: {in_progress_state['id']}")
 
-          # Step 2: Get issue by identifier (using direct issue query)
+          # Step 2: Get issue by identifier (query by identifier, not UUID)
           get_issue_query = """
-          query GetIssue($issueId: String!) {
-              issue(id: $issueId) {
-                  id
-                  identifier
-                  title
+          query GetIssue($identifier: String!, $teamId: String!) {
+              issues(filter: { identifier: { eq: $identifier }, team: { id: { eq: $teamId } } }) {
+                  nodes {
+                      id
+                      identifier
+                      title
+                  }
               }
           }
           """
           issue_result = execute_query(get_issue_query, {
-              "issueId": issue_identifier
+              "identifier": issue_identifier,
+              "teamId": TEAM_ID
           })
 
-          if not issue_result.get("issue"):
+          if not issue_result.get("issues") or len(issue_result["issues"]["nodes"]) == 0:
               print(f"Issue {issue_identifier} not found")
               exit(1)
 
-          issue_id = issue_result["issue"]["id"]
-          print(f"Found issue: {issue_result['issue']['title']}")
+          issue_id = issue_result["issues"]["nodes"][0]["id"]
+          print(f"Found issue: {issue_result['issues']['nodes'][0]['title']}")
 
           # Step 3: Update issue to Done
           update_issue_query = """
@@ -193,11 +196,12 @@ jobs:
           # Step 5: Move next session to "In Progress" (if it exists)
           if SESSION_NUMBER < 18:
               next_issue_result = execute_query(get_issue_query, {
-                  "issueId": next_issue_identifier
+                  "identifier": next_issue_identifier,
+                  "teamId": TEAM_ID
               })
 
-              if next_issue_result.get("issue"):
-                  next_issue_id = next_issue_result["issue"]["id"]
+              if next_issue_result.get("issues") and len(next_issue_result["issues"]["nodes"]) > 0:
+                  next_issue_id = next_issue_result["issues"]["nodes"][0]["id"]
                   next_update_result = execute_query(update_issue_query, {
                       "issueId": next_issue_id,
                       "stateId": in_progress_state["id"]

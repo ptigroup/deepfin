@@ -29,7 +29,7 @@ if (-not $SkipValidation) {
     Write-Host "  → Running ruff format..." -ForegroundColor Gray
     & uv run ruff format app/ --check
     if ($LASTEXITCODE -ne 0) {
-        Write-Host "❌ Format check failed" -ForegroundColor Red
+        Write-Host "[X] Format check failed" -ForegroundColor Red
         Write-Host "Run: uv run ruff format app/" -ForegroundColor Yellow
         exit 1
     }
@@ -38,7 +38,7 @@ if (-not $SkipValidation) {
     Write-Host "  → Running ruff check..." -ForegroundColor Gray
     & uv run ruff check app/
     if ($LASTEXITCODE -ne 0) {
-        Write-Host "❌ Linting failed" -ForegroundColor Red
+        Write-Host "[X] Linting failed" -ForegroundColor Red
         Write-Host "Run: uv run ruff check app/ --fix" -ForegroundColor Yellow
         exit 1
     }
@@ -47,11 +47,11 @@ if (-not $SkipValidation) {
     Write-Host "  → Running pytest..." -ForegroundColor Gray
     & uv run pytest app/ -v --tb=short
     if ($LASTEXITCODE -ne 0) {
-        Write-Host "❌ Tests failed" -ForegroundColor Red
+        Write-Host "[X] Tests failed" -ForegroundColor Red
         exit 1
     }
 
-    Write-Host "✅ Validation passed" -ForegroundColor Green
+    Write-Host "[OK] Validation passed" -ForegroundColor Green
     Write-Host ""
 } else {
     Write-Host "[1/6] Skipping validation (--SkipValidation)" -ForegroundColor Yellow
@@ -69,19 +69,19 @@ if ($NoAutoMerge) {
 }
 
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "❌ PR creation failed" -ForegroundColor Red
+    Write-Host "[X] PR creation failed" -ForegroundColor Red
     exit 1
 }
 
 # Extract PR number from gh CLI
 $prJson = & gh pr list --head $(git branch --show-current) --json number --limit 1 | ConvertFrom-Json
 if (-not $prJson -or $prJson.Count -eq 0) {
-    Write-Host "❌ Could not find PR" -ForegroundColor Red
+    Write-Host "[X] Could not find PR" -ForegroundColor Red
     exit 1
 }
 $prNum = $prJson[0].number
 
-Write-Host "✅ PR #$prNum created" -ForegroundColor Green
+Write-Host "[OK] PR #$prNum created" -ForegroundColor Green
 Write-Host ""
 
 # Step 3: Wait for CI
@@ -115,14 +115,14 @@ while ($waited -lt $maxWait) {
 
         if ($anyFailed) {
             Write-Host ""
-            Write-Host "❌ CI failed - aborting" -ForegroundColor Red
+            Write-Host "[X] CI failed - aborting" -ForegroundColor Red
             Write-Host "View details: gh pr checks $prNum" -ForegroundColor Yellow
             exit 1
         }
 
         if ($allPassed) {
             Write-Host ""
-            Write-Host "✅ CI passed" -ForegroundColor Green
+            Write-Host "[OK] CI passed" -ForegroundColor Green
             break
         }
     }
@@ -136,7 +136,7 @@ while ($waited -lt $maxWait) {
 }
 
 if ($waited -ge $maxWait) {
-    Write-Host "⚠️  CI timeout after $maxWait seconds" -ForegroundColor Yellow
+    Write-Host "[WARNING] CI timeout after $maxWait seconds" -ForegroundColor Yellow
     Write-Host "Check status manually: gh pr checks $prNum" -ForegroundColor Yellow
 }
 
@@ -154,7 +154,7 @@ if (-not $NoAutoMerge) {
         $prState = & gh pr view $prNum --json state -q '.state'
 
         if ($prState -eq "MERGED") {
-            Write-Host "✅ PR auto-merged" -ForegroundColor Green
+            Write-Host "[OK] PR auto-merged" -ForegroundColor Green
             break
         }
 
@@ -163,7 +163,7 @@ if (-not $NoAutoMerge) {
     }
 
     if ($prState -ne "MERGED") {
-        Write-Host "⚠️  PR not auto-merged yet" -ForegroundColor Yellow
+        Write-Host "[WARNING] PR not auto-merged yet" -ForegroundColor Yellow
         Write-Host "You may need to merge manually" -ForegroundColor Yellow
     }
 
@@ -177,7 +177,7 @@ if (-not $NoAutoMerge) {
 Write-Host "[5/6] Updating local main branch..." -ForegroundColor Yellow
 & git checkout main
 & git pull
-Write-Host "✅ Local main updated" -ForegroundColor Green
+Write-Host "[OK] Local main updated" -ForegroundColor Green
 Write-Host ""
 
 # Step 6: Verify completion
@@ -193,7 +193,7 @@ $duration = ($endTime - $startTime).TotalSeconds
 
 Write-Host ""
 Write-Host "============================================" -ForegroundColor Cyan
-Write-Host "  Session $SessionNum Complete! 🎉" -ForegroundColor Cyan
+Write-Host "  Session $SessionNum Complete!" -ForegroundColor Cyan
 Write-Host "============================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Time taken: $([math]::Round($duration, 1)) seconds" -ForegroundColor Gray
