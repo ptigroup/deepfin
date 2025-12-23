@@ -809,27 +809,126 @@ CREATE INDEX ix_detection_results_status ON detection_results(status);
 
 ## Session 6: Detection Service
 
-📋 **Ready to Start**
-**PR:** TBD
-**Linear:** BUD-10
+✅ **Completed:** 2025-12-23
+**PR:** [#6](https://github.com/ptigroup/deepfin/pull/6)
+**Linear:** BUD-10 → Done
 
-### What We'll Build
-- Table detection service layer
-- File upload handling
-- PyMuPDF integration for PDF processing
-- REST API endpoints for detection
-- 15+ tests
+### What We Built
+- **PDF Table Detector** (`detector.py`) - PyMuPDF integration for table detection with confidence scoring
+- **Detection Service** (`service.py`) - Business logic layer for document processing
+- **REST API Endpoints** (`routes.py`) - File upload, processing, listing, and deletion endpoints
+- **50 Comprehensive Tests** - 38 new tests + 12 from Session 5
 
-### Key Files to Create
+### Key Decisions & Why
+
+**1. Why PyMuPDF over other PDF libraries?**
+- Native table detection: `page.find_tables()` built-in functionality
+- Fast and lightweight: C-based implementation
+- Good documentation and community support
+- Production-ready: Used in many enterprise applications
+- Alternative considered: pdfplumber (slower, less accurate for complex tables)
+
+**2. Why separate detector from service layer?**
+- **Separation of concerns:** Detector focuses on PDF processing, Service handles business logic
+- **Testability:** Can mock detector in service tests
+- **Flexibility:** Easy to swap PDF library if needed
+- **Reusability:** Detector can be used outside service context
+
+**3. Why confidence scoring for tables?**
+- **Quality metric:** Helps identify reliable vs. uncertain detections
+- **User feedback:** Can show confidence to users for manual review
+- **Filtering:** Can filter low-confidence results
+- **Debugging:** Helps identify detection issues
+- Formula: Base 0.5 + bonuses for rows (0.2), consistent columns (0.2), headers (0.1)
+
+**4. Why uploads/ directory instead of database BLOB storage?**
+- **Simplicity:** File system is simpler for MVP
+- **Performance:** Faster access for processing
+- **Scalability:** Can migrate to S3/cloud storage later
+- **Development:** Easier to inspect and debug files locally
+- Trade-off: Need to manage file cleanup (handled in delete endpoint)
+
+### Files Created
 ```
-app/detection/service.py    # Business logic
-app/detection/detector.py   # PyMuPDF integration
-app/detection/routes.py     # API endpoints
-app/detection/tests/test_service.py
+app/detection/detector.py          # PDF table detection (239 lines)
+app/detection/service.py           # Business logic (248 lines)
+app/detection/routes.py            # API endpoints (322 lines)
+app/detection/tests/test_detector.py   # 11 detector tests (273 lines)
+app/detection/tests/test_service.py    # 15 service tests (305 lines)
+app/detection/tests/test_routes.py     # 14 route tests (335 lines)
+pyproject.toml                     # Added pymupdf, python-multipart
 ```
 
-### Expected Milestone
-**Can detect tables in PDF documents via API**
+### API Endpoints Created
+- `POST /detection/upload` - Upload PDF file (returns document ID)
+- `POST /detection/documents/{id}/process` - Process document for table detection
+- `GET /detection/documents` - List all documents (with status filter)
+- `GET /detection/documents/{id}` - Get document with detection results
+- `DELETE /detection/documents/{id}` - Delete document and file
+
+### Challenges Faced
+
+**Challenge 1: Missing Dependencies**
+- **Issue:** Tests failed with "ModuleNotFoundError: No module named 'fitz'"
+- **Root Cause:** PyMuPDF not in dependencies, python-multipart missing for file uploads
+- **Solution:** Added to pyproject.toml: `pymupdf>=1.24.0`, `python-multipart>=0.0.5`
+- **Learning:** Always check FastAPI dependency requirements for specific features
+
+**Challenge 2: Test Timestamp Validation Errors**
+- **Issue:** Pydantic validation failing: "Input should be a valid datetime" for created_at/updated_at
+- **Root Cause:** Mock Document objects missing timestamp fields
+- **Solution:** Added `created_at` and `updated_at` to all mock documents in tests
+- **Learning:** Pydantic schemas validate ALL fields, even in mock objects
+
+**Challenge 3: PowerShell Automation Script Encoding Issues**
+- **Issue:** `complete-session.ps1` failed with "unexpected token" errors
+- **Root Cause:** Emoji characters (⚠️, ✅) not compatible with Windows PowerShell (non-Core)
+- **Solution:** Fell back to bash script: `create-session-pr.sh` worked successfully
+- **Future Fix:** Use PowerShell Core (pwsh) or remove emoji characters
+- **Impact:** Manual completion flow instead of fully automated
+
+### Lessons Learned
+
+- **PDF Processing:** PyMuPDF's `find_tables()` is powerful but requires understanding of table structure assumptions
+- **Confidence Scoring:** Simple heuristics (row count, column consistency) provide good baseline confidence
+- **FastAPI File Uploads:** Requires `python-multipart` dependency, not included by default
+- **Test Data Quality:** Mock objects must match full schema, including auto-generated fields like timestamps
+- **Cross-Platform Scripts:** Emoji characters in scripts cause issues in Windows PowerShell (non-Core)
+- **Automation Testing:** First real test of automation system revealed encoding issues
+
+### Automation Status
+
+**Tested:** `create-session-pr.sh` (bash version)
+- ✅ PR creation successful
+- ✅ Auto-merge enabled successfully
+- ✅ PR merged when CI passed
+- ❌ Linear sync failed (GraphQL query issue - manually updated)
+- ❌ PowerShell version failed (emoji encoding)
+
+**Next Steps:**
+- Fix Linear sync workflow (use identifier query instead of ID query)
+- Fix PowerShell script emoji issues (use PowerShell Core or plain text)
+- Consider adding retry logic for failed workflows
+
+### Testing Insights
+
+- **50 tests total:** 11 detector + 15 service + 14 routes + 10 models
+- **Coverage:** All happy paths + error cases + edge cases
+- **Mocking Strategy:** Used AsyncMock for database, MagicMock for PyMuPDF
+- **TestClient:** FastAPI's TestClient simulates full HTTP request/response cycle
+- **File Handling:** Created temporary files for testing upload/process flows
+
+### Production Considerations
+
+- **File Cleanup:** Delete endpoint removes both DB record and file from disk
+- **File Size Limit:** 10 MB limit prevents abuse (configurable)
+- **MIME Type Validation:** Only PDF files accepted
+- **Upload Directory:** Ignored in `.gitignore` to prevent committing uploaded files
+- **Error Handling:** Service catches and logs exceptions, updates document status to FAILED
+- **Unique Filenames:** UUID prefix prevents filename collisions
+
+### Milestone Achieved
+✅ **Can detect tables in PDF documents via API**
 
 ---
 
@@ -1230,8 +1329,8 @@ git branch -D session-XX-feature-name
 | Session 3: FastAPI Application & Health Checks | ✅ Done | [#3](https://github.com/ptigroup/deepfin/pull/3) | BUD-7 | 2025-12-18 |
 | Session 4: LLMWhisperer Client | ✅ Done | [#4](https://github.com/ptigroup/deepfin/pull/4) | BUD-8 | 2025-12-22 |
 | Session 5: Detection Models | ✅ Done | [#5](https://github.com/ptigroup/deepfin/pull/5) | BUD-9 | 2025-12-22 |
-| Session 6: Detection Service | 📋 Next | - | BUD-10 | - |
-| Session 7: Statements Models | ⏳ Pending | - | BUD-11 | - |
+| Session 6: Detection Service | ✅ Done | [#6](https://github.com/ptigroup/deepfin/pull/6) | BUD-10 | 2025-12-23 |
+| Session 7: Statements Models | 📋 Next | - | BUD-11 | - |
 | Session 8: Statements Service | ⏳ Pending | - | BUD-12 | - |
 | Session 9: Extraction Models | ⏳ Pending | - | BUD-13 | - |
 | Session 10: Extraction Service | ⏳ Pending | - | BUD-14 | - |
@@ -1244,8 +1343,9 @@ git branch -D session-XX-feature-name
 | Session 17: Documentation & Polish | ⏳ Pending | - | BUD-21 | - |
 | Session 18: Deployment & CI/CD | ⏳ Pending | - | BUD-22 | - |
 
-**Completion:** 5/18 sessions (28%)
+**Completion:** 6/18 sessions (33%)
 **Phase 1 (Foundation):** 5/5 complete (100%)
+**Phase 2 (Document Processing):** 1/4 complete (25%)
 
 ---
 
