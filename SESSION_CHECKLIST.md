@@ -116,7 +116,16 @@ else:
     sys.exit(1)
 ```
 
-Usage: `python scripts/verify-linear.py 5` (for Session 5)
+**Setup:**
+```bash
+export LINEAR_API_KEY='your_key_here'
+# Or add to .env file and use: source .env
+```
+
+**Usage:**
+```bash
+python scripts/verify-linear.py 5  # For Session 5
+```
 
 ---
 
