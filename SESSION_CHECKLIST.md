@@ -1,6 +1,58 @@
 # Session Completion Checklist
 
-This checklist ensures consistency across all session completions. **Run this checklist at the end of EVERY session before starting the next one.**
+This checklist ensures consistency across all session completions.
+
+## 🚀 AUTOMATED WORKFLOW (Recommended)
+
+**ONE COMMAND DOES EVERYTHING:**
+
+```powershell
+.\scripts\complete-session.ps1 -SessionNum <N>
+```
+
+**Example:**
+```powershell
+.\scripts\complete-session.ps1 -SessionNum 6
+```
+
+**What it does automatically:**
+1. ✅ Runs validation (ruff format, ruff check, pytest)
+2. ✅ Creates PR with auto-generated body
+3. ✅ Enables auto-merge (merges when CI passes)
+4. ✅ Waits for CI to complete
+5. ✅ Updates Linear via GitHub Actions
+6. ✅ Verifies all 3 systems (GitHub, JOURNEY.md, Linear)
+
+**Time:** ~2-3 minutes (mostly waiting for CI)
+
+**Manual steps remaining:**
+- Update JOURNEY.md with detailed content (subjective decisions, challenges, learnings)
+- Commit JOURNEY.md updates
+
+### Individual Scripts
+
+If you want more control, run scripts individually:
+
+```powershell
+# 1. Create PR (without auto-merge)
+.\scripts\create-session-pr.ps1 -SessionNum 6
+
+# 2. Create PR with auto-merge
+.\scripts\create-session-pr.ps1 -SessionNum 6 -AutoMerge
+
+# 3. Verify completion
+.\scripts\verify-session-complete.ps1 -SessionNum 6
+
+# 4. Verify Linear only
+$env:LINEAR_API_KEY='your_key'
+uv run python scripts\verify-linear.py 6
+```
+
+---
+
+## 📋 Manual Workflow (Fallback)
+
+If automation fails or you prefer manual control, use this checklist.
 
 ## Pre-Session Checklist
 
