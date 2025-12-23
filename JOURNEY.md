@@ -1229,7 +1229,7 @@ git branch -D session-XX-feature-name
 | Session 2: Database & Shared Models | ✅ Done | [#2](https://github.com/ptigroup/deepfin/pull/2) | BUD-6 | 2025-12-18 |
 | Session 3: FastAPI Application & Health Checks | ✅ Done | [#3](https://github.com/ptigroup/deepfin/pull/3) | BUD-7 | 2025-12-18 |
 | Session 4: LLMWhisperer Client | ✅ Done | [#4](https://github.com/ptigroup/deepfin/pull/4) | BUD-8 | 2025-12-22 |
-| Session 5: Detection Models | ✅ Done | TBD | BUD-9 | 2025-12-22 |
+| Session 5: Detection Models | ✅ Done | [#5](https://github.com/ptigroup/deepfin/pull/5) | BUD-9 | 2025-12-22 |
 | Session 6: Detection Service | 📋 Next | - | BUD-10 | - |
 | Session 7: Statements Models | ⏳ Pending | - | BUD-11 | - |
 | Session 8: Statements Service | ⏳ Pending | - | BUD-12 | - |
