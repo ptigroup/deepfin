@@ -551,31 +551,259 @@ class ProcessingMode(str, Enum):
 
 ## Session 5: Detection Models
 
-📋 **Ready to Start**
-**PR:** TBD
-**Linear:** BUD-9
+**Completed:** 2025-12-22
+**PR:** TBD (Session 5)
+**Linear:** BUD-9 → Done
 
-### What We'll Build
-- Database models for table detection feature
-- SQLAlchemy relationships and enums
-- Pydantic schemas for validation
-- Alembic migration for new tables
-- 8+ tests
+### 🎯 Milestone Achieved
+**Detection models with type-safe enums and relationships** - Foundation for table detection feature with comprehensive validation
 
-### Key Files to Create
+### What We Built
+- SQLAlchemy models (Document, DetectionResult) with status enums
+- One-to-many relationship with CASCADE delete
+- Pydantic schemas with custom field validators
+- Alembic migration with performance indexes
+- 13 comprehensive unit tests (all passing)
+
+### Key Decisions & Why
+
+**1. Why Enum Types for Status Fields?**
+```python
+class DocumentStatus(str, enum.Enum):
+    PENDING = "pending"
+    PROCESSING = "processing"
+    COMPLETED = "completed"
+    FAILED = "failed"
 ```
-app/detection/__init__.py
-app/detection/models.py     # Document, DetectionResult models
-app/detection/schemas.py    # Validation schemas
-alembic/versions/XXX_detection_tables.py
-app/detection/tests/
+- **Type safety:** Can't accidentally set invalid status values
+- **Database constraint:** Enum type in PostgreSQL enforces valid values
+- **Self-documenting:** IDE autocomplete shows available statuses
+- **API clarity:** OpenAPI schema shows exact allowed values
+
+**2. Why Cascade Delete Relationship?**
+```python
+detection_results: Mapped[list["DetectionResult"]] = relationship(
+    back_populates="document", cascade="all, delete-orphan"
+)
+```
+- **Data integrity:** Deleting document automatically deletes all detection results
+- **No orphans:** Prevents orphaned detection results without parent document
+- **Database efficiency:** Single DELETE statement handles entire cascade
+- **Business logic:** Detection results are meaningless without parent document
+
+**3. Why Custom Pydantic Validators?**
+```python
+@field_validator("mime_type")
+@classmethod
+def validate_mime_type(cls, v: str) -> str:
+    allowed_types = ["application/pdf"]
+    if v not in allowed_types:
+        raise ValueError(f"mime_type must be one of {allowed_types}")
+    return v
+```
+- **Early validation:** Catch bad data at API boundary, not in database
+- **Clear error messages:** User gets specific validation errors
+- **Business rules enforcement:** Only PDF files allowed for processing
+- **Type safety:** Runtime validation + type hints = bulletproof
+
+**4. Why Separate Create and Response Schemas?**
+```python
+class DocumentCreate(BaseModel):        # For API requests
+    filename: str
+    file_path: str
+    # No id, created_at, updated_at
+
+class DocumentSchema(TimestampSchema):  # For API responses
+    id: int
+    filename: str
+    # Includes created_at, updated_at
+```
+- **Security:** Don't allow clients to set id or timestamps
+- **Clarity:** Request and response have different fields
+- **Validation:** Different rules for input vs output
+- **Best practice:** Separate DTOs for different use cases
+
+**5. Why Database Indexes?**
+```python
+op.create_index(op.f("ix_documents_status"), "documents", ["status"], unique=False)
+op.create_index(op.f("ix_detection_results_document_id"), "detection_results", ["document_id"], unique=False)
+```
+- **Query performance:** Fast filtering by status (e.g., "get all pending documents")
+- **Foreign key optimization:** Fast joins between documents and detection results
+- **Scalability:** Indexes matter more as data grows (10x speedup at 10k+ rows)
+- **Production ready:** Don't wait until performance is a problem
+
+### Files Created
+```
+app/detection/__init__.py                                    # Module exports (7 lines)
+app/detection/models.py                                      # SQLAlchemy models (79 lines)
+app/detection/schemas.py                                     # Pydantic schemas (133 lines)
+app/detection/tests/__init__.py                              # Test module (2 lines)
+app/detection/tests/test_models.py                           # 13 comprehensive tests (220 lines)
+alembic/versions/20251222_1519_d7fdd70aca5d_add_detection_tables.py  # Migration (97 lines)
+app/shared/schemas.py                                        # Added BaseResponse class
 ```
 
-### Expected Concepts
-- SQLAlchemy relationship definitions
-- Enum types for status fields
-- Foreign key constraints
-- Migration best practices
+### Challenges Faced
+
+**Challenge 1: Missing BaseResponse Class**
+- **Issue:** Imported BaseResponse but it didn't exist in app/shared/schemas.py
+- **Error:** `ImportError: cannot import name 'BaseResponse' from 'app.shared.schemas'`
+- **Solution:** Added BaseResponse to shared schemas with success, message, timestamp fields
+```python
+class BaseResponse(BaseSchema):
+    success: bool = Field(default=True, description="Whether the operation was successful")
+    message: str | None = Field(default=None, description="Optional message about the operation")
+    timestamp: datetime = Field(default_factory=datetime.now, description="When the response was generated")
+```
+- **Learning:** Check imports before writing code that depends on them
+
+**Challenge 2: Test Validation Failures (4 tests failed initially)**
+- **Issue:** Tests created models without required timestamp and status fields
+- **Error:** `AttributeError: 'NoneType' object has no attribute 'value'` in `__repr__`
+- **Error:** Pydantic ValidationError for missing created_at, updated_at, status
+- **Root Cause:** Tests instantiated models without setting required fields
+- **Solution:** Updated tests to properly initialize all required fields
+```python
+# Before (failed):
+doc = Document(filename="test.pdf", file_path="/uploads/test.pdf", file_size=1024, mime_type="application/pdf")
+schema = DocumentSchema.model_validate(doc)  # FAILS - missing fields
+
+# After (passed):
+now = datetime.now(UTC)
+doc = Document(filename="test.pdf", file_path="/uploads/test.pdf", file_size=1024,
+               mime_type="application/pdf", status=DocumentStatus.PENDING)
+doc.created_at = now
+doc.updated_at = now
+schema = DocumentSchema.model_validate(doc)  # PASSES
+```
+- **Learning:** ORM models need all required fields set before schema validation
+
+**Challenge 3: Alembic Migration Enum Cleanup**
+- **Issue:** How to properly clean up PostgreSQL enum types in downgrade?
+- **Solution:** Added explicit DROP TYPE commands
+```python
+def downgrade() -> None:
+    op.drop_table("detection_results")
+    op.drop_table("documents")
+    op.execute("DROP TYPE IF EXISTS detectionstatus")
+    op.execute("DROP TYPE IF EXISTS documentstatus")
+```
+- **Learning:** PostgreSQL enums are database objects that need explicit cleanup
+
+### Lessons Learned
+- **Enums provide type safety:** Prevent invalid status values at compile time and runtime
+- **Relationships need thought:** CASCADE delete vs SET NULL vs RESTRICT depends on business logic
+- **Validators enforce business rules:** Pydantic validators catch bad data before it reaches database
+- **Indexes are not optional:** Add them during initial migration, not as an afterthought
+- **Test data setup matters:** Tests need complete, valid data to work properly
+- **Separation of concerns:** Create vs Response schemas prevent security issues
+
+### Testing Insights
+- **13 tests covering:**
+  - Model creation and string representation (2 tests)
+  - DetectionResult model creation and repr (2 tests)
+  - Pydantic schema validation - valid inputs (2 tests)
+  - Pydantic schema validation - invalid inputs (4 tests)
+  - Schema to model conversion (2 tests)
+  - Nested relationships (1 test: DocumentWithResults)
+
+- **Test categories:**
+  - **Happy path:** Valid document/result creation
+  - **Validation errors:** Invalid mime type, negative table count, confidence score > 1.0
+  - **ORM to Pydantic:** `model_validate()` with `from_attributes=True`
+  - **Relationships:** Document with nested detection results
+
+### Architecture Patterns
+
+**1. Enum Pattern**
+```python
+class DocumentStatus(str, enum.Enum):
+    PENDING = "pending"
+    PROCESSING = "processing"
+    COMPLETED = "completed"
+    FAILED = "failed"
+```
+- Inherits from both `str` and `enum.Enum`
+- Allows comparison: `status == "pending"` and `status == DocumentStatus.PENDING`
+- JSON serializable automatically
+
+**2. Relationship Pattern**
+```python
+# Parent (Document)
+detection_results: Mapped[list["DetectionResult"]] = relationship(
+    back_populates="document", cascade="all, delete-orphan"
+)
+
+# Child (DetectionResult)
+document: Mapped["Document"] = relationship(back_populates="detection_results")
+```
+- Bidirectional relationship with `back_populates`
+- Type hints use forward references: `"DetectionResult"`
+- CASCADE delete on parent handles cleanup
+
+**3. Schema Validation Pattern**
+```python
+class DocumentCreate(BaseModel):
+    file_size: int = Field(..., gt=0)  # Must be positive
+
+    @field_validator("mime_type")
+    @classmethod
+    def validate_mime_type(cls, v: str) -> str:
+        if v not in ["application/pdf"]:
+            raise ValueError("Only PDF files allowed")
+        return v
+```
+- Field validators run automatically on model creation
+- Class method with `@classmethod` decorator
+- Clear error messages for validation failures
+
+### Database Schema
+```sql
+-- documents table
+CREATE TABLE documents (
+    id SERIAL PRIMARY KEY,
+    filename VARCHAR(255) NOT NULL,
+    file_path VARCHAR(500) NOT NULL,
+    file_size INTEGER NOT NULL,
+    mime_type VARCHAR(100) NOT NULL,
+    status documentstatus NOT NULL DEFAULT 'pending',
+    error_message TEXT,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL
+);
+
+-- detection_results table
+CREATE TABLE detection_results (
+    id SERIAL PRIMARY KEY,
+    document_id INTEGER NOT NULL REFERENCES documents(id) ON DELETE CASCADE,
+    page_number INTEGER NOT NULL,
+    table_count INTEGER NOT NULL DEFAULT 0,
+    status detectionstatus NOT NULL DEFAULT 'pending',
+    confidence_score FLOAT,
+    bounding_boxes TEXT,  -- JSON stored as text
+    error_message TEXT,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL
+);
+
+-- Indexes for query performance
+CREATE INDEX ix_documents_status ON documents(status);
+CREATE INDEX ix_detection_results_document_id ON detection_results(document_id);
+CREATE INDEX ix_detection_results_status ON detection_results(status);
+```
+
+### Model Features
+✅ Type-safe enum fields for status
+✅ One-to-many relationships with CASCADE delete
+✅ Automatic timestamps via TimestampMixin
+✅ Custom Pydantic validators
+✅ Confidence score validation (0.0 to 1.0)
+✅ Mime type validation (PDF only)
+✅ Performance indexes on foreign keys
+✅ Nested schemas (DocumentWithResults)
+✅ Comprehensive error messages
+✅ `__repr__` methods for debugging
 
 ---
 
@@ -1001,8 +1229,8 @@ git branch -D session-XX-feature-name
 | Session 2: Database & Shared Models | ✅ Done | [#2](https://github.com/ptigroup/deepfin/pull/2) | BUD-6 | 2025-12-18 |
 | Session 3: FastAPI Application & Health Checks | ✅ Done | [#3](https://github.com/ptigroup/deepfin/pull/3) | BUD-7 | 2025-12-18 |
 | Session 4: LLMWhisperer Client | ✅ Done | [#4](https://github.com/ptigroup/deepfin/pull/4) | BUD-8 | 2025-12-22 |
-| Session 5: Detection Models | 📋 Next | - | BUD-9 | - |
-| Session 6: Detection Service | ⏳ Pending | - | BUD-10 | - |
+| Session 5: Detection Models | ✅ Done | TBD | BUD-9 | 2025-12-22 |
+| Session 6: Detection Service | 📋 Next | - | BUD-10 | - |
 | Session 7: Statements Models | ⏳ Pending | - | BUD-11 | - |
 | Session 8: Statements Service | ⏳ Pending | - | BUD-12 | - |
 | Session 9: Extraction Models | ⏳ Pending | - | BUD-13 | - |
@@ -1016,8 +1244,8 @@ git branch -D session-XX-feature-name
 | Session 17: Documentation & Polish | ⏳ Pending | - | BUD-21 | - |
 | Session 18: Deployment & CI/CD | ⏳ Pending | - | BUD-22 | - |
 
-**Completion:** 4/18 sessions (22%)
-**Phase 1 (Foundation):** 4/5 complete (80%)
+**Completion:** 5/18 sessions (28%)
+**Phase 1 (Foundation):** 5/5 complete (100%)
 
 ---
 
@@ -1151,6 +1379,6 @@ class ItemResponse(BaseResponse):
 ---
 
 **Last Updated:** 2025-12-22
-**Current Session:** Session 4 Complete - Ready for Session 5
-**Next Milestone:** Detection Models (Session 5)
-**Progress:** 4/18 sessions (22% complete)
+**Current Session:** Session 5 Complete - Ready for Session 6
+**Next Milestone:** Detection Service (Session 6)
+**Progress:** 5/18 sessions (28% complete)
