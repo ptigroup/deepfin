@@ -225,3 +225,16 @@ class LineItemListResponse(BaseResponse):
 
     data: list[LineItemSchema]
     total: int = 0
+
+
+class StatementTypeDetectionData(BaseModel):
+    """Schema for statement type detection data."""
+
+    statement_type: str = Field(..., description="Detected statement type")
+    confidence: float = Field(..., ge=0.0, le=1.0, description="Confidence score (0.0 to 1.0)")
+
+
+class StatementTypeDetectionResponse(BaseResponse):
+    """Response schema for statement type detection."""
+
+    data: StatementTypeDetectionData
