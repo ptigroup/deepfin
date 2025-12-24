@@ -60,7 +60,6 @@ jobs:
           MERGED_AT = os.environ['MERGED_AT']
 
           LINEAR_API_URL = "https://api.linear.app/graphql"
-          TEAM_ID = "ea035580-a2a3-4c39-9789-10a89d852428"  # DeepFin team
 
           headers = {
               "Authorization": LINEAR_API_KEY,
@@ -72,10 +71,21 @@ jobs:
               payload = {"query": query}
               if variables:
                   payload["variables"] = variables
+
+              print(f"DEBUG: Sending query with variables: {variables}")
               response = requests.post(LINEAR_API_URL, json=payload, headers=headers)
-              response.raise_for_status()
+
+              # Check response first before raising
+              if response.status_code != 200:
+                  print(f"HTTP Error {response.status_code}")
+                  print(f"Response: {response.text}")
+                  print(f"Query was: {query[:200]}...")
+                  print(f"Variables: {variables}")
+                  response.raise_for_status()
+
               data = response.json()
               if "errors" in data:
+                  print(f"GraphQL errors: {data['errors']}")
                   raise Exception(f"GraphQL errors: {data['errors']}")
               return data.get("data", {})
 
@@ -86,51 +96,48 @@ jobs:
 
           print(f"Updating Linear issue {issue_identifier} for Session {SESSION_NUMBER}")
 
-          # Step 1: Get "Done" state ID
-          get_states_query = """
-          query GetWorkflowStates($teamId: String!) {
-              workflowStates(filter: { team: { id: { eq: $teamId } } }) {
-                  nodes {
-                      id
-                      name
-                      type
-                  }
-              }
-          }
+          # Step 1: Get issue by identifier (using simple string embedding like verify-linear.py)
+          # This avoids the UUID vs identifier problem
+          get_issue_query = f"""
+          {{
+            issue(id: "{issue_identifier}") {{
+              id
+              identifier
+              title
+              team {{
+                id
+                key
+                states {{
+                  nodes {{
+                    id
+                    name
+                    type
+                  }}
+                }}
+              }}
+            }}
+          }}
           """
-          states_result = execute_query(get_states_query, {"teamId": TEAM_ID})
-          done_state = next((s for s in states_result["workflowStates"]["nodes"] if s["type"] == "completed"), None)
-          in_progress_state = next((s for s in states_result["workflowStates"]["nodes"] if s["type"] == "started"), None)
+          issue_result = execute_query(get_issue_query, None)
 
-          if not done_state or not in_progress_state:
-              print("Could not find required workflow states")
-              exit(1)
-
-          print(f"Found states - Done: {done_state['id']}, In Progress: {in_progress_state['id']}")
-
-          # Step 2: Get issue by identifier (query by identifier, not UUID)
-          get_issue_query = """
-          query GetIssue($identifier: String!, $teamId: String!) {
-              issues(filter: { identifier: { eq: $identifier }, team: { id: { eq: $teamId } } }) {
-                  nodes {
-                      id
-                      identifier
-                      title
-                  }
-              }
-          }
-          """
-          issue_result = execute_query(get_issue_query, {
-              "identifier": issue_identifier,
-              "teamId": TEAM_ID
-          })
-
-          if not issue_result.get("issues") or len(issue_result["issues"]["nodes"]) == 0:
+          if not issue_result.get("issue"):
               print(f"Issue {issue_identifier} not found")
               exit(1)
 
-          issue_id = issue_result["issues"]["nodes"][0]["id"]
-          print(f"Found issue: {issue_result['issues']['nodes'][0]['title']}")
+          issue_id = issue_result["issue"]["id"]
+          print(f"Found issue: {issue_result['issue']['title']}")
+
+          # Get workflow states from the issue's team
+          team_states = issue_result["issue"]["team"]["states"]["nodes"]
+          done_state = next((s for s in team_states if s["type"] == "completed"), None)
+          in_progress_state = next((s for s in team_states if s["type"] == "started"), None)
+
+          if not done_state or not in_progress_state:
+              print(f"Could not find required workflow states in team {issue_result['issue']['team']['key']}")
+              print(f"Available states: {[s['name'] + ':' + s['type'] for s in team_states]}")
+              exit(1)
+
+          print(f"Found states - Done: {done_state['name']}, In Progress: {in_progress_state['name']}")
 
           # Step 3: Update issue to Done
           update_issue_query = """
@@ -195,13 +202,19 @@ jobs:
 
           # Step 5: Move next session to "In Progress" (if it exists)
           if SESSION_NUMBER < 18:
-              next_issue_result = execute_query(get_issue_query, {
-                  "identifier": next_issue_identifier,
-                  "teamId": TEAM_ID
-              })
+              next_issue_query = f"""
+              {{
+                issue(id: "{next_issue_identifier}") {{
+                  id
+                  identifier
+                  title
+                }}
+              }}
+              """
+              next_issue_result = execute_query(next_issue_query, None)
 
-              if next_issue_result.get("issues") and len(next_issue_result["issues"]["nodes"]) > 0:
-                  next_issue_id = next_issue_result["issues"]["nodes"][0]["id"]
+              if next_issue_result.get("issue"):
+                  next_issue_id = next_issue_result["issue"]["id"]
                   next_update_result = execute_query(update_issue_query, {
                       "issueId": next_issue_id,
                       "stateId": in_progress_state["id"]
