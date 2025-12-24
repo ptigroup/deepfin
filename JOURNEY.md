@@ -957,8 +957,8 @@ alembic/versions/XXX_statements_tables.py
 
 ## Session 8: Statements Service
 
-📋 **Ready to Start**
-**PR:** TBD
+✅ **Complete**
+**PR:** https://github.com/ptigroup/deepfin/pull/8
 **Linear:** BUD-12
 
 ### What We'll Build
