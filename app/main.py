@@ -40,6 +40,7 @@ from app.core.middleware import LoggingMiddleware, RequestIDMiddleware
 from app.consolidation import router as consolidation_router
 from app.detection import router as detection_router
 from app.extraction import router as extraction_router
+from app.jobs import router as jobs_router
 from app.statements import router as statements_router
 
 # Initialize settings and logger
@@ -161,6 +162,9 @@ app.include_router(statements_router)
 
 # Consolidation and multi-period analysis API endpoints
 app.include_router(consolidation_router)
+
+# Background job processing API endpoints
+app.include_router(jobs_router)
 
 
 # Root endpoint
