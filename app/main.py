@@ -38,6 +38,7 @@ from app.core.health import router as health_router
 from app.core.logging import get_logger
 from app.core.middleware import LoggingMiddleware, RequestIDMiddleware
 from app.detection import router as detection_router
+from app.extraction import router as extraction_router
 
 # Initialize settings and logger
 settings = get_settings()
@@ -149,6 +150,9 @@ app.include_router(health_router)
 
 # Table detection API endpoints
 app.include_router(detection_router)
+
+# Financial data extraction API endpoints
+app.include_router(extraction_router)
 
 
 # Root endpoint

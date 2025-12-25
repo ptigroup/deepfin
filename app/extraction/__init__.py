@@ -18,6 +18,11 @@ Schemas:
 - Complex validation rules for financial data
 - Hierarchical structure support
 - Date and currency validation
+
+Service & Parser:
+- ExtractionService: Orchestrates the extraction workflow
+- DirectParser: 100% accurate direct parsing engine
+- API routes for extraction operations
 """
 
 from app.extraction.models import (
@@ -27,6 +32,9 @@ from app.extraction.models import (
     ExtractionStatus,
     StatementType,
 )
+from app.extraction.parser import DirectParser, ParseError
+from app.extraction.routes import router
+from app.extraction.service import ExtractionService, ExtractionServiceError
 
 __all__ = [
     "ExtractionJob",
@@ -34,4 +42,9 @@ __all__ = [
     "ExtractedLineItem",
     "ExtractionStatus",
     "StatementType",
+    "ExtractionService",
+    "ExtractionServiceError",
+    "DirectParser",
+    "ParseError",
+    "router",
 ]
