@@ -159,6 +159,8 @@ class JobService:
         Returns:
             True if cancelled, False if not found or cannot be cancelled
         """
+        from app.jobs.worker import get_worker
+
         job = await self.get_job(job_id)
         if not job:
             return False
@@ -171,6 +173,17 @@ class JobService:
             )
             return False
 
+        # If job is running, cancel the actual task
+        if job.status == JobStatus.RUNNING:
+            worker = get_worker()
+            task_cancelled = await worker.cancel_job(job_id)
+            if task_cancelled:
+                logger.info(
+                    "Cancelled running task",
+                    extra={"job_id": job_id},
+                )
+
+        # Update job status to cancelled
         job.status = JobStatus.CANCELLED
         await self.db.commit()
 

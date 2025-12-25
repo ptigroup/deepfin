@@ -20,17 +20,11 @@ class JobUpdate(BaseModel):
     """Schema for updating job status."""
 
     status: JobStatus | None = None
-    progress: int | None = Field(None, ge=0, le=100)
+    progress: int | None = Field(
+        None, ge=0, le=100, description="Progress percentage (0-100)"
+    )
     result: str | None = None
     error: str | None = None
-
-    @field_validator("progress")
-    @classmethod
-    def validate_progress(cls, v: int | None) -> int | None:
-        """Validate progress is between 0 and 100."""
-        if v is not None and (v < 0 or v > 100):
-            raise ValueError("Progress must be between 0 and 100")
-        return v
 
 
 class JobSchema(BaseModel):

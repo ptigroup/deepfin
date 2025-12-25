@@ -24,17 +24,25 @@ class WorkerError(Exception):
 class BackgroundWorker:
     """Background worker for processing jobs."""
 
-    def __init__(self, concurrency: int = 3, poll_interval: float = 1.0):
+    def __init__(
+        self,
+        concurrency: int = 3,
+        poll_interval: float = 1.0,
+        task_timeout: float = 300.0,
+    ):
         """Initialize worker.
 
         Args:
             concurrency: Number of jobs to process concurrently
             poll_interval: Seconds to wait between polling for new jobs
+            task_timeout: Maximum seconds a task can run before timing out (default: 5 minutes)
         """
         self.concurrency = concurrency
         self.poll_interval = poll_interval
+        self.task_timeout = task_timeout
         self.running = False
         self._tasks: set[asyncio.Task] = set()
+        self._running_jobs: dict[int, asyncio.Task] = {}  # job_id -> task
 
     async def start(self) -> None:
         """Start the worker."""
@@ -48,6 +56,12 @@ class BackgroundWorker:
             try:
                 # Clean up completed tasks
                 self._tasks = {t for t in self._tasks if not t.done()}
+                # Clean up completed job tracking
+                self._running_jobs = {
+                    job_id: task
+                    for job_id, task in self._running_jobs.items()
+                    if not task.done()
+                }
 
                 # Check if we can start more jobs
                 if len(self._tasks) < self.concurrency:
@@ -58,6 +72,7 @@ class BackgroundWorker:
                             # Start processing job in background
                             task = asyncio.create_task(self._process_job(job.id))
                             self._tasks.add(task)
+                            self._running_jobs[job.id] = task  # Track for cancellation
                         else:
                             # No jobs available, wait
                             await asyncio.sleep(self.poll_interval)
@@ -87,6 +102,32 @@ class BackgroundWorker:
             await asyncio.gather(*self._tasks, return_exceptions=True)
 
         logger.info("Background worker stopped")
+
+    async def cancel_job(self, job_id: int) -> bool:
+        """Cancel a currently running job.
+
+        Args:
+            job_id: ID of the job to cancel
+
+        Returns:
+            True if job was running and cancelled, False otherwise
+        """
+        task = self._running_jobs.get(job_id)
+        if task and not task.done():
+            logger.info(
+                "Cancelling running job",
+                extra={"job_id": job_id},
+            )
+            task.cancel()
+            try:
+                await task
+            except asyncio.CancelledError:
+                logger.info(
+                    "Job cancelled successfully",
+                    extra={"job_id": job_id},
+                )
+            return True
+        return False
 
     async def _get_next_job(self, db: AsyncSession) -> Job | None:
         """Get next pending job.
@@ -148,10 +189,36 @@ class BackgroundWorker:
                     raise WorkerError(f"Task not found: {job.task_name}")
 
                 # Parse task args
-                task_args = json.loads(job.task_args) if job.task_args else {}
+                try:
+                    task_args = json.loads(job.task_args) if job.task_args else {}
+                except json.JSONDecodeError as e:
+                    logger.error(
+                        "Invalid JSON in task args",
+                        extra={
+                            "job_id": job.id,
+                            "task_name": job.task_name,
+                            "error": str(e),
+                        },
+                    )
+                    raise WorkerError(f"Invalid JSON in task arguments: {e}") from e
 
-                # Execute task
-                result = await task_func(**task_args)
+                # Execute task with timeout
+                try:
+                    result = await asyncio.wait_for(
+                        task_func(**task_args), timeout=self.task_timeout
+                    )
+                except asyncio.TimeoutError:
+                    logger.error(
+                        "Task timed out",
+                        extra={
+                            "job_id": job.id,
+                            "task_name": job.task_name,
+                            "timeout": self.task_timeout,
+                        },
+                    )
+                    raise WorkerError(
+                        f"Task timed out after {self.task_timeout} seconds"
+                    )
 
                 # Mark as completed
                 job.status = JobStatus.COMPLETED
@@ -181,17 +248,26 @@ class BackgroundWorker:
                     if job:
                         # Check if we should retry
                         if job.retries < job.max_retries:
+                            # Calculate exponential backoff delay (capped at 5 minutes)
+                            delay_seconds = min(300, 2 ** (job.retries + 1))
+
+                            logger.info(
+                                "Job will retry after delay",
+                                extra={
+                                    "job_id": job.id,
+                                    "retry": job.retries + 1,
+                                    "max_retries": job.max_retries,
+                                    "delay_seconds": delay_seconds,
+                                },
+                            )
+
+                            # Wait before retrying (exponential backoff)
+                            await asyncio.sleep(delay_seconds)
+
+                            # Now set back to pending for retry
                             job.status = JobStatus.PENDING
                             job.retries += 1
                             job.started_at = None
-                            logger.info(
-                                "Job will retry",
-                                extra={
-                                    "job_id": job.id,
-                                    "retry": job.retries,
-                                    "max_retries": job.max_retries,
-                                },
-                            )
                         else:
                             job.status = JobStatus.FAILED
                             job.completed_at = datetime.now(UTC)

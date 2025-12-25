@@ -1,4 +1,30 @@
-"""Task definitions for background jobs."""
+"""Task definitions for background jobs.
+
+IMPORTANT: Task Registration and Import Timing
+-----------------------------------------------
+Tasks are registered at module import time using the @register_task decorator.
+This means the TASK_REGISTRY is populated when this module is first imported.
+
+Circular Import Prevention:
+- If your task functions need to import other app modules (services, models, etc.),
+  use LAZY IMPORTS within the task function body, not at module level.
+- This prevents circular import issues during app initialization.
+
+Example:
+    @register_task("process_document")
+    async def process_document(doc_id: int):
+        # Lazy import - happens at task execution time, not module import time
+        from app.extraction.service import ExtractionService
+
+        service = ExtractionService(...)
+        return await service.process(doc_id)
+
+Best Practices:
+- Keep task functions simple and focused
+- Use lazy imports for heavy dependencies
+- All task functions must be async
+- Return JSON-serializable data (dict, list, str, int, etc.)
+"""
 
 import asyncio
 from collections.abc import Awaitable, Callable
