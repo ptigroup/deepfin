@@ -37,6 +37,7 @@ from app.core.exceptions import (
 from app.core.health import router as health_router
 from app.core.logging import get_logger
 from app.core.middleware import LoggingMiddleware, RequestIDMiddleware
+from app.consolidation import router as consolidation_router
 from app.detection import router as detection_router
 from app.extraction import router as extraction_router
 from app.statements import router as statements_router
@@ -157,6 +158,9 @@ app.include_router(extraction_router)
 
 # Financial statements API endpoints
 app.include_router(statements_router)
+
+# Consolidation and multi-period analysis API endpoints
+app.include_router(consolidation_router)
 
 
 # Root endpoint
