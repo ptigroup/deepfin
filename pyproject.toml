@@ -8,24 +8,21 @@ dependencies = [
     "fastapi>=0.115.0",
     "uvicorn[standard]>=0.32.0",
     "python-multipart>=0.0.5",
-    
     # Database
     "sqlalchemy[asyncio]>=2.0.36",
     "asyncpg>=0.30.0",
     "alembic>=1.14.0",
-    
     # Configuration & Validation
     "pydantic>=2.10.0",
     "pydantic-settings>=2.6.0",
     "python-dotenv>=1.0.1",
-    
     # Logging
     "structlog>=24.4.0",
-    
     # LLM & Document Processing
     "openai>=1.54.0",
     "unstract-sdk>=0.79.0",
     "pymupdf>=1.24.0",
+    "openpyxl>=3.1.5",
 ]
 
 [project.optional-dependencies]
