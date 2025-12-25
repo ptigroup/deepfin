@@ -39,6 +39,7 @@ from app.core.logging import get_logger
 from app.core.middleware import LoggingMiddleware, RequestIDMiddleware
 from app.detection import router as detection_router
 from app.extraction import router as extraction_router
+from app.statements import router as statements_router
 
 # Initialize settings and logger
 settings = get_settings()
@@ -153,6 +154,9 @@ app.include_router(detection_router)
 
 # Financial data extraction API endpoints
 app.include_router(extraction_router)
+
+# Financial statements API endpoints
+app.include_router(statements_router)
 
 
 # Root endpoint

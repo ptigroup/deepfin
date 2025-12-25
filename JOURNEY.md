@@ -1091,8 +1091,8 @@ CREATE INDEX ix_line_items_parent_id ON line_items(parent_id);
 
 ## Session 8: Statements Service
 
-📋 **Ready to Start**
-**PR:** TBD
+✅ **Complete**
+**PR:** https://github.com/ptigroup/deepfin/pull/8
 **Linear:** BUD-12
 
 ### What We'll Build
