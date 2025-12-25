@@ -979,8 +979,8 @@ app/statements/tests/
 
 ## Session 9: Extraction Models
 
-📋 **Ready to Start**
-**PR:** TBD
+✅ **Complete**
+**PR:** https://github.com/ptigroup/deepfin/pull/9
 **Linear:** BUD-13
 
 ### What We'll Build
