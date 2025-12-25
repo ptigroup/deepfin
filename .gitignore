@@ -95,3 +95,4 @@ alembic/versions/__pycache__/
 # Secret files
 key.txt
 install.sh
+.agents/

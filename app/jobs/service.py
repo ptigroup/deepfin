@@ -1,6 +1,6 @@
 """Job management service."""
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.logging import get_logger
@@ -202,6 +202,7 @@ class JobService:
         Returns:
             Dictionary with status counts
         """
+        # Initialize stats with zeros
         stats = {
             "total": 0,
             "pending": 0,
@@ -211,14 +212,13 @@ class JobService:
             "cancelled": 0,
         }
 
-        stmt = select(Job)
+        # Get counts grouped by status using SQL aggregation
+        stmt = select(Job.status, func.count(Job.id)).group_by(Job.status)
         result = await self.db.execute(stmt)
-        jobs = result.scalars().all()
 
-        stats["total"] = len(jobs)
-        for job in jobs:
-            status_key = job.status.value
-            if status_key in stats:
-                stats[status_key] += 1
+        # Populate stats from query results
+        for status, count in result:
+            stats[status.value] = count
+            stats["total"] += count
 
         return stats
