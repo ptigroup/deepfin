@@ -934,24 +934,158 @@ pyproject.toml                     # Added pymupdf, python-multipart
 
 ## Session 7: Statements Models
 
-📋 **Ready to Start**
-**PR:** TBD
-**Linear:** BUD-11
+✅ **Complete**
+**PR:** https://github.com/ptigroup/deepfin/pull/11
+**Linear:** BUD-11 → Done
 
-### What We'll Build
-- Models for financial statements (Income Statement, Balance Sheet, Cash Flow)
-- Complex SQLAlchemy relationships
-- Validation rules for financial data
-- Alembic migration
-- 12+ tests
+### What We Built
+- **Statement Model** - SQLAlchemy model for financial statements (Income Statement, Balance Sheet, Cash Flow)
+- **LineItem Model** - Hierarchical structure with parent-child relationships
+- **Pydantic Schemas** - Comprehensive validation for financial data
+- **Alembic Migration** - Database tables with constraints and indexes
+- **23 Comprehensive Tests** - Exceeded 12+ requirement (all passing)
 
-### Key Files to Create
+### Key Decisions & Why
+
+**1. Why Hierarchical Line Items with Self-Referential Relationships?**
+```python
+class LineItem(Base, TimestampMixin):
+    parent_id: Mapped[int | None] = mapped_column(ForeignKey("line_items.id"))
+    children: Mapped[list["LineItem"]] = relationship(back_populates="parent")
+    parent: Mapped["LineItem | None"] = relationship(back_populates="children", remote_side=[id])
 ```
-app/statements/__init__.py
-app/statements/models.py    # Statement models
-app/statements/schemas.py   # Validation schemas
-alembic/versions/XXX_statements_tables.py
+- **Flexibility:** Supports unlimited nesting (Revenue → Product Revenue → Hardware Revenue)
+- **Accuracy:** Preserves exact document structure
+- **Queries:** Can traverse hierarchy to calculate totals
+- **Common pattern:** Standard approach for tree structures in SQL
+
+**2. Why Indent Level Tracking?**
+- **Visual preservation:** Maintains original document formatting
+- **Excel export:** Can render with proper indentation spacing
+- **User experience:** Users see familiar structure
+- **Validation:** Constraint ensures valid range (0-10 levels)
+
+**3. Why Comprehensive Date Validation?**
+```python
+@field_validator("period_start", "period_end")
+@classmethod
+def validate_date_format(cls, v: str) -> str:
+    if not re.match(r"^\d{4}-\d{2}-\d{2}$", v):
+        raise ValueError("Date must be in YYYY-MM-DD format")
+    # Additional month/day validation...
 ```
+- **Data quality:** Prevents invalid dates before database insertion
+- **Standardization:** Enforces ISO 8601 format
+- **Business rules:** Month 1-12, day 1-31 validation
+- **User feedback:** Clear error messages for corrections
+
+**4. Why Decimal Places Field?**
+- **Rounding consistency:** All values in statement use same precision
+- **Regional differences:** Some regions use 2 decimals, others use 0
+- **Display formatting:** Knows how to render values correctly
+- **Validation:** Prevents excessive precision (0-10 places)
+
+### Files Created
+```
+app/statements/__init__.py                         # Module exports (5 lines)
+app/statements/models.py                           # Statement & LineItem models (157 lines)
+app/statements/schemas.py                          # Pydantic schemas (227 lines)
+app/statements/tests/__init__.py                   # Test module (1 line)
+app/statements/tests/test_models.py                # 23 comprehensive tests (391 lines)
+alembic/versions/20251223_0000_51ede09ed895_add_statements_tables.py  # Migration (111 lines)
+```
+
+### Challenges Faced
+
+**Challenge 1: Self-Referential Relationship Configuration**
+- **Issue:** How to properly configure parent-child relationship on same model?
+- **Solution:** Use `remote_side=[id]` to indicate which side is "remote"
+```python
+parent: Mapped["LineItem | None"] = relationship(
+    back_populates="children",
+    remote_side=[id]  # Critical for self-referential relationships
+)
+```
+- **Learning:** SQLAlchemy needs to know which side is the "parent" in self-referential relationships
+
+**Challenge 2: Date Validation Complexity**
+- **Issue:** Need to validate not just format but also logical validity (e.g., month 13 invalid)
+- **Solution:** Multi-step validation: regex format → parse → range check
+- **Learning:** Pydantic validators can perform complex multi-step validation
+
+### Lessons Learned
+- **Self-referential relationships need careful configuration:** `remote_side` parameter is critical
+- **Validation at multiple layers:** Pydantic for business rules, database constraints for data integrity
+- **Test hierarchical structures:** Need tests for nested relationships
+- **Decimal precision matters:** Financial data requires configurable precision
+- **Type hints improve code quality:** SQLAlchemy 2.0 `Mapped[]` syntax catches errors early
+
+### Testing Insights
+- **23 tests total:** 7 model tests + 16 schema tests (exceeded 12+ requirement)
+- **Coverage includes:**
+  - Model creation with and without relationships
+  - Parent-child hierarchy
+  - Schema validation (valid and invalid inputs)
+  - Date format and range validation
+  - Currency code validation (3-letter ISO codes)
+  - Fiscal year range (1900-2100)
+  - Indent level constraints
+  - ORM to Pydantic conversion
+  - Partial updates (only specified fields)
+- **Mock strategy:** Create full model instances with all required fields
+- **Edge cases:** Invalid dates, negative values, out-of-range fiscal years
+
+### Database Schema
+```sql
+-- statements table
+CREATE TABLE statements (
+    id SERIAL PRIMARY KEY,
+    statement_type VARCHAR(50) NOT NULL,
+    company_name VARCHAR(255) NOT NULL,
+    period_start VARCHAR(10) NOT NULL,
+    period_end VARCHAR(10) NOT NULL,
+    fiscal_year INTEGER NOT NULL,
+    currency VARCHAR(3) NOT NULL DEFAULT 'USD',
+    decimal_places INTEGER NOT NULL DEFAULT 2,
+    notes TEXT,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL,
+    CHECK (fiscal_year >= 1900 AND fiscal_year <= 2100),
+    CHECK (decimal_places >= 0 AND decimal_places <= 10)
+);
+
+-- line_items table
+CREATE TABLE line_items (
+    id SERIAL PRIMARY KEY,
+    statement_id INTEGER NOT NULL REFERENCES statements(id) ON DELETE CASCADE,
+    parent_id INTEGER REFERENCES line_items(id) ON DELETE CASCADE,
+    line_item_name VARCHAR(255) NOT NULL,
+    value DECIMAL(20, 10) NOT NULL,
+    indent_level INTEGER NOT NULL DEFAULT 0,
+    order_index INTEGER NOT NULL DEFAULT 0,
+    is_calculated BOOLEAN NOT NULL DEFAULT FALSE,
+    notes TEXT,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL,
+    CHECK (indent_level >= 0 AND indent_level <= 10),
+    CHECK (order_index >= 0)
+);
+
+CREATE INDEX ix_line_items_statement_id ON line_items(statement_id);
+CREATE INDEX ix_line_items_parent_id ON line_items(parent_id);
+```
+
+### Production-Ready Features
+✅ Complex SQLAlchemy 2.0 relationships with type hints
+✅ Self-referential parent-child hierarchy
+✅ Comprehensive Pydantic validation (dates, currency, fiscal year)
+✅ Database check constraints for data integrity
+✅ Performance indexes on foreign keys
+✅ Cascade delete for referential integrity
+✅ Support for calculated items and notes
+✅ Configurable decimal precision
+✅ 23 comprehensive tests (all passing)
+✅ Ruff linting passed
 
 ---
 
@@ -1494,8 +1628,8 @@ git branch -D session-XX-feature-name
 | Session 4: LLMWhisperer Client | ✅ Done | [#4](https://github.com/ptigroup/deepfin/pull/4) | BUD-8 | 2025-12-22 |
 | Session 5: Detection Models | ✅ Done | [#5](https://github.com/ptigroup/deepfin/pull/5) | BUD-9 | 2025-12-22 |
 | Session 6: Detection Service | ✅ Done | [#6](https://github.com/ptigroup/deepfin/pull/6) | BUD-10 | 2025-12-23 |
-| Session 7: Statements Models | 📋 Next | - | BUD-11 | - |
-| Session 8: Statements Service | ⏳ Pending | - | BUD-12 | - |
+| Session 7: Statements Models | ✅ Done | [#11](https://github.com/ptigroup/deepfin/pull/11) | BUD-11 | 2025-12-25 |
+| Session 8: Statements Service | 📋 Next | - | BUD-12 | - |
 | Session 9: Extraction Models | ✅ Done | [#9](https://github.com/ptigroup/deepfin/pull/9) | BUD-13 | 2025-12-25 |
 | Session 10: Extraction Service | ✅ Done | [#10](https://github.com/ptigroup/deepfin/pull/10) | BUD-14 | 2025-12-25 |
 | Session 11: Consolidation Models | ⏳ Pending | - | BUD-15 | - |
@@ -1507,9 +1641,9 @@ git branch -D session-XX-feature-name
 | Session 17: Documentation & Polish | ⏳ Pending | - | BUD-21 | - |
 | Session 18: Deployment & CI/CD | ⏳ Pending | - | BUD-22 | - |
 
-**Completion:** 8/18 sessions (44%)
+**Completion:** 9/18 sessions (50%)
 **Phase 1 (Foundation):** 5/5 complete (100%)
-**Phase 2 (Document Processing):** 3/4 complete (75%)
+**Phase 2 (Document Processing):** 4/4 complete (100%)
 
 ---
 
