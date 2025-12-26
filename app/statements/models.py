@@ -63,7 +63,7 @@ class Statement(Base, TimestampMixin):
     line_items: Mapped[list["LineItem"]] = relationship(
         back_populates="statement",
         cascade="all, delete-orphan",
-        order_by="LineItem.order",
+        order_by="LineItem.display_order",
     )
 
     # Constraints
@@ -124,7 +124,7 @@ class LineItem(Base, TimestampMixin):
     category: Mapped[str | None] = mapped_column(String(100), nullable=True, index=True)
     value: Mapped[Decimal] = mapped_column(Numeric(precision=20, scale=2), nullable=False)
     indent_level: Mapped[int] = mapped_column(nullable=False, default=0)
-    order: Mapped[int] = mapped_column(nullable=False, index=True)
+    display_order: Mapped[int] = mapped_column(nullable=False, index=True)
     parent_id: Mapped[int | None] = mapped_column(
         ForeignKey("line_items.id", ondelete="SET NULL"), nullable=True
     )
@@ -146,7 +146,7 @@ class LineItem(Base, TimestampMixin):
     # Constraints
     __table_args__ = (
         CheckConstraint("indent_level >= 0 AND indent_level <= 5", name="indent_level_range"),
-        CheckConstraint("order >= 0", name="order_non_negative"),
+        CheckConstraint("display_order >= 0", name="display_order_non_negative"),
     )
 
     def __repr__(self) -> str:
