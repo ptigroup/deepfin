@@ -1,0 +1,41 @@
+{
+  "document_title": "income statement",
+  "text_length": 7281,
+  "scores": {
+    "income_statement": 0.95,
+    "balance_sheet": 0.0,
+    "shareholders_equity": 0.05,
+    "cash_flow": 0.0,
+    "comprehensive_income": 0.0,
+    "unknown": 0.0
+  },
+  "matched_keywords": {
+    "income_statement": [
+      "net income",
+      "revenue",
+      "cost of revenue",
+      "operating expenses",
+      "gross profit"
+    ],
+    "balance_sheet": [],
+    "shareholders_equity": [
+      "shares"
+    ],
+    "cash_flow": [],
+    "comprehensive_income": [],
+    "unknown": []
+  },
+  "matched_patterns": {
+    "income_statement": [
+      "text_start:statement.*of.*income",
+      "title:income.*statement"
+    ],
+    "balance_sheet": [],
+    "shareholders_equity": [],
+    "cash_flow": [],
+    "comprehensive_income": [],
+    "unknown": []
+  },
+  "detected_type": "income_statement",
+  "confidence": 0.95
+}

@@ -1,0 +1,19 @@
+{
+  "id": "pre_migration_20250925_192752",
+  "phase": "pre_migration",
+  "timestamp": "20250925_192752",
+  "project_root": "/mnt/c/Claude/LLMWhisperer",
+  "git_commit": "9eb6326c102a467fba64ff0eca7c8c4b392206c5",
+  "files_snapshot": {
+    "main.py": "74a31cd2d6e420effd7545c3db50ce7e",
+    "schemas/balance_sheet_schema.py": "3420ae4b130d402e6aef9488ab087cd2",
+    "schemas/base_schema.py": "65958cd392281dfca3b0ac3722eba524",
+    "schemas/cash_flow_schema.py": "51596212310bdbc25fe47aed0bf85805",
+    "schemas/comprehensive_income_schema.py": "dc570a2e1c74b7e44716060b1345f6d3",
+    "schemas/document_detector.py": "881e06e6dd76a4620ceec0cecadaca8f",
+    "schemas/excel_exporter.py": "5be2c356e6cfbf92073868dff036cff2",
+    "schemas/income_statement_schema.py": "15e6e4b1e635c950f87dc07f65604749",
+    "schemas/shareholders_equity_schema.py": "160192319d3f251efb44cb544edbaaae",
+    "schemas/__init__.py": "8351808f272533a9bc113151a914ec96"
+  }
+}

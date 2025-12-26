@@ -1,0 +1,1024 @@
+{
+  "company_name": "",
+  "document_title": "Cash Flow Statement",
+  "document_type": "cash_flow",
+  "reporting_periods": [
+    "Year Ended January 26, 2020",
+    "Year Ended January 27, 2019",
+    "Year Ended January 28, 2018"
+  ],
+  "units_note": "In millions",
+  "line_items": [
+    {
+      "account_name": "Cash flows from operating activities:",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "operating",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Net income",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating Activities",
+      "values": {
+        "Year Ended January 26, 2020": "$ 2,796",
+        "Year Ended January 27, 2019": "$ 4,141",
+        "Year Ended January 28, 2018": "$ 3,047"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Adjustments to reconcile net income to net cash provided by operating activities:",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "operating",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Stock-based compensation expense",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Adjustments to reconcile net income",
+      "values": {
+        "Year Ended January 26, 2020": "844",
+        "Year Ended January 27, 2019": "557",
+        "Year Ended January 28, 2018": "391"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Depreciation and amortization",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Adjustments to reconcile net income",
+      "values": {
+        "Year Ended January 26, 2020": "381",
+        "Year Ended January 27, 2019": "262",
+        "Year Ended January 28, 2018": "199"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Deferred income taxes",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating Activities",
+      "values": {
+        "Year Ended January 26, 2020": "18",
+        "Year Ended January 27, 2019": "(315)",
+        "Year Ended January 28, 2018": "(359)"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Loss on early debt conversions",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating Activities",
+      "values": {
+        "Year Ended January 28, 2018": "19"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Other",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating Activities",
+      "values": {
+        "Year Ended January 26, 2020": "5",
+        "Year Ended January 27, 2019": "(45)",
+        "Year Ended January 28, 2018": "20"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Changes in operating assets and liabilities:",
+      "indent_level": 1,
+      "is_section_header": true,
+      "parent_section": "Operating Activities",
+      "values": {},
+      "activity_type": "operating",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Accounts receivable",
+      "indent_level": 2,
+      "is_section_header": false,
+      "parent_section": "Changes in operating assets and liabilities",
+      "values": {
+        "Year Ended January 26, 2020": "(233)",
+        "Year Ended January 27, 2019": "(149)",
+        "Year Ended January 28, 2018": "(440)"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Inventories",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating Activities",
+      "values": {
+        "Year Ended January 26, 2020": "597",
+        "Year Ended January 27, 2019": "(776)"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Prepaid expenses and other assets",
+      "indent_level": 2,
+      "is_section_header": false,
+      "parent_section": "Changes in operating assets and liabilities",
+      "values": {
+        "Year Ended January 26, 2020": "77",
+        "Year Ended January 27, 2019": "(55)",
+        "Year Ended January 28, 2018": "21"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Accounts payable",
+      "indent_level": 2,
+      "is_section_header": false,
+      "parent_section": "Changes in operating assets and liabilities",
+      "values": {
+        "Year Ended January 26, 2020": "194",
+        "Year Ended January 27, 2019": "(135)",
+        "Year Ended January 28, 2018": "90"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Accrued and other current liabilities",
+      "indent_level": 2,
+      "is_section_header": false,
+      "parent_section": "Changes in operating assets and liabilities",
+      "values": {
+        "Year Ended January 26, 2020": "54",
+        "Year Ended January 27, 2019": "256",
+        "Year Ended January 28, 2018": "33"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Other long-term liabilities",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating Activities",
+      "values": {
+        "Year Ended January 26, 2020": "28",
+        "Year Ended January 27, 2019": "2",
+        "Year Ended January 28, 2018": "481"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Net cash provided by operating activities",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "operating",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Cash flows from investing activities:",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "investing",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Proceeds from maturities of marketable securities",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Investing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "4,744",
+        "Year Ended January 27, 2019": "7,232",
+        "Year Ended January 28, 2018": "1,078"
+      },
+      "activity_type": "investing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Proceeds from sales of marketable securities",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Investing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "3,365",
+        "Year Ended January 27, 2019": "428",
+        "Year Ended January 28, 2018": "863"
+      },
+      "activity_type": "investing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Purchases of marketable securities",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Investing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "(1,461)",
+        "Year Ended January 27, 2019": "(11,148)",
+        "Year Ended January 28, 2018": "(36)"
+      },
+      "activity_type": "investing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Purchases of property and equipment and intangible assets",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Investing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "(489)",
+        "Year Ended January 27, 2019": "(600)",
+        "Year Ended January 28, 2018": "(593)"
+      },
+      "activity_type": "investing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Investments and other, net",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Investing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "(14)",
+        "Year Ended January 27, 2019": "(9)",
+        "Year Ended January 28, 2018": "(36)"
+      },
+      "activity_type": "investing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Proceeds from sale of long-lived assets and investments",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Investing Activities",
+      "values": {
+        "Year Ended January 28, 2018": "2"
+      },
+      "activity_type": "investing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Net cash provided by (used in) investing activities",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "investing",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Cash flows from financing activities:",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "financing",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Payments related to repurchases of common stock",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 27, 2019": "(1,579)",
+        "Year Ended January 28, 2018": "(909)"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Repayment of Convertible Notes",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 27, 2019": "(16)",
+        "Year Ended January 28, 2018": "(812)"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Dividends paid",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "(390)",
+        "Year Ended January 27, 2019": "(371)",
+        "Year Ended January 28, 2018": "(341)"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Proceeds related to employee stock plans",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "149",
+        "Year Ended January 27, 2019": "137",
+        "Year Ended January 28, 2018": "139"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Payments related to tax on restricted stock units",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "(551)",
+        "Year Ended January 27, 2019": "(1,032)",
+        "Year Ended January 28, 2018": "(612)"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Other",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 27, 2019": "(5)",
+        "Year Ended January 28, 2018": "(9)"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Net cash used in financing activities",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "financing",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Change in cash and cash equivalents",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "10,114",
+        "Year Ended January 27, 2019": "(3,220)",
+        "Year Ended January 28, 2018": "2,236"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Cash and cash equivalents at beginning of period",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 26, 2020": "782",
+        "Year Ended January 27, 2019": "4,002",
+        "Year Ended January 28, 2018": "1,766"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": true
+    },
+    {
+      "account_name": "Cash and cash equivalents at end of period",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 26, 2020": "$ 10,896",
+        "Year Ended January 27, 2019": "$ 782",
+        "Year Ended January 28, 2018": "$ 4,002"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": true
+    }
+  ],
+  "operating_activities": [
+    {
+      "account_name": "Cash flows from operating activities:",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "operating",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Net income",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating Activities",
+      "values": {
+        "Year Ended January 26, 2020": "$ 2,796",
+        "Year Ended January 27, 2019": "$ 4,141",
+        "Year Ended January 28, 2018": "$ 3,047"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Adjustments to reconcile net income to net cash provided by operating activities:",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "operating",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Stock-based compensation expense",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Adjustments to reconcile net income",
+      "values": {
+        "Year Ended January 26, 2020": "844",
+        "Year Ended January 27, 2019": "557",
+        "Year Ended January 28, 2018": "391"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Depreciation and amortization",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Adjustments to reconcile net income",
+      "values": {
+        "Year Ended January 26, 2020": "381",
+        "Year Ended January 27, 2019": "262",
+        "Year Ended January 28, 2018": "199"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Deferred income taxes",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating Activities",
+      "values": {
+        "Year Ended January 26, 2020": "18",
+        "Year Ended January 27, 2019": "(315)",
+        "Year Ended January 28, 2018": "(359)"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Loss on early debt conversions",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating Activities",
+      "values": {
+        "Year Ended January 28, 2018": "19"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Other",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating Activities",
+      "values": {
+        "Year Ended January 26, 2020": "5",
+        "Year Ended January 27, 2019": "(45)",
+        "Year Ended January 28, 2018": "20"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Changes in operating assets and liabilities:",
+      "indent_level": 1,
+      "is_section_header": true,
+      "parent_section": "Operating Activities",
+      "values": {},
+      "activity_type": "operating",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Accounts receivable",
+      "indent_level": 2,
+      "is_section_header": false,
+      "parent_section": "Changes in operating assets and liabilities",
+      "values": {
+        "Year Ended January 26, 2020": "(233)",
+        "Year Ended January 27, 2019": "(149)",
+        "Year Ended January 28, 2018": "(440)"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Inventories",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating Activities",
+      "values": {
+        "Year Ended January 26, 2020": "597",
+        "Year Ended January 27, 2019": "(776)"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Prepaid expenses and other assets",
+      "indent_level": 2,
+      "is_section_header": false,
+      "parent_section": "Changes in operating assets and liabilities",
+      "values": {
+        "Year Ended January 26, 2020": "77",
+        "Year Ended January 27, 2019": "(55)",
+        "Year Ended January 28, 2018": "21"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Accounts payable",
+      "indent_level": 2,
+      "is_section_header": false,
+      "parent_section": "Changes in operating assets and liabilities",
+      "values": {
+        "Year Ended January 26, 2020": "194",
+        "Year Ended January 27, 2019": "(135)",
+        "Year Ended January 28, 2018": "90"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Accrued and other current liabilities",
+      "indent_level": 2,
+      "is_section_header": false,
+      "parent_section": "Changes in operating assets and liabilities",
+      "values": {
+        "Year Ended January 26, 2020": "54",
+        "Year Ended January 27, 2019": "256",
+        "Year Ended January 28, 2018": "33"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Other long-term liabilities",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating Activities",
+      "values": {
+        "Year Ended January 26, 2020": "28",
+        "Year Ended January 27, 2019": "2",
+        "Year Ended January 28, 2018": "481"
+      },
+      "activity_type": "operating",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Net cash provided by operating activities",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "operating",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    }
+  ],
+  "investing_activities": [
+    {
+      "account_name": "Cash flows from investing activities:",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "investing",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Proceeds from maturities of marketable securities",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Investing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "4,744",
+        "Year Ended January 27, 2019": "7,232",
+        "Year Ended January 28, 2018": "1,078"
+      },
+      "activity_type": "investing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Proceeds from sales of marketable securities",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Investing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "3,365",
+        "Year Ended January 27, 2019": "428",
+        "Year Ended January 28, 2018": "863"
+      },
+      "activity_type": "investing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Purchases of marketable securities",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Investing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "(1,461)",
+        "Year Ended January 27, 2019": "(11,148)",
+        "Year Ended January 28, 2018": "(36)"
+      },
+      "activity_type": "investing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Purchases of property and equipment and intangible assets",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Investing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "(489)",
+        "Year Ended January 27, 2019": "(600)",
+        "Year Ended January 28, 2018": "(593)"
+      },
+      "activity_type": "investing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Investments and other, net",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Investing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "(14)",
+        "Year Ended January 27, 2019": "(9)",
+        "Year Ended January 28, 2018": "(36)"
+      },
+      "activity_type": "investing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Proceeds from sale of long-lived assets and investments",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Investing Activities",
+      "values": {
+        "Year Ended January 28, 2018": "2"
+      },
+      "activity_type": "investing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Net cash provided by (used in) investing activities",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "investing",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    }
+  ],
+  "financing_activities": [
+    {
+      "account_name": "Cash flows from financing activities:",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "financing",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Payments related to repurchases of common stock",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 27, 2019": "(1,579)",
+        "Year Ended January 28, 2018": "(909)"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Repayment of Convertible Notes",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 27, 2019": "(16)",
+        "Year Ended January 28, 2018": "(812)"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Dividends paid",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "(390)",
+        "Year Ended January 27, 2019": "(371)",
+        "Year Ended January 28, 2018": "(341)"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Proceeds related to employee stock plans",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "149",
+        "Year Ended January 27, 2019": "137",
+        "Year Ended January 28, 2018": "139"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Payments related to tax on restricted stock units",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "(551)",
+        "Year Ended January 27, 2019": "(1,032)",
+        "Year Ended January 28, 2018": "(612)"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Other",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 27, 2019": "(5)",
+        "Year Ended January 28, 2018": "(9)"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "outflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Net cash used in financing activities",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "activity_type": "financing",
+      "cash_flow_direction": "neutral",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Change in cash and cash equivalents",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Financing Activities",
+      "values": {
+        "Year Ended January 26, 2020": "10,114",
+        "Year Ended January 27, 2019": "(3,220)",
+        "Year Ended January 28, 2018": "2,236"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Cash and cash equivalents at beginning of period",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 26, 2020": "782",
+        "Year Ended January 27, 2019": "4,002",
+        "Year Ended January 28, 2018": "1,766"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": true
+    },
+    {
+      "account_name": "Cash and cash equivalents at end of period",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 26, 2020": "$ 10,896",
+        "Year Ended January 27, 2019": "$ 782",
+        "Year Ended January 28, 2018": "$ 4,002"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": true
+    }
+  ],
+  "supplemental_info": [],
+  "beginning_cash": [
+    {
+      "account_name": "Cash and cash equivalents at beginning of period",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 26, 2020": "782",
+        "Year Ended January 27, 2019": "4,002",
+        "Year Ended January 28, 2018": "1,766"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": true
+    }
+  ],
+  "ending_cash": [
+    {
+      "account_name": "Cash and cash equivalents at end of period",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 26, 2020": "$ 10,896",
+        "Year Ended January 27, 2019": "$ 782",
+        "Year Ended January 28, 2018": "$ 4,002"
+      },
+      "activity_type": "financing",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": true
+    }
+  ]
+}

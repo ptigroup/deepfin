@@ -1,0 +1,40 @@
+{
+  "document_title": "comprehensive income",
+  "text_length": 5336,
+  "scores": {
+    "income_statement": 0.35,
+    "balance_sheet": 0.0,
+    "shareholders_equity": 0.0,
+    "cash_flow": 0.0,
+    "comprehensive_income": 0.5,
+    "unknown": 0.0
+  },
+  "matched_keywords": {
+    "income_statement": [
+      "net income"
+    ],
+    "balance_sheet": [],
+    "shareholders_equity": [],
+    "cash_flow": [],
+    "comprehensive_income": [
+      "comprehensive income",
+      "other comprehensive income",
+      "total comprehensive income"
+    ],
+    "unknown": []
+  },
+  "matched_patterns": {
+    "income_statement": [
+      "text_start:statement.*of.*income"
+    ],
+    "balance_sheet": [],
+    "shareholders_equity": [],
+    "cash_flow": [],
+    "comprehensive_income": [
+      "text_start:statement.*of.*comprehensive.*income"
+    ],
+    "unknown": []
+  },
+  "detected_type": "comprehensive_income",
+  "confidence": 0.5
+}

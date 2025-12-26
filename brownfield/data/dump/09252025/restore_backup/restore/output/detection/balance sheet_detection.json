@@ -1,0 +1,53 @@
+{
+  "document_title": "balance sheet",
+  "text_length": 16588,
+  "scores": {
+    "income_statement": 0.0,
+    "balance_sheet": 1.3555555555555556,
+    "shareholders_equity": 0.30000000000000004,
+    "cash_flow": 0.0,
+    "comprehensive_income": 0.13333333333333333,
+    "unknown": 0.0
+  },
+  "matched_keywords": {
+    "income_statement": [],
+    "balance_sheet": [
+      "total assets",
+      "current assets",
+      "total liabilities",
+      "shareholders' equity",
+      "cash and cash equivalents",
+      "accounts receivable",
+      "retained earnings",
+      "common stock"
+    ],
+    "shareholders_equity": [
+      "shares",
+      "additional paid-in capital",
+      "treasury stock",
+      "accumulated other comprehensive income",
+      "retained earnings",
+      "shareholders' equity"
+    ],
+    "cash_flow": [],
+    "comprehensive_income": [
+      "comprehensive income",
+      "other comprehensive income"
+    ],
+    "unknown": []
+  },
+  "matched_patterns": {
+    "income_statement": [],
+    "balance_sheet": [
+      "title:balance.*sheet",
+      "text_start:balance.*sheet",
+      "text_start:consolidated.*balance.*sheet"
+    ],
+    "shareholders_equity": [],
+    "cash_flow": [],
+    "comprehensive_income": [],
+    "unknown": []
+  },
+  "detected_type": "balance_sheet",
+  "confidence": 1.3555555555555556
+}

@@ -1,0 +1,12 @@
+Financial Document Processing Summary
+==================================================
+Run ID: 20250928_110212
+Completed: 2025-09-28 11:05:01
+Mode: production
+Duration: 168.0 seconds
+
+Generated Files:
+
+Pipeline Stages:
+  • pdf_extraction: 166.5s
+  • excel_organization: 1.5s

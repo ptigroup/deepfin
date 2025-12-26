@@ -1,0 +1,162 @@
+{
+  "latest_run_id": "20250925_212500",
+  "status": "SUCCESS",
+  "timestamp": "2025-09-25T21:27:37.053814",
+  "mode": "production",
+  "run_id": "20250925_212500",
+  "start_time": "2025-09-25T21:25:00.137337",
+  "end_time": "2025-09-25T21:27:35.027845",
+  "duration_seconds": 154.89550018310547,
+  "input_files": [
+    "/mnt/c/Claude/LLMWhisperer/input/NVIDIA 10K 2020-2019.pdf",
+    "/mnt/c/Claude/LLMWhisperer/input/NVIDIA 10K 2022-2021.pdf"
+  ],
+  "processing_mode": "multi_pdf_consolidation",
+  "pipeline_stages": [
+    {
+      "stage": "pdf_extraction",
+      "completion_time": "2025-09-25T21:27:31.291515",
+      "duration_seconds": 151.14668774604797,
+      "output_files": [
+        "output/runs/20250925_212500_PROCESSING/01_income_statement_NVIDIA_10K_2020_2019_03_excel.xlsx",
+        "output/runs/20250925_212500_PROCESSING/01_income_statement_07_excel_multi_pdf_consolidated_2022-2018.xlsx"
+      ]
+    },
+    {
+      "stage": "excel_organization",
+      "completion_time": "2025-09-25T21:27:35.014490",
+      "duration_seconds": 3.7145960330963135,
+      "output_files": [
+        "output/runs/20250925_212500_PROCESSING/01_income_statement_07_excel_multi_pdf_consolidated_2022-2018.xlsx",
+        "output/runs/20250925_212500_PROCESSING/02_comprehensive_income_07_excel_multi_pdf_consolidated_2022-2018.xlsx",
+        "output/runs/20250925_212500_PROCESSING/03_balance_sheet_07_excel_multi_pdf_consolidated_2022-2019.xlsx",
+        "output/runs/20250925_212500_PROCESSING/04_cash_flow_07_excel_multi_pdf_consolidated_2022-2018.xlsx",
+        "output/runs/20250925_212500_PROCESSING/05_shareholders_equity_NVIDIA_10K_2020_2019_03_excel.xlsx",
+        "output/runs/20250925_212500_PROCESSING/05_shareholders_equity_NVIDIA_10K_2022_2021_03_excel.xlsx",
+        "output/runs/20250925_212500_PROCESSING/Consolidated_Financial_Statements.xlsx"
+      ]
+    }
+  ],
+  "performance_metrics": {
+    "pdf_extraction": 151.14668774604797,
+    "excel_organization": 3.7145960330963135
+  },
+  "file_manifest": {
+    "final_excel": [
+      {
+        "path": "output/runs/20250925_212500_PROCESSING/01_income_statement_NVIDIA_10K_2020_2019_03_excel.xlsx",
+        "type": "final_excel",
+        "stage": "extraction",
+        "size_bytes": 5980,
+        "checksum": "edf459ca6ef002c762dc7fe607001030",
+        "created_time": "2025-09-25T21:26:11.604632",
+        "metadata": {
+          "pdf_source": "/mnt/c/Claude/LLMWhisperer/input/NVIDIA 10K 2020-2019.pdf",
+          "tables_detected": 5,
+          "detection_time": 6.811983823776245,
+          "extraction_time": 64.60908126831055
+        }
+      },
+      {
+        "path": "output/runs/20250925_212500_PROCESSING/01_income_statement_07_excel_multi_pdf_consolidated_2022-2018.xlsx",
+        "type": "final_excel",
+        "stage": "extraction",
+        "size_bytes": 8855,
+        "checksum": "c6cc2a10cf8ce84647ec302d1a365ea3",
+        "created_time": "2025-09-25T21:27:31.291148",
+        "metadata": {
+          "pdf_source": "/mnt/c/Claude/LLMWhisperer/input/NVIDIA 10K 2022-2021.pdf",
+          "tables_detected": 5,
+          "detection_time": 13.460749864578247,
+          "extraction_time": 66.17609715461731
+        }
+      }
+    ],
+    "income_statement": [
+      {
+        "path": "output/runs/20250925_212500_PROCESSING/01_income_statement_07_excel_multi_pdf_consolidated_2022-2018.xlsx",
+        "type": "income_statement",
+        "stage": "final_output",
+        "size_bytes": 8855,
+        "checksum": "c6cc2a10cf8ce84647ec302d1a365ea3",
+        "created_time": "2025-09-25T21:27:35.085393",
+        "metadata": {}
+      }
+    ],
+    "comprehensive_income": [
+      {
+        "path": "output/runs/20250925_212500_PROCESSING/02_comprehensive_income_07_excel_multi_pdf_consolidated_2022-2018.xlsx",
+        "type": "comprehensive_income",
+        "stage": "final_output",
+        "size_bytes": 9341,
+        "checksum": "d4b19e171c4266da6f69721340678501",
+        "created_time": "2025-09-25T21:27:35.140396",
+        "metadata": {}
+      }
+    ],
+    "balance_sheet": [
+      {
+        "path": "output/runs/20250925_212500_PROCESSING/03_balance_sheet_07_excel_multi_pdf_consolidated_2022-2019.xlsx",
+        "type": "balance_sheet",
+        "stage": "final_output",
+        "size_bytes": 13415,
+        "checksum": "60a7473b87cac4d11e5b7038961c2aab",
+        "created_time": "2025-09-25T21:27:35.199724",
+        "metadata": {}
+      }
+    ],
+    "cash_flow": [
+      {
+        "path": "output/runs/20250925_212500_PROCESSING/04_cash_flow_07_excel_multi_pdf_consolidated_2022-2018.xlsx",
+        "type": "cash_flow",
+        "stage": "final_output",
+        "size_bytes": 14811,
+        "checksum": "753aebbc011b3347a16416465e88362e",
+        "created_time": "2025-09-25T21:27:35.249612",
+        "metadata": {}
+      }
+    ],
+    "shareholders_equity_NVIDIA_10K_2020_2019": [
+      {
+        "path": "output/runs/20250925_212500_PROCESSING/05_shareholders_equity_NVIDIA_10K_2020_2019_03_excel.xlsx",
+        "type": "shareholders_equity_NVIDIA_10K_2020_2019",
+        "stage": "final_output",
+        "size_bytes": 6883,
+        "checksum": "5c9a7ab87d9334af72a00f5fc93c2d3a",
+        "created_time": "2025-09-25T21:27:35.336810",
+        "metadata": {}
+      }
+    ],
+    "shareholders_equity_NVIDIA_10K_2022_2021": [
+      {
+        "path": "output/runs/20250925_212500_PROCESSING/05_shareholders_equity_NVIDIA_10K_2022_2021_03_excel.xlsx",
+        "type": "shareholders_equity_NVIDIA_10K_2022_2021",
+        "stage": "final_output",
+        "size_bytes": 6482,
+        "checksum": "e244fdd72c844947f1161283d379fb8f",
+        "created_time": "2025-09-25T21:27:35.456812",
+        "metadata": {}
+      }
+    ],
+    "combined_workbook": [
+      {
+        "path": "output/runs/20250925_212500_PROCESSING/Consolidated_Financial_Statements.xlsx",
+        "type": "combined_workbook",
+        "stage": "final_output",
+        "size_bytes": 22394,
+        "checksum": "7bbf9c6fd90357ccbc7d0290cbbb1c4e",
+        "created_time": "2025-09-25T21:27:35.597878",
+        "metadata": {}
+      }
+    ]
+  },
+  "final_files": {
+    "income_statement": "output/runs/20250925_212500_PROCESSING/01_income_statement_07_excel_multi_pdf_consolidated_2022-2018.xlsx",
+    "comprehensive_income": "output/runs/20250925_212500_PROCESSING/02_comprehensive_income_07_excel_multi_pdf_consolidated_2022-2018.xlsx",
+    "balance_sheet": "output/runs/20250925_212500_PROCESSING/03_balance_sheet_07_excel_multi_pdf_consolidated_2022-2019.xlsx",
+    "cash_flow": "output/runs/20250925_212500_PROCESSING/04_cash_flow_07_excel_multi_pdf_consolidated_2022-2018.xlsx",
+    "shareholders_equity_NVIDIA_10K_2020_2019": "output/runs/20250925_212500_PROCESSING/05_shareholders_equity_NVIDIA_10K_2020_2019_03_excel.xlsx",
+    "shareholders_equity_NVIDIA_10K_2022_2021": "output/runs/20250925_212500_PROCESSING/05_shareholders_equity_NVIDIA_10K_2022_2021_03_excel.xlsx",
+    "combined_workbook": "output/runs/20250925_212500_PROCESSING/Consolidated_Financial_Statements.xlsx"
+  }
+}

@@ -1,0 +1,983 @@
+{
+  "company_name": "NVIDIA CORPORATION AND SUBSIDIARIES",
+  "document_title": "CONSOLIDATED STATEMENTS OF SHAREHOLDERS' EQUITY",
+  "document_type": "shareholders_equity",
+  "reporting_periods": [],
+  "units_note": "In millions, except per share data",
+  "column_headers": [
+    {
+      "main_header": "Common Stock Outstanding",
+      "sub_header": "Shares",
+      "column_index": 1,
+      "data_type": "text"
+    },
+    {
+      "main_header": "Common Stock Outstanding",
+      "sub_header": "Amount",
+      "column_index": 2,
+      "data_type": "currency"
+    },
+    {
+      "main_header": "Additional Paid-in Capital",
+      "sub_header": "",
+      "column_index": 3,
+      "data_type": "currency"
+    },
+    {
+      "main_header": "Treasury Stock",
+      "sub_header": "",
+      "column_index": 4,
+      "data_type": "currency"
+    },
+    {
+      "main_header": "Accumulated Other Comprehensive Income (Loss)",
+      "sub_header": "",
+      "column_index": 5,
+      "data_type": "currency"
+    },
+    {
+      "main_header": "Retained Earnings",
+      "sub_header": "",
+      "column_index": 6,
+      "data_type": "currency"
+    },
+    {
+      "main_header": "Total Shareholders' Equity",
+      "sub_header": "",
+      "column_index": 7,
+      "data_type": "currency"
+    }
+  ],
+  "equity_rows": [],
+  "opening_balances": [],
+  "closing_balances": [],
+  "fiscal_years_covered": [],
+  "consolidation_summary": {
+    "merged_accounts": [
+      {
+        "consolidated_name": "Revenue",
+        "merged_from": [
+          {
+            "name": "Revenue",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Revenue",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Cost of revenue",
+        "merged_from": [
+          {
+            "name": "Cost of revenue",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Cost of revenue",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Gross profit",
+        "merged_from": [
+          {
+            "name": "Gross profit",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Gross profit",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Operating expenses",
+        "merged_from": [
+          {
+            "name": "Operating expenses",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Total operating expenses",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Operating expenses",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          },
+          {
+            "name": "Total operating expenses",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Research and development",
+        "merged_from": [
+          {
+            "name": "Research and development",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Research and development",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Sales, general and administrative",
+        "merged_from": [
+          {
+            "name": "Sales, general and administrative",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Sales, general and administrative",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Income from operations",
+        "merged_from": [
+          {
+            "name": "Income from operations",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Income from operations",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Interest income",
+        "merged_from": [
+          {
+            "name": "Interest income",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Interest income",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Interest expense",
+        "merged_from": [
+          {
+            "name": "Interest expense",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Interest expense",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Other, net",
+        "merged_from": [
+          {
+            "name": "Other, net",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Other, net",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Other income (expense), net",
+        "merged_from": [
+          {
+            "name": "Other income (expense), net",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Total other income (expense)",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Income before income tax",
+        "merged_from": [
+          {
+            "name": "Income before income tax",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Income before income tax",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Income tax expense",
+        "merged_from": [
+          {
+            "name": "Income tax expense",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Income tax expense (benefit)",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net income",
+        "merged_from": [
+          {
+            "name": "Net income",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Net income",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          },
+          {
+            "name": "Net income",
+            "source": "cash_flow_NVIDIA_10K_2022_2021"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net income per share:",
+        "merged_from": [
+          {
+            "name": "Net income per share:",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Net income per share:",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Basic",
+        "merged_from": [
+          {
+            "name": "Basic",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Basic",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Diluted",
+        "merged_from": [
+          {
+            "name": "Diluted",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Diluted",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Weighted average shares used in per share computation:",
+        "merged_from": [
+          {
+            "name": "Weighted average shares used in per share computation:",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Weighted average shares used in per share computation:",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Basic",
+        "merged_from": [
+          {
+            "name": "Basic",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Basic",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Diluted",
+        "merged_from": [
+          {
+            "name": "Diluted",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Diluted",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net income",
+        "merged_from": [
+          {
+            "name": "Net income",
+            "source": "comprehensive_income_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Net income",
+            "source": "comprehensive_income_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Other comprehensive income (loss), net of tax",
+        "merged_from": [
+          {
+            "name": "Other comprehensive income (loss), net of tax",
+            "source": "comprehensive_income_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Other comprehensive income (loss), net of tax",
+            "source": "comprehensive_income_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Available-for-sale debt securities:",
+        "merged_from": [
+          {
+            "name": "Available-for-sale debt securities:",
+            "source": "comprehensive_income_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Available-for-sale debt securities:",
+            "source": "comprehensive_income_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net unrealized gain (loss)",
+        "merged_from": [
+          {
+            "name": "Net unrealized gain (loss)",
+            "source": "comprehensive_income_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Net unrealized gain (loss)",
+            "source": "comprehensive_income_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net change in unrealized gain (loss)",
+        "merged_from": [
+          {
+            "name": "Net change in unrealized gain (loss)",
+            "source": "comprehensive_income_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Net change in unrealized gain (loss)",
+            "source": "comprehensive_income_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Cash flow hedges:",
+        "merged_from": [
+          {
+            "name": "Cash flow hedges:",
+            "source": "comprehensive_income_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Cash flow hedges:",
+            "source": "comprehensive_income_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net unrealized gain (loss)",
+        "merged_from": [
+          {
+            "name": "Net unrealized gain (loss)",
+            "source": "comprehensive_income_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Net unrealized gain (loss)",
+            "source": "comprehensive_income_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Reclassification adjustments for net realized gain (loss) included in net income",
+        "merged_from": [
+          {
+            "name": "Reclassification adjustments for net realized gain (loss) included in net income",
+            "source": "comprehensive_income_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Reclassification adjustments for net realized gain (loss) included in net income",
+            "source": "comprehensive_income_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net change in unrealized gain (loss)",
+        "merged_from": [
+          {
+            "name": "Net change in unrealized gain (loss)",
+            "source": "comprehensive_income_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Net change in unrealized gain (loss)",
+            "source": "comprehensive_income_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Total comprehensive income",
+        "merged_from": [
+          {
+            "name": "Total comprehensive income",
+            "source": "comprehensive_income_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Total comprehensive income",
+            "source": "comprehensive_income_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "ASSETS",
+        "merged_from": [
+          {
+            "name": "ASSETS",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "ASSETS",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Current assets:",
+        "merged_from": [
+          {
+            "name": "Current assets:",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Current assets:",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Cash and cash equivalents",
+        "merged_from": [
+          {
+            "name": "Cash and cash equivalents",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Cash and cash equivalents",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Marketable securities",
+        "merged_from": [
+          {
+            "name": "Marketable securities",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Marketable securities",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Accounts receivable, net",
+        "merged_from": [
+          {
+            "name": "Accounts receivable, net",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Accounts receivable, net",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Inventories",
+        "merged_from": [
+          {
+            "name": "Inventories",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Inventories",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Prepaid expenses and other current assets",
+        "merged_from": [
+          {
+            "name": "Prepaid expenses and other current assets",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Prepaid expenses and other current assets",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Total current assets",
+        "merged_from": [
+          {
+            "name": "Total current assets",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Total current assets",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Property and equipment, net",
+        "merged_from": [
+          {
+            "name": "Property and equipment, net",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Property and equipment, net",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Operating lease assets",
+        "merged_from": [
+          {
+            "name": "Operating lease assets",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Operating lease assets",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Goodwill",
+        "merged_from": [
+          {
+            "name": "Goodwill",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Goodwill",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Intangible assets, net",
+        "merged_from": [
+          {
+            "name": "Intangible assets, net",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Intangible assets, net",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Deferred income tax assets",
+        "merged_from": [
+          {
+            "name": "Deferred income tax assets",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Deferred income tax assets",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Other assets",
+        "merged_from": [
+          {
+            "name": "Other assets",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Other assets",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Total assets",
+        "merged_from": [
+          {
+            "name": "Total assets",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Total assets",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "LIABILITIES AND SHAREHOLDERS' EQUITY",
+        "merged_from": [
+          {
+            "name": "LIABILITIES AND SHAREHOLDERS' EQUITY",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "LIABILITIES AND SHAREHOLDERS' EQUITY",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Current liabilities:",
+        "merged_from": [
+          {
+            "name": "Current liabilities:",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Current liabilities:",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Accounts payable",
+        "merged_from": [
+          {
+            "name": "Accounts payable",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Accounts payable",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Accrued and other current liabilities",
+        "merged_from": [
+          {
+            "name": "Accrued and other current liabilities",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Accrued and other current liabilities",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Total current liabilities",
+        "merged_from": [
+          {
+            "name": "Total current liabilities",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Total current liabilities",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Long-term debt",
+        "merged_from": [
+          {
+            "name": "Long-term debt",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Long-term debt",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Long-term operating lease liabilities",
+        "merged_from": [
+          {
+            "name": "Long-term operating lease liabilities",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Long-term operating lease liabilities",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Other long-term liabilities",
+        "merged_from": [
+          {
+            "name": "Other long-term liabilities",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Other long-term liabilities",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Total liabilities",
+        "merged_from": [
+          {
+            "name": "Total liabilities",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Total liabilities",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Commitments and contingencies - see Note 13",
+        "merged_from": [
+          {
+            "name": "Commitments and contingencies - see Note 13",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Commitments and contingencies - see Note 13",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Shareholders' equity:",
+        "merged_from": [
+          {
+            "name": "Shareholders' equity:",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Shareholders' equity:",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Additional paid-in capital",
+        "merged_from": [
+          {
+            "name": "Additional paid-in capital",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Additional paid-in capital",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Treasury stock, at cost (None as of January 30, 2022 and 1,380 shares as of January 31, 2021)",
+        "merged_from": [
+          {
+            "name": "Treasury stock, at cost (None as of January 30, 2022 and 1,380 shares as of January 31, 2021)",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Treasury stock, at cost (342 shares in 2020 and 339 shares in 2019)",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Accumulated other comprehensive income (loss)",
+        "merged_from": [
+          {
+            "name": "Accumulated other comprehensive income (loss)",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Accumulated other comprehensive income (loss)",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Retained earnings",
+        "merged_from": [
+          {
+            "name": "Retained earnings",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Retained earnings",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Total shareholders' equity",
+        "merged_from": [
+          {
+            "name": "Total shareholders' equity",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Total shareholders' equity",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Total liabilities and shareholders' equity",
+        "merged_from": [
+          {
+            "name": "Total liabilities and shareholders' equity",
+            "source": "balance_sheet_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Total liabilities and shareholders' equity",
+            "source": "balance_sheet_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Cash flows from operating activities:",
+        "merged_from": [
+          {
+            "name": "Cash flows from operating activities:",
+            "source": "cash_flow_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Cash flows from investing activities:",
+            "source": "cash_flow_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Cash flows from financing activities:",
+            "source": "cash_flow_NVIDIA_10K_2022_2021"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Proceeds from maturities of marketable securities",
+        "merged_from": [
+          {
+            "name": "Proceeds from maturities of marketable securities",
+            "source": "cash_flow_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Proceeds from sales of marketable securities",
+            "source": "cash_flow_NVIDIA_10K_2022_2021"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net cash provided by (used in) investing activities",
+        "merged_from": [
+          {
+            "name": "Net cash provided by (used in) investing activities",
+            "source": "cash_flow_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Net cash provided by (used in) financing activities",
+            "source": "cash_flow_NVIDIA_10K_2022_2021"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Cash and cash equivalents at beginning of period",
+        "merged_from": [
+          {
+            "name": "Cash and cash equivalents at beginning of period",
+            "source": "cash_flow_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Cash and cash equivalents at end of period",
+            "source": "cash_flow_NVIDIA_10K_2022_2021"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Supplemental disclosures of cash flow information:",
+        "merged_from": [
+          {
+            "name": "Supplemental disclosures of cash flow information:",
+            "source": "cash_flow_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Supplemental disclosures of cash flow information:",
+            "source": "cash_flow_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Cash paid for income taxes, net",
+        "merged_from": [
+          {
+            "name": "Cash paid for income taxes, net",
+            "source": "cash_flow_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Cash paid for income taxes, net",
+            "source": "cash_flow_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Cash paid for interest",
+        "merged_from": [
+          {
+            "name": "Cash paid for interest",
+            "source": "cash_flow_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Cash paid for interest",
+            "source": "cash_flow_NVIDIA_10K_2020_2019"
+          }
+        ]
+      }
+    ],
+    "total_consolidated": 69,
+    "source_pdfs": [
+      "balance_sheet_NVIDIA_10K_2020_2019",
+      "balance_sheet_NVIDIA_10K_2022_2021",
+      "cash_flow_NVIDIA_10K_2020_2019",
+      "cash_flow_NVIDIA_10K_2022_2021",
+      "comprehensive_income_NVIDIA_10K_2020_2019",
+      "comprehensive_income_NVIDIA_10K_2022_2021",
+      "income_statement_NVIDIA_10K_2020_2019",
+      "income_statement_NVIDIA_10K_2022_2021"
+    ]
+  }
+}

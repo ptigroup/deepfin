@@ -1,0 +1,51 @@
+{
+  "document_title": "shareholder equity",
+  "text_length": 37251,
+  "scores": {
+    "income_statement": 0.05,
+    "balance_sheet": 0.13333333333333333,
+    "shareholders_equity": 1.45,
+    "cash_flow": 0.0,
+    "comprehensive_income": 0.13333333333333333,
+    "unknown": 0.0
+  },
+  "matched_keywords": {
+    "income_statement": [
+      "net income"
+    ],
+    "balance_sheet": [
+      "shareholders' equity",
+      "retained earnings",
+      "common stock"
+    ],
+    "shareholders_equity": [
+      "common stock outstanding",
+      "shares",
+      "additional paid-in capital",
+      "treasury stock",
+      "accumulated other comprehensive income",
+      "retained earnings",
+      "shareholders' equity"
+    ],
+    "cash_flow": [],
+    "comprehensive_income": [
+      "comprehensive income",
+      "other comprehensive income"
+    ],
+    "unknown": []
+  },
+  "matched_patterns": {
+    "income_statement": [],
+    "balance_sheet": [],
+    "shareholders_equity": [
+      "text_start:statement.*of.*shareholders.*equity",
+      "text_start:statement.*of.*equity",
+      "structure:shares\\s*\\|\\s*amount"
+    ],
+    "cash_flow": [],
+    "comprehensive_income": [],
+    "unknown": []
+  },
+  "detected_type": "shareholders_equity",
+  "confidence": 1.45
+}

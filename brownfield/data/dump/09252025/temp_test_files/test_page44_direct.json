@@ -1,0 +1,110 @@
+{
+  "company_name": "",
+  "document_title": "Cash Flow Statement",
+  "document_type": "cash_flow",
+  "reporting_periods": [
+    "Year Ended January 26, 2020",
+    "Year Ended January 27, 2019",
+    "Year Ended January 28, 2018"
+  ],
+  "units_note": "In millions",
+  "line_items": [
+    {
+      "account_name": "Cash paid for income taxes, net",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Supplemental Information",
+      "values": {
+        "Year Ended January 26, 2020": "$ 176",
+        "Year Ended January 27, 2019": "$ 61",
+        "Year Ended January 28, 2018": "$ 22"
+      },
+      "activity_type": "supplemental",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Cash paid for interest",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Supplemental Information",
+      "values": {
+        "Year Ended January 26, 2020": "$ 54",
+        "Year Ended January 27, 2019": "$ 55",
+        "Year Ended January 28, 2018": "$ 55"
+      },
+      "activity_type": "supplemental",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Assets acquired by assuming related liabilities",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Supplemental Information",
+      "values": {
+        "Year Ended January 26, 2020": "$ 212",
+        "Year Ended January 27, 2019": "$ 76",
+        "Year Ended January 28, 2018": "$ 36"
+      },
+      "activity_type": "supplemental",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    }
+  ],
+  "operating_activities": [],
+  "investing_activities": [],
+  "financing_activities": [],
+  "supplemental_info": [
+    {
+      "account_name": "Cash paid for income taxes, net",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Supplemental Information",
+      "values": {
+        "Year Ended January 26, 2020": "$ 176",
+        "Year Ended January 27, 2019": "$ 61",
+        "Year Ended January 28, 2018": "$ 22"
+      },
+      "activity_type": "supplemental",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Cash paid for interest",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Supplemental Information",
+      "values": {
+        "Year Ended January 26, 2020": "$ 54",
+        "Year Ended January 27, 2019": "$ 55",
+        "Year Ended January 28, 2018": "$ 55"
+      },
+      "activity_type": "supplemental",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    },
+    {
+      "account_name": "Assets acquired by assuming related liabilities",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Supplemental Information",
+      "values": {
+        "Year Ended January 26, 2020": "$ 212",
+        "Year Ended January 27, 2019": "$ 76",
+        "Year Ended January 28, 2018": "$ 36"
+      },
+      "activity_type": "supplemental",
+      "cash_flow_direction": "inflow",
+      "is_subtotal": false,
+      "is_reconciliation": false
+    }
+  ],
+  "beginning_cash": [],
+  "ending_cash": []
+}

@@ -1,0 +1,722 @@
+{
+  "company_name": "",
+  "document_title": "Income Statement (2022-2018)",
+  "document_type": "income_statement",
+  "reporting_periods": [
+    "Year Ended 2022",
+    "Year Ended 2021",
+    "Year Ended 2020",
+    "Year Ended 2019",
+    "Year Ended 2018"
+  ],
+  "units_note": "In millions, except per share data",
+  "consolidation_summary": {
+    "merged_accounts": [
+      {
+        "consolidated_name": "Revenue",
+        "merged_from": [
+          {
+            "name": "Revenue",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Revenue",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Cost of revenue",
+        "merged_from": [
+          {
+            "name": "Cost of revenue",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Cost of revenue",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Gross profit",
+        "merged_from": [
+          {
+            "name": "Gross profit",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Gross profit",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Operating expenses",
+        "merged_from": [
+          {
+            "name": "Operating expenses",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Total operating expenses",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Operating expenses",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          },
+          {
+            "name": "Total operating expenses",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Research and development",
+        "merged_from": [
+          {
+            "name": "Research and development",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Research and development",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Sales, general and administrative",
+        "merged_from": [
+          {
+            "name": "Sales, general and administrative",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Sales, general and administrative",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Income from operations",
+        "merged_from": [
+          {
+            "name": "Income from operations",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Income from operations",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Interest income",
+        "merged_from": [
+          {
+            "name": "Interest income",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Interest income",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Interest expense",
+        "merged_from": [
+          {
+            "name": "Interest expense",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Interest expense",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Other, net",
+        "merged_from": [
+          {
+            "name": "Other, net",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Other, net",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Other income (expense), net",
+        "merged_from": [
+          {
+            "name": "Other income (expense), net",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Total other income (expense)",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Income before income tax",
+        "merged_from": [
+          {
+            "name": "Income before income tax",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Income before income tax",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Income tax expense",
+        "merged_from": [
+          {
+            "name": "Income tax expense",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Income tax expense (benefit)",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net income",
+        "merged_from": [
+          {
+            "name": "Net income",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Net income",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net income per share:",
+        "merged_from": [
+          {
+            "name": "Net income per share:",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Net income per share:",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Basic",
+        "merged_from": [
+          {
+            "name": "Basic",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Basic",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Diluted",
+        "merged_from": [
+          {
+            "name": "Diluted",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Diluted",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Weighted average shares used in per share computation:",
+        "merged_from": [
+          {
+            "name": "Weighted average shares used in per share computation:",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Weighted average shares used in per share computation:",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Basic",
+        "merged_from": [
+          {
+            "name": "Basic",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Basic",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Diluted",
+        "merged_from": [
+          {
+            "name": "Diluted",
+            "source": "income_statement_NVIDIA_10K_2022_2021"
+          },
+          {
+            "name": "Diluted",
+            "source": "income_statement_NVIDIA_10K_2020_2019"
+          }
+        ]
+      }
+    ],
+    "total_consolidated": 20,
+    "source_pdfs": [
+      "income_statement_NVIDIA_10K_2020_2019",
+      "income_statement_NVIDIA_10K_2022_2021"
+    ]
+  },
+  "line_items": [
+    {
+      "account_name": "Revenue",
+      "indent_level": 0,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 30, 2022": "$ 26,914",
+        "Year Ended January 31, 2021": "$ 16,675",
+        "Year Ended January 26, 2020": "$ 10,918",
+        "Year Ended January 27, 2019": "$ 11,716",
+        "Year Ended January 28, 2018": "$ 9,714"
+      },
+      "account_category": "revenue",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Cost of revenue",
+      "indent_level": 0,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 30, 2022": "9,439",
+        "Year Ended January 31, 2021": "6,279",
+        "Year Ended January 26, 2020": "4,150",
+        "Year Ended January 27, 2019": "4,545",
+        "Year Ended January 28, 2018": "3,892"
+      },
+      "account_category": "revenue",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Gross profit",
+      "indent_level": 0,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 30, 2022": "17,475",
+        "Year Ended January 31, 2021": "10,396",
+        "Year Ended January 26, 2020": "6,768",
+        "Year Ended January 27, 2019": "7,171",
+        "Year Ended January 28, 2018": "5,822"
+      },
+      "account_category": "income",
+      "is_calculated": true,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Operating expenses",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "account_category": "section_header",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Research and development",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating expenses",
+      "values": {
+        "Year Ended January 30, 2022": "5,268",
+        "Year Ended January 31, 2021": "3,924",
+        "Year Ended January 26, 2020": "2,829",
+        "Year Ended January 27, 2019": "2,376",
+        "Year Ended January 28, 2018": "1,797"
+      },
+      "account_category": "expense",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Sales, general and administrative",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating expenses",
+      "values": {
+        "Year Ended January 30, 2022": "2,166",
+        "Year Ended January 31, 2021": "1,940",
+        "Year Ended January 26, 2020": "1,093",
+        "Year Ended January 27, 2019": "991",
+        "Year Ended January 28, 2018": "815"
+      },
+      "account_category": "revenue",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Income from operations",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating expenses",
+      "values": {
+        "Year Ended January 30, 2022": "10,041",
+        "Year Ended January 31, 2021": "4,532",
+        "Year Ended January 26, 2020": "2,846",
+        "Year Ended January 27, 2019": "3,804",
+        "Year Ended January 28, 2018": "3,210"
+      },
+      "account_category": "income",
+      "is_calculated": true,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Interest income",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating expenses",
+      "values": {
+        "Year Ended January 30, 2022": "29",
+        "Year Ended January 31, 2021": "57",
+        "Year Ended January 26, 2020": "178",
+        "Year Ended January 27, 2019": "136",
+        "Year Ended January 28, 2018": "69"
+      },
+      "account_category": "income",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Interest expense",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating expenses",
+      "values": {
+        "Year Ended January 30, 2022": "(236)",
+        "Year Ended January 31, 2021": "(184)",
+        "Year Ended January 26, 2020": "(52)",
+        "Year Ended January 27, 2019": "(58)",
+        "Year Ended January 28, 2018": "(61)"
+      },
+      "account_category": "expense",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Other, net",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating expenses",
+      "values": {
+        "Year Ended January 30, 2022": "107",
+        "Year Ended January 31, 2021": "4",
+        "Year Ended January 26, 2020": "(2)",
+        "Year Ended January 27, 2019": "14",
+        "Year Ended January 28, 2018": "(22)"
+      },
+      "account_category": "income",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Other income (expense), net",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating expenses",
+      "values": {
+        "Year Ended January 30, 2022": "(100)",
+        "Year Ended January 31, 2021": "(123)",
+        "Year Ended January 26, 2020": "124",
+        "Year Ended January 27, 2019": "92",
+        "Year Ended January 28, 2018": "(14)"
+      },
+      "account_category": "expense",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Income before income tax",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating expenses",
+      "values": {
+        "Year Ended January 30, 2022": "9,941",
+        "Year Ended January 31, 2021": "4,409",
+        "Year Ended January 26, 2020": "2,970",
+        "Year Ended January 27, 2019": "3,896",
+        "Year Ended January 28, 2018": "3,196"
+      },
+      "account_category": "income",
+      "is_calculated": true,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Income tax expense",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating expenses",
+      "values": {
+        "Year Ended January 30, 2022": "189",
+        "Year Ended January 31, 2021": "77",
+        "Year Ended January 26, 2020": "174",
+        "Year Ended January 27, 2019": "(245)",
+        "Year Ended January 28, 2018": "149"
+      },
+      "account_category": "expense",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Net income",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating expenses",
+      "values": {
+        "Year Ended January 30, 2022": "$ 9,752",
+        "Year Ended January 31, 2021": "$ 4,332",
+        "Year Ended January 26, 2020": "$ 2,796",
+        "Year Ended January 27, 2019": "$ 4,141",
+        "Year Ended January 28, 2018": "$ 3,047"
+      },
+      "account_category": "income",
+      "is_calculated": true,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Net income per share:",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "account_category": "section_header",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Basic",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Net income per share",
+      "values": {
+        "Year Ended January 30, 2022": "$ 3.91",
+        "Year Ended January 31, 2021": "$ 1.76",
+        "Year Ended January 26, 2020": "$ 4.59",
+        "Year Ended January 27, 2019": "$ 6.81",
+        "Year Ended January 28, 2018": "$ 5.09"
+      },
+      "account_category": "income",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Diluted",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Net income per share",
+      "values": {
+        "Year Ended January 30, 2022": "$ 3.85",
+        "Year Ended January 31, 2021": "$ 1.73",
+        "Year Ended January 26, 2020": "$ 4.52",
+        "Year Ended January 27, 2019": "$ 6.63",
+        "Year Ended January 28, 2018": "$ 4.82"
+      },
+      "account_category": "income",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Weighted average shares used in per share computation:",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "account_category": "section_header",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Basic",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Weighted average shares used in per share computation",
+      "values": {
+        "Year Ended January 30, 2022": "2,496",
+        "Year Ended January 31, 2021": "2,467",
+        "Year Ended January 26, 2020": "609",
+        "Year Ended January 27, 2019": "608",
+        "Year Ended January 28, 2018": "599"
+      },
+      "account_category": "income",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Diluted",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Weighted average shares used in per share computation",
+      "values": {
+        "Year Ended January 30, 2022": "2,535",
+        "Year Ended January 31, 2021": "2,510",
+        "Year Ended January 26, 2020": "618",
+        "Year Ended January 27, 2019": "625",
+        "Year Ended January 28, 2018": "632"
+      },
+      "account_category": "income",
+      "is_calculated": false,
+      "calculation_formula": ""
+    }
+  ],
+  "revenue_items": [
+    {
+      "account_name": "Revenue",
+      "indent_level": 0,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 26, 2020": "$ 10,918",
+        "Year Ended January 27, 2019": "$ 11,716",
+        "Year Ended January 28, 2018": "$ 9,714"
+      },
+      "account_category": "revenue",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Cost of revenue",
+      "indent_level": 0,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 26, 2020": "4,150",
+        "Year Ended January 27, 2019": "4,545",
+        "Year Ended January 28, 2018": "3,892"
+      },
+      "account_category": "revenue",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Sales, general and administrative",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating expenses",
+      "values": {
+        "Year Ended January 26, 2020": "1,093",
+        "Year Ended January 27, 2019": "991",
+        "Year Ended January 28, 2018": "815"
+      },
+      "account_category": "revenue",
+      "is_calculated": false,
+      "calculation_formula": ""
+    }
+  ],
+  "expense_items": [
+    {
+      "account_name": "Research and development",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating expenses",
+      "values": {
+        "Year Ended January 26, 2020": "2,829",
+        "Year Ended January 27, 2019": "2,376",
+        "Year Ended January 28, 2018": "1,797"
+      },
+      "account_category": "expense",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Interest expense",
+      "indent_level": 1,
+      "is_section_header": false,
+      "parent_section": "Operating expenses",
+      "values": {
+        "Year Ended January 26, 2020": "(52)",
+        "Year Ended January 27, 2019": "(58)",
+        "Year Ended January 28, 2018": "(61)"
+      },
+      "account_category": "expense",
+      "is_calculated": false,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Total other income (expense)",
+      "indent_level": 0,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 26, 2020": "124",
+        "Year Ended January 27, 2019": "92",
+        "Year Ended January 28, 2018": "(14)"
+      },
+      "account_category": "expense",
+      "is_calculated": true,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Income tax expense (benefit)",
+      "indent_level": 0,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 26, 2020": "174",
+        "Year Ended January 27, 2019": "(245)",
+        "Year Ended January 28, 2018": "149"
+      },
+      "account_category": "expense",
+      "is_calculated": false,
+      "calculation_formula": ""
+    }
+  ],
+  "net_income_items": [
+    {
+      "account_name": "Net income",
+      "indent_level": 0,
+      "is_section_header": false,
+      "parent_section": "",
+      "values": {
+        "Year Ended January 26, 2020": "$ 2,796",
+        "Year Ended January 27, 2019": "$ 4,141",
+        "Year Ended January 28, 2018": "$ 3,047"
+      },
+      "account_category": "income",
+      "is_calculated": true,
+      "calculation_formula": ""
+    },
+    {
+      "account_name": "Net income per share:",
+      "indent_level": 0,
+      "is_section_header": true,
+      "parent_section": "",
+      "values": {},
+      "account_category": "section_header",
+      "is_calculated": false,
+      "calculation_formula": ""
+    }
+  ]
+}
