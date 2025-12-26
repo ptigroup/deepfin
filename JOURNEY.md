@@ -1655,8 +1655,8 @@ With consolidation and export complete, the core data processing pipeline is rea
 
 ## Session 13: Background Jobs
 
-📋 **Ready to Start**
-**PR:** TBD
+✅ **Complete**
+**PR:** #14
 **Linear:** BUD-17
 
 ### What We'll Build
@@ -1916,17 +1916,17 @@ git branch -D session-XX-feature-name
 | Session 10: Extraction Service | ✅ Done | [#10](https://github.com/ptigroup/deepfin/pull/10) | BUD-14 | 2025-12-25 |
 | Session 11: Consolidation Models | ✅ Done | [#12](https://github.com/ptigroup/deepfin/pull/12) | BUD-15 | 2025-12-25 |
 | Session 12: Consolidation Service | ✅ Done | [#13](https://github.com/ptigroup/deepfin/pull/13) | BUD-16 | 2025-12-25 |
-| Session 13: Background Jobs | ⏳ Pending | - | BUD-17 | - |
+| Session 13: Background Jobs | ✅ Done | [#14](https://github.com/ptigroup/deepfin/pull/14) | BUD-17 | 2025-12-26 |
 | Session 14: Authentication | ⏳ Pending | - | BUD-18 | - |
 | Session 15: Email & Notifications | ⏳ Pending | - | BUD-19 | - |
 | Session 16: Integration Tests | ⏳ Pending | - | BUD-20 | - |
 | Session 17: Documentation & Polish | ⏳ Pending | - | BUD-21 | - |
 | Session 18: Deployment & CI/CD | ⏳ Pending | - | BUD-22 | - |
 
-**Completion:** 10/18 sessions (56%)
+**Completion:** 11/18 sessions (61%)
 **Phase 1 (Foundation):** 5/5 complete (100%)
 **Phase 2 (Document Processing):** 4/4 complete (100%)
-**Phase 3 (API Development):** 1/5 complete (20%)
+**Phase 3 (API Development):** 2/5 complete (40%)
 
 ---
 
