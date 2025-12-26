@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+        .features {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .feature-item {
+            margin: 15px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        .feature-item:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎉 Welcome to {{ app_name }}!</h1>
+    </div>
+
+    <div class="content">
+        <p>Hello {{ user_name }},</p>
+
+        <p>Thank you for registering! We're excited to have you on board.</p>
+
+        <p>Your account has been successfully created with the email: <strong>{{ user_email }}</strong></p>
+
+        <div class="features">
+            <h3>What you can do:</h3>
+            <div class="feature-item">Upload and process financial documents</div>
+            <div class="feature-item">Extract data from PDFs automatically</div>
+            <div class="feature-item">Track processing jobs in real-time</div>
+            <div class="feature-item">Export results to Excel or JSON</div>
+            <div class="feature-item">Access your data via REST API</div>
+        </div>
+
+        <p>Ready to get started?</p>
+
+        <a href="{{ app_url }}/docs" class="button">Explore API Documentation</a>
+
+        <p>If you have any questions or need assistance, don't hesitate to reach out to our support team.</p>
+
+        <p>Happy processing!</p>
+
+        <p>Best regards,<br>The {{ app_name }} Team</p>
+    </div>
+
+    <div class="footer">
+        <p>This is an automated welcome message</p>
+        <p>© {{ app_name }} - Financial Document Processing Platform</p>
+    </div>
+</body>
+</html>

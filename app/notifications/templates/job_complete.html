@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Complete</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+        .job-details {
+            background-color: white;
+            padding: 15px;
+            border-left: 4px solid #4CAF50;
+            margin: 20px 0;
+        }
+        .job-details p {
+            margin: 8px 0;
+        }
+        .status-success {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .status-failed {
+            color: #f44336;
+            font-weight: bold;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{% if status == "completed" %}✅ Job Complete{% else %}❌ Job Failed{% endif %}</h1>
+    </div>
+
+    <div class="content">
+        <p>Hello,</p>
+
+        <p>Your background job has {% if status == "completed" %}completed successfully{% else %}failed{% endif %}.</p>
+
+        <div class="job-details">
+            <p><strong>Job ID:</strong> {{ job_id }}</p>
+            <p><strong>Task:</strong> {{ task_name }}</p>
+            <p><strong>Status:</strong> <span class="status-{{ status }}">{{ status|upper }}</span></p>
+            {% if processing_time %}
+            <p><strong>Processing Time:</strong> {{ processing_time }} seconds</p>
+            {% endif %}
+            {% if result %}
+            <p><strong>Result:</strong></p>
+            <pre>{{ result }}</pre>
+            {% endif %}
+            {% if error %}
+            <p><strong>Error:</strong></p>
+            <pre style="color: #f44336;">{{ error }}</pre>
+            {% endif %}
+        </div>
+
+        {% if status == "completed" %}
+        <p>You can view your job results in the dashboard or via the API.</p>
+
+        <a href="{{ app_url }}/jobs/{{ job_id }}" class="button">View Job Details</a>
+        {% else %}
+        <p>Please review the error message above. You can retry the job or contact support if you need assistance.</p>
+        {% endif %}
+
+        <p>Thank you for using our service!</p>
+    </div>
+
+    <div class="footer">
+        <p>This is an automated message from {{ app_name }}</p>
+        <p>If you have questions, please contact support</p>
+    </div>
+</body>
+</html>

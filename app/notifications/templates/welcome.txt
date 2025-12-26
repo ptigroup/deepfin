@@ -1,0 +1,32 @@
+WELCOME TO {{ app_name|upper }}!
+================================================================================
+
+Hello {{ user_name }},
+
+Thank you for registering! We're excited to have you on board.
+
+Your account has been successfully created with the email: {{ user_email }}
+
+WHAT YOU CAN DO
+---------------
+✓ Upload and process financial documents
+✓ Extract data from PDFs automatically
+✓ Track processing jobs in real-time
+✓ Export results to Excel or JSON
+✓ Access your data via REST API
+
+READY TO GET STARTED?
+---------------------
+Explore our API documentation: {{ app_url }}/docs
+
+If you have any questions or need assistance, don't hesitate to reach out to
+our support team.
+
+Happy processing!
+
+Best regards,
+The {{ app_name }} Team
+
+================================================================================
+This is an automated welcome message
+© {{ app_name }} - Financial Document Processing Platform

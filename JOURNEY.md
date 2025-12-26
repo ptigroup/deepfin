@@ -1708,8 +1708,8 @@ app/auth/tests/
 
 ## Session 15: Email & Notifications
 
-📋 **Ready to Start**
-**PR:** TBD
+✅ **Complete**
+**PR:** #16
 **Linear:** BUD-19
 
 ### What We'll Build
