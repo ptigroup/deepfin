@@ -1,0 +1,34 @@
+{% if status == "completed" %}JOB COMPLETE{% else %}JOB FAILED{% endif %}
+================================================================================
+
+Hello,
+
+Your background job has {% if status == "completed" %}completed successfully{% else %}failed{% endif %}.
+
+JOB DETAILS
+-----------
+Job ID: {{ job_id }}
+Task: {{ task_name }}
+Status: {{ status|upper }}
+{% if processing_time %}Processing Time: {{ processing_time }} seconds{% endif %}
+
+{% if result %}RESULT
+------
+{{ result }}
+{% endif %}
+
+{% if error %}ERROR
+-----
+{{ error }}
+{% endif %}
+
+{% if status == "completed" %}You can view your job results in the dashboard or via the API.
+
+View Job Details: {{ app_url }}/jobs/{{ job_id }}
+{% else %}Please review the error message above. You can retry the job or contact support if you need assistance.{% endif %}
+
+Thank you for using our service!
+
+================================================================================
+This is an automated message from {{ app_name }}
+If you have questions, please contact support
