@@ -38,6 +38,7 @@ from app.core.exceptions import (
 from app.core.health import router as health_router
 from app.core.logging import get_logger
 from app.core.middleware import LoggingMiddleware, RequestIDMiddleware
+from app.auth import router as auth_router
 from app.consolidation import router as consolidation_router
 from app.detection import router as detection_router
 from app.extraction import router as extraction_router
@@ -172,6 +173,9 @@ app.add_exception_handler(Exception, generic_exception_handler)
 # Include routers
 # Health check endpoints for monitoring and load balancers
 app.include_router(health_router)
+
+# Authentication and user management endpoints
+app.include_router(auth_router)
 
 # Table detection API endpoints
 app.include_router(detection_router)
