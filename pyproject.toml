@@ -15,7 +15,12 @@ dependencies = [
     # Configuration & Validation
     "pydantic>=2.10.0",
     "pydantic-settings>=2.6.0",
+    "pydantic[email]>=2.10.0",
     "python-dotenv>=1.0.1",
+    # Authentication
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "bcrypt>=4.0.0,<5.0.0",  # passlib 1.7.4 not compatible with bcrypt 5.x
     # Logging
     "structlog>=24.4.0",
     # LLM & Document Processing
@@ -32,7 +37,8 @@ dev = [
     "pytest-asyncio>=0.24.0",
     "pytest-cov>=6.0.0",
     "httpx>=0.27.0",  # For testing FastAPI
-    
+    "aiosqlite>=0.20.0",  # For SQLite async in tests
+
     # Code Quality
     "mypy>=1.13.0",
     "ruff>=0.8.0",
@@ -61,7 +67,7 @@ python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"
 asyncio_mode = "auto"
-asyncio_default_fixture_loop_scope = "function"
+asyncio_default_fixture_loop_scope = "session"
 addopts = [
     "-ra",
     "--strict-markers",
