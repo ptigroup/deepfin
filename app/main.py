@@ -19,6 +19,7 @@ Access the API documentation:
     ReDoc: http://localhost:8123/redoc
 """
 
+import asyncio
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 
@@ -40,6 +41,8 @@ from app.core.middleware import LoggingMiddleware, RequestIDMiddleware
 from app.consolidation import router as consolidation_router
 from app.detection import router as detection_router
 from app.extraction import router as extraction_router
+from app.jobs import router as jobs_router
+from app.jobs.worker import get_worker
 from app.statements import router as statements_router
 
 # Initialize settings and logger
@@ -55,11 +58,13 @@ async def lifespan(_app: FastAPI) -> AsyncGenerator[None, None]:
 
     Startup:
         - Initialize database connection
+        - Start background worker for job processing
         - Run migrations (future)
         - Warm up caches (future)
         - Connect to external services (future)
 
     Shutdown:
+        - Stop background worker
         - Close database connections
         - Flush logs
         - Clean up resources
@@ -94,11 +99,29 @@ async def lifespan(_app: FastAPI) -> AsyncGenerator[None, None]:
         # Health checks will report the issue
         logger.warning("Continuing without database connection")
 
+    # Start background worker
+    worker = get_worker()
+    worker_task = asyncio.create_task(worker.start())
+    logger.info("Background worker started")
+
     yield  # Application runs here
 
     # Shutdown
     logger.info("Application shutting down")
 
+    # Stop background worker
+    try:
+        await worker.stop()
+        await worker_task
+        logger.info("Background worker stopped")
+    except Exception as e:
+        logger.error(
+            "Error stopping background worker",
+            extra={"error": str(e)},
+            exc_info=True,
+        )
+
+    # Close database connections
     try:
         await close_db()
         logger.info("Database connections closed")
@@ -161,6 +184,9 @@ app.include_router(statements_router)
 
 # Consolidation and multi-period analysis API endpoints
 app.include_router(consolidation_router)
+
+# Background job processing API endpoints
+app.include_router(jobs_router)
 
 
 # Root endpoint
