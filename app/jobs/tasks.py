@@ -186,3 +186,69 @@ async def batch_process(file_ids: list[int]) -> dict:
         "processed": len(file_ids),
         "results": results,
     }
+
+
+@register_task("extract_pdf")
+async def extract_pdf(
+    file_path: str,
+    company_name: str | None = None,
+    fiscal_year: int | None = None,
+) -> dict:
+    """Process PDF extraction in background.
+
+    Args:
+        file_path: Path to PDF file to extract
+        company_name: Optional company name override
+        fiscal_year: Optional fiscal year override
+
+    Returns:
+        Extraction results including job_id and statement data
+    """
+    # Lazy imports to avoid circular dependencies
+    from app.core.database import AsyncSessionLocal
+    from app.extraction.service import ExtractionService
+
+    logger.info(
+        "Starting PDF extraction task",
+        extra={
+            "file_path": file_path,
+            "company_name": company_name,
+            "fiscal_year": fiscal_year,
+        },
+    )
+
+    async with AsyncSessionLocal() as db:
+        service = ExtractionService(db)
+
+        try:
+            job = await service.extract_from_pdf(
+                file_path=file_path,
+                company_name=company_name,
+                fiscal_year=fiscal_year,
+            )
+
+            logger.info(
+                "PDF extraction completed",
+                extra={
+                    "extraction_job_id": job.id,
+                    "status": job.status.value,
+                    "statement_type": job.statement_type.value if job.statement_type else None,
+                },
+            )
+
+            return {
+                "status": "completed",
+                "extraction_job_id": job.id,
+                "statement_type": job.statement_type.value if job.statement_type else None,
+                "confidence": float(job.confidence) if job.confidence else None,
+                "company_name": job.company_name,
+                "fiscal_year": job.fiscal_year,
+            }
+
+        except Exception as e:
+            logger.error(
+                "PDF extraction task failed",
+                extra={"file_path": file_path, "error": str(e)},
+                exc_info=True,
+            )
+            raise
