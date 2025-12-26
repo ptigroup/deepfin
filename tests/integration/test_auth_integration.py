@@ -21,7 +21,7 @@ class TestAuthenticationFlow:
         """Test user can register and then login."""
         # Register new user
         register_response = client.post(
-            "/api/auth/register",
+            "/auth/register",
             json={
                 "email": "newuser@example.com",
                 "password": "SecurePassword123!",
@@ -30,7 +30,10 @@ class TestAuthenticationFlow:
         )
         
         assert register_response.status_code == 201
-        user_data = register_response.json()
+        response_data = register_response.json()
+        assert response_data["success"] is True
+        assert "data" in response_data
+        user_data = response_data["data"]
         assert user_data["email"] == "newuser@example.com"
         assert user_data["username"] == "newuser"
         assert "id" in user_data
@@ -38,7 +41,7 @@ class TestAuthenticationFlow:
         
         # Login with new credentials
         login_response = client.post(
-            "/api/auth/login",
+            "/auth/login",
             data={
                 "username": "newuser@example.com",
                 "password": "SecurePassword123!",
@@ -53,7 +56,7 @@ class TestAuthenticationFlow:
     def test_login_with_invalid_credentials(self, client: TestClient, test_user: dict) -> None:
         """Test login fails with wrong password."""
         response = client.post(
-            "/api/auth/login",
+            "/auth/login",
             data={
                 "username": test_user["email"],
                 "password": "WrongPassword123!",
@@ -66,7 +69,7 @@ class TestAuthenticationFlow:
     def test_protected_endpoint_requires_auth(self, client: TestClient) -> None:
         """Test protected endpoints reject requests without token."""
         # Try to access protected endpoint without token
-        response = client.get("/api/jobs/")
+        response = client.get("/jobs/")
         
         assert response.status_code == 401
 
@@ -76,14 +79,14 @@ class TestAuthenticationFlow:
         auth_headers: dict[str, str]
     ) -> None:
         """Test protected endpoints work with valid token."""
-        response = client.get("/api/jobs/", headers=auth_headers)
+        response = client.get("/jobs/", headers=auth_headers)
         
         assert response.status_code == 200
 
     def test_protected_endpoint_with_invalid_token(self, client: TestClient) -> None:
         """Test protected endpoints reject invalid tokens."""
         response = client.get(
-            "/api/jobs/",
+            "/jobs/",
             headers={"Authorization": "Bearer invalid_token_here"}
         )
         
@@ -92,7 +95,7 @@ class TestAuthenticationFlow:
     def test_duplicate_email_registration(self, client: TestClient, test_user: dict) -> None:
         """Test registration fails with duplicate email."""
         response = client.post(
-            "/api/auth/register",
+            "/auth/register",
             json={
                 "email": test_user["email"],  # Already exists
                 "password": "AnotherPassword123!",
@@ -109,7 +112,7 @@ class TestAuthenticationFlow:
         test_user: dict
     ) -> None:
         """Test getting current user info with valid token."""
-        response = client.get("/api/auth/me", headers=auth_headers)
+        response = client.get("/auth/me", headers=auth_headers)
         
         assert response.status_code == 200
         user_data = response.json()
@@ -125,7 +128,7 @@ class TestPasswordValidation:
     def test_weak_password_rejected(self, client: TestClient) -> None:
         """Test registration fails with weak password."""
         response = client.post(
-            "/api/auth/register",
+            "/auth/register",
             json={
                 "email": "test@example.com",
                 "password": "weak",
@@ -138,7 +141,7 @@ class TestPasswordValidation:
     def test_password_without_number_rejected(self, client: TestClient) -> None:
         """Test password must contain numbers."""
         response = client.post(
-            "/api/auth/register",
+            "/auth/register",
             json={
                 "email": "test@example.com",
                 "password": "NoNumbersHere!",

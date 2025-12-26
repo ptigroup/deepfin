@@ -72,7 +72,7 @@ class TestJobAPI:
         auth_headers: dict[str, str],
     ) -> None:
         """Test listing jobs."""
-        response = client.get("/api/jobs/", headers=auth_headers)
+        response = client.get("/jobs/", headers=auth_headers)
         
         assert response.status_code == 200
         data = response.json()
@@ -100,7 +100,7 @@ class TestJobAPI:
         
         # Get job by ID
         response = client.get(
-            f"/api/jobs/{job.id}",
+            f"/jobs/{job.id}",
             headers=auth_headers,
         )
         

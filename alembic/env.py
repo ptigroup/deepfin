@@ -40,7 +40,7 @@ settings = get_settings()
 
 # Override the sqlalchemy.url from alembic.ini with the one from settings
 # This ensures we use the same database URL as the application
-config.set_main_option("sqlalchemy.url", settings.database_url)
+config.set_main_option("sqlalchemy.url", str(settings.database_url))
 
 # Add your model's MetaData object here for 'autogenerate' support
 target_metadata = Base.metadata
