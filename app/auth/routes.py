@@ -16,7 +16,7 @@ logger = get_logger(__name__)
 router = APIRouter(prefix="/auth", tags=["authentication"])
 
 
-@router.post("/register", response_model=BaseResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/register", status_code=status.HTTP_201_CREATED)
 async def register(
     user_data: RegisterRequest,
     db: AsyncSession = Depends(get_db),
@@ -184,7 +184,7 @@ async def login(
         ) from e
 
 
-@router.get("/me", response_model=BaseResponse)
+@router.get("/me")
 async def get_current_user_info(
     current_user: User = Depends(get_current_active_user),
 ) -> dict:

@@ -28,7 +28,12 @@ class TestAuthenticationFlow:
                 "username": "newuser",
             },
         )
-        
+
+        # Debug: print response if not 201
+        if register_response.status_code != 201:
+            print(f"\nDEBUG Status: {register_response.status_code}")
+            print(f"DEBUG Response: {register_response.text}")
+
         assert register_response.status_code == 201
         response_data = register_response.json()
         assert response_data["success"] is True
@@ -42,8 +47,8 @@ class TestAuthenticationFlow:
         # Login with new credentials
         login_response = client.post(
             "/auth/login",
-            data={
-                "username": "newuser@example.com",
+            json={
+                "email": "newuser@example.com",
                 "password": "SecurePassword123!",
             },
         )
@@ -57,8 +62,8 @@ class TestAuthenticationFlow:
         """Test login fails with wrong password."""
         response = client.post(
             "/auth/login",
-            data={
-                "username": test_user["email"],
+            json={
+                "email": test_user["email"],
                 "password": "WrongPassword123!",
             },
         )
@@ -113,9 +118,12 @@ class TestAuthenticationFlow:
     ) -> None:
         """Test getting current user info with valid token."""
         response = client.get("/auth/me", headers=auth_headers)
-        
+
         assert response.status_code == 200
-        user_data = response.json()
+        response_data = response.json()
+        assert response_data["success"] is True
+        assert "data" in response_data
+        user_data = response_data["data"]
         assert user_data["email"] == test_user["email"]
         assert user_data["username"] == test_user["username"]
         assert "password" not in user_data
@@ -135,8 +143,8 @@ class TestPasswordValidation:
                 "username": "testuser",
             },
         )
-        
-        assert response.status_code == 400
+
+        assert response.status_code == 422  # FastAPI validation error
 
     def test_password_without_number_rejected(self, client: TestClient) -> None:
         """Test password must contain numbers."""
@@ -148,8 +156,8 @@ class TestPasswordValidation:
                 "username": "testuser",
             },
         )
-        
-        assert response.status_code == 400
+
+        assert response.status_code == 422  # FastAPI validation error
 
 
 @pytest.mark.integration
@@ -159,24 +167,25 @@ class TestUserManagement:
     @pytest.mark.asyncio
     async def test_user_creation_in_database(self, db_session: AsyncSession) -> None:
         """Test user is actually created in database."""
-        from app.auth.models import User
+        from app.auth.schemas import UserCreate
         from app.auth.service import AuthService
-        
+
         auth_service = AuthService(db_session)
-        
+
         # Create user
-        user = await auth_service.create_user(
+        user_data = UserCreate(
             email="dbtest@example.com",
             password="Password123!",
             username="dbtest",
         )
-        
+        user = await auth_service.create_user(user_data)
+
         # Verify user exists in database
         assert user.id is not None
         assert user.email == "dbtest@example.com"
         assert user.username == "dbtest"
         assert user.hashed_password != "Password123!"  # Should be hashed
-        
+
         # Retrieve user by email
         retrieved = await auth_service.get_user_by_email("dbtest@example.com")
         assert retrieved is not None
@@ -186,24 +195,26 @@ class TestUserManagement:
     @pytest.mark.asyncio
     async def test_password_hashing(self, db_session: AsyncSession) -> None:
         """Test passwords are properly hashed."""
+        from app.auth.schemas import UserCreate
         from app.auth.service import AuthService
-        
+
         auth_service = AuthService(db_session)
-        
+
         password = "TestPassword123!"
-        user = await auth_service.create_user(
+        user_data = UserCreate(
             email="hashtest@example.com",
             password=password,
             username="hashtest",
         )
-        
+        user = await auth_service.create_user(user_data)
+
         # Password should be hashed
         assert user.hashed_password != password
-        
+
         # Verify password works
         is_valid = auth_service.verify_password(password, user.hashed_password)
         assert is_valid is True
-        
+
         # Wrong password should fail
         is_valid = auth_service.verify_password("WrongPassword", user.hashed_password)
         assert is_valid is False

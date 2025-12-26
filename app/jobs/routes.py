@@ -3,6 +3,8 @@
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.auth.dependencies import get_current_user
+from app.auth.models import User
 from app.core.database import get_db
 from app.jobs.models import JobStatus, JobType
 from app.jobs.schemas import JobCreate, JobSchema, JobSummary, JobUpdate
@@ -12,10 +14,11 @@ from app.shared.schemas import BaseResponse
 router = APIRouter(prefix="/jobs", tags=["jobs"])
 
 
-@router.post("/", response_model=BaseResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_job(
     job_data: JobCreate,
     db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ) -> dict:
     """Create a new background job.
 
@@ -47,10 +50,11 @@ async def create_job(
         ) from e
 
 
-@router.get("/{job_id}", response_model=BaseResponse)
+@router.get("/{job_id}")
 async def get_job(
     job_id: int,
     db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ) -> dict:
     """Get job by ID.
 
@@ -81,13 +85,14 @@ async def get_job(
     }
 
 
-@router.get("/", response_model=BaseResponse)
+@router.get("/")
 async def list_jobs(
     status_filter: JobStatus | None = Query(None, description="Filter by status"),
     type_filter: JobType | None = Query(None, description="Filter by job type"),
     skip: int = Query(0, ge=0, description="Number of records to skip"),
     limit: int = Query(100, ge=1, le=1000, description="Maximum number of records"),
     db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ) -> dict:
     """List jobs with optional filtering.
 
@@ -117,11 +122,12 @@ async def list_jobs(
     }
 
 
-@router.patch("/{job_id}", response_model=BaseResponse)
+@router.patch("/{job_id}")
 async def update_job(
     job_id: int,
     job_update: JobUpdate,
     db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ) -> dict:
     """Update job status and progress.
 

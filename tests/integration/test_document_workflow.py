@@ -33,9 +33,9 @@ class TestDocumentUploadWorkflow:
         statement = await service.create_statement(
             statement_type=sample_extraction_data["statement_type"],
             company_name=sample_extraction_data["company_name"],
+            period_start="2024-01-01",
+            period_end="2024-12-31",
             fiscal_year=sample_extraction_data["fiscal_year"],
-            raw_text=sample_extraction_data["raw_text"],
-            structured_data=sample_extraction_data["structured_data"],
         )
         
         assert statement.id is not None

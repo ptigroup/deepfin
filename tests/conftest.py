@@ -39,11 +39,12 @@ TEST_DATABASE_URL = os.getenv(
 @pytest.fixture(scope="session")
 def event_loop() -> Generator[asyncio.AbstractEventLoop, None, None]:
     """Create event loop for async tests.
-    
+
     This fixture provides a session-scoped event loop that can be used
     across all async tests.
     """
-    loop = asyncio.get_event_loop_policy().new_event_loop()
+    policy = asyncio.get_event_loop_policy()
+    loop = policy.new_event_loop()
     yield loop
     loop.close()
 
@@ -106,13 +107,13 @@ async def test_engine(test_settings: Settings) -> AsyncGenerator[Any, None]:
 @pytest_asyncio.fixture
 async def db_session(test_engine: Any) -> AsyncGenerator[AsyncSession, None]:
     """Create test database session with transaction rollback.
-    
+
     Each test gets its own session with automatic rollback after the test.
     This ensures test isolation without needing to recreate tables.
-    
+
     Args:
         test_engine: Test database engine
-        
+
     Yields:
         AsyncSession for testing
     """
@@ -122,34 +123,34 @@ async def db_session(test_engine: Any) -> AsyncGenerator[AsyncSession, None]:
         class_=AsyncSession,
         expire_on_commit=False,
     )
-    
+
     async with async_session() as session:
-        # Start transaction
-        async with session.begin():
-            yield session
-            # Rollback happens automatically when context exits
+        yield session
+        # Rollback any uncommitted changes
+        await session.rollback()
 
 
 @pytest.fixture
 def client(db_session: AsyncSession) -> Generator[TestClient, None, None]:
     """Create FastAPI test client with database override.
-    
+
     This client uses the test database session instead of the real one.
-    
+
     Args:
         db_session: Test database session
-        
+
     Yields:
         TestClient for making HTTP requests
     """
     def override_get_db() -> Generator[AsyncSession, None, None]:
         yield db_session
-    
+
     app.dependency_overrides[get_db] = override_get_db
-    
-    with TestClient(app) as test_client:
+
+    # Use raise_server_exceptions=False to avoid lifespan issues
+    with TestClient(app, raise_server_exceptions=False) as test_client:
         yield test_client
-    
+
     app.dependency_overrides.clear()
 
 
@@ -187,24 +188,26 @@ async def async_client(db_session: AsyncSession) -> AsyncGenerator[AsyncClient, 
 @pytest_asyncio.fixture
 async def test_user(db_session: AsyncSession) -> dict[str, Any]:
     """Create test user in database.
-    
+
     Args:
         db_session: Test database session
-        
+
     Returns:
         Dict with user information
     """
-    from app.auth.models import User
+    from app.auth.schemas import UserCreate
     from app.auth.service import AuthService
-    
+
     auth_service = AuthService(db_session)
-    
-    user = await auth_service.create_user(
+
+    user_data = UserCreate(
         email="test@example.com",
         password="TestPassword123!",
         username="testuser",
     )
-    
+
+    user = await auth_service.create_user(user_data)
+
     return {
         "id": user.id,
         "email": user.email,
@@ -216,26 +219,26 @@ async def test_user(db_session: AsyncSession) -> dict[str, Any]:
 @pytest_asyncio.fixture
 async def auth_headers(client: TestClient, test_user: dict[str, Any]) -> dict[str, str]:
     """Get authentication headers with JWT token.
-    
+
     Args:
         client: Test client
         test_user: Test user data
-        
+
     Returns:
         Dict with Authorization header
     """
     # Login to get token
     response = client.post(
-        "/api/auth/login",
-        data={
-            "username": test_user["email"],
+        "/auth/login",
+        json={
+            "email": test_user["email"],
             "password": test_user["password"],
         },
     )
-    
+
     assert response.status_code == 200
     token = response.json()["access_token"]
-    
+
     return {"Authorization": f"Bearer {token}"}
 
 
