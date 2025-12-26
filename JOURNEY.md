@@ -1679,8 +1679,8 @@ app/jobs/tests/
 
 ## Session 14: Authentication
 
-📋 **Ready to Start**
-**PR:** TBD
+✅ **Complete**
+**PR:** #15
 **Linear:** BUD-18
 
 ### What We'll Build
@@ -1917,16 +1917,16 @@ git branch -D session-XX-feature-name
 | Session 11: Consolidation Models | ✅ Done | [#12](https://github.com/ptigroup/deepfin/pull/12) | BUD-15 | 2025-12-25 |
 | Session 12: Consolidation Service | ✅ Done | [#13](https://github.com/ptigroup/deepfin/pull/13) | BUD-16 | 2025-12-25 |
 | Session 13: Background Jobs | ✅ Done | [#14](https://github.com/ptigroup/deepfin/pull/14) | BUD-17 | 2025-12-26 |
-| Session 14: Authentication | ⏳ Pending | - | BUD-18 | - |
-| Session 15: Email & Notifications | ⏳ Pending | - | BUD-19 | - |
+| Session 14: Authentication | ✅ Done | [#15](https://github.com/ptigroup/deepfin/pull/15) | BUD-18 | 2025-12-26 |
+| Session 15: Email & Notifications | ✅ Done | [#16](https://github.com/ptigroup/deepfin/pull/16) | BUD-19 | 2025-12-26 |
 | Session 16: Integration Tests | ⏳ Pending | - | BUD-20 | - |
 | Session 17: Documentation & Polish | ⏳ Pending | - | BUD-21 | - |
 | Session 18: Deployment & CI/CD | ⏳ Pending | - | BUD-22 | - |
 
-**Completion:** 11/18 sessions (61%)
+**Completion:** 13/18 sessions (72%)
 **Phase 1 (Foundation):** 5/5 complete (100%)
 **Phase 2 (Document Processing):** 4/4 complete (100%)
-**Phase 3 (API Development):** 2/5 complete (40%)
+**Phase 3 (API Development):** 4/5 complete (80%)
 
 ---
 
