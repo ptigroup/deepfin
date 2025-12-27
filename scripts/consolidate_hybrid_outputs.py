@@ -21,6 +21,9 @@ from datetime import datetime
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from app.export.excel_exporter import SchemaBasedExcelExporter
+from app.schemas.income_statement_schema import IncomeStatementSchema, IncomeStatementLineItem
+
 
 class YearNormalizer:
     """Extract and normalize years from reporting periods."""
@@ -289,6 +292,10 @@ class HybridOutputConsolidator:
         # Determine year range for title
         year_range = f"{all_years[0]}-{all_years[-1]}" if len(all_years) > 1 else all_years[0]
 
+        # Add summary fields to consolidation_summary
+        self.consolidation_summary["total_consolidated"] = len(consolidated_line_items)
+        self.consolidation_summary["source_pdfs"] = [Path(item["path"]).name for item in all_data]
+
         # Build consolidated result
         consolidated = {
             "company_name": company_name,
@@ -335,6 +342,49 @@ class HybridOutputConsolidator:
         })
 
 
+def create_schema_from_consolidated(consolidated_data: Dict) -> IncomeStatementSchema:
+    """Convert consolidated JSON data to IncomeStatementSchema for Excel export."""
+
+    # Extract data section
+    data = consolidated_data.get("data", consolidated_data)
+
+    # Create line items
+    line_items = []
+    for item in data.get("line_items", []):
+        # Convert list of values to dict keyed by period
+        periods = data.get("periods", [])
+        values_dict = {}
+
+        if isinstance(item.get("values"), list):
+            # Convert list to dict keyed by period
+            for i, value in enumerate(item["values"]):
+                if i < len(periods):
+                    values_dict[periods[i]] = value
+        elif isinstance(item.get("values"), dict):
+            values_dict = item["values"]
+
+        line_item = IncomeStatementLineItem(
+            account_name=item.get("account_name", ""),
+            values=values_dict,
+            indent_level=item.get("indent_level", 0)
+        )
+        line_items.append(line_item)
+
+    # Create schema instance
+    schema = IncomeStatementSchema(
+        company_name=consolidated_data.get("company_name", ""),
+        document_type=consolidated_data.get("document_type", "income_statement"),
+        document_title=consolidated_data.get("document_title", "Income Statement"),
+        fiscal_year=None,  # Not applicable for multi-year consolidated
+        reporting_periods=consolidated_data.get("reporting_periods", data.get("periods", [])),
+        line_items=line_items,
+        units_note=consolidated_data.get("units_note", "In millions"),
+        consolidation_summary=consolidated_data.get("consolidation_summary")
+    )
+
+    return schema
+
+
 def main():
     """Main entry point."""
     if len(sys.argv) < 3:
@@ -368,14 +418,30 @@ def main():
         year_range = f"{years[0]}-{years[-1]}" if len(years) > 1 else years[0]
 
         output_json = output_dir / f"consolidated_income_statement_{year_range}.json"
+        output_excel = output_dir / f"consolidated_income_statement_{year_range}.xlsx"
 
         # Save JSON
         with open(output_json, 'w', encoding='utf-8') as f:
             json.dump(result, f, indent=2)
 
-        print(f"\nOutput saved:")
-        print(f"  JSON: {output_json}")
-        print(f"\nConsolidation successful!\n")
+        # Save Excel
+        try:
+            # Create schema instance from consolidated data
+            schema = create_schema_from_consolidated(result)
+
+            # Export to Excel
+            exporter = SchemaBasedExcelExporter()
+            exporter.export_to_excel(schema, str(output_excel))
+
+            print(f"\nOutput saved:")
+            print(f"  JSON: {output_json}")
+            print(f"  Excel: {output_excel}")
+            print(f"\nConsolidation successful!\n")
+
+        except Exception as e:
+            print(f"\nJSON saved successfully: {output_json}")
+            print(f"WARNING: Excel export failed: {e}")
+            print(f"Consolidation completed (JSON only)\n")
 
     except Exception as e:
         print(f"\nERROR: {e}\n")

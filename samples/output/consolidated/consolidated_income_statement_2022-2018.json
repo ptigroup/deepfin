@@ -275,6 +275,11 @@
           }
         ]
       }
+    ],
+    "total_consolidated": 19,
+    "source_pdfs": [
+      "01_income_statement_NVIDIA_10K_2020_2019_02_json.json",
+      "01_income_statement_NVIDIA_10K_2022_2021_02_json.json"
     ]
   },
   "data": {
