@@ -89,7 +89,17 @@ STATEMENT_PATTERNS = {
             r"compared\s+to\s+fiscal\s+year",
             r"believe\s+the\s+increase.*resulted\s+from",
             r"combination\s+of\s+factors",
-            r"benefit\s+from\s+strong\s+demand"
+            r"benefit\s+from\s+strong\s+demand",
+            # NEW: MD&A-specific patterns (critical for filtering page 32-style summaries)
+            r"up \d+%",                              # "up 61%"
+            r"down \d+%",                            # "down 25%"
+            r"increased \d+%",                       # "increased 40%"
+            r"decreased \d+%",                       # "decreased 15%"
+            r"from a year ago",                      # Narrative comparison
+            r"was \$[\d,.]+ (?:billion|million)",   # "was $26.91 billion"
+            r"driven by",                            # Analytical language
+            r"primarily due to",                     # Explanatory language
+            r"resulted from a",                      # Causal explanation
         ],
         'required_patterns': [
             r"(?:revenue|sales)",
@@ -98,7 +108,7 @@ STATEMENT_PATTERNS = {
             r"(?:operating\s+expenses|research\s+and\s+development)"
         ],
         'min_content_matches': 4,
-        'min_structure_matches': 2
+        'min_structure_matches': 0  # Reduced from 2 - rely on content+header validation
     },
     "balance_sheet": {
         'primary_indicators': [
@@ -147,6 +157,10 @@ STATEMENT_PATTERNS = {
             r"consolidated\s+statements?\s+of\s+cash\s+flows?",
             r"statements?\s+of\s+cash\s+flows?",
             r"cash\s+flow\s+statements?",
+            # NEW: Supplemental cash flow patterns (page 51, 43-44)
+            r"supplemental\s+disclosures?\s+of\s+cash\s+flow",
+            r"cash\s+paid\s+for\s+income\s+taxes",
+            r"non-cash\s+investing\s+and\s+financing\s+activity",
         ],
         'content_indicators': [
             r"cash\s+flows?\s+from\s+operating\s+activities",
@@ -168,10 +182,12 @@ STATEMENT_PATTERNS = {
         'required_patterns': [
             r"cash\s+flows?\s+from\s+operating\s+activities",
             r"cash\s+flows?\s+from\s+investing\s+activities",
-            r"cash\s+flows?\s+from\s+financing\s+activities"
+            r"cash\s+flows?\s+from\s+financing\s+activities",
+            # Allow supplemental pages (which won't have the above)
+            r"supplemental\s+disclosures?\s+of\s+cash\s+flow",
         ],
-        'min_content_matches': 3,
-        'min_structure_matches': 1
+        'min_content_matches': 0,  # Reduced from 1 - supplemental pages have NO standard content indicators
+        'min_structure_matches': 0  # Reduced from 1 - supplemental pages have minimal structure
     },
     "comprehensive_income": {
         'primary_indicators': [
@@ -401,14 +417,37 @@ class PageDetector:
                 # Only one valid page, use it
                 final_pages[stmt_type] = page_list
             else:
-                # Multiple candidates, pick the best one
+                # Multiple candidates - special handling for cash flow
+                if stmt_type == FinancialStatementType.CASH_FLOW:
+                    # Check for consecutive pairs (main statement + supplemental)
+                    consecutive_pairs = self._find_consecutive_pairs(page_list)
+                    if consecutive_pairs:
+                        final_pages[stmt_type] = consecutive_pairs[0]  # Use both pages
+                        continue
+
+                # For other types or if no consecutive pairs, pick the best single page
                 best_page = self._select_best_page(doc, page_list, stmt_type)
                 final_pages[stmt_type] = [best_page]
 
         return final_pages
 
+    def _find_consecutive_pairs(self, page_list: List[int]) -> List[List[int]]:
+        """Find consecutive page pairs in the list (e.g., [43, 44])."""
+        consecutive_pairs = []
+        for i in range(len(page_list) - 1):
+            if page_list[i+1] == page_list[i] + 1:
+                consecutive_pairs.append([page_list[i], page_list[i+1]])
+        return consecutive_pairs
+
     def _select_best_page(self, doc, page_list: List[int], stmt_type: FinancialStatementType) -> int:
         """Select the best page from multiple candidates based on confidence scores."""
+        # Special handling for cash flow - check for consecutive pages first
+        if stmt_type == FinancialStatementType.CASH_FLOW:
+            consecutive_pairs = self._find_consecutive_pairs(page_list)
+            if consecutive_pairs:
+                # Return first page of first pair (we'll update this to return both later)
+                return consecutive_pairs[0][0]
+
         page_scores = []
 
         for page_num in page_list:
@@ -431,6 +470,48 @@ class PageDetector:
     # ===============================
     # VALIDATION HELPER FUNCTIONS
     # ===============================
+
+    def _has_consolidated_header(self, page, stmt_type: FinancialStatementType) -> bool:
+        """
+        Check if page has proper CONSOLIDATED header in top section.
+        Critical for distinguishing actual statements from MD&A summaries.
+        """
+        # Extract only top 120 pixels (header region)
+        header_region = fitz.Rect(0, 0, page.rect.width, 120)
+        header_text = page.get_text("text", clip=header_region).upper()
+
+        # Clean up Unicode artifacts (�) and normalize whitespace
+        header_text = re.sub(r'[^\w\s\(\)]', ' ', header_text)
+        header_text = re.sub(r'\s+', ' ', header_text)
+
+        if stmt_type == FinancialStatementType.INCOME_STATEMENT:
+            # Must have "CONSOLIDATED STATEMENTS OF INCOME" or similar in header
+            return bool(re.search(
+                r"CONSOLIDATED\s+STATEMENTS?\s+OF\s+(?:INCOME|OPERATIONS)",
+                header_text
+            ))
+        elif stmt_type == FinancialStatementType.COMPREHENSIVE_INCOME:
+            return bool(re.search(
+                r"CONSOLIDATED\s+STATEMENTS?\s+OF\s+COMPREHENSIVE\s+INCOME",
+                header_text
+            ))
+        elif stmt_type == FinancialStatementType.BALANCE_SHEET:
+            return bool(re.search(
+                r"CONSOLIDATED\s+BALANCE\s+SHEETS?",
+                header_text
+            ))
+        elif stmt_type == FinancialStatementType.SHAREHOLDERS_EQUITY:
+            return bool(re.search(
+                r"CONSOLIDATED\s+STATEMENTS?\s+OF\s+SHAREHOLDERS?\s+EQUITY",
+                header_text
+            ))
+        elif stmt_type == FinancialStatementType.CASH_FLOW:
+            return bool(re.search(
+                r"CONSOLIDATED\s+STATEMENTS?\s+OF\s+CASH\s+FLOWS?",
+                header_text
+            ))
+
+        return False
 
     def _is_toc_entry(self, page) -> bool:
         """Detect Table of Contents entries (NOT actual statements)"""
@@ -490,6 +571,10 @@ class PageDetector:
         if primary_matches == 0:
             return False, 0.0
 
+        # STEP 1.5: Check for proper CONSOLIDATED header (CRITICAL for filtering MD&A)
+        # Note: We'll use this later for confidence scoring, not rejection
+        has_proper_header = self._has_consolidated_header(page, stmt_type)
+
         # STEP 2: Check negative indicators (too many disqualify)
         negative_matches = self._count_pattern_matches(text, patterns.get('negative_indicators', []))
         if negative_matches > 3:  # Allow up to 3 negative indicators
@@ -501,7 +586,8 @@ class PageDetector:
         for pattern in required_patterns:
             if re.search(pattern, text, re.IGNORECASE):
                 required_found += 1
-        required_threshold = max(1, len(required_patterns) // 2)
+        # Reduced threshold to 1 - we have MD&A filtering and header validation to prevent false positives
+        required_threshold = 1  # Was: max(1, len(required_patterns) // 2)
         if required_found < required_threshold:
             return False, 0.0
 
@@ -514,8 +600,15 @@ class PageDetector:
         min_structure = patterns.get('min_structure_matches', 0)
 
         if content_matches >= min_content and structure_matches >= min_structure:
-            # Normalize confidence between 0.0 and 1.0
+            # Base confidence from content and structure
             confidence = min(1.0, (content_matches * 0.05) + (structure_matches * 0.1) + 0.3)
+
+            # CRITICAL BOOST: Pages with proper CONSOLIDATED header get massive boost
+            # This ensures actual statements (page 47) beat MD&A summaries (page 32)
+            if has_proper_header:
+                confidence += 0.5  # Major boost for proper header
+
+            confidence = min(1.0, confidence)  # Cap at 1.0
             return True, confidence
 
         return False, 0.0
