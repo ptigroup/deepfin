@@ -1,0 +1,503 @@
+{
+  "company_name": "",
+  "document_title": "Income Statement (2022-2018)",
+  "document_type": "income_statement",
+  "reporting_periods": [
+    "Year Ended 2022",
+    "Year Ended 2021",
+    "Year Ended 2020",
+    "Year Ended 2019",
+    "Year Ended 2018"
+  ],
+  "units_note": "In millions, except per share data",
+  "consolidation_summary": {
+    "merged_accounts": [
+      {
+        "consolidated_name": "Revenue",
+        "merged_from": [
+          {
+            "name": "Revenue",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Revenue",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Cost of revenue",
+        "merged_from": [
+          {
+            "name": "Cost of revenue",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Cost of revenue",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Gross profit",
+        "merged_from": [
+          {
+            "name": "Gross profit",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Gross profit",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Operating expenses",
+        "merged_from": [
+          {
+            "name": "Operating expenses",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Total operating expenses",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Operating expenses",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          },
+          {
+            "name": "Total operating expenses",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Research and development",
+        "merged_from": [
+          {
+            "name": "Research and development",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Research and development",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Sales, general and administrative",
+        "merged_from": [
+          {
+            "name": "Sales, general and administrative",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Sales, general and administrative",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Income from operations",
+        "merged_from": [
+          {
+            "name": "Income from operations",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Income from operations",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Interest income",
+        "merged_from": [
+          {
+            "name": "Interest income",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Interest income",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Interest expense",
+        "merged_from": [
+          {
+            "name": "Interest expense",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Interest expense",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Other, net",
+        "merged_from": [
+          {
+            "name": "Other, net",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Other, net",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Total other income (expense)",
+        "merged_from": [
+          {
+            "name": "Total other income (expense)",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Income before income tax",
+        "merged_from": [
+          {
+            "name": "Income before income tax",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Income before income tax",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Income tax expense (benefit)",
+        "merged_from": [
+          {
+            "name": "Income tax expense (benefit)",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Income tax expense",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net income",
+        "merged_from": [
+          {
+            "name": "Net income",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Net income",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net income per share:",
+        "merged_from": [
+          {
+            "name": "Net income per share:",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Net income per share:",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Basic",
+        "merged_from": [
+          {
+            "name": "Basic",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Basic",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Basic",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          },
+          {
+            "name": "Basic",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Diluted",
+        "merged_from": [
+          {
+            "name": "Diluted",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Diluted",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Diluted",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          },
+          {
+            "name": "Diluted",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Weighted average shares used in per share computation:",
+        "merged_from": [
+          {
+            "name": "Weighted average shares used in per share computation:",
+            "source": "01_income_statement_NVIDIA_10K_2020_2019_02_json"
+          },
+          {
+            "name": "Weighted average shares used in per share computation:",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Other income (expense), net",
+        "merged_from": [
+          {
+            "name": "Other income (expense), net",
+            "source": "01_income_statement_NVIDIA_10K_2022_2021_02_json"
+          }
+        ]
+      }
+    ]
+  },
+  "data": {
+    "company_name": "",
+    "statement_type": "income_statement",
+    "currency": "USD",
+    "periods": [
+      "Year Ended 2022",
+      "Year Ended 2021",
+      "Year Ended 2020",
+      "Year Ended 2019",
+      "Year Ended 2018"
+    ],
+    "line_items": [
+      {
+        "account_name": "Revenue",
+        "values": [
+          "$ 26,914",
+          "$ 16,675",
+          "$ 10,918",
+          "$ 11,716",
+          "$ 9,714"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": "Cost of revenue",
+        "values": [
+          "9,439",
+          "6,279",
+          "4,150",
+          "4,545",
+          "3,892"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": "Gross profit",
+        "values": [
+          "17,475",
+          "10,396",
+          "6,768",
+          "7,171",
+          "5,822"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": "Operating expenses",
+        "values": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": "Research and development",
+        "values": [
+          "5,268",
+          "3,924",
+          "2,829",
+          "2,376",
+          "1,797"
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": "Sales, general and administrative",
+        "values": [
+          "2,166",
+          "1,940",
+          "1,093",
+          "991",
+          "815"
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": "Income from operations",
+        "values": [
+          "10,041",
+          "4,532",
+          "2,846",
+          "3,804",
+          "3,210"
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": "Interest income",
+        "values": [
+          "29",
+          "57",
+          "178",
+          "136",
+          "69"
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": "Interest expense",
+        "values": [
+          "(236)",
+          "(184)",
+          "(52)",
+          "(58)",
+          "(61)"
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": "Other, net",
+        "values": [
+          "107",
+          "4",
+          "(2)",
+          "14",
+          "(22)"
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": "Total other income (expense)",
+        "values": [
+          "",
+          "",
+          "124",
+          "92",
+          "(14)"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": "Income before income tax",
+        "values": [
+          "9,941",
+          "4,409",
+          "2,970",
+          "3,896",
+          "3,196"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": "Income tax expense (benefit)",
+        "values": [
+          "189",
+          "77",
+          "174",
+          "(245)",
+          "149"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": "Net income",
+        "values": [
+          "$ 9,752",
+          "$ 4,332",
+          "$ 2,796",
+          "$ 4,141",
+          "$ 3,047"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": "Net income per share:",
+        "values": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": "Basic",
+        "values": [
+          "2,496",
+          "2,467",
+          "2,439",
+          "608",
+          "599"
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": "Diluted",
+        "values": [
+          "2,535",
+          "2,510",
+          "2,472",
+          "625",
+          "632"
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": "Weighted average shares used in per share computation:",
+        "values": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": "Other income (expense), net",
+        "values": [
+          "(100)",
+          "(123)",
+          "124",
+          "",
+          ""
+        ],
+        "indent_level": 1
+      }
+    ]
+  }
+}

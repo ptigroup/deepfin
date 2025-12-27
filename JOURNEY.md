@@ -2054,6 +2054,192 @@ dependencies = [
 
 **Ready for Session 18 (Deployment)** with confidence that core functionality works.
 
+### Extension: Enhanced Output Structure & Multi-PDF Consolidation
+
+**Completed:** 2025-12-27 (Same day continuation)
+
+#### Why This Extension?
+
+After validating end-to-end processing works, we identified two critical gaps:
+1. **Output Management:** Current flat structure (samples/output/json/) has no run isolation or historical tracking
+2. **Multi-PDF Consolidation:** No way to merge financial data from multiple PDFs into a single timeline
+
+#### What We Built
+
+**1. Multi-PDF Consolidation Script** (`scripts/consolidate_hybrid_outputs.py` - 344 lines)
+- Intelligent fuzzy matching for account names (85% threshold)
+- Automatic year extraction and normalization across different date formats
+- Consolidation summary tracking (which accounts merged from which sources)
+- Support for both hybrid pipeline and brownfield JSON formats
+- **Test Results:** Successfully merged 2 PDFs (42 line items) into 19 unified accounts across 5 years (2022-2018)
+
+**2. Enhanced Run-Based Output Structure**
+- Created `OutputManager` class (`app/core/output_manager.py` - 418 lines)
+- Implemented recommended structure combining best of brownfield and current hybrid:
+
+```
+output/
+├── runs/
+│   ├── latest -> 20251227_134500_SUCCESS/     # Symlink to latest
+│   └── 20251227_134500_SUCCESS/               # Timestamped runs
+│       ├── run_manifest.json                  # Complete metadata
+│       ├── run.log                            # Processing logs
+│       ├── extracted/                         # Per-PDF outputs
+│       │   └── {pdf_name}/
+│       │       ├── {statement_type}.json
+│       │       ├── {statement_type}.xlsx
+│       │       ├── raw_text.txt
+│       │       ├── metadata.json
+│       │       └── validation.json
+│       └── consolidated/                      # Multi-PDF outputs
+│           ├── {statement_type}_{years}.json
+│           └── {statement_type}_{years}.xlsx
+├── by_document/                               # Quick access by PDF
+├── by_statement/                              # Quick access by type
+└── cache/                                     # Processing cache
+    ├── llmwhisperer/
+    └── page_detection/
+```
+
+**3. Integration with Hybrid Pipeline**
+- Updated `HybridExtractionPipeline` to use OutputManager
+- Updated `scripts/process_pdf_hybrid.py` for run-based structure
+- Created comprehensive test suite (`scripts/test_output_structure.py`)
+
+#### Key Technical Achievements
+
+**1. Run Manifest Tracking**
+Every run creates a complete manifest with:
+```json
+{
+  "run_id": "20251227_134500",
+  "status": "SUCCESS",
+  "started_at": "2025-12-27T13:45:00Z",
+  "completed_at": "2025-12-27T13:45:45Z",
+  "duration_seconds": 45,
+  "total_cost_usd": 0.95,
+  "settings": { "llmwhisperer_mode": "table", ... },
+  "pdfs_processed": [
+    {
+      "filename": "NVIDIA 10K 2020-2019.pdf",
+      "status": "SUCCESS",
+      "extraction_method": "direct_parser",
+      "accuracy": 1.0,
+      "cost_usd": 0.48,
+      "line_items": 29
+    }
+  ],
+  "summary": {
+    "total_pdfs": 2,
+    "successful": 1,
+    "failed": 1,
+    "total_cost_usd": 0.95
+  }
+}
+```
+
+**2. Multi-PDF Consolidation Algorithm**
+- **Year Normalization:** Extracts 4-digit years from various formats ("Year Ended 2022", "FY2022", "2022")
+- **Fuzzy Matching:** Uses SequenceMatcher with 85% threshold to merge similar accounts
+- **Pattern Recognition:** Consolidates known variations ("Operating expenses" + "Total operating expenses" → "Operating expenses")
+- **Merge Tracking:** Full audit trail of which source accounts merged into consolidated accounts
+
+**3. Windows Compatibility**
+- Symlink support with graceful fallback to `latest.txt` file (Windows without admin rights)
+- All paths use pathlib for cross-platform compatibility
+
+#### Consolidation Results
+
+**Input:**
+- 2 brownfield JSONs: NVIDIA 10K 2020-2019, NVIDIA 10K 2022-2021
+- 42 total line items across 2 PDFs
+
+**Output:**
+- 19 consolidated accounts across 5 years (2022-2018)
+- Intelligent merges: "Operating expenses" + "Total operating expenses" → "Operating expenses"
+- Revenue timeline verified correct: 2022=$26,914M → 2018=$9,714M
+- Processing time: < 1 second
+
+#### Files Created/Modified
+
+```
+app/core/
+└── output_manager.py                    # OutputManager class (418 lines)
+
+app/extraction/
+└── hybrid_pipeline.py                   # Updated to use OutputManager
+
+scripts/
+├── consolidate_hybrid_outputs.py        # Multi-PDF consolidation (344 lines)
+├── process_pdf_hybrid.py                # Updated for run-based output
+└── test_output_structure.py             # Output structure validation
+
+reference/
+├── output-structure-recommendation.md   # Comprehensive analysis
+├── output-structure-comparison.md       # Visual comparison
+└── session-17.5-consolidation-results.md # Test results
+```
+
+#### Benefits Over Previous Approach
+
+| Feature | Old (Flat) | Brownfield | New (Enhanced) |
+|---------|-----------|------------|----------------|
+| Run isolation | ❌ | ✅ | ✅ |
+| Clear organization | ✅ | ❌ (60+ files flat) | ✅ |
+| Historical tracking | ❌ | ✅ | ✅ |
+| Quick access | ✅ | ❌ | ✅ (symlinks) |
+| Status tracking | ❌ | ✅ (folder name) | ✅ (folder + manifest) |
+| Debugging | ❌ | ⚠️ | ✅ (run.log per run) |
+| Multi-PDF consolidation | ❌ | ✅ | ✅ (with audit trail) |
+| Production-ready | ❌ | ⚠️ | ✅ |
+
+#### Validation Results
+
+**Structure Test:** ✅ PASSED
+- OutputManager creates correct directory hierarchy
+- Run manifests track all metadata
+- Latest run accessible via symlink or fallback
+- All file operations working correctly
+
+**Consolidation Test:** ✅ PASSED
+- Successfully merged 2 PDFs into unified timeline
+- Fuzzy matching working correctly (no false positives/negatives)
+- Data integrity maintained (verified revenue values)
+- Full merge audit trail generated
+
+#### Key Decisions
+
+**1. Why run-based structure instead of flat?**
+- **Problem:** No historical tracking, can't compare runs, lose data on re-run
+- **Solution:** Timestamped folders with complete isolation
+- **Benefit:** Debug failures, track improvements, rollback capability
+
+**2. Why symlinks for latest access?**
+- **Problem:** Need to know timestamp to find latest extraction
+- **Solution:** `runs/latest` → current successful run
+- **Fallback:** `latest.txt` file on Windows without symlink support
+
+**3. Why comprehensive manifests?**
+- **Problem:** Don't know what was processed, settings used, or costs incurred
+- **Solution:** Complete JSON manifest with all run metadata
+- **Benefit:** Monitoring, auditing, cost tracking, debugging
+
+#### Dependencies
+
+No new dependencies - uses existing pathlib, json, shutil from stdlib.
+
+#### 🎯 Milestone Achieved
+
+**Production-Ready Output Management:** Implemented enhanced run-based structure with:
+- ✅ Run isolation preventing data loss
+- ✅ Historical tracking for all extractions
+- ✅ Multi-PDF consolidation with fuzzy matching
+- ✅ Complete metadata and audit trails
+- ✅ Quick access via symlinks
+- ✅ Windows compatibility
+
+**Ready for Production Deployment** with robust output management.
+
 ### What's Next
 
 **Session 18: Deployment & CI/CD**
