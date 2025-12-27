@@ -1,0 +1,12 @@
+{
+  "pdf_name": "balance sheet.pdf",
+  "pdf_size_kb": 157.83,
+  "document_type": "balance_sheet",
+  "company_name": "NVIDIA CORPORATION AND SUBSIDIARIES",
+  "fiscal_year": "2020",
+  "extracted_at": "2025-12-27T08:10:26.594387",
+  "processing_time_seconds": 57.3,
+  "periods_count": 2,
+  "line_items_count": 34,
+  "extraction_mode": "standalone_direct"
+}

@@ -23,7 +23,7 @@ class LLMWhispererError(Exception):
 class LLMWhispererClient:
     """Async HTTP client for LLMWhisperer API."""
 
-    BASE_URL = "https://llmwhisperer-api.unstract.com/api/v1"
+    BASE_URL = "https://llmwhisperer-api.us-central.unstract.com/api/v2"
 
     def __init__(
         self,
@@ -236,6 +236,12 @@ class LLMWhispererClient:
 
             # Parse response
             result = response.json()
+
+            # Debug: Log response structure
+            logger.debug(
+                "API response received",
+                extra={"response_keys": list(result.keys()), "status": response.status_code}
+            )
 
             return WhisperResponse(
                 whisper_hash=result.get("whisper_hash", ""),

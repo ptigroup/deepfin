@@ -1,0 +1,298 @@
+{
+  "metadata": {
+    "pdf_name": "balance sheet.pdf",
+    "pdf_size_kb": 157.83,
+    "document_type": "balance_sheet",
+    "company_name": "NVIDIA CORPORATION AND SUBSIDIARIES",
+    "fiscal_year": "2020",
+    "extracted_at": "2025-12-27T08:10:26.594387",
+    "processing_time_seconds": 57.3,
+    "periods_count": 2,
+    "line_items_count": 34,
+    "extraction_mode": "standalone_direct"
+  },
+  "data": {
+    "company_name": "NVIDIA CORPORATION AND SUBSIDIARIES",
+    "statement_type": "balance_sheet",
+    "fiscal_year": "2020",
+    "currency": "USD",
+    "periods": [
+      "January 26, 2020",
+      "January 27, 2019"
+    ],
+    "line_items": [
+      {
+        "account_name": " ASSETS ",
+        "values": [
+          "",
+          ""
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Current assets: ",
+        "values": [
+          "",
+          ""
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": "      Cash and cash equivalents",
+        "values": [
+          "$         10,896",
+          "$           782"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "      Marketable securities",
+        "values": [
+          "                1",
+          "                6,640"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "      Accounts receivable, net",
+        "values": [
+          "           1,657",
+          "           1,424"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "      Inventories",
+        "values": [
+          "                          979",
+          "                1,575"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "      Prepaid expenses and other current assets",
+        "values": [
+          "                                                            157",
+          "                 136"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": " Total current assets",
+        "values": [
+          "                   13,690",
+          "               10,557"
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": " Property and equipment, net",
+        "values": [
+          "                                                                             1,674",
+          "                1,404"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Operating lease assets",
+        "values": [
+          "                                                                                    618",
+          "                   -"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Goodwill",
+        "values": [
+          "                                                                                                  618",
+          "                 618"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Intangible assets, net",
+        "values": [
+          "                                                                                     49",
+          "                  45"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Deferred income tax assets",
+        "values": [
+          "                                                                                548",
+          "                 560"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Other assets",
+        "values": [
+          "                                                                                              118",
+          "                  108"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Total assets",
+        "values": [
+          "                  $        17,315",
+          "$           13,292"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " LIABILITIES AND SHAREHOLDERS' EQUITY ",
+        "values": [
+          "",
+          ""
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Current liabilities: ",
+        "values": [
+          "",
+          ""
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": "      Accounts payable",
+        "values": [
+          "$           687",
+          "$           511"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "      Accrued and other current liabilities",
+        "values": [
+          "                                                              1,097",
+          "                 818"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": " Total current liabilities",
+        "values": [
+          "                                                                               1,784",
+          "                1,329"
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": " Long-term debt",
+        "values": [
+          "                                                                                           1,991",
+          "               1,988"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Long-term operating lease liabilities",
+        "values": [
+          "                                                                     561",
+          "                   -"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Other long-term liabilities",
+        "values": [
+          "                                                                               775",
+          "                 633"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Total liabilities",
+        "values": [
+          "                                                                                       5,111",
+          "                3,950"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Commitments and contingencies - see Note 13",
+        "values": [
+          "",
+          ""
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Shareholders' equity: ",
+        "values": [
+          "",
+          ""
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": "      Preferred stock, $.001 par value; 2 shares authorized; none issued",
+        "values": [
+          "                                     -",
+          "                   -"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "      Common stock, $.001 par value; 2,000 shares authorized; 955 shares issued and 612 outstanding as of January 26, 2020; 945 shares issued and 606 outstanding as of January 27, 2019",
+        "values": [
+          "                   1",
+          "                    1"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "      Additional paid-in capital",
+        "values": [
+          "                                                                         7,045",
+          "               6,051"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "      Treasury stock, at cost (342 shares in 2020 and 339 shares in 2019)",
+        "values": [
+          "                                (9,814)",
+          "             (9,263)"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "      Accumulated other comprehensive income (loss)",
+        "values": [
+          "                                                           1",
+          "                  (12)"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "      Retained earnings",
+        "values": [
+          "                                                                                 14,971",
+          "               12,565"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": " Total shareholders' equity",
+        "values": [
+          "                                                                             12,204",
+          "                9,342"
+        ],
+        "indent_level": 1
+      },
+      {
+        "account_name": " Total liabilities and shareholders' equity",
+        "values": [
+          "                                                    $        17,315",
+          "$          13,292"
+        ],
+        "indent_level": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+
+
+Table of Contents 
+
+                                           NVIDIA CORPORATION AND SUBSIDIARIES 
+                                   CONSOLIDATED STATEMENTS OF SHAREHOLDERS' EQUITY 
+
+                                                   Common Stock                           Accumulated Other            Total 
+                                                    Outstanding      Additional Treasury   Comprehensive   Retained Shareholders' 
+                                                                       Paid-in 
+                                                Shares    Amount      Capital     Stock     Income (Loss) Earnings     Equity 
+  (In millions, except per share data) 
+
+  Balances, January 29, 2017                       585 $        1   $    4,708 $ (5,039) $          (16) $   6,108 $     5,762 
+
+  Retained earnings adjustment due to adoption of an accounting 
+                                                    -          -            -         -              -         (27)        (27) 
+  standard related to stock-based compensation 
+                                                    -           -           -         -              (2)        -           (2) 
+  Other comprehensive loss 
+                                                    -          -            -         -              -        3,047      3,047 
+  Net income 
+                                                                                                                -          - 
+                                                    13         -            -         -              - 
+  Issuance of common stock in exchange for warrants 
+                                                                -           (7)       -              -          -           (7) 
+  Convertible debt conversion                       33 
+                                                                                                     -          -          138 
+                                                    18          -          138        - 
+  Issuance of common stock from stock plans 
+                                                                -           -       (612)            -          -         (612) 
+  Tax withholding related to vesting of restricted stock units (4) 
+                                                                -           -       (909)            -          -         (909) 
+  Share repurchase                                  (6) 
+                                                                -           90       (90)            -          -           - 
+  Exercise of convertible note hedges              (33) 
+                                                    -           -           -         -              -         (341)      (341) 
+  Cash dividends declared and paid ($0.570 per common share) 
+                                                    -           -          391        -              -          -          391 
+  Stock-based compensation 
+                                                    -           -           31        -              -          -          31 
+  Reclassification of convertible debt conversion obligation 
+
+  Balances, January 28, 2018                       606          1         5,351    (6,650)          (18)      8,787      7,471 
+
+  Retained earnings adjustment due to adoption of an accounting 
+  standard related to income tax consequences of an intra-entity 
+                                                    -           -           -         -              -           8          8 
+  transfer of an asset 
+                                                    -           -           -         -               6         -           6 
+  Other comprehensive income 
+                                                    -           -           -         -              -        4,141      4,141 
+  Net income 
+                                                                                                     -          -           - 
+                                                     1          -           -         - 
+  Convertible debt conversion 
+                                                                                                     -          -          137 
+                                                    13          -          137        - 
+  Issuance of common stock from stock plans 
+                                                                -           -      (1,032)           -          -        (1,032) 
+  Tax withholding related to vesting of restricted stock units (4) 
+                                                                -           -      (1,579)           -          -        (1,579) 
+  Share repurchase                                  (9) 
+                                                                -            2        (2)            -          -           - 
+  Exercise of convertible note hedges               (1) 
+                                                    -           -           -         -              -         (371)      (371) 
+  Cash dividends declared and paid ($0.610 per common share) 
+                                                    -           -          561        -              -          -          561 
+  Stock-based compensation 
+                                                   606           1        6,051     (9,263)          (12)    12,565       9,342 
+  Balances, January 27, 2019 
+                                                    -           -           -         -              13         -           13 
+  Other comprehensive income 
+                                                    -           -            -        -              -        2,796       2,796 
+  Net income 
+                                                                                                     -          -          149 
+                                                     9          -           149       - 
+  Issuance of common stock from stock plans 
+                                                                -            -       (551)            -          -        (551) 
+  Tax withholding related to vesting of restricted stock units (3) 
+                                                    -           -            -        -              -         (390)       (390) 
+  Cash dividends declared and paid ($0.640 per common share) 
+                                                    -           -          845        -              -           -         845 
+  Stock-based compensation 
+                                                                                                           $ 14,971 $    12,204 
+                                                   612   $       1 $      7,045 $ (9,814) $           1 
+  Balances, January 26, 2020 
+                                         See accompanying notes to the consolidated financial statements. 
+
+                                                                42 
+<<<

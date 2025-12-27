@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "pdf_name": "comprehensive income.pdf",
+    "pdf_size_kb": 71.78,
+    "document_type": "comprehensive_income",
+    "company_name": "NVIDIA CORPORATION AND SUBSIDIARIES",
+    "fiscal_year": "2020",
+    "extracted_at": "2025-12-27T08:12:04.209468",
+    "processing_time_seconds": 24.25,
+    "periods_count": 3,
+    "line_items_count": 12,
+    "extraction_mode": "standalone_direct"
+  },
+  "data": {
+    "company_name": "NVIDIA CORPORATION AND SUBSIDIARIES",
+    "statement_type": "comprehensive_income",
+    "fiscal_year": "2020",
+    "currency": "USD",
+    "periods": [
+      "January 26, 2020",
+      "January 27, 2019",
+      "January 28, 2018"
+    ],
+    "line_items": [
+      {
+        "account_name": " Net income",
+        "values": [
+          "$          2,796",
+          "$          4,141",
+          "$          3,047"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Other comprehensive income (loss), net of tax",
+        "values": [],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Available-for-sale debt securities:",
+        "values": [],
+        "indent_level": 1
+      },
+      {
+        "account_name": "   Net unrealized gain (loss)",
+        "values": [
+          "8",
+          "10",
+          "(5)"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "   Reclassification adjustments for net realized gain included in net income",
+        "values": [
+          "-",
+          "1",
+          "1"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "   Net change in unrealized gain (loss)",
+        "values": [
+          "8",
+          "11",
+          "(4)"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": " Cash flow hedges:",
+        "values": [],
+        "indent_level": 1
+      },
+      {
+        "account_name": "   Net unrealized gain (loss)",
+        "values": [
+          "10",
+          "6",
+          "(1)"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "   Reclassification adjustments for net realized gain (loss) included in net income",
+        "values": [
+          "(5)",
+          "(11)",
+          "3"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": "   Net change in unrealized gain (loss)",
+        "values": [
+          "5",
+          "(5)",
+          "2"
+        ],
+        "indent_level": 2
+      },
+      {
+        "account_name": " Other comprehensive income (loss), net of tax",
+        "values": [
+          "13",
+          "6",
+          "(2)"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": " Total comprehensive income",
+        "values": [
+          "$         2,809",
+          "$          4,147",
+          "$          3,045"
+        ],
+        "indent_level": 0
+      }
+    ]
+  }
+}

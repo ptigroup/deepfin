@@ -1,0 +1,12 @@
+{
+  "pdf_name": "cashflow statement.pdf",
+  "pdf_size_kb": 178.93,
+  "document_type": "cash_flow",
+  "company_name": "NVIDIA CORPORATION AND SUBSIDIARIES",
+  "fiscal_year": "2020",
+  "extracted_at": "2025-12-27T08:11:39.932232",
+  "processing_time_seconds": 73.29,
+  "periods_count": 3,
+  "line_items_count": 35,
+  "extraction_mode": "standalone_direct"
+}
