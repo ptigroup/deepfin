@@ -45,6 +45,7 @@ from unstract.llmwhisperer import LLMWhispererClientV2
 from unstract.llmwhisperer.client_v2 import LLMWhispererClientException
 
 from app.core.logging import get_logger
+from app.core.output_manager import OutputManager, ExtractionRun, RunStatus
 from app.extraction.page_detector import PageDetector, FinancialStatementType
 from app.extraction.pydantic_extractor import PydanticExtractor
 from app.export.excel_exporter import SchemaBasedExcelExporter
@@ -55,11 +56,15 @@ logger = get_logger(__name__)
 class EndToEndPipeline:
     """Fully dynamic end-to-end financial statement processing pipeline."""
 
-    def __init__(self):
+    def __init__(self, output_base: str = "output"):
         """Initialize pipeline components."""
         self.detector = PageDetector()
         self.extractor = PydanticExtractor()
         self.llm_client = LLMWhispererClientV2()
+        self.output_manager = OutputManager(output_base)
+
+        # Current run (set in run_full_pipeline)
+        self.current_run: Optional[ExtractionRun] = None
 
         # Validation tracking
         self.validation_results = {
@@ -70,13 +75,13 @@ class EndToEndPipeline:
             "spot_checks": {}
         }
 
-    def run_full_pipeline(self, pdf_paths: List[Path], output_dir: Path) -> Dict:
+    def run_full_pipeline(self, pdf_paths: List[Path], output_dir: Path = None) -> Dict:
         """
         Run complete pipeline from PDFs to consolidated outputs.
 
         Args:
             pdf_paths: List of PDF file paths to process
-            output_dir: Directory for consolidated outputs
+            output_dir: Directory for consolidated outputs (DEPRECATED - now uses OutputManager)
 
         Returns:
             Complete processing results with validation
@@ -85,10 +90,14 @@ class EndToEndPipeline:
         print("END-TO-END FINANCIAL STATEMENT PROCESSING PIPELINE")
         print("=" * 80)
         print(f"Input PDFs: {len(pdf_paths)}")
-        print(f"Output Directory: {output_dir}")
         print("=" * 80 + "\n")
 
         start_time = datetime.now()
+
+        # Create new extraction run
+        self.current_run = self.output_manager.create_run(status=RunStatus.IN_PROGRESS)
+        print(f"[RUN] Created run: {self.current_run.run_id}")
+        print(f"[RUN] Output directory: {self.current_run.run_dir}\n")
 
         # PHASE 1: DYNAMIC DETECTION (NO HARDCODING!)
         print("\n" + ">" * 40)
@@ -116,14 +125,14 @@ class EndToEndPipeline:
         print("PHASE 4: OUTPUT GENERATION (JSON + EXCEL)")
         print(">" * 40 + "\n")
 
-        outputs = self._phase4_generate_outputs(consolidated, output_dir)
+        outputs = self._phase4_generate_outputs(consolidated, self.current_run.consolidated_dir)
 
         # PHASE 4B: COMBINED OUTPUT (ALL STATEMENT TYPES IN ONE FILE)
         print("\n" + ">" * 40)
         print("PHASE 4B: COMBINED OUTPUT (ALL STATEMENTS IN ONE FILE)")
         print(">" * 40 + "\n")
 
-        combined_outputs = self._phase4b_generate_combined_outputs(consolidated, output_dir)
+        combined_outputs = self._phase4b_generate_combined_outputs(consolidated, self.current_run.consolidated_dir)
 
         # PHASE 5: COMPREHENSIVE VALIDATION
         print("\n" + ">" * 40)
@@ -140,7 +149,18 @@ class EndToEndPipeline:
 
         print("\n" + report)
 
+        # Complete the run
+        final_status = RunStatus.SUCCESS if validation.get("all_checks_passed", False) else RunStatus.PARTIAL
+        self.current_run.complete(status=final_status)
+
+        print(f"\n[RUN] Completed run: {self.current_run.run_id} ({final_status})")
+        print(f"[RUN] Run directory: {self.current_run.run_dir}")
+        print(f"[RUN] Checksums generated: {self.current_run.run_dir / 'checksums.md5'}")
+        print(f"[RUN] History updated: {self.output_manager.output_base / 'RUN_HISTORY.md'}")
+
         return {
+            "run_id": self.current_run.run_id,
+            "run_dir": str(self.current_run.run_dir),
             "detections": all_detections,
             "extractions": all_extractions,
             "consolidated": consolidated,
@@ -213,6 +233,10 @@ class EndToEndPipeline:
                     from app.extraction.pydantic_extractor import FinancialStatement
                     structured_data = FinancialStatement(**structured_dict)
 
+                    # Calculate metrics
+                    line_count = len(structured_data.line_items) if hasattr(structured_data, 'line_items') else 0
+                    periods = structured_data.periods if hasattr(structured_data, 'periods') else []
+
                     # Store extraction
                     all_extractions[(pdf_path, stmt_type)] = {
                         "statement_type": stmt_type,
@@ -222,10 +246,28 @@ class EndToEndPipeline:
                         "pdf_name": pdf_path.name
                     }
 
+                    # Save extraction to run directory
+                    pdf_name_clean = pdf_path.stem.replace(" ", "_")
+                    self.current_run.save_extraction(
+                        pdf_name=pdf_name_clean,
+                        statement_type=stmt_type.value,
+                        json_data=structured_dict,
+                        raw_text=raw_text,
+                        metadata={
+                            "pages": pages,
+                            "pdf_filename": pdf_path.name,
+                            "periods": periods,
+                            "line_item_count": line_count
+                        },
+                        page_detection={
+                            "detected_pages": pages,
+                            "statement_type": stmt_type.value
+                        }
+                    )
+
                     # Report success
-                    line_count = len(structured_data.line_items) if hasattr(structured_data, 'line_items') else 0
-                    periods = structured_data.periods if hasattr(structured_data, 'periods') else []
                     print(f"  [OK] Extracted {line_count} line items, {len(periods)} periods")
+                    print(f"  [OK] Saved to: extracted/{pdf_name_clean}/{stmt_type.value}.json")
 
                 except Exception as e:
                     logger.error(f"Extraction failed for {stmt_type.value}: {e}")
@@ -426,6 +468,17 @@ class EndToEndPipeline:
                 excel_path = output_dir / f"{base_name}.xlsx"
                 self._generate_excel(data, excel_path)
                 print(f"  [OK] Excel: {excel_path.name}")
+
+                # Track in run manifest
+                line_item_count = len(data.get("line_items", []))
+                self.current_run.save_consolidated(
+                    statement_type=stmt_type.value,
+                    years=[str(y) for y in years],
+                    json_data=data,
+                    excel_path=str(excel_path),
+                    source_count=1,  # Will be updated with actual count
+                    line_items=line_item_count
+                )
 
                 outputs[stmt_type] = {
                     "json_path": json_path,
