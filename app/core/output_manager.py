@@ -266,11 +266,13 @@ class ExtractionRun:
                 self.run_dir = new_run_dir
                 logger.info(f"Renamed run folder to {new_run_dir.name}")
 
-        # Update 'latest' symlink if successful
+        # Always update run history
+        self._update_run_history()
+
+        # Update 'latest' symlink and outputs if successful
         if status == RunStatus.SUCCESS:
             self._update_latest_symlink()
             self._update_latest_outputs()
-            self._update_run_history()
 
         logger.info(f"Completed run {self.run_id} with status {status}")
 
