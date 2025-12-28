@@ -378,14 +378,16 @@ class EndToEndPipeline:
                 for item in structured.line_items:
                     account_name = item.account_name
                     indent = item.indent_level
+                    section = item.section if hasattr(item, 'section') else None
 
-                    # Create unique key
-                    account_key = f"{account_name}_{indent}"
+                    # Create unique key - INCLUDE SECTION to prevent merging different sections
+                    account_key = f"{account_name}_{indent}_{section or ''}"
 
                     if account_key not in all_line_items:
                         all_line_items[account_key] = {
                             "account_name": account_name,
                             "indent_level": indent,
+                            "section": section,  # NEW: Preserve section
                             "values": {}
                         }
 
@@ -426,6 +428,7 @@ class EndToEndPipeline:
             formatted_items.append({
                 "account_name": item.account_name,
                 "indent_level": item.indent_level if hasattr(item, 'indent_level') else 0,
+                "section": item.section if hasattr(item, 'section') else None,  # NEW: Preserve section
                 "values": values_dict
             })
 

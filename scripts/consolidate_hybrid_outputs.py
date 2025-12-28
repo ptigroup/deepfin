@@ -70,17 +70,31 @@ class FuzzyAccountMatcher:
         account_name: str,
         parent_section: str,
         existing_accounts: Dict[str, Dict],
-        statement_type: str = "income_statement"
+        statement_type: str = "income_statement",
+        section: Optional[str] = None
     ) -> Optional[str]:
-        """Find best matching account using fuzzy matching."""
+        """Find best matching account using fuzzy matching AND section matching.
+
+        CRITICAL: Both name AND section must match to merge accounts.
+        This prevents merging "Deferred income taxes" from Assets with
+        "Deferred income taxes" from Liabilities.
+        """
 
         # Check for exact matches first
         for existing_key, existing_account in existing_accounts.items():
             existing_name = existing_account.get("account_name", "")
             existing_parent = existing_account.get("parent_section", "")
+            existing_section = existing_account.get("section")
 
-            # Exact match with same parent
-            if account_name == existing_name and parent_section == existing_parent:
+            # Exact match with same parent AND same section
+            # Section match required if both have sections
+            section_match = (
+                section == existing_section or  # Both same section
+                section is None or              # Current item has no section (backward compat)
+                existing_section is None        # Existing item has no section (backward compat)
+            )
+
+            if account_name == existing_name and parent_section == existing_parent and section_match:
                 return existing_key
 
         # Fuzzy matching for income statements
@@ -115,11 +129,22 @@ class FuzzyAccountMatcher:
 
             for existing_key, existing_account in existing_accounts.items():
                 existing_name = existing_account.get("account_name", "")
-                ratio = SequenceMatcher(None, account_name.lower(), existing_name.lower()).ratio()
+                existing_section = existing_account.get("section")
 
-                if ratio > self.threshold and ratio > best_ratio:
-                    best_match = existing_key
-                    best_ratio = ratio
+                # Check section compatibility FIRST
+                section_match = (
+                    section == existing_section or
+                    section is None or
+                    existing_section is None
+                )
+
+                # Only fuzzy match if sections are compatible
+                if section_match:
+                    ratio = SequenceMatcher(None, account_name.lower(), existing_name.lower()).ratio()
+
+                    if ratio > self.threshold and ratio > best_ratio:
+                        best_match = existing_key
+                        best_ratio = ratio
 
             if best_match:
                 return best_match
@@ -206,13 +231,15 @@ class HybridOutputConsolidator:
                 parent_section = item.get("parent_section", "")
                 indent_level = item.get("indent_level", 0)
                 values = item.get("values", [])
+                section = item.get("section")  # NEW: Get section field
 
-                # Find matching account
+                # Find matching account (checks both name AND section)
                 matched_key = self.matcher.find_matching_account(
                     account_name,
                     parent_section,
                     consolidated_accounts,
-                    statement_type
+                    statement_type,
+                    section  # NEW: Pass section for matching
                 )
 
                 if matched_key:
@@ -270,6 +297,7 @@ class HybridOutputConsolidator:
                         "values": values_dict,
                         "indent_level": indent_level,
                         "parent_section": parent_section,
+                        "section": section,  # NEW: Preserve section field
                         "account_category": item.get("account_category", ""),
                         "is_calculated": item.get("is_calculated", False)
                     }
