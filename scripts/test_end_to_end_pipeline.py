@@ -867,12 +867,19 @@ class EndToEndPipeline:
 
 def main():
     """Run end-to-end pipeline test."""
-    # Test PDFs (NO HARDCODING - could be any PDFs!)
-    pdf_dir = Path("samples/input")
-    pdf_paths = [
-        pdf_dir / "NVIDIA 10K 2020-2019.pdf",
-        pdf_dir / "NVIDIA 10K 2022-2021.pdf"
-    ]
+    # Accept PDFs from command line or use default NVIDIA PDFs
+    if len(sys.argv) > 1:
+        # Use PDFs from command line arguments
+        pdf_paths = [Path(arg) for arg in sys.argv[1:]]
+        print(f"Using PDFs from command line: {[p.name for p in pdf_paths]}")
+    else:
+        # Default: Test PDFs (NO HARDCODING - could be any PDFs!)
+        pdf_dir = Path("samples/input")
+        pdf_paths = [
+            pdf_dir / "NVIDIA 10K 2020-2019.pdf",
+            pdf_dir / "NVIDIA 10K 2022-2021.pdf"
+        ]
+        print(f"Using default NVIDIA PDFs")
 
     # Verify PDFs exist
     for pdf_path in pdf_paths:
