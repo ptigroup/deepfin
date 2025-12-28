@@ -1,12 +1,20 @@
 {
   "pdf_name": "NVIDIA 10K 2022-2021.pdf",
   "pdf_size_kb": 1048.92,
+  "pdf_total_pages": 143,
   "document_type": "income_statement",
-  "company_name": "NVIDIA Corporation",
+  "company_name": "NVIDIA",
   "fiscal_year": "2022",
-  "extracted_at": "2025-12-27T08:16:42.116012",
-  "processing_time_seconds": 186.36,
-  "periods_count": 3,
-  "line_items_count": 15,
-  "extraction_mode": "standalone_direct"
+  "extracted_at": "2025-12-27T10:31:45.964259",
+  "processing_time_seconds": 37.47,
+  "periods_count": 2,
+  "line_items_count": 6,
+  "extraction_mode": "page_detection",
+  "pages_extracted": [
+    31,
+    32,
+    33,
+    34
+  ],
+  "characters_extracted": 19995
 }

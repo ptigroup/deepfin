@@ -1,0 +1,164 @@
+{
+  "test_1_page_detection": {
+    "test_name": "Page Detection Proof",
+    "proofs": [
+      {
+        "pdf": "NVIDIA 10K 2020-2019.pdf",
+        "statement": "Income Statement",
+        "page": 39,
+        "header_match": false,
+        "preview": "Table\u00a0of\u00a0Contents\nNVIDIA\u00a0CORPORATION\u00a0AND\u00a0SUBSIDIARIES\nCONSOLIDATED\u00a0STATEMENTS\u00a0OF\u00a0INCOME\n(In\u00a0millions,\u00a0except\u00a0per\u00a0share\u00a0data)\nYear\u00a0Ended"
+      },
+      {
+        "pdf": "NVIDIA 10K 2020-2019.pdf",
+        "statement": "Cash Flow",
+        "page": 43,
+        "header_match": false,
+        "preview": "Table\u00a0of\u00a0Contents\nNVIDIA\u00a0CORPORATION\u00a0AND\u00a0SUBSIDIARIES\nCONSOLIDATED\u00a0STATEMENTS\u00a0OF\u00a0CASH\u00a0FLOWS\n(In\u00a0millions)\nYear\u00a0Ended"
+      },
+      {
+        "pdf": "NVIDIA 10K 2022-2021.pdf",
+        "statement": "Income Statement",
+        "page": 47,
+        "header_match": false,
+        "preview": "Table\u00a0of\u00a0Contents\nNVIDIA\u00a0CORPORATION\u00a0AND\u00a0SUBSIDIARIES\nCONSOLIDATED\u00a0STATEMENTS\u00a0OF\u00a0INCOME\n(In\u00a0millions,\u00a0except\u00a0per\u00a0share\u00a0data)\nYear\u00a0Ended"
+      }
+    ],
+    "pass": false
+  },
+  "test_2_value_extraction": {
+    "test_name": "Value Extraction Proof",
+    "proofs": [
+      {
+        "account": "Revenue",
+        "year": "2022",
+        "expected": 26914,
+        "consolidated": 26914,
+        "match": true,
+        "pdf": "NVIDIA 10K 2022-2021.pdf",
+        "page": 47
+      },
+      {
+        "account": "Revenue",
+        "year": "2020",
+        "expected": 10918,
+        "consolidated": 10918,
+        "match": true,
+        "pdf": "NVIDIA 10K 2020-2019.pdf",
+        "page": 39
+      },
+      {
+        "account": "Net Income",
+        "year": "2022",
+        "expected": 4368,
+        "consolidated": 9752,
+        "match": false,
+        "pdf": "NVIDIA 10K 2022-2021.pdf",
+        "page": 47
+      }
+    ],
+    "pass": false
+  },
+  "test_3_consolidation": {
+    "test_name": "Consolidation Proof",
+    "timeline": [
+      [
+        "January 31, 2021",
+        "$        16,675"
+      ],
+      [
+        "January 30, 2022",
+        "$       26,914"
+      ],
+      [
+        "January 28, 2018",
+        "$           9,714"
+      ],
+      [
+        "January 27, 2019",
+        "$        11,716"
+      ],
+      [
+        "January 26, 2020",
+        "$         10,918"
+      ]
+    ],
+    "no_duplicates": true,
+    "pass": true
+  },
+  "test_4_edge_cases": {
+    "test_name": "Edge Case Stress Test",
+    "edge_cases": [
+      {
+        "case": "Multi-page Cash Flow",
+        "pass": true
+      },
+      {
+        "case": "MD&A False Positive Prevention",
+        "pass": false
+      }
+    ],
+    "pass": false
+  },
+  "test_5_manual_verification": {
+    "test_name": "Manual Verification Guide",
+    "instructions": [
+      {
+        "step": 1,
+        "description": "Verify Page Detection",
+        "actions": [
+          "1. Open: samples/input/NVIDIA 10K 2022-2021.pdf",
+          "2. Go to page 47",
+          "3. Verify you see 'CONSOLIDATED STATEMENTS OF INCOME' at top",
+          "4. Check first line shows 'Revenue' with value $26,974 for 2022",
+          "5. This proves page detection found the correct page"
+        ]
+      },
+      {
+        "step": 2,
+        "description": "Verify Value Extraction",
+        "actions": [
+          "1. Open: samples/output/consolidated/all_statements_2022-2017.xlsx",
+          "2. Go to 'Income Statement' sheet",
+          "3. Find 'Revenue' row",
+          "4. Check 2022 column shows $26,914 (or 26,974)",
+          "5. Compare to PDF page 47 - values should match",
+          "6. This proves extraction captured correct values"
+        ]
+      },
+      {
+        "step": 3,
+        "description": "Verify Consolidation",
+        "actions": [
+          "1. Keep Excel open on 'Income Statement' sheet",
+          "2. Look at columns: should show years 2022, 2021, 2020, 2019, 2018",
+          "3. Note that 2022/2021 came from 2022-2021.pdf",
+          "4. Note that 2020/2019 came from 2020-2019.pdf",
+          "5. This proves consolidation merged 2 PDFs into single timeline"
+        ]
+      },
+      {
+        "step": 4,
+        "description": "Verify Multi-Sheet Excel",
+        "actions": [
+          "1. In Excel, check sheet tabs at bottom",
+          "2. Should see: Summary, Income Statement, Balance Sheet, Comprehensive Income, Shareholders Equity, Cash Flow",
+          "3. Click on each sheet to verify data is present",
+          "4. This proves combined output has all statement types"
+        ]
+      },
+      {
+        "step": 5,
+        "description": "Verify No Hardcoding (Ultimate Test)",
+        "actions": [
+          "1. Find a DIFFERENT company's 10-K PDF (e.g., Apple, Microsoft)",
+          "2. Place it in samples/input/",
+          "3. Run: uv run python scripts/test_end_to_end_pipeline.py",
+          "4. If it successfully processes the new PDF without code changes,",
+          "5. This proves zero hardcoding - system works with ANY PDF"
+        ]
+      }
+    ],
+    "pass": true
+  }
+}

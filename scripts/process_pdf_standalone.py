@@ -29,6 +29,7 @@ from unstract.llmwhisperer.client_v2 import LLMWhispererClientException
 
 from app.core.logging import get_logger
 from app.extraction.pydantic_extractor import PydanticExtractor
+from app.extraction.page_detector import PageDetector, FinancialStatementType
 
 logger = get_logger(__name__)
 
@@ -56,17 +57,58 @@ def process_pdf_standalone(
     start_time = datetime.now()
 
     try:
+        # Step 0: Detect pages for large PDFs (cost optimization)
+        import fitz  # PyMuPDF
+
+        doc = fitz.open(str(pdf_path))
+        total_pages = len(doc)
+        doc.close()
+
+        pages_to_extract = None
+        detected_statement_type = None
+
+        if total_pages > 10:  # Large PDF - use page detection
+            print(f">> Step 0: Detecting table pages (PDF has {total_pages} pages)...")
+            detector = PageDetector()
+
+            # Use new method which returns Dict[FinancialStatementType, List[int]]
+            detected_pages = detector.detect_financial_tables(pdf_path)
+
+            if detected_pages and FinancialStatementType.INCOME_STATEMENT in detected_pages:
+                # Get primary page(s) for income statement
+                primary_pages = detected_pages[FinancialStatementType.INCOME_STATEMENT]
+
+                # Expand with surrounding pages for context
+                page_ranges = detector.get_page_ranges_for_extraction(detected_pages)
+                pages_to_extract = page_ranges.get(FinancialStatementType.INCOME_STATEMENT, primary_pages)
+                detected_statement_type = "income_statement"
+
+                print(f"OK: Detected income statement on page(s) {primary_pages}")
+                print(f"   With context: Extracting {len(pages_to_extract)} pages instead of {total_pages} pages")
+                print(f"   Cost optimization: {100 - (len(pages_to_extract)/total_pages)*100:.1f}% reduction")
+            else:
+                print("WARNING: No income statement detected, extracting all pages")
+        else:
+            print(f">> Step 0: Small PDF ({total_pages} pages) - extracting all pages")
+
         # Step 1: Extract text with LLMWhisperer V2
-        print(">> Step 1: Extracting text with LLMWhisperer...")
+        print("\n>> Step 1: Extracting text with LLMWhisperer...")
         client = LLMWhispererClientV2()
 
-        result = client.whisper(
-            file_path=str(pdf_path),
-            mode="form",
-            output_mode="layout_preserving",
-            wait_for_completion=True,
-            wait_timeout=200,
-        )
+        whisper_params = {
+            "file_path": str(pdf_path),
+            "mode": "form",
+            "output_mode": "layout_preserving",
+            "wait_for_completion": True,
+            "wait_timeout": 200,
+        }
+
+        # Add pages_to_extract if we detected specific pages
+        if pages_to_extract:
+            whisper_params["pages_to_extract"] = ",".join(map(str, pages_to_extract))
+            print(f"   Extracting only pages: {whisper_params['pages_to_extract']}")
+
+        result = client.whisper(**whisper_params)
 
         # Debug: Print response structure
         logger.debug("Whisper result keys", extra={"keys": list(result.keys())})
@@ -118,6 +160,7 @@ def process_pdf_standalone(
         metadata = {
             "pdf_name": pdf_path.name,
             "pdf_size_kb": round(pdf_path.stat().st_size / 1024, 2),
+            "pdf_total_pages": total_pages,
             "document_type": statement_type,
             "company_name": company_name,
             "fiscal_year": fiscal_year,
@@ -125,7 +168,9 @@ def process_pdf_standalone(
             "processing_time_seconds": round(processing_time, 2),
             "periods_count": len(periods),
             "line_items_count": len(line_items),
-            "extraction_mode": "standalone_direct",
+            "extraction_mode": "page_detection" if pages_to_extract else "full_pdf",
+            "pages_extracted": pages_to_extract if pages_to_extract else list(range(1, total_pages + 1)),
+            "characters_extracted": len(raw_text),
         }
 
         # Prepare output data

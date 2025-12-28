@@ -1,0 +1,31 @@
+{
+  "report": "\n================================================================================\nEND-TO-END PIPELINE TEST REPORT\n================================================================================\n\nPHASE 1: DETECTION\n--------------------------------------------------------------------------------\n[OK] Status: PASS\n   PDFs Processed: 2\n   PDFs with Statements: 2\n   Total Statement Types Found: 10\n\nPHASE 2: EXTRACTION\n--------------------------------------------------------------------------------\n[OK] Status: FAIL\n   Total Extractions: 0\n   Successful: 0\n   Average Line Items: 0\n\nPHASE 3: CONSOLIDATION\n--------------------------------------------------------------------------------\n[OK] Status: FAIL\n   Statement Types Consolidated: 0\n   Fiscal Year Range: N/A\n   Total Fiscal Years: 0\n\nPHASE 4: OUTPUTS\n--------------------------------------------------------------------------------\n[OK] Status: PASS\n   Statement Types: 0\n   JSON Files: 0\n   Excel Files: 0\n\n================================================================================\nOVERALL RESULT: [FAIL] FAILED\nDuration: 8.1 seconds\n================================================================================\n",
+  "validation": {
+    "detection": {
+      "success": true,
+      "total_pdfs": 2,
+      "pdfs_with_detections": 2,
+      "total_statement_types_found": 10
+    },
+    "extraction": {
+      "success": false,
+      "total_extractions": 0,
+      "successful_extractions": 0,
+      "average_line_items": 0
+    },
+    "consolidation": {
+      "success": false,
+      "total_statement_types": 0,
+      "fiscal_year_range": "N/A",
+      "total_fiscal_years": 0
+    },
+    "outputs": {
+      "success": true,
+      "total_statement_types": 0,
+      "json_files_created": 0,
+      "excel_files_created": 0
+    },
+    "overall_success": false
+  },
+  "duration_seconds": 8.054072
+}

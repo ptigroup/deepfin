@@ -2,145 +2,62 @@
   "metadata": {
     "pdf_name": "NVIDIA 10K 2022-2021.pdf",
     "pdf_size_kb": 1048.92,
+    "pdf_total_pages": 143,
     "document_type": "income_statement",
-    "company_name": "NVIDIA Corporation",
+    "company_name": "NVIDIA",
     "fiscal_year": "2022",
-    "extracted_at": "2025-12-27T08:16:42.116012",
-    "processing_time_seconds": 186.36,
-    "periods_count": 3,
-    "line_items_count": 15,
-    "extraction_mode": "standalone_direct"
+    "extracted_at": "2025-12-27T10:31:45.964259",
+    "processing_time_seconds": 37.47,
+    "periods_count": 2,
+    "line_items_count": 6,
+    "extraction_mode": "page_detection",
+    "pages_extracted": [
+      31,
+      32,
+      33,
+      34
+    ],
+    "characters_extracted": 19995
   },
   "data": {
-    "company_name": "NVIDIA Corporation",
+    "company_name": "NVIDIA",
     "statement_type": "income_statement",
     "fiscal_year": "2022",
     "currency": "USD",
     "periods": [
-      "January 30, 2022",
-      "January 31, 2021",
-      "January 26, 2020"
+      "Year Ended January 30, 2022",
+      "January 31, 2021"
     ],
     "line_items": [
       {
         "account_name": "Revenue",
         "values": [
-          "$       26,914",
-          "$        16,675",
-          "$         10,918"
+          "$         26,914",
+          "$         16,675"
         ],
         "indent_level": 0
       },
       {
-        "account_name": "     Cost of revenue",
+        "account_name": "Gross margin",
         "values": [
-          "9,439",
-          "6,279",
-          "4,150"
-        ],
-        "indent_level": 1
-      },
-      {
-        "account_name": "Gross profit",
-        "values": [
-          "17,475",
-          "10,396",
-          "6,768"
+          "64.9 %",
+          "62.3 %"
         ],
         "indent_level": 0
       },
       {
         "account_name": "Operating expenses",
-        "values": [],
+        "values": [
+          "$          7,434",
+          "$          5,864"
+        ],
         "indent_level": 0
-      },
-      {
-        "account_name": "     Research and development",
-        "values": [
-          "5,268",
-          "3,924",
-          "2,829"
-        ],
-        "indent_level": 1
-      },
-      {
-        "account_name": "     Sales, general and administrative",
-        "values": [
-          "2,166",
-          "1,940",
-          "1,093"
-        ],
-        "indent_level": 1
-      },
-      {
-        "account_name": "       Total operating expenses",
-        "values": [
-          "7,434",
-          "5,864",
-          "3,922"
-        ],
-        "indent_level": 1
       },
       {
         "account_name": "Income from operations",
         "values": [
-          "10,041",
-          "4,532",
-          "2,846"
-        ],
-        "indent_level": 0
-      },
-      {
-        "account_name": "     Interest income",
-        "values": [
-          "29",
-          "57",
-          "178"
-        ],
-        "indent_level": 1
-      },
-      {
-        "account_name": "     Interest expense",
-        "values": [
-          "(236)",
-          "(184)",
-          "(52)"
-        ],
-        "indent_level": 1
-      },
-      {
-        "account_name": "     Other, net",
-        "values": [
-          "107",
-          "4",
-          "(2)"
-        ],
-        "indent_level": 1
-      },
-      {
-        "account_name": "       Other income (expense), net",
-        "values": [
-          "(100)",
-          "(123)",
-          "124"
-        ],
-        "indent_level": 1
-      },
-      {
-        "account_name": "Income before income tax",
-        "values": [
-          "9,941",
-          "4,409",
-          "2,970"
-        ],
-        "indent_level": 0
-      },
-      {
-        "account_name": "Income tax expense",
-        "values": [
-          "189",
-          "77",
-          "174"
+          "$         10,041",
+          "$          4,532"
         ],
         "indent_level": 0
       },
@@ -148,8 +65,15 @@
         "account_name": "Net income",
         "values": [
           "$          9,752",
-          "$          4,332",
-          "$          2,796"
+          "$          4,332"
+        ],
+        "indent_level": 0
+      },
+      {
+        "account_name": "Net income per diluted share",
+        "values": [
+          "$           3.85",
+          "$           1.73"
         ],
         "indent_level": 0
       }

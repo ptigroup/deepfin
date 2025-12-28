@@ -1,0 +1,673 @@
+{
+  "statement_type": "cash_flow",
+  "fiscal_years": [
+    2022,
+    2021,
+    2020,
+    2019,
+    2018
+  ],
+  "periods": [
+    "January 31, 2021",
+    "January 30, 2022",
+    "January 28, 2018",
+    "January 27, 2019",
+    "January 26, 2020"
+  ],
+  "line_items": [
+    {
+      "account_name": " Cash flows from operating activities: ",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "$          2,796",
+        "January 27, 2019": "",
+        "January 30, 2022": "$          9,752",
+        "January 31, 2021": "$           4,332"
+      }
+    },
+    {
+      "account_name": " Net income ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$           2,796",
+        "January 27, 2019": "$           4,141",
+        "January 28, 2018": "$           3,047"
+      }
+    },
+    {
+      "account_name": " Adjustments to reconcile net income to net cash provided by operating activities: ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "",
+        "January 27, 2019": ""
+      }
+    },
+    {
+      "account_name": "      Stock-based compensation expense ",
+      "indent_level": 2,
+      "values": {
+        "January 26, 2020": "$           844",
+        "January 27, 2019": "$           557",
+        "January 28, 2018": "$           391"
+      }
+    },
+    {
+      "account_name": "      Depreciation and amortization ",
+      "indent_level": 2,
+      "values": {
+        "January 26, 2020": "$           381",
+        "January 27, 2019": "$           262",
+        "January 28, 2018": "$           199"
+      }
+    },
+    {
+      "account_name": "      Deferred income taxes ",
+      "indent_level": 2,
+      "values": {
+        "January 26, 2020": "$            18",
+        "January 27, 2019": "$          (315)",
+        "January 28, 2018": "$          (359)"
+      }
+    },
+    {
+      "account_name": "      Loss on early debt conversions ",
+      "indent_level": 2,
+      "values": {
+        "January 26, 2020": "$             -",
+        "January 27, 2019": "$             -",
+        "January 28, 2018": "$            19"
+      }
+    },
+    {
+      "account_name": "      Other ",
+      "indent_level": 2,
+      "values": {
+        "January 26, 2020": "$             5",
+        "January 27, 2019": "$          (45)",
+        "January 28, 2018": "$            20"
+      }
+    },
+    {
+      "account_name": " Changes in operating assets and liabilities: ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "",
+        "January 27, 2019": ""
+      }
+    },
+    {
+      "account_name": "      Accounts receivable ",
+      "indent_level": 2,
+      "values": {
+        "January 26, 2020": "$          (233)",
+        "January 27, 2019": "$          (149)",
+        "January 28, 2018": "$          (440)"
+      }
+    },
+    {
+      "account_name": "      Inventories ",
+      "indent_level": 2,
+      "values": {
+        "January 26, 2020": "$           597",
+        "January 27, 2019": "$          (776)",
+        "January 28, 2018": "$             -"
+      }
+    },
+    {
+      "account_name": "      Prepaid expenses and other assets ",
+      "indent_level": 2,
+      "values": {
+        "January 26, 2020": "$            77",
+        "January 27, 2019": "$          (55)",
+        "January 28, 2018": "$            21"
+      }
+    },
+    {
+      "account_name": "      Accounts payable ",
+      "indent_level": 2,
+      "values": {
+        "January 26, 2020": "$           194",
+        "January 27, 2019": "$          (135)",
+        "January 28, 2018": "$            90"
+      }
+    },
+    {
+      "account_name": "      Accrued and other current liabilities ",
+      "indent_level": 2,
+      "values": {
+        "January 26, 2020": "$            54",
+        "January 27, 2019": "$           256",
+        "January 28, 2018": "$            33"
+      }
+    },
+    {
+      "account_name": "      Other long-term liabilities ",
+      "indent_level": 2,
+      "values": {
+        "January 26, 2020": "$            28",
+        "January 27, 2019": "$             2",
+        "January 28, 2018": "$           481"
+      }
+    },
+    {
+      "account_name": " Net cash provided by operating activities ",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "$           4,761",
+        "January 27, 2019": "$           3,743",
+        "January 28, 2018": "$           3,502"
+      }
+    },
+    {
+      "account_name": " Cash flows from investing activities: ",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "",
+        "January 27, 2019": ""
+      }
+    },
+    {
+      "account_name": "      Proceeds from maturities of marketable securities ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$           4,744",
+        "January 27, 2019": "$           7,232",
+        "January 28, 2018": "$           1,078"
+      }
+    },
+    {
+      "account_name": "      Proceeds from sales of marketable securities ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$           3,365",
+        "January 27, 2019": "$           428",
+        "January 28, 2018": "$           863"
+      }
+    },
+    {
+      "account_name": "      Purchases of marketable securities ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$          (1,461)",
+        "January 27, 2019": "$         (11,148)",
+        "January 28, 2018": "$            (36)"
+      }
+    },
+    {
+      "account_name": "      Purchases of property and equipment and intangible assets ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$          (489)",
+        "January 27, 2019": "$          (600)",
+        "January 28, 2018": "$          (593)"
+      }
+    },
+    {
+      "account_name": "      Investments and other, net ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$          (14)",
+        "January 27, 2019": "$          (9)",
+        "January 28, 2018": "$          (36)"
+      }
+    },
+    {
+      "account_name": "      Proceeds from sale of long-lived assets and investments ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$             -",
+        "January 27, 2019": "$             -",
+        "January 28, 2018": "$            2"
+      }
+    },
+    {
+      "account_name": " Net cash provided by (used in) investing activities ",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "$           6,145",
+        "January 27, 2019": "$          (4,097)",
+        "January 28, 2018": "$           1,278"
+      }
+    },
+    {
+      "account_name": " Cash flows from financing activities: ",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "",
+        "January 27, 2019": ""
+      }
+    },
+    {
+      "account_name": "      Payments related to repurchases of common stock ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$             -",
+        "January 27, 2019": "$          (1,579)",
+        "January 28, 2018": "$          (909)"
+      }
+    },
+    {
+      "account_name": "      Repayment of Convertible Notes ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$             -",
+        "January 27, 2019": "$           (16)",
+        "January 28, 2018": "$          (812)"
+      }
+    },
+    {
+      "account_name": "      Dividends paid ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$          (390)",
+        "January 27, 2019": "$          (371)",
+        "January 28, 2018": "$          (341)"
+      }
+    },
+    {
+      "account_name": "       Proceeds related to employee stock plans ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$           149",
+        "January 27, 2019": "$           137",
+        "January 28, 2018": "$           139"
+      }
+    },
+    {
+      "account_name": "       Payments related to tax on restricted stock units ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$          (551)",
+        "January 27, 2019": "$        (1,032)",
+        "January 28, 2018": "$          (612)"
+      }
+    },
+    {
+      "account_name": "       Other ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$             -",
+        "January 27, 2019": "$           (5)",
+        "January 28, 2018": "$           (9)"
+      }
+    },
+    {
+      "account_name": " Net cash used in financing activities ",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "$          (792)",
+        "January 27, 2019": "$        (2,866)",
+        "January 28, 2018": "$        (2,544)"
+      }
+    },
+    {
+      "account_name": " Change in cash and cash equivalents ",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "$          10,114",
+        "January 27, 2019": "$         (3,220)",
+        "January 28, 2018": "$          2,236"
+      }
+    },
+    {
+      "account_name": " Cash and cash equivalents at beginning of period ",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "$           782",
+        "January 27, 2019": "$          4,002",
+        "January 28, 2018": "$          1,766"
+      }
+    },
+    {
+      "account_name": " Cash and cash equivalents at end of period ",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "$          10,896",
+        "January 27, 2019": "$           782",
+        "January 28, 2018": "$          4,002"
+      }
+    },
+    {
+      "account_name": " Supplemental disclosures of cash flow information: ",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "",
+        "January 27, 2019": ""
+      }
+    },
+    {
+      "account_name": " Cash paid for income taxes, net ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$           176",
+        "January 27, 2019": "$            61",
+        "January 28, 2018": "$            22"
+      }
+    },
+    {
+      "account_name": " Cash paid for interest ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$            54",
+        "January 27, 2019": "$            55",
+        "January 28, 2018": "$            55"
+      }
+    },
+    {
+      "account_name": " Non-cash investing and financing activity: ",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "",
+        "January 27, 2019": ""
+      }
+    },
+    {
+      "account_name": " Assets acquired by assuming related liabilities ",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "$           212",
+        "January 27, 2019": "$            76",
+        "January 28, 2018": "$            36"
+      }
+    },
+    {
+      "account_name": "      Stock-based compensation expense",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "2,004",
+        "January 31, 2021": "1,397",
+        "January 26, 2020": "844"
+      }
+    },
+    {
+      "account_name": "      Depreciation and amortization",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "1,174",
+        "January 31, 2021": "1,098",
+        "January 26, 2020": "381"
+      }
+    },
+    {
+      "account_name": "      Deferred income taxes",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(406)",
+        "January 31, 2021": "(282)",
+        "January 26, 2020": "18"
+      }
+    },
+    {
+      "account_name": "      (Gains) losses on investments in non-affiliates, net",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(100)",
+        "January 31, 2021": "-",
+        "January 26, 2020": "1"
+      }
+    },
+    {
+      "account_name": "      Other",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(7)",
+        "January 31, 2021": "(4)",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": " Changes in operating assets and liabilities, net of acquisitions: ",
+      "indent_level": 1,
+      "values": {}
+    },
+    {
+      "account_name": "      Accounts receivable",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(2,215)",
+        "January 31, 2021": "(550)",
+        "January 26, 2020": "(233)"
+      }
+    },
+    {
+      "account_name": "      Inventories",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(774)",
+        "January 31, 2021": "(524)",
+        "January 26, 2020": "597"
+      }
+    },
+    {
+      "account_name": "      Prepaid expenses and other assets",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(1,715)",
+        "January 31, 2021": "(394)",
+        "January 26, 2020": "77"
+      }
+    },
+    {
+      "account_name": "      Accounts payable",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "568",
+        "January 31, 2021": "312",
+        "January 26, 2020": "194"
+      }
+    },
+    {
+      "account_name": "      Accrued and other current liabilities",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "581",
+        "January 31, 2021": "290",
+        "January 26, 2020": "54"
+      }
+    },
+    {
+      "account_name": "      Other long-term liabilities",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "192",
+        "January 31, 2021": "163",
+        "January 26, 2020": "28"
+      }
+    },
+    {
+      "account_name": " Net cash provided by operating activities",
+      "indent_level": 0,
+      "values": {
+        "January 30, 2022": "9,108",
+        "January 31, 2021": "5,822",
+        "January 26, 2020": "4,761"
+      }
+    },
+    {
+      "account_name": " Cash flows from investing activities: ",
+      "indent_level": 1,
+      "values": {}
+    },
+    {
+      "account_name": "      Proceeds from maturities of marketable securities",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "15,197",
+        "January 31, 2021": "8,792",
+        "January 26, 2020": "4,744"
+      }
+    },
+    {
+      "account_name": "      Proceeds from sales of marketable securities",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "1,023",
+        "January 31, 2021": "527",
+        "January 26, 2020": "3,365"
+      }
+    },
+    {
+      "account_name": "      Purchases of marketable securities",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(24,787)",
+        "January 31, 2021": "(19,308)",
+        "January 26, 2020": "(1,461)"
+      }
+    },
+    {
+      "account_name": "      Purchases related to property and equipment and intangible assets",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(976)",
+        "January 31, 2021": "(1,128)",
+        "January 26, 2020": "(489)"
+      }
+    },
+    {
+      "account_name": "      Acquisitions, net of cash acquired",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(263)",
+        "January 31, 2021": "(8,524)",
+        "January 26, 2020": "(4)"
+      }
+    },
+    {
+      "account_name": "      Investments and other, net",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(24)",
+        "January 31, 2021": "(34)",
+        "January 26, 2020": "(10)"
+      }
+    },
+    {
+      "account_name": " Net cash provided by (used in) investing activities",
+      "indent_level": 0,
+      "values": {
+        "January 30, 2022": "(9,830)",
+        "January 31, 2021": "(19,675)",
+        "January 26, 2020": "6,145"
+      }
+    },
+    {
+      "account_name": " Cash flows from financing activities: ",
+      "indent_level": 1,
+      "values": {}
+    },
+    {
+      "account_name": "      Issuance of debt, net of issuance costs",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "4,977",
+        "January 31, 2021": "4,968",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "      Proceeds related to employee stock plans",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "281",
+        "January 31, 2021": "194",
+        "January 26, 2020": "149"
+      }
+    },
+    {
+      "account_name": "      Payments related to tax on restricted stock units",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(1,904)",
+        "January 31, 2021": "(942)",
+        "January 26, 2020": "(551)"
+      }
+    },
+    {
+      "account_name": "      Repayment of debt",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(1,000)",
+        "January 31, 2021": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "      Dividends paid",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(399)",
+        "January 31, 2021": "(395)",
+        "January 26, 2020": "(390)"
+      }
+    },
+    {
+      "account_name": "      Principal payments on property and equipment",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(83)",
+        "January 31, 2021": "(17)",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": " Net cash provided by (used in) financing activities",
+      "indent_level": 0,
+      "values": {
+        "January 30, 2022": "1,865",
+        "January 31, 2021": "3,804",
+        "January 26, 2020": "(792)"
+      }
+    },
+    {
+      "account_name": " Change in cash and cash equivalents",
+      "indent_level": 0,
+      "values": {
+        "January 30, 2022": "1,143",
+        "January 31, 2021": "(10,049)",
+        "January 26, 2020": "10,114"
+      }
+    },
+    {
+      "account_name": " Cash and cash equivalents at beginning of period",
+      "indent_level": 0,
+      "values": {
+        "January 30, 2022": "847",
+        "January 31, 2021": "10,896",
+        "January 26, 2020": "782"
+      }
+    },
+    {
+      "account_name": " Cash and cash equivalents at end of period",
+      "indent_level": 0,
+      "values": {
+        "January 30, 2022": "$          1,990",
+        "January 31, 2021": "$           847",
+        "January 26, 2020": "$         10,896"
+      }
+    },
+    {
+      "account_name": " Supplemental disclosures of cash flow information: ",
+      "indent_level": 1,
+      "values": {}
+    },
+    {
+      "account_name": " Cash paid for income taxes, net",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "$            396",
+        "January 31, 2021": "$           249",
+        "January 26, 2020": "$            176"
+      }
+    },
+    {
+      "account_name": " Cash paid for interest",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "$            246",
+        "January 31, 2021": "$           138",
+        "January 26, 2020": "$             54"
+      }
+    }
+  ]
+}

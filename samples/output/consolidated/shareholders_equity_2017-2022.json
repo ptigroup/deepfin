@@ -1,0 +1,411 @@
+{
+  "statement_type": "shareholders_equity",
+  "fiscal_years": [
+    2022,
+    2021,
+    2020,
+    2019,
+    2018,
+    2017
+  ],
+  "periods": [
+    "January 31, 2021",
+    "January 30, 2022",
+    "January 29, 2017",
+    "January 28, 2018",
+    "January 27, 2019",
+    "January 26, 2020"
+  ],
+  "line_items": [
+    {
+      "account_name": "Balances, January 29, 2017",
+      "indent_level": 0,
+      "values": {
+        "January 29, 2017": "585",
+        "January 28, 2018": "$        1",
+        "January 27, 2019": "$    4,708",
+        "January 26, 2020": "$ (5,039)"
+      }
+    },
+    {
+      "account_name": "Retained earnings adjustment due to adoption of an accounting",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "standard related to stock-based compensation",
+      "indent_level": 2,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Other comprehensive loss",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Net income",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Issuance of common stock in exchange for warrants",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "(7)",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Convertible debt conversion                       33",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "138",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Issuance of common stock from stock plans         18",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "(612)",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Tax withholding related to vesting of restricted stock units (4)",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "(1,579)",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Share repurchase                                  (6)",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "90",
+        "January 27, 2019": "(90)",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Exercise of convertible note hedges              (33)",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Cash dividends declared and paid ($0.570 per common share)",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "391",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Stock-based compensation",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "1",
+        "January 28, 2018": "6,051",
+        "January 27, 2019": "(9,263)",
+        "January 26, 2020": "(12)"
+      }
+    },
+    {
+      "account_name": "Reclassification of convertible debt conversion obligation",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "",
+        "January 28, 2018": ""
+      }
+    },
+    {
+      "account_name": "Balances, January 28, 2018",
+      "indent_level": 0,
+      "values": {
+        "January 29, 2017": "606",
+        "January 28, 2018": "1",
+        "January 27, 2019": "5,351",
+        "January 26, 2020": "(6,650)"
+      }
+    },
+    {
+      "account_name": "standard related to income tax consequences of an intra-entity",
+      "indent_level": 2,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "transfer of an asset",
+      "indent_level": 3,
+      "values": {
+        "January 29, 2017": "",
+        "January 28, 2018": ""
+      }
+    },
+    {
+      "account_name": "Other comprehensive income",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Convertible debt conversion                        1",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "137",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Issuance of common stock from stock plans",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "(551)",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Share repurchase                                  (9)",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "2",
+        "January 27, 2019": "(2)",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Exercise of convertible note hedges               (1)",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Cash dividends declared and paid ($0.610 per common share)",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "561",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Balances, January 27, 2019",
+      "indent_level": 0,
+      "values": {
+        "January 29, 2017": "606",
+        "January 28, 2018": "-",
+        "January 27, 2019": "2,423",
+        "January 26, 2020": "$      3",
+        "January 31, 2021": "$     6,049",
+        "January 30, 2022": "$ (9,263)"
+      }
+    },
+    {
+      "account_name": "Tax withholding related to vesting of restricted stock units (3)",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Cash dividends declared and paid ($0.640 per common share)",
+      "indent_level": 1,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "845",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Stock-based compensation",
+      "indent_level": 0,
+      "values": {
+        "January 29, 2017": "612",
+        "January 28, 2018": "$       1",
+        "January 27, 2019": "$      7,045",
+        "January 26, 2020": "$ (9,814)"
+      }
+    },
+    {
+      "account_name": "Balances, January 26, 2020",
+      "indent_level": 0,
+      "values": {
+        "January 29, 2017": "",
+        "January 28, 2018": "",
+        "January 27, 2019": "2,450",
+        "January 26, 2020": "-",
+        "January 31, 2021": "-",
+        "January 30, 2022": "-"
+      }
+    },
+    {
+      "account_name": "    Net income",
+      "indent_level": 1,
+      "values": {
+        "January 27, 2019": "-",
+        "January 26, 2020": "-",
+        "January 31, 2021": "-",
+        "January 30, 2022": "-"
+      }
+    },
+    {
+      "account_name": "    Other comprehensive income",
+      "indent_level": 1,
+      "values": {
+        "January 27, 2019": "-",
+        "January 26, 2020": "-",
+        "January 31, 2021": "$      194",
+        "January 30, 2022": "-"
+      }
+    },
+    {
+      "account_name": "    Issuance of common stock from stock plans",
+      "indent_level": 1,
+      "values": {
+        "January 27, 2019": "35",
+        "January 26, 2020": "-",
+        "January 31, 2021": "$ (614)",
+        "January 30, 2022": "$ (1,290)"
+      }
+    },
+    {
+      "account_name": "    Tax withholding related to vesting of restricted stock units",
+      "indent_level": 1,
+      "values": {
+        "January 27, 2019": "(8)",
+        "January 26, 2020": "-",
+        "January 31, 2021": "-",
+        "January 30, 2022": "-"
+      }
+    },
+    {
+      "account_name": "    Cash dividends declared and paid ($0.16 per common share)",
+      "indent_level": 1,
+      "values": {
+        "January 27, 2019": "-",
+        "January 26, 2020": "-",
+        "January 31, 2021": "-",
+        "January 30, 2022": "-"
+      }
+    },
+    {
+      "account_name": "    Stock-based compensation",
+      "indent_level": 1,
+      "values": {
+        "January 27, 2019": "-",
+        "January 26, 2020": "-",
+        "January 31, 2021": "$ 2,001",
+        "January 30, 2022": "-"
+      }
+    },
+    {
+      "account_name": "    Fair value of partially vested equity awards assumed in connection with acquisitions",
+      "indent_level": 1,
+      "values": {
+        "January 27, 2019": "-",
+        "January 26, 2020": "-",
+        "January 31, 2021": "$ 18",
+        "January 30, 2022": "-"
+      }
+    },
+    {
+      "account_name": "Balances, January 31, 2021",
+      "indent_level": 0,
+      "values": {
+        "January 27, 2019": "2,479",
+        "January 26, 2020": "-",
+        "January 31, 2021": "-",
+        "January 30, 2022": "-"
+      }
+    },
+    {
+      "account_name": "    Other comprehensive loss",
+      "indent_level": 1,
+      "values": {
+        "January 27, 2019": "-",
+        "January 26, 2020": "-",
+        "January 31, 2021": "$      281",
+        "January 30, 2022": "-"
+      }
+    },
+    {
+      "account_name": "    Retirement of Treasury Stock",
+      "indent_level": 1,
+      "values": {
+        "January 27, 2019": "-",
+        "January 26, 2020": "-",
+        "January 31, 2021": "$ (20)",
+        "January 30, 2022": "$ 12,046"
+      }
+    },
+    {
+      "account_name": "Balances, January 30, 2022",
+      "indent_level": 0,
+      "values": {
+        "January 27, 2019": "2,506",
+        "January 26, 2020": "$      3",
+        "January 31, 2021": "$     10,385",
+        "January 30, 2022": "$    -"
+      }
+    }
+  ]
+}

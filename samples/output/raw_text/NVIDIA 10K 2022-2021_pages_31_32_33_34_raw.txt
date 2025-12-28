@@ -1,56 +1,75 @@
+# Raw LLMWhisperer Output
+# Source PDF: NVIDIA 10K 2022-2021
+# Pages Extracted: [31, 32, 33, 34]
+# Extraction Time: 2025-12-27T13:34:17.775595
+# Text Length: 20262 characters
+================================================================================
 
 
-Table of Contents 
 
-have shorter shipment lead times and quicker delivery schedules for our customers, we may build finished products and maintain inventory for 
-anticipated periods of growth which do not occur, anticipating demand that does not materialize, or for what we believe is pent-up demand. During 
-fiscal year 2022, we made substantial strides in broadening our supply base to scale our company and better serve customer demand. We expect to 
-remain supply-constrained into the first half of fiscal year 2023, primarily in Gaming and Networking. We have placed non-cancellable inventory 
-orders for certain supply in advance of our historical lead times, paid premiums and provided deposits to secure future supply and capacity and may 
-need to continue to do so in the future. Ordering product in advance of our historical lead times to secure supply in a constrained environment may 
-trigger excess inventory or other charges if there is a partial or complete reduction in long-term demand for our products or if such demand is served 
-by our competitors. Given our long lead times on inventory purchasing, demand may be perishable or may disappear. Given our current long lead 
-times, we may order components before our product design is finalized and changes to the product design or end demand could trigger excess 
-inventory. Our supply deliveries and production may be non-linear within a quarter or year which could cause changes to expected revenue or cash 
-flows. 
+ Table of Contents 
 
-COVID-19 
-The COVID-19 pandemic continued during fiscal year 2022. Most of our employees continue to work remotely and we have paused most business 
-travel. During fiscal year 2022, our Gaming, Data Center and Professional Visualization market platforms have benefited from stronger demand as 
-people continue to work, learn, and play from home. Our Professional Visualization market platform also benefited from demand for workstations as 
-enterprises support hybrid work environments. As our offices begin to reopen, we expect to incur incremental expenses as we resume onsite 
-services and related in-office costs. 
+ have shorter shipment lead times and quicker delivery schedules for our customers, we may build finished products and maintain inventory for 
+ anticipated periods of growth which do not occur, anticipating demand that does not materialize, or for what we believe is pent-up demand. During 
+ fiscal year 2022, we made substantial strides in broadening our supply base to scale our company and better serve customer demand. We expect to 
+ remain supply-constrained into the first half of fiscal year 2023, primarily in Gaming and Networking. We have placed non-cancellable inventory 
+ orders for certain supply in advance of our historical lead times, paid premiums and provided deposits to secure future supply and capacity and may 
+ need to continue to do so in the future. Ordering product in advance of our historical lead times to secure supply in a constrained environment may 
+ trigger excess inventory or other charges if there is a partial or complete reduction in long-term demand for our products or if such demand is served 
+ by our competitors. Given our long lead times on inventory purchasing, demand may be perishable or may disappear. Given our current long lead 
+ times, we may order components before our product design is finalized and changes to the product design or end demand could trigger excess 
+ inventory. Our supply deliveries and production may be non-linear within a quarter or year which could cause changes to expected revenue or cash 
+ flows. 
 
-As the COVID-19 pandemic continues, the timing and overall demand from customers, the availability of supply chain, logistical services and 
-component supply, and the impact of rising inflation may have a material net negative impact on our business and financial results. 
-We believe our existing balances of cash, cash equivalents and marketable securities, along with commercial paper arrangements, will be sufficient 
-to satisfy our working capital needs, capital asset purchases, dividends, debt repayments and other liquidity requirements associated with our 
-existing operations. 
-Fiscal Year 2022 Summary 
-                                                                                                            Year Ended 
-                                                                                      January 30,           January 31, 
-                                                                                          2022                 2021                Change 
-                                                                                                ($ in millions, except per share data) 
-Revenue                                                                            $         26,914     $         16,675                  Up 61% 
-Gross margin                                                                                   64.9 %               62.3 %            Up 260 bps 
-Operating expenses                                                                 $          7,434     $          5,864                  Up 27% 
-Income from operations                                                             $         10,041     $          4,532                Up 122% 
-Net income                                                                         $          9,752     $          4,332                Up 125% 
-Net income per diluted share                                                       $           3.85     $           1.73                Up 123% 
+ COVID-19 
+ The COVID-19 pandemic continued during fiscal year 2022. Most of our employees continue to work remotely and we have paused most business 
+ travel. During fiscal year 2022, our Gaming, Data Center and Professional Visualization market platforms have benefited from stronger demand as 
+ people continue to work, learn, and play from home. Our Professional Visualization market platform also benefited from demand for workstations as 
+ enterprises support hybrid work environments. As our offices begin to reopen, we expect to incur incremental expenses as we resume onsite 
+ services and related in-office costs. 
 
-We specialize in markets where our computing platforms can provide tremendous acceleration for applications. These platforms incorporate 
-processors, interconnects, software, algorithms, systems, and services to deliver unique value. Our platforms address four large markets where our 
-expertise is critical: Gaming, Data Center, Professional Visualization, and Automotive. 
+ As the COVID-19 pandemic continues, the timing and overall demand from customers, the availability of supply chain, logistical services and 
+ component supply, and the impact of rising inflation may have a material net negative impact on our business and financial results. 
+ We believe our existing balances of cash, cash equivalents and marketable securities, along with commercial paper arrangements, will be sufficient 
+ to satisfy our working capital needs, capital asset purchases, dividends, debt repayments and other liquidity requirements associated with our 
+ existing operations. 
+ Fiscal Year 2022 Summary 
 
-Revenue for fiscal year 2022 was $26.91 billion, up 61% from a year ago. 
++------------------------------+------------------+------------------+------------+ 
+|                              | Year Ended                                         | 
++                              +------------------+------------------+------------+ 
+|                              | January 30, 2022 | January 31, 2021 | Change     | 
++------------------------------+------------------+------------------+------------+ 
+|                              | ($ in millions, except per share data)             | 
++------------------------------+------------------+------------------+------------+ 
+| Revenue                      | $ 26,914         | $ 16,675         | Up 61%     | 
++------------------------------+------------------+------------------+------------+ 
+| Gross margin                 | 64.9 %           | 62.3 %           | Up 260 bps | 
++------------------------------+------------------+------------------+------------+ 
+| Operating expenses           | $ 7,434          | $ 5,864          | Up 27%     | 
++------------------------------+------------------+------------------+------------+ 
+| Income from operations       | $ 10,041         | $ 4,532          | Up 122%    | 
++------------------------------+------------------+------------------+------------+ 
+| Net income                   | $ 9,752          | $ 4,332          | Up 125%    | 
++------------------------------+------------------+------------------+------------+ 
+| Net income per diluted share | $ 3.85           | $ 1.73           | Up 123%    | 
++------------------------------+------------------+------------------+------------+ 
 
-Gaming revenue was up 61% from a year ago reflecting higher sales of GeForce GPUs. We continue to benefit from strong demand for NVIDIA 
-Ampere architecture products, and believe the increase in Gaming revenue during fiscal year 2022 resulted from a combination of factors, including: 
-the ramp of new RTX 30 Series GPUs; the release of new games supporting ray tracing; the rising popularity of gaming, esports, content creation 
-and streaming; the demand for new and upgraded systems to support the increase in remote work; and the ability of end users to engage in 
-cryptocurrency mining. 
 
-                                                                        31 
+
+ We specialize in markets where our computing platforms can provide tremendous acceleration for applications. These platforms incorporate 
+ processors, interconnects, software, algorithms, systems, and services to deliver unique value. Our platforms address four large markets where our 
+ expertise is critical: Gaming, Data Center, Professional Visualization, and Automotive. 
+
+ Revenue for fiscal year 2022 was $26.91 billion, up 61% from a year ago. 
+
+ Gaming revenue was up 61% from a year ago reflecting higher sales of GeForce GPUs. We continue to benefit from strong demand for NVIDIA 
+ Ampere architecture products, and believe the increase in Gaming revenue during fiscal year 2022 resulted from a combination of factors, including: 
+ the ramp of new RTX 30 Series GPUs; the release of new games supporting ray tracing; the rising popularity of gaming, esports, content creation 
+ and streaming; the demand for new and upgraded systems to support the increase in remote work; and the ability of end users to engage in 
+ cryptocurrency mining. 
+
+                                                                         31 
 <<<
 
 Table of Contents 

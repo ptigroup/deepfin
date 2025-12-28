@@ -1,0 +1,241 @@
+{
+  "statement_type": "income_statement",
+  "fiscal_years": [
+    2022,
+    2021,
+    2020,
+    2019,
+    2018
+  ],
+  "periods": [
+    "January 31, 2021",
+    "January 30, 2022",
+    "January 28, 2018",
+    "January 27, 2019",
+    "January 26, 2020"
+  ],
+  "line_items": [
+    {
+      "account_name": "Revenue",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "$         10,918",
+        "January 27, 2019": "$        11,716",
+        "January 28, 2018": "$           9,714",
+        "January 30, 2022": "$       26,914",
+        "January 31, 2021": "$        16,675"
+      }
+    },
+    {
+      "account_name": "     Cost of revenue",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "4,150",
+        "January 27, 2019": "4,545",
+        "January 28, 2018": "3,892",
+        "January 30, 2022": "9,439",
+        "January 31, 2021": "6,279"
+      }
+    },
+    {
+      "account_name": "Gross profit",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "6,768",
+        "January 27, 2019": "7,171",
+        "January 28, 2018": "5,822",
+        "January 30, 2022": "17,475",
+        "January 31, 2021": "10,396"
+      }
+    },
+    {
+      "account_name": "Operating expenses",
+      "indent_level": 0,
+      "values": {}
+    },
+    {
+      "account_name": "     Research and development",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "2,829",
+        "January 27, 2019": "2,376",
+        "January 28, 2018": "1,797",
+        "January 30, 2022": "5,268",
+        "January 31, 2021": "3,924"
+      }
+    },
+    {
+      "account_name": "     Sales, general and administrative",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "1,093",
+        "January 27, 2019": "991",
+        "January 28, 2018": "815",
+        "January 30, 2022": "2,166",
+        "January 31, 2021": "1,940"
+      }
+    },
+    {
+      "account_name": "        Total operating expenses",
+      "indent_level": 2,
+      "values": {
+        "January 26, 2020": "3,922",
+        "January 27, 2019": "3,367",
+        "January 28, 2018": "2,612"
+      }
+    },
+    {
+      "account_name": "Income from operations",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "2,846",
+        "January 27, 2019": "3,804",
+        "January 28, 2018": "3,210",
+        "January 30, 2022": "10,041",
+        "January 31, 2021": "4,532"
+      }
+    },
+    {
+      "account_name": "     Interest income",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "178",
+        "January 27, 2019": "136",
+        "January 28, 2018": "69",
+        "January 30, 2022": "29",
+        "January 31, 2021": "57"
+      }
+    },
+    {
+      "account_name": "     Interest expense",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "(52)",
+        "January 27, 2019": "(58)",
+        "January 28, 2018": "(61)",
+        "January 30, 2022": "(236)",
+        "January 31, 2021": "(184)"
+      }
+    },
+    {
+      "account_name": "     Other, net",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "(2)",
+        "January 27, 2019": "14",
+        "January 28, 2018": "(22)",
+        "January 30, 2022": "107",
+        "January 31, 2021": "4"
+      }
+    },
+    {
+      "account_name": "        Total other income (expense)",
+      "indent_level": 2,
+      "values": {
+        "January 26, 2020": "124",
+        "January 27, 2019": "92",
+        "January 28, 2018": "(14)"
+      }
+    },
+    {
+      "account_name": "Income before income tax",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "2,970",
+        "January 27, 2019": "3,896",
+        "January 28, 2018": "3,196",
+        "January 30, 2022": "9,941",
+        "January 31, 2021": "4,409"
+      }
+    },
+    {
+      "account_name": "Income tax expense (benefit)",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "174",
+        "January 27, 2019": "(245)",
+        "January 28, 2018": "149"
+      }
+    },
+    {
+      "account_name": "Net income",
+      "indent_level": 0,
+      "values": {
+        "January 26, 2020": "$          2,796",
+        "January 27, 2019": "$         4,141",
+        "January 28, 2018": "$         3,047",
+        "January 30, 2022": "$        9,752",
+        "January 31, 2021": "$         4,332"
+      }
+    },
+    {
+      "account_name": "Net income per share:",
+      "indent_level": 0,
+      "values": {}
+    },
+    {
+      "account_name": "      Basic",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "2,439",
+        "January 27, 2019": "608",
+        "January 28, 2018": "599",
+        "January 30, 2022": "2,496",
+        "January 31, 2021": "2,467"
+      }
+    },
+    {
+      "account_name": "      Diluted",
+      "indent_level": 1,
+      "values": {
+        "January 26, 2020": "2,472",
+        "January 27, 2019": "625",
+        "January 28, 2018": "632",
+        "January 30, 2022": "2,535",
+        "January 31, 2021": "2,510"
+      }
+    },
+    {
+      "account_name": "Weighted average shares used in per share computation:",
+      "indent_level": 0,
+      "values": {}
+    },
+    {
+      "account_name": "       Total operating expenses",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "7,434",
+        "January 31, 2021": "5,864",
+        "January 26, 2020": "3,922"
+      }
+    },
+    {
+      "account_name": "       Other income (expense), net",
+      "indent_level": 2,
+      "values": {
+        "January 30, 2022": "(100)",
+        "January 31, 2021": "(123)",
+        "January 26, 2020": "124"
+      }
+    },
+    {
+      "account_name": "Income tax expense",
+      "indent_level": 0,
+      "values": {
+        "January 30, 2022": "189",
+        "January 31, 2021": "77",
+        "January 26, 2020": "174"
+      }
+    },
+    {
+      "account_name": "Net income per share: ",
+      "indent_level": 0,
+      "values": {}
+    },
+    {
+      "account_name": "Weighted average shares used in per share computation: ",
+      "indent_level": 0,
+      "values": {}
+    }
+  ]
+}
