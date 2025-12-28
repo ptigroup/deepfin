@@ -454,8 +454,9 @@ class OutputManager:
         """Ensure output directory structure exists."""
         # Create base directories
         (self.output_base / "runs").mkdir(parents=True, exist_ok=True)
-        (self.output_base / "by_document").mkdir(parents=True, exist_ok=True)
-        (self.output_base / "by_statement").mkdir(parents=True, exist_ok=True)
+
+        # Cache directories for future performance optimization
+        # TODO: Implement caching to reduce API calls
         (self.output_base / "cache" / "llmwhisperer").mkdir(parents=True, exist_ok=True)
         (self.output_base / "cache" / "page_detection").mkdir(parents=True, exist_ok=True)
 

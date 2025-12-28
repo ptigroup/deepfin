@@ -13,21 +13,31 @@ Pipeline:
 6. VALIDATION: Comprehensive checks on pages, data, timeline, outputs
 
 Usage:
+    # Testing mode (uses samples/ directory)
     python scripts/test_end_to_end_pipeline.py
 
-Test PDFs:
+    # Production mode (uses input/ directory)
+    python scripts/test_end_to_end_pipeline.py --mode production
+
+    # Custom PDFs (auto-detects mode from path)
+    python scripts/test_end_to_end_pipeline.py path/to/file1.pdf path/to/file2.pdf
+
+    # Production mode with specific PDFs
+    python scripts/test_end_to_end_pipeline.py --mode production input/Company_10K.pdf
+
+Test PDFs (testing mode):
     - samples/input/NVIDIA 10K 2020-2019.pdf
     - samples/input/NVIDIA 10K 2022-2021.pdf
 
 Expected Outputs:
-    - samples/output/consolidated/income_statement_YYYY-YYYY.json
-    - samples/output/consolidated/income_statement_YYYY-YYYY.xlsx
-    - (Same for all 5 statement types found)
+    Testing mode:  samples/output/runs/YYYYMMDD_HHMMSS_STATUS/
+    Production mode: output/runs/YYYYMMDD_HHMMSS_STATUS/
 """
 
 import os
 import sys
 import json
+import argparse
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Tuple, Optional
@@ -40,6 +50,9 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 # Load environment variables
 from dotenv import load_dotenv
 load_dotenv()
+
+# Import path configuration
+from scripts.path_config import PathConfig
 
 from unstract.llmwhisperer import LLMWhispererClientV2
 from unstract.llmwhisperer.client_v2 import LLMWhispererClientException
@@ -150,7 +163,7 @@ class EndToEndPipeline:
         print("\n" + report)
 
         # Complete the run
-        final_status = RunStatus.SUCCESS if validation.get("all_checks_passed", False) else RunStatus.PARTIAL
+        final_status = RunStatus.SUCCESS if validation.get("overall_success", False) else RunStatus.PARTIAL
         self.current_run.complete(status=final_status)
 
         print(f"\n[RUN] Completed run: {self.current_run.run_id} ({final_status})")
@@ -867,47 +880,100 @@ class EndToEndPipeline:
 
 def main():
     """Run end-to-end pipeline test."""
-    # Accept PDFs from command line or use default NVIDIA PDFs
-    if len(sys.argv) > 1:
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser(
+        description="Financial statement processing pipeline",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Testing mode (default - uses samples/)
+  python scripts/test_end_to_end_pipeline.py
+
+  # Production mode (uses input/ and output/)
+  python scripts/test_end_to_end_pipeline.py --mode production
+
+  # Process specific PDFs
+  python scripts/test_end_to_end_pipeline.py input/Company1.pdf input/Company2.pdf
+
+  # Production mode with specific PDFs
+  python scripts/test_end_to_end_pipeline.py --mode production input/*.pdf
+        """
+    )
+    parser.add_argument(
+        "pdfs",
+        nargs="*",
+        help="PDF files to process (optional - uses defaults if not provided)"
+    )
+    parser.add_argument(
+        "--mode",
+        choices=["production", "testing"],
+        default=None,
+        help="Processing mode (default: auto-detect from paths or use 'testing')"
+    )
+
+    args = parser.parse_args()
+
+    # Determine mode and paths
+    if args.mode:
+        # Explicit mode from command line
+        mode = args.mode
+        config = PathConfig(mode=mode)
+    elif args.pdfs and any("input/" in str(p) or "\\input\\" in str(p) for p in args.pdfs):
+        # Auto-detect production mode from paths
+        mode = "production"
+        config = PathConfig(mode="production")
+    else:
+        # Default to testing mode
+        mode = "testing"
+        config = PathConfig(mode="testing")
+
+    print(f">>> Running in {mode.upper()} mode")
+    print(f">>> Input directory: {config.input_dir}")
+    print(f">>> Output directory: {config.output_runs_dir}\n")
+
+    # Determine PDF paths
+    if args.pdfs:
         # Use PDFs from command line arguments
-        pdf_paths = [Path(arg) for arg in sys.argv[1:]]
+        pdf_paths = [Path(arg) for arg in args.pdfs]
         print(f"Using PDFs from command line: {[p.name for p in pdf_paths]}")
     else:
-        # Default: Test PDFs (NO HARDCODING - could be any PDFs!)
-        pdf_dir = Path("samples/input")
+        # Default: Use sample NVIDIA PDFs
         pdf_paths = [
-            pdf_dir / "NVIDIA 10K 2020-2019.pdf",
-            pdf_dir / "NVIDIA 10K 2022-2021.pdf"
+            config.input_dir / "NVIDIA 10K 2020-2019.pdf",
+            config.input_dir / "NVIDIA 10K 2022-2021.pdf"
         ]
-        print(f"Using default NVIDIA PDFs")
+        print(f"Using default NVIDIA PDFs from {config.input_dir}")
 
     # Verify PDFs exist
     for pdf_path in pdf_paths:
         if not pdf_path.exists():
             print(f"ERROR: PDF not found: {pdf_path}")
+            print(f"       Check that files exist in: {pdf_path.parent}")
             return 1
 
-    # Output directory
-    output_dir = Path("samples/output/consolidated")
+    # Ensure output directories exist
+    config.ensure_directories()
 
-    # Run pipeline
-    pipeline = EndToEndPipeline()
+    # Run pipeline (OutputManager will use the configured output directory)
+    pipeline = EndToEndPipeline(output_base=str(config.output_runs_dir.parent))
 
     try:
-        results = pipeline.run_full_pipeline(pdf_paths, output_dir)
+        results = pipeline.run_full_pipeline(pdf_paths)
 
-        # Save full results
-        results_path = output_dir / f"pipeline_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        with open(results_path, 'w') as f:
-            # Convert Path objects to strings for JSON serialization
-            serializable_results = {
-                "report": results["report"],
-                "validation": results["validation"],
-                "duration_seconds": results["duration_seconds"]
-            }
-            json.dump(serializable_results, f, indent=2)
+        # Save full results to run directory
+        if pipeline.current_run:
+            results_path = pipeline.current_run.run_dir / f"pipeline_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+            with open(results_path, 'w') as f:
+                # Convert Path objects to strings for JSON serialization
+                serializable_results = {
+                    "report": results["report"],
+                    "validation": results["validation"],
+                    "duration_seconds": results["duration_seconds"]
+                }
+                json.dump(serializable_results, f, indent=2)
 
-        print(f"\n>>> Full results saved to: {results_path}")
+            print(f"\n>>> Full results saved to: {results_path}")
+            print(f">>> Run directory: {pipeline.current_run.run_dir}")
 
         # Exit code based on success
         return 0 if results["validation"]["overall_success"] else 1

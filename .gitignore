@@ -43,13 +43,38 @@ tmp/
 temp/
 *.tmp
 
-# Uploaded files
-uploads/
-
 # Cache
 .cache/
 
-# Old brownfield code (keeping for reference but not tracking changes)
+# ============================================================================
+# PRODUCTION DATA FOLDERS (exclude user data, keep structure)
+# ============================================================================
+
+# Production input PDFs (user uploads)
+/input/*
+!/input/README.md
+!/input/.gitkeep
+
+# Temporary upload staging
+/uploads/*
+!/uploads/README.md
+!/uploads/.gitkeep
+
+# Processing outputs (generated data)
+/output/runs/*
+!/output/runs/.gitkeep
+/output/archive/*
+!/output/archive/README.md
+!/output/archive/.gitkeep
+/output/cache/*
+!/output/cache/.gitkeep
+
+# Keep samples folder (for testing/examples) - DO NOT IGNORE
+# /samples/ is tracked in git
+
+# ============================================================================
+# OLD BROWNFIELD CODE (keeping for reference but not tracking changes)
+# ============================================================================
 # NOTE: Using / prefix to only match at root level, not in subdirectories
 /core/
 /parsers/
@@ -59,8 +84,6 @@ pipeline_*/
 /dump/
 /migration_backup/
 /reference/
-/input/
-/output/
 
 # Old Python scripts (brownfield - only in root directory)
 /audit_*.py

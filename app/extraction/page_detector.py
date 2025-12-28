@@ -180,10 +180,19 @@ STATEMENT_PATTERNS = {
             r"\.{4,}\s*\d+\s*$"
         ],
         'required_patterns': [
+            # Format 1: "Cash flows from X activities" (NVIDIA format)
             r"cash\s+flows?\s+from\s+operating\s+activities",
             r"cash\s+flows?\s+from\s+investing\s+activities",
             r"cash\s+flows?\s+from\s+financing\s+activities",
-            # Allow supplemental pages (which won't have the above)
+            # Format 2: "X activities" as header + "net cash" (Google/Alphabet format)
+            r"operating\s+activities.*net\s+cash",
+            r"investing\s+activities.*net\s+cash",
+            r"financing\s+activities.*net\s+cash",
+            # Format 3: Just section headers (simplified format)
+            r"(?:^|\n)\s*operating\s+activities\s*(?:\n|$)",
+            r"(?:^|\n)\s*investing\s+activities\s*(?:\n|$)",
+            r"(?:^|\n)\s*financing\s+activities\s*(?:\n|$)",
+            # Supplemental cash flow pages
             r"supplemental\s+disclosures?\s+of\s+cash\s+flow",
         ],
         'min_content_matches': 0,  # Reduced from 1 - supplemental pages have NO standard content indicators
@@ -542,13 +551,41 @@ class PageDetector:
         return False
 
     def _is_index_entry(self, page) -> bool:
-        """Detect index/navigation entries"""
+        """
+        Detect index/navigation entries.
+
+        Note: Many PDFs have "Table of Contents" as a header/navigation element
+        on every page. We need to distinguish actual TOC pages from pages that
+        just have TOC in the header.
+        """
         text = page.get_text("text")
 
+        # Check for actual index pages (not just header text)
         if re.search(r"index\s*$", text[:100], re.IGNORECASE):
             return True
+
+        # Only consider it a TOC page if it has TOC-specific patterns:
+        # 1. Has "Table of Contents" in first 200 chars AND
+        # 2. Has TOC-like content (page numbers, dots, chapter references)
         if re.search(r"table of contents", text[:200], re.IGNORECASE):
-            return True
+            # Check for TOC-specific patterns throughout the page
+            toc_indicators = [
+                r"\.{3,}",  # Multiple dots (leading to page numbers)
+                r"\s+\d+\s*$",  # Line ending with page number
+                r"page\s+\d+",  # Explicit page references
+                r"part\s+[ivx]+",  # Roman numeral parts (Part I, Part II)
+                r"item\s+\d+\.",  # Item references (Item 1., Item 2.)
+            ]
+
+            # If it has TOC indicators, it's likely a real TOC page
+            toc_count = sum(1 for pattern in toc_indicators if re.search(pattern, text, re.IGNORECASE))
+            if toc_count >= 2:
+                return True
+
+            # Additional check: If "CONSOLIDATED" appears (financial statement keyword),
+            # it's NOT a TOC page, it's a financial statement with TOC in header
+            if re.search(r"consolidated\s+(?:balance|statements?)", text, re.IGNORECASE):
+                return False
 
         return False
 
