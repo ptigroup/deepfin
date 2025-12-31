@@ -704,7 +704,7 @@ class EndToEndPipeline:
             issue_map.add(issue["header_name"])
 
         # Instruction row (row 1)
-        ws.append(["💡 Tip: Unhide columns F-H to see merge tracking details (Source PDFs, Merge Status, Notes)"])
+        ws.append(["Tip: Unhide columns F-H to see merge tracking details (Source PDFs, Merge Status, Notes)"])
         ws.merge_cells('A1:E1')
         ws['A1'].font = Font(italic=True, size=10, color="666666")
         ws['A1'].fill = PatternFill(start_color="F0F0F0", end_color="F0F0F0", fill_type="solid")
@@ -1033,7 +1033,7 @@ class EndToEndPipeline:
                 issue_fill = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid")  # Red
 
                 # Instruction row
-                ws.append(["💡 Tip: Unhide columns F-H to see merge tracking details (Source PDFs, Merge Status, Notes)"])
+                ws.append(["Tip: Unhide columns F-H to see merge tracking details (Source PDFs, Merge Status, Notes)"])
                 ws.merge_cells(f'A1:{chr(64+len(fiscal_years)+1)}1')  # Merge across visible columns
                 ws['A1'].font = Font(italic=True, size=10, color="666666")
                 ws['A1'].fill = PatternFill(start_color="F0F0F0", end_color="F0F0F0", fill_type="solid")
