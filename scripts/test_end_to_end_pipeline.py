@@ -677,7 +677,7 @@ class EndToEndPipeline:
         return outputs
 
     def _generate_excel(self, data: Dict, excel_path: Path):
-        """Generate formatted Excel file with optional Merge Summary sheet."""
+        """Generate formatted Excel file with hidden merge tracking columns."""
         from openpyxl import Workbook
         from openpyxl.styles import Font, Alignment, numbers, PatternFill
 
@@ -685,20 +685,46 @@ class EndToEndPipeline:
         ws = wb.active
         ws.title = data.get("statement_type", "Statement")
 
-        # Get fiscal years and periods
+        # Get fiscal years and metadata
         fiscal_years = data.get("fiscal_years", [])
-        periods = data.get("periods", [])
+        metadata = data.get("consolidation_metadata", {})
 
-        # Header row
-        headers = ["Account Name"] + [str(year) for year in fiscal_years]
+        # Build merge tracking lookups
+        merged_map = {}  # account_name -> list of sources
+        unmerged_map = {}  # account_name -> source info
+        issue_map = set()  # account names with issues
+
+        for merged in metadata.get("merged_accounts", []):
+            merged_map[merged["consolidated_name"]] = merged["merged_from"]
+
+        for unmerged in metadata.get("unmerged_accounts", []):
+            unmerged_map[unmerged["account_name"]] = unmerged
+
+        for issue in metadata.get("duplicate_headers", []):
+            issue_map.add(issue["header_name"])
+
+        # Instruction row (row 1)
+        ws.append(["💡 Tip: Unhide columns F-H to see merge tracking details (Source PDFs, Merge Status, Notes)"])
+        ws.merge_cells('A1:E1')
+        ws['A1'].font = Font(italic=True, size=10, color="666666")
+        ws['A1'].fill = PatternFill(start_color="F0F0F0", end_color="F0F0F0", fill_type="solid")
+
+        # Header row (row 2)
+        headers = ["Account Name"] + [str(year) for year in fiscal_years] + ["Source PDFs", "Merge Status", "Notes"]
         ws.append(headers)
 
-        # Bold header
-        for cell in ws[1]:
+        # Bold headers
+        for cell in ws[2]:
             cell.font = Font(bold=True)
 
+        # Color definitions
+        merged_fill = PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid")  # Green
+        unmerged_fill = PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid")  # Yellow
+        issue_fill = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid")  # Red
+
         # Data rows
-        for item in data.get("line_items", []):
+        line_items = data.get("line_items", [])
+        for item in line_items:
             account_name = item.get("account_name", "")
             indent_level = item.get("indent_level", 0)
             values_dict = item.get("values", {})
@@ -706,12 +732,9 @@ class EndToEndPipeline:
             # Apply indentation
             indented_name = ("  " * indent_level) + account_name
 
-            # Build row
+            # Build data columns
             row = [indented_name]
-
-            # Add values for each fiscal year
             for year in fiscal_years:
-                # Find matching period for this year
                 value = ""
                 for period, val in values_dict.items():
                     if str(year) in period:
@@ -719,13 +742,48 @@ class EndToEndPipeline:
                         break
                 row.append(value)
 
+            # Determine merge status and add hidden columns
+            if account_name in merged_map:
+                sources = merged_map[account_name]
+                source_pdfs = "\n".join([s["source_pdf"] for s in sources])
+                status = "✓ Merged"
+                notes = ""
+                row_fill = merged_fill
+
+                if account_name in issue_map:
+                    notes = "Inconsistent formatting between PDFs"
+                    status = "⚠ Merged (issues)"
+                    row_fill = issue_fill
+
+            elif account_name in unmerged_map:
+                info = unmerged_map[account_name]
+                source_pdfs = info["source_pdf"]
+                status = "⚠ Unmerged"
+                notes = f"Only in {source_pdfs}"
+                row_fill = unmerged_fill
+
+            else:
+                source_pdfs = ""
+                status = ""
+                notes = ""
+                row_fill = None
+
+            # Add hidden columns
+            row.extend([source_pdfs, status, notes])
+
+            # Append row
             ws.append(row)
 
-        # Format numbers
-        for row in ws.iter_rows(min_row=2):
-            for cell in row[1:]:  # Skip account name column
+            # Apply color coding (skip instruction row)
+            current_row = ws.max_row
+            if row_fill:
+                for col_idx in range(1, len(fiscal_years) + 2):  # Account name + year columns
+                    ws.cell(row=current_row, column=col_idx).fill = row_fill
+
+        # Format numbers (skip instruction row)
+        for row in ws.iter_rows(min_row=3):
+            for cell in row[1:len(fiscal_years)+1]:  # Only year columns
                 if cell.value and isinstance(cell.value, str):
-                    # Try to parse as number
                     clean_val = cell.value.replace('$', '').replace(',', '').replace('(', '-').replace(')', '').strip()
                     try:
                         numeric_val = float(clean_val)
@@ -734,8 +792,16 @@ class EndToEndPipeline:
                     except:
                         pass
 
+        # Hide merge tracking columns
+        hidden_col_start = len(fiscal_years) + 2  # After Account Name + years
+        ws.column_dimensions[ws.cell(row=2, column=hidden_col_start).column_letter].hidden = True  # Source PDFs
+        ws.column_dimensions[ws.cell(row=2, column=hidden_col_start+1).column_letter].hidden = True  # Merge Status
+        ws.column_dimensions[ws.cell(row=2, column=hidden_col_start+2).column_letter].hidden = True  # Notes
+
+        # Adjust column widths
+        ws.column_dimensions['A'].width = 50
+
         # Add Merge Summary sheet if consolidation metadata exists
-        metadata = data.get("consolidation_metadata")
         if metadata and (metadata.get("total_accounts_merged", 0) > 0 or
                          metadata.get("total_duplicate_headers", 0) > 0):
             self._add_merge_summary_sheet(wb, metadata)
@@ -943,20 +1009,47 @@ class EndToEndPipeline:
 
                 ws = wb.create_sheet(title=sheet_name, index=idx)
 
-                # Get fiscal years for this statement
+                # Get fiscal years and metadata
                 fiscal_years = data.get("fiscal_years", [])
+                metadata = data.get("consolidation_metadata", {})
+
+                # Build merge tracking lookups
+                merged_map = {}
+                unmerged_map = {}
+                issue_map = set()
+
+                for merged in metadata.get("merged_accounts", []):
+                    merged_map[merged["consolidated_name"]] = merged["merged_from"]
+
+                for unmerged in metadata.get("unmerged_accounts", []):
+                    unmerged_map[unmerged["account_name"]] = unmerged
+
+                for issue in metadata.get("duplicate_headers", []):
+                    issue_map.add(issue["header_name"])
+
+                # Color definitions
+                merged_fill = PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid")  # Green
+                unmerged_fill = PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid")  # Yellow
+                issue_fill = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid")  # Red
+
+                # Instruction row
+                ws.append(["💡 Tip: Unhide columns F-H to see merge tracking details (Source PDFs, Merge Status, Notes)"])
+                ws.merge_cells(f'A1:{chr(64+len(fiscal_years)+1)}1')  # Merge across visible columns
+                ws['A1'].font = Font(italic=True, size=10, color="666666")
+                ws['A1'].fill = PatternFill(start_color="F0F0F0", end_color="F0F0F0", fill_type="solid")
 
                 # Header row
-                headers = ["Account Name"] + [str(year) for year in fiscal_years]
+                headers = ["Account Name"] + [str(year) for year in fiscal_years] + ["Source PDFs", "Merge Status", "Notes"]
                 ws.append(headers)
 
-                # Bold header
-                for cell in ws[1]:
+                # Bold headers
+                for cell in ws[2]:
                     cell.font = Font(bold=True)
                     cell.alignment = Alignment(horizontal='center')
 
                 # Data rows
-                for item in data.get("line_items", []):
+                line_items = data.get("line_items", [])
+                for item in line_items:
                     account_name = item.get("account_name", "")
                     indent_level = item.get("indent_level", 0)
                     values_dict = item.get("values", {})
@@ -964,12 +1057,9 @@ class EndToEndPipeline:
                     # Apply indentation
                     indented_name = ("  " * indent_level) + account_name
 
-                    # Build row
+                    # Build data columns
                     row = [indented_name]
-
-                    # Add values for each fiscal year
                     for year in fiscal_years:
-                        # Find matching period for this year
                         value = ""
                         for period, val in values_dict.items():
                             if str(year) in period:
@@ -977,13 +1067,48 @@ class EndToEndPipeline:
                                 break
                         row.append(value)
 
+                    # Determine merge status and add hidden columns
+                    if account_name in merged_map:
+                        sources = merged_map[account_name]
+                        source_pdfs = "\n".join([s["source_pdf"] for s in sources])
+                        status = "✓ Merged"
+                        notes = ""
+                        row_fill = merged_fill
+
+                        if account_name in issue_map:
+                            notes = "Inconsistent formatting between PDFs"
+                            status = "⚠ Merged (issues)"
+                            row_fill = issue_fill
+
+                    elif account_name in unmerged_map:
+                        info = unmerged_map[account_name]
+                        source_pdfs = info["source_pdf"]
+                        status = "⚠ Unmerged"
+                        notes = f"Only in {source_pdfs}"
+                        row_fill = unmerged_fill
+
+                    else:
+                        source_pdfs = ""
+                        status = ""
+                        notes = ""
+                        row_fill = None
+
+                    # Add hidden columns
+                    row.extend([source_pdfs, status, notes])
+
+                    # Append row
                     ws.append(row)
 
+                    # Apply color coding
+                    current_row = ws.max_row
+                    if row_fill:
+                        for col_idx in range(1, len(fiscal_years) + 2):  # Account name + year columns
+                            ws.cell(row=current_row, column=col_idx).fill = row_fill
+
                 # Format numbers
-                for row in ws.iter_rows(min_row=2):
-                    for cell in row[1:]:  # Skip account name column
+                for row in ws.iter_rows(min_row=3):
+                    for cell in row[1:len(fiscal_years)+1]:  # Only year columns
                         if cell.value and isinstance(cell.value, str):
-                            # Try to parse as number
                             clean_val = cell.value.replace('$', '').replace(',', '').replace('(', '-').replace(')', '').strip()
                             try:
                                 numeric_val = float(clean_val)
@@ -991,6 +1116,12 @@ class EndToEndPipeline:
                                 cell.number_format = '#,##0'
                             except:
                                 pass
+
+                # Hide merge tracking columns
+                hidden_col_start = len(fiscal_years) + 2  # After Account Name + years
+                ws.column_dimensions[ws.cell(row=2, column=hidden_col_start).column_letter].hidden = True
+                ws.column_dimensions[ws.cell(row=2, column=hidden_col_start+1).column_letter].hidden = True
+                ws.column_dimensions[ws.cell(row=2, column=hidden_col_start+2).column_letter].hidden = True
 
                 # Auto-size first column
                 ws.column_dimensions['A'].width = 50
