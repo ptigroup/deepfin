@@ -994,6 +994,7 @@ class EndToEndPipeline:
 
             # 2. CREATE COMBINED EXCEL (MULTI-SHEET)
             print(f"  Creating combined Excel workbook...")
+            from openpyxl.styles import PatternFill
             wb = Workbook()
 
             # Remove default sheet
