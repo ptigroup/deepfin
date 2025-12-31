@@ -40,9 +40,12 @@ import json
 import argparse
 from pathlib import Path
 from datetime import datetime
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple, Optional, TYPE_CHECKING
 from collections import defaultdict
 from difflib import SequenceMatcher
+
+if TYPE_CHECKING:
+    from openpyxl import Workbook
 
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -64,6 +67,78 @@ from app.extraction.pydantic_extractor import PydanticExtractor
 from app.export.excel_exporter import SchemaBasedExcelExporter
 
 logger = get_logger(__name__)
+
+
+class ConsolidationTracker:
+    """Track merge operations during consolidation for transparency and debugging."""
+
+    def __init__(self):
+        self.merged_accounts = []  # List of accounts that were merged
+        self.unmerged_accounts = []  # Accounts that appeared in only one source
+        self.duplicate_headers = []  # Section headers that appear multiple times
+        self.source_pdfs = set()  # All source PDFs
+
+    def track_merge(self, consolidated_name: str, section: Optional[str],
+                    sources: List[Dict[str, str]]):
+        """
+        Track that multiple accounts were merged into one.
+
+        Args:
+            consolidated_name: The final account name in consolidated output
+            section: Section this account belongs to
+            sources: List of dicts with 'name', 'section', 'source_pdf' keys
+        """
+        # Only track if actually merged from multiple sources
+        if len(sources) > 1:
+            self.merged_accounts.append({
+                "consolidated_name": consolidated_name,
+                "section": section,
+                "merged_from": sources
+            })
+
+        # Track source PDFs
+        for source in sources:
+            self.source_pdfs.add(source.get("source_pdf", "unknown"))
+
+    def track_unmerged(self, account_name: str, section: Optional[str],
+                       source_pdf: str, reason: str, values_count: int = 0):
+        """
+        Track accounts that appeared in only one source (potential missing data).
+
+        Args:
+            account_name: Account name
+            section: Section
+            source_pdf: Which PDF it came from
+            reason: Why it wasn't merged (e.g., 'only_in_one_pdf', 'section_mismatch')
+            values_count: Number of values (0 = empty header)
+        """
+        self.unmerged_accounts.append({
+            "account_name": account_name,
+            "section": section,
+            "source_pdf": source_pdf,
+            "reason": reason,
+            "values_count": values_count
+        })
+
+    def track_duplicate_header(self, header_name: str, sources: List[Dict[str, str]]):
+        """Track section headers that appear multiple times with different metadata."""
+        if len(sources) > 1:
+            self.duplicate_headers.append({
+                "header_name": header_name,
+                "occurrences": sources
+            })
+
+    def get_summary(self) -> Dict:
+        """Get consolidation summary for inclusion in output."""
+        return {
+            "merged_accounts": self.merged_accounts,
+            "unmerged_accounts": self.unmerged_accounts,
+            "duplicate_headers": self.duplicate_headers,
+            "total_accounts_merged": len([m for m in self.merged_accounts if len(m["merged_from"]) > 1]),
+            "total_accounts_unmerged": len(self.unmerged_accounts),
+            "total_duplicate_headers": len(self.duplicate_headers),
+            "source_pdfs": sorted(list(self.source_pdfs))
+        }
 
 
 class EndToEndPipeline:
@@ -362,12 +437,15 @@ class EndToEndPipeline:
             structured = extractions[0]["structured_data"]
             return self._format_single_extraction(structured, stmt_type)
 
-        # Multiple sources - need to merge
+        # Multiple sources - need to merge with tracking
+        tracker = ConsolidationTracker()
         all_periods = []
         all_line_items = {}  # account_key -> merged data
+        account_sources = {}  # account_key -> list of sources
 
         for extraction in extractions:
             structured = extraction["structured_data"]
+            source_pdf = extraction.get("pdf_name", "unknown")
 
             # Collect periods (fiscal years)
             if hasattr(structured, 'periods'):
@@ -379,17 +457,62 @@ class EndToEndPipeline:
                     account_name = item.account_name
                     indent = item.indent_level
                     section = item.section if hasattr(item, 'section') else None
+                    values_count = len(item.values) if hasattr(item, 'values') else 0
 
-                    # Create unique key - INCLUDE SECTION to prevent merging different sections
-                    account_key = f"{account_name}_{indent}_{section or ''}"
+                    # Smart key generation: Total/summary lines should merge regardless of section
+                    # because LLM may inconsistently assign sections to these
+                    account_name_lower = account_name.lower().strip()
+                    is_total_or_header = (
+                        'total' in account_name_lower or
+                        account_name_lower.endswith(':') or  # Section headers
+                        account_name == "Assets" or
+                        account_name == "Liabilities and Stockholders' Equity" or
+                        account_name == "Liabilities" or
+                        account_name == "Stockholders' equity" or
+                        account_name == "Commitments and Contingencies (Note 10)" or
+                        values_count == 0  # Empty headers
+                    )
+
+                    if is_total_or_header:
+                        # For totals and headers: merge by name only (ignore both section AND indent)
+                        # LLM may assign different indent levels to the same total line
+                        account_key = f"{account_name}_HEADER"
+                    else:
+                        # For data accounts: require name + indent + section match
+                        account_key = f"{account_name}_{indent}_{section or ''}"
+
+                    # Track source information
+                    if account_key not in account_sources:
+                        account_sources[account_key] = []
+
+                    account_sources[account_key].append({
+                        "name": account_name,
+                        "section": section,
+                        "indent_level": indent,
+                        "source_pdf": source_pdf,
+                        "values_count": values_count
+                    })
 
                     if account_key not in all_line_items:
                         all_line_items[account_key] = {
                             "account_name": account_name,
                             "indent_level": indent,
-                            "section": section,  # NEW: Preserve section
+                            "section": section,
                             "values": {}
                         }
+                    else:
+                        # Account already exists - update metadata if current one is better
+                        existing_section = all_line_items[account_key]["section"]
+                        existing_indent = all_line_items[account_key]["indent_level"]
+
+                        # Prefer non-null sections (LLM inconsistency fix)
+                        if existing_section is None and section is not None:
+                            all_line_items[account_key]["section"] = section
+
+                        # For headers/totals: prefer smaller indent (less indented = more general)
+                        # For data accounts: keep the first indent we see (they should match anyway)
+                        if is_total_or_header and indent < existing_indent:
+                            all_line_items[account_key]["indent_level"] = indent
 
                     # Add values for this period
                     if hasattr(item, 'values') and hasattr(structured, 'periods'):
@@ -398,6 +521,40 @@ class EndToEndPipeline:
                                 period_key = structured.periods[i]
                                 all_line_items[account_key]["values"][period_key] = value
 
+        # Track all merges and non-merges
+        for account_key, sources in account_sources.items():
+            account_data = all_line_items[account_key]
+            account_name = account_data["account_name"]
+            section = account_data["section"]
+            values_count = len(account_data["values"])
+
+            if len(sources) > 1:
+                # Account was merged from multiple sources
+                tracker.track_merge(account_name, section, sources)
+
+                # Check if metadata was inconsistent (LLM extraction issue)
+                sections = set(s["section"] for s in sources)
+                indents = set(s["indent_level"] for s in sources)
+
+                # Flag if sections are inconsistent (some null, some not)
+                # OR if indent levels are inconsistent (different values)
+                if (len(sections) > 1 and None in sections) or len(indents) > 1:
+                    # Metadata inconsistency - LLM extracted same account with different metadata
+                    tracker.track_duplicate_header(account_name, sources)
+            else:
+                # Account only in one source - potential missing data or unique account
+                source = sources[0]
+                reason = "only_in_one_pdf"
+                if values_count == 0:
+                    reason = "empty_header_single_source"
+                tracker.track_unmerged(
+                    account_name,
+                    section,
+                    source["source_pdf"],
+                    reason,
+                    values_count
+                )
+
         # Extract fiscal years from periods
         fiscal_years = self._extract_years_from_periods(all_periods)
 
@@ -405,7 +562,8 @@ class EndToEndPipeline:
             "statement_type": stmt_type.value,
             "fiscal_years": sorted(fiscal_years, reverse=True),
             "periods": sorted(set(all_periods), reverse=True),
-            "line_items": list(all_line_items.values())
+            "line_items": list(all_line_items.values()),
+            "consolidation_metadata": tracker.get_summary()
         }
 
     def _format_single_extraction(self, structured_data, stmt_type: FinancialStatementType) -> Dict:
@@ -428,15 +586,25 @@ class EndToEndPipeline:
             formatted_items.append({
                 "account_name": item.account_name,
                 "indent_level": item.indent_level if hasattr(item, 'indent_level') else 0,
-                "section": item.section if hasattr(item, 'section') else None,  # NEW: Preserve section
+                "section": item.section if hasattr(item, 'section') else None,
                 "values": values_dict
             })
 
+        # No consolidation happened (single source), but still include metadata
         return {
             "statement_type": stmt_type.value,
             "fiscal_years": sorted(fiscal_years, reverse=True),
             "periods": periods,
-            "line_items": formatted_items
+            "line_items": formatted_items,
+            "consolidation_metadata": {
+                "merged_accounts": [],
+                "unmerged_accounts": [],
+                "duplicate_headers": [],
+                "total_accounts_merged": 0,
+                "total_accounts_unmerged": 0,
+                "total_duplicate_headers": 0,
+                "source_pdfs": ["single_source"]
+            }
         }
 
     def _extract_years_from_periods(self, periods: List[str]) -> List[int]:
@@ -509,9 +677,9 @@ class EndToEndPipeline:
         return outputs
 
     def _generate_excel(self, data: Dict, excel_path: Path):
-        """Generate formatted Excel file."""
+        """Generate formatted Excel file with optional Merge Summary sheet."""
         from openpyxl import Workbook
-        from openpyxl.styles import Font, Alignment, numbers
+        from openpyxl.styles import Font, Alignment, numbers, PatternFill
 
         wb = Workbook()
         ws = wb.active
@@ -566,7 +734,153 @@ class EndToEndPipeline:
                     except:
                         pass
 
+        # Add Merge Summary sheet if consolidation metadata exists
+        metadata = data.get("consolidation_metadata")
+        if metadata and (metadata.get("total_accounts_merged", 0) > 0 or
+                         metadata.get("total_duplicate_headers", 0) > 0):
+            self._add_merge_summary_sheet(wb, metadata)
+
         wb.save(excel_path)
+
+    def _add_merge_summary_sheet(self, workbook: "Workbook", metadata: Dict):
+        """Add a dedicated Merge Summary sheet to the workbook."""
+        from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
+
+        # Create new sheet
+        ws = workbook.create_sheet("Merge Summary")
+
+        # Header styling
+        header_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
+        header_font = Font(bold=True, color="FFFFFF", size=12)
+        subheader_fill = PatternFill(start_color="D9E1F2", end_color="D9E1F2", fill_type="solid")
+        subheader_font = Font(bold=True, size=11)
+
+        row = 1
+
+        # Main title
+        ws.merge_cells(f'A{row}:D{row}')
+        cell = ws[f'A{row}']
+        cell.value = "CONSOLIDATION MERGE SUMMARY"
+        cell.font = header_font
+        cell.fill = header_fill
+        cell.alignment = Alignment(horizontal='center', vertical='center')
+        row += 2
+
+        # Summary statistics
+        ws[f'A{row}'] = "Total Accounts Merged:"
+        ws[f'B{row}'] = metadata.get("total_accounts_merged", 0)
+        ws[f'A{row}'].font = Font(bold=True)
+        row += 1
+
+        ws[f'A{row}'] = "Total Duplicate Headers:"
+        ws[f'B{row}'] = metadata.get("total_duplicate_headers", 0)
+        ws[f'A{row}'].font = Font(bold=True)
+        row += 1
+
+        ws[f'A{row}'] = "Total Unmerged Accounts:"
+        ws[f'B{row}'] = metadata.get("total_accounts_unmerged", 0)
+        ws[f'A{row}'].font = Font(bold=True)
+        row += 1
+
+        ws[f'A{row}'] = "Source PDFs:"
+        ws[f'B{row}'] = ", ".join(metadata.get("source_pdfs", []))
+        ws[f'A{row}'].font = Font(bold=True)
+        row += 3
+
+        # Merged Accounts section
+        if metadata.get("merged_accounts"):
+            ws.merge_cells(f'A{row}:D{row}')
+            cell = ws[f'A{row}']
+            cell.value = "MERGED ACCOUNTS"
+            cell.font = subheader_font
+            cell.fill = subheader_fill
+            cell.alignment = Alignment(horizontal='center')
+            row += 1
+
+            # Column headers
+            ws[f'A{row}'] = "Consolidated Name"
+            ws[f'B{row}'] = "Section"
+            ws[f'C{row}'] = "Original Name"
+            ws[f'D{row}'] = "Source PDF"
+            for col in ['A', 'B', 'C', 'D']:
+                ws[f'{col}{row}'].font = Font(bold=True)
+                ws[f'{col}{row}'].fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
+            row += 1
+
+            # Data rows
+            for merged in metadata["merged_accounts"]:
+                consolidated_name = merged["consolidated_name"]
+                section = merged.get("section") or "N/A"
+
+                for source in merged["merged_from"]:
+                    ws[f'A{row}'] = consolidated_name
+                    ws[f'B{row}'] = section
+                    ws[f'C{row}'] = source["name"]
+                    ws[f'D{row}'] = source["source_pdf"]
+                    row += 1
+
+            row += 2
+
+        # Duplicate Headers section
+        if metadata.get("duplicate_headers"):
+            ws.merge_cells(f'A{row}:D{row}')
+            cell = ws[f'A{row}']
+            cell.value = "DUPLICATE HEADERS (Potential Issues)"
+            cell.font = subheader_font
+            cell.fill = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid")
+            cell.alignment = Alignment(horizontal='center')
+            row += 1
+
+            ws[f'A{row}'] = "Header Name"
+            ws[f'B{row}'] = "Section"
+            ws[f'C{row}'] = "Source PDF"
+            ws[f'D{row}'] = "Values Count"
+            for col in ['A', 'B', 'C', 'D']:
+                ws[f'{col}{row}'].font = Font(bold=True)
+            row += 1
+
+            for dup in metadata["duplicate_headers"]:
+                header_name = dup["header_name"]
+                for occurrence in dup["occurrences"]:
+                    ws[f'A{row}'] = header_name
+                    ws[f'B{row}'] = occurrence.get("section") or "N/A"
+                    ws[f'C{row}'] = occurrence["source_pdf"]
+                    ws[f'D{row}'] = occurrence["values_count"]
+                    row += 1
+
+            row += 2
+
+        # Unmerged Accounts section (only show if there are any)
+        unmerged_with_data = [u for u in metadata.get("unmerged_accounts", []) if u["values_count"] > 0]
+        if unmerged_with_data:
+            ws.merge_cells(f'A{row}:D{row}')
+            cell = ws[f'A{row}']
+            cell.value = "UNMERGED ACCOUNTS (Only in One PDF)"
+            cell.font = subheader_font
+            cell.fill = PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid")
+            cell.alignment = Alignment(horizontal='center')
+            row += 1
+
+            ws[f'A{row}'] = "Account Name"
+            ws[f'B{row}'] = "Section"
+            ws[f'C{row}'] = "Source PDF"
+            ws[f'D{row}'] = "Reason"
+            for col in ['A', 'B', 'C', 'D']:
+                ws[f'{col}{row}'].font = Font(bold=True)
+            row += 1
+
+            for unmerged in unmerged_with_data:
+                ws[f'A{row}'] = unmerged["account_name"]
+                ws[f'B{row}'] = unmerged.get("section") or "N/A"
+                ws[f'C{row}'] = unmerged["source_pdf"]
+                ws[f'D{row}'] = unmerged["reason"]
+                row += 1
+
+        # Adjust column widths
+        ws.column_dimensions['A'].width = 40
+        ws.column_dimensions['B'].width = 20
+        ws.column_dimensions['C'].width = 40
+        ws.column_dimensions['D'].width = 30
 
     def _phase4b_generate_combined_outputs(self, consolidated: Dict, output_dir: Path) -> Dict:
         """
