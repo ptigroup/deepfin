@@ -364,32 +364,60 @@ class EndToEndPipeline:
         return all_extractions
 
     def _extract_pages_with_llmwhisperer(self, pdf_path: Path, pages: List[int]) -> str:
-        """Extract specific pages using LLMWhisperer API."""
+        """Extract specific pages using LLMWhisperer API with retry logic."""
+        import time
+
         # Convert pages list to comma-separated string
         pages_str = ",".join(map(str, pages))
 
         print(f"  LLMWhisperer: Extracting pages {pages_str}...")
 
-        try:
-            result = self.llm_client.whisper(
-                file_path=str(pdf_path),
-                mode="form",  # Preserve table structure
-                output_mode="layout_preserving",
-                pages_to_extract=pages_str,
-                wait_for_completion=True,
-                wait_timeout=200
-            )
+        max_retries = 3
+        base_timeout = 200
 
-            raw_text = result.get("extraction", {}).get("result_text", "")
+        for attempt in range(max_retries):
+            try:
+                # Increase timeout on retries
+                timeout = base_timeout * (attempt + 1)
 
-            if not raw_text:
-                raise ValueError("LLMWhisperer returned empty text")
+                if attempt > 0:
+                    print(f"  [RETRY] Attempt {attempt + 1}/{max_retries} (timeout: {timeout}s)")
 
-            return raw_text
+                result = self.llm_client.whisper(
+                    file_path=str(pdf_path),
+                    mode="form",  # Preserve table structure
+                    output_mode="layout_preserving",
+                    pages_to_extract=pages_str,
+                    wait_for_completion=True,
+                    wait_timeout=timeout
+                )
 
-        except LLMWhispererClientException as e:
-            logger.error(f"LLMWhisperer API error: {e}")
-            raise
+                raw_text = result.get("extraction", {}).get("result_text", "")
+
+                if not raw_text:
+                    raise ValueError("LLMWhisperer returned empty text")
+
+                if attempt > 0:
+                    print(f"  [OK] Retry successful!")
+
+                return raw_text
+
+            except (LLMWhispererClientException, Exception) as e:
+                error_msg = str(e)
+                is_timeout = "timeout" in error_msg.lower() or "timed out" in error_msg.lower()
+                is_connection_error = "connection" in error_msg.lower() or "max retries exceeded" in error_msg.lower()
+
+                # Only retry on timeout/connection errors
+                if (is_timeout or is_connection_error) and attempt < max_retries - 1:
+                    wait_time = 5 * (attempt + 1)  # 5s, 10s exponential backoff
+                    logger.warning(f"LLMWhisperer timeout/connection error (attempt {attempt + 1}/{max_retries}): {e}")
+                    print(f"  [WARN] Connection error, retrying in {wait_time}s...")
+                    time.sleep(wait_time)
+                    continue
+                else:
+                    # Last attempt or non-retryable error
+                    logger.error(f"LLMWhisperer API error: {e}")
+                    raise
 
     def _phase3_consolidate_by_type(
         self,
