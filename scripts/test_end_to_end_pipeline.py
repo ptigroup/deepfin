@@ -746,19 +746,19 @@ class EndToEndPipeline:
             if account_name in merged_map:
                 sources = merged_map[account_name]
                 source_pdfs = "\n".join([s["source_pdf"] for s in sources])
-                status = "✓ Merged"
+                status = "Merged"
                 notes = ""
                 row_fill = merged_fill
 
                 if account_name in issue_map:
                     notes = "Inconsistent formatting between PDFs"
-                    status = "⚠ Merged (issues)"
+                    status = "Merged (issues)"
                     row_fill = issue_fill
 
             elif account_name in unmerged_map:
                 info = unmerged_map[account_name]
                 source_pdfs = info["source_pdf"]
-                status = "⚠ Unmerged"
+                status = "Unmerged"
                 notes = f"Only in {source_pdfs}"
                 row_fill = unmerged_fill
 
@@ -1072,19 +1072,19 @@ class EndToEndPipeline:
                     if account_name in merged_map:
                         sources = merged_map[account_name]
                         source_pdfs = "\n".join([s["source_pdf"] for s in sources])
-                        status = "✓ Merged"
+                        status = "Merged"
                         notes = ""
                         row_fill = merged_fill
 
                         if account_name in issue_map:
                             notes = "Inconsistent formatting between PDFs"
-                            status = "⚠ Merged (issues)"
+                            status = "Merged (issues)"
                             row_fill = issue_fill
 
                     elif account_name in unmerged_map:
                         info = unmerged_map[account_name]
                         source_pdfs = info["source_pdf"]
-                        status = "⚠ Unmerged"
+                        status = "Unmerged"
                         notes = f"Only in {source_pdfs}"
                         row_fill = unmerged_fill
 
