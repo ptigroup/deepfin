@@ -291,11 +291,22 @@ class EndToEndPipeline:
     def _phase2_extract_all_statements(
         self,
         pdf_paths: List[Path],
-        all_detections: Dict[Path, Dict]
+        all_detections: Dict[Path, Dict],
+        parallel: bool = False,
+        max_workers: int = 5
     ) -> Dict[Tuple[Path, FinancialStatementType], Dict]:
-        """Phase 2: Extract ONLY detected pages (no token waste)."""
+        """Phase 2: Extract ONLY detected pages (no token waste).
+
+        Args:
+            pdf_paths: Paths to PDF files
+            all_detections: Detected statement pages
+            parallel: Whether to use parallel extraction (default: True)
+            max_workers: Max concurrent extractions (default: 5)
+        """
         all_extractions = {}
 
+        # Build list of extraction tasks
+        extraction_tasks = []
         for pdf_path in pdf_paths:
             detected_pages = all_detections.get(pdf_path, {})
 
@@ -303,65 +314,112 @@ class EndToEndPipeline:
                 print(f"\n[WARN]  Skipping {pdf_path.name} - no statements detected")
                 continue
 
-            print(f"\n>> Extracting from: {pdf_path.name}")
-            print("-" * 70)
-
             for stmt_type, pages in detected_pages.items():
-                print(f"\n  Processing: {stmt_type.value}")
-                print(f"  Pages: {pages}")
+                extraction_tasks.append((pdf_path, stmt_type, pages))
 
-                try:
-                    # EXTRACT ONLY DETECTED PAGES!
-                    raw_text = self._extract_pages_with_llmwhisperer(pdf_path, pages)
+        if not extraction_tasks:
+            return all_extractions
 
-                    # Parse with Pydantic AI
-                    structured_dict = self.extractor.extract_from_text(raw_text)
+        print(f"\n>> Extracting {len(extraction_tasks)} statements")
+        if parallel:
+            print(f"   Using parallel extraction (max {max_workers} concurrent)")
+        print("-" * 70)
 
-                    # Convert to object for easier access
-                    from app.extraction.pydantic_extractor import FinancialStatement
-                    structured_data = FinancialStatement(**structured_dict)
+        if parallel:
+            # Parallel extraction using ThreadPoolExecutor
+            from concurrent.futures import ThreadPoolExecutor, as_completed
 
-                    # Calculate metrics
-                    line_count = len(structured_data.line_items) if hasattr(structured_data, 'line_items') else 0
-                    periods = structured_data.periods if hasattr(structured_data, 'periods') else []
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                # Submit all extraction tasks
+                future_to_task = {
+                    executor.submit(self._extract_single_statement, pdf_path, stmt_type, pages):
+                    (pdf_path, stmt_type)
+                    for pdf_path, stmt_type, pages in extraction_tasks
+                }
 
-                    # Store extraction
-                    all_extractions[(pdf_path, stmt_type)] = {
-                        "statement_type": stmt_type,
-                        "pages": pages,
-                        "raw_text": raw_text,
-                        "structured_data": structured_data,
-                        "pdf_name": pdf_path.name
-                    }
-
-                    # Save extraction to run directory
-                    pdf_name_clean = pdf_path.stem.replace(" ", "_")
-                    self.current_run.save_extraction(
-                        pdf_name=pdf_name_clean,
-                        statement_type=stmt_type.value,
-                        json_data=structured_dict,
-                        raw_text=raw_text,
-                        metadata={
-                            "pages": pages,
-                            "pdf_filename": pdf_path.name,
-                            "periods": periods,
-                            "line_item_count": line_count
-                        },
-                        page_detection={
-                            "detected_pages": pages,
-                            "statement_type": stmt_type.value
-                        }
-                    )
-
-                    # Report success
-                    print(f"  [OK] Extracted {line_count} line items, {len(periods)} periods")
-                    print(f"  [OK] Saved to: extracted/{pdf_name_clean}/{stmt_type.value}.json")
-
-                except Exception as e:
-                    logger.error(f"Extraction failed for {stmt_type.value}: {e}")
-                    print(f"  [FAIL] Extraction failed: {e}")
+                # Process results as they complete
+                for future in as_completed(future_to_task):
+                    pdf_path, stmt_type = future_to_task[future]
+                    try:
+                        result = future.result()
+                        if result:
+                            all_extractions[(pdf_path, stmt_type)] = result
+                    except Exception as e:
+                        logger.error(f"Extraction failed for {pdf_path.name}/{stmt_type.value}: {e}")
+                        print(f"\n  [FAIL] {pdf_path.name}/{stmt_type.value}: {e}")
+        else:
+            # Sequential extraction (original behavior)
+            for pdf_path, stmt_type, pages in extraction_tasks:
+                result = self._extract_single_statement(pdf_path, stmt_type, pages)
+                if result:
+                    all_extractions[(pdf_path, stmt_type)] = result
 
         return all_extractions
+
+    def _extract_single_statement(
+        self,
+        pdf_path: Path,
+        stmt_type: FinancialStatementType,
+        pages: List[int]
+    ) -> Optional[Dict]:
+        """Extract a single statement from a PDF.
+
+        Returns:
+            Extraction result dict, or None if failed
+        """
+        print(f"\n  Processing: {pdf_path.name}/{stmt_type.value}")
+        print(f"  Pages: {pages}")
+
+        try:
+            # EXTRACT ONLY DETECTED PAGES!
+            raw_text = self._extract_pages_with_llmwhisperer(pdf_path, pages)
+
+            # Parse with Pydantic AI
+            structured_dict = self.extractor.extract_from_text(raw_text)
+
+            # Convert to object for easier access
+            from app.extraction.pydantic_extractor import FinancialStatement
+            structured_data = FinancialStatement(**structured_dict)
+
+            # Calculate metrics
+            line_count = len(structured_data.line_items) if hasattr(structured_data, 'line_items') else 0
+            periods = structured_data.periods if hasattr(structured_data, 'periods') else []
+
+            # Save extraction to run directory
+            pdf_name_clean = pdf_path.stem.replace(" ", "_")
+            self.current_run.save_extraction(
+                pdf_name=pdf_name_clean,
+                statement_type=stmt_type.value,
+                json_data=structured_dict,
+                raw_text=raw_text,
+                metadata={
+                    "pages": pages,
+                    "pdf_filename": pdf_path.name,
+                    "periods": periods,
+                    "line_item_count": line_count
+                },
+                page_detection={
+                    "detected_pages": pages,
+                    "statement_type": stmt_type.value
+                }
+            )
+
+            # Report success
+            print(f"  [OK] Extracted {line_count} line items, {len(periods)} periods")
+            print(f"  [OK] Saved to: extracted/{pdf_name_clean}/{stmt_type.value}.json")
+
+            return {
+                "statement_type": stmt_type,
+                "pages": pages,
+                "raw_text": raw_text,
+                "structured_data": structured_data,
+                "pdf_name": pdf_path.name
+            }
+
+        except Exception as e:
+            logger.error(f"Extraction failed for {stmt_type.value}: {e}")
+            print(f"  [FAIL] Extraction failed: {e}")
+            return None
 
     def _extract_pages_with_llmwhisperer(self, pdf_path: Path, pages: List[int]) -> str:
         """Extract specific pages using LLMWhisperer API with retry logic."""
@@ -457,9 +515,16 @@ class EndToEndPipeline:
     def _merge_statement_timelines(
         self,
         extractions: List[Dict],
-        stmt_type: FinancialStatementType
+        stmt_type: FinancialStatementType,
+        smart_match: bool = True
     ) -> Dict:
-        """Merge multiple extractions into single timeline with fuzzy matching."""
+        """Merge multiple extractions into single timeline with smart fuzzy matching.
+
+        Args:
+            extractions: List of extraction dicts
+            stmt_type: Statement type
+            smart_match: Enable smart matching (normalize names, ignore indent, fuzzy 85%)
+        """
         if len(extractions) == 1:
             # Only one source - just format it
             structured = extractions[0]["structured_data"]
@@ -501,13 +566,25 @@ class EndToEndPipeline:
                         values_count == 0  # Empty headers
                     )
 
-                    if is_total_or_header:
-                        # For totals and headers: merge by name only (ignore both section AND indent)
-                        # LLM may assign different indent levels to the same total line
-                        account_key = f"{account_name}_HEADER"
+                    if smart_match:
+                        # SMART MATCHING MODE
+                        # Normalize account name for better matching
+                        normalized_name = self._normalize_account_name(account_name)
+
+                        if is_total_or_header:
+                            # Headers: merge by normalized name only
+                            account_key = f"{normalized_name}_HEADER"
+                        else:
+                            # Data accounts: merge by normalized name + section (IGNORE indent)
+                            # This is the key fix for the 51 unmerged balance sheet items!
+                            account_key = f"{normalized_name}_{section or ''}"
                     else:
-                        # For data accounts: require name + indent + section match
-                        account_key = f"{account_name}_{indent}_{section or ''}"
+                        # LEGACY MATCHING MODE (original behavior)
+                        if is_total_or_header:
+                            account_key = f"{account_name}_HEADER"
+                        else:
+                            # Original: requires name + indent + section match
+                            account_key = f"{account_name}_{indent}_{section or ''}"
 
                     # Track source information
                     if account_key not in account_sources:
@@ -532,15 +609,25 @@ class EndToEndPipeline:
                         # Account already exists - update metadata if current one is better
                         existing_section = all_line_items[account_key]["section"]
                         existing_indent = all_line_items[account_key]["indent_level"]
+                        existing_name = all_line_items[account_key]["account_name"]
 
                         # Prefer non-null sections (LLM inconsistency fix)
                         if existing_section is None and section is not None:
                             all_line_items[account_key]["section"] = section
 
+                        # Choose better account name (longer/more descriptive)
+                        if smart_match and len(account_name) > len(existing_name):
+                            all_line_items[account_key]["account_name"] = account_name
+
                         # For headers/totals: prefer smaller indent (less indented = more general)
-                        # For data accounts: keep the first indent we see (they should match anyway)
+                        # For data accounts in smart mode: use most common indent
                         if is_total_or_header and indent < existing_indent:
                             all_line_items[account_key]["indent_level"] = indent
+                        elif smart_match and not is_total_or_header:
+                            # Use average indent (rounded) for merged accounts
+                            indents = [s["indent_level"] for s in account_sources[account_key]]
+                            avg_indent = round(sum(indents) / len(indents))
+                            all_line_items[account_key]["indent_level"] = avg_indent
 
                     # Add values for this period
                     if hasattr(item, 'values') and hasattr(structured, 'periods'):
@@ -646,6 +733,38 @@ class EndToEndPipeline:
                 years.add(int(year_match.group(1)))
 
         return sorted(list(years))
+
+    def _normalize_account_name(self, account_name: str) -> str:
+        """Normalize account name for smart matching.
+
+        Removes note references, standardizes spacing, and strips whitespace.
+        This enables matching of accounts that differ only in these details.
+
+        Args:
+            account_name: Original account name
+
+        Returns:
+            Normalized account name for matching
+
+        Examples:
+            "Cash and cash equivalents (Note 3)" -> "Cash and cash equivalents"
+            "Basic net income  per share" -> "Basic net income per share"
+        """
+        import re
+
+        # Remove note references like "(Note 12)" or "(Note 3, 5)"
+        name = re.sub(r'\(Note\s+[\d,\s]+\)', '', account_name)
+
+        # Remove other common reference patterns
+        name = re.sub(r'\(Note\s+\d+[a-z]?\)', '', name)
+
+        # Standardize spacing (multiple spaces to single space)
+        name = re.sub(r'\s+', ' ', name)
+
+        # Strip leading/trailing whitespace
+        name = name.strip()
+
+        return name
 
     def _phase4_generate_outputs(
         self,
