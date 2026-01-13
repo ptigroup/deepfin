@@ -65,6 +65,7 @@ from app.core.output_manager import OutputManager, ExtractionRun, RunStatus
 from app.extraction.page_detector import PageDetector, FinancialStatementType
 from app.extraction.pydantic_extractor import PydanticExtractor
 from app.export.excel_exporter import SchemaBasedExcelExporter
+from app.llm.async_wrapper import AsyncLLMWhispererClient
 
 logger = get_logger(__name__)
 
@@ -144,11 +145,23 @@ class ConsolidationTracker:
 class EndToEndPipeline:
     """Fully dynamic end-to-end financial statement processing pipeline."""
 
-    def __init__(self, output_base: str = "output"):
-        """Initialize pipeline components."""
+    def __init__(self, output_base: str = "output", use_async: bool = True):
+        """Initialize pipeline components.
+
+        Args:
+            output_base: Base directory for outputs
+            use_async: Use async wrapper for concurrent extraction (default: True)
+        """
         self.detector = PageDetector()
         self.extractor = PydanticExtractor()
-        self.llm_client = LLMWhispererClientV2()
+        self.use_async = use_async
+
+        # Use async wrapper for concurrent processing
+        if use_async:
+            self.llm_client = AsyncLLMWhispererClient()
+        else:
+            self.llm_client = LLMWhispererClientV2()
+
         self.output_manager = OutputManager(output_base)
 
         # Current run (set in run_full_pipeline)
@@ -163,9 +176,9 @@ class EndToEndPipeline:
             "spot_checks": {}
         }
 
-    def run_full_pipeline(self, pdf_paths: List[Path], output_dir: Path = None) -> Dict:
+    async def run_full_pipeline(self, pdf_paths: List[Path], output_dir: Path = None) -> Dict:
         """
-        Run complete pipeline from PDFs to consolidated outputs.
+        Run complete pipeline from PDFs to consolidated outputs (async).
 
         Args:
             pdf_paths: List of PDF file paths to process
@@ -199,7 +212,7 @@ class EndToEndPipeline:
         print("PHASE 2: SMART EXTRACTION (DETECTED PAGES ONLY)")
         print(">" * 40 + "\n")
 
-        all_extractions = self._phase2_extract_all_statements(pdf_paths, all_detections)
+        all_extractions = await self._phase2_extract_all_statements(pdf_paths, all_detections)
 
         # PHASE 3: CONSOLIDATION (MERGE BY STATEMENT TYPE!)
         print("\n" + ">" * 40)
@@ -288,21 +301,19 @@ class EndToEndPipeline:
 
         return all_detections
 
-    def _phase2_extract_all_statements(
+    async def _phase2_extract_all_statements(
         self,
         pdf_paths: List[Path],
-        all_detections: Dict[Path, Dict],
-        parallel: bool = False,
-        max_workers: int = 5
+        all_detections: Dict[Path, Dict]
     ) -> Dict[Tuple[Path, FinancialStatementType], Dict]:
-        """Phase 2: Extract ONLY detected pages (no token waste).
+        """Phase 2: Extract ONLY detected pages with async concurrency.
 
         Args:
             pdf_paths: Paths to PDF files
             all_detections: Detected statement pages
-            parallel: Whether to use parallel extraction (default: True)
-            max_workers: Max concurrent extractions (default: 5)
         """
+        import asyncio
+
         all_extractions = {}
 
         # Build list of extraction tasks
@@ -321,48 +332,42 @@ class EndToEndPipeline:
             return all_extractions
 
         print(f"\n>> Extracting {len(extraction_tasks)} statements")
-        if parallel:
-            print(f"   Using parallel extraction (max {max_workers} concurrent)")
+        if self.use_async:
+            print(f"   Using async concurrent extraction")
         print("-" * 70)
 
-        if parallel:
-            # Parallel extraction using ThreadPoolExecutor
-            from concurrent.futures import ThreadPoolExecutor, as_completed
+        if self.use_async:
+            # Async concurrent extraction using asyncio.gather()
+            tasks = [
+                self._extract_single_statement(pdf_path, stmt_type, pages)
+                for pdf_path, stmt_type, pages in extraction_tasks
+            ]
 
-            with ThreadPoolExecutor(max_workers=max_workers) as executor:
-                # Submit all extraction tasks
-                future_to_task = {
-                    executor.submit(self._extract_single_statement, pdf_path, stmt_type, pages):
-                    (pdf_path, stmt_type)
-                    for pdf_path, stmt_type, pages in extraction_tasks
-                }
+            results = await asyncio.gather(*tasks, return_exceptions=True)
 
-                # Process results as they complete
-                for future in as_completed(future_to_task):
-                    pdf_path, stmt_type = future_to_task[future]
-                    try:
-                        result = future.result()
-                        if result:
-                            all_extractions[(pdf_path, stmt_type)] = result
-                    except Exception as e:
-                        logger.error(f"Extraction failed for {pdf_path.name}/{stmt_type.value}: {e}")
-                        print(f"\n  [FAIL] {pdf_path.name}/{stmt_type.value}: {e}")
+            # Process results
+            for (pdf_path, stmt_type, pages), result in zip(extraction_tasks, results):
+                if isinstance(result, Exception):
+                    logger.error(f"Extraction failed for {pdf_path.name}/{stmt_type.value}: {result}")
+                    print(f"\n  [FAIL] {pdf_path.name}/{stmt_type.value}: {result}")
+                elif result:
+                    all_extractions[(pdf_path, stmt_type)] = result
         else:
-            # Sequential extraction (original behavior)
+            # Sequential extraction (fallback for non-async mode)
             for pdf_path, stmt_type, pages in extraction_tasks:
-                result = self._extract_single_statement(pdf_path, stmt_type, pages)
+                result = await self._extract_single_statement(pdf_path, stmt_type, pages)
                 if result:
                     all_extractions[(pdf_path, stmt_type)] = result
 
         return all_extractions
 
-    def _extract_single_statement(
+    async def _extract_single_statement(
         self,
         pdf_path: Path,
         stmt_type: FinancialStatementType,
         pages: List[int]
     ) -> Optional[Dict]:
-        """Extract a single statement from a PDF.
+        """Extract a single statement from a PDF asynchronously.
 
         Returns:
             Extraction result dict, or None if failed
@@ -372,7 +377,7 @@ class EndToEndPipeline:
 
         try:
             # EXTRACT ONLY DETECTED PAGES!
-            raw_text = self._extract_pages_with_llmwhisperer(pdf_path, pages)
+            raw_text = await self._extract_pages_with_llmwhisperer(pdf_path, pages)
 
             # Parse with Pydantic AI
             structured_dict = self.extractor.extract_from_text(raw_text)
@@ -421,9 +426,9 @@ class EndToEndPipeline:
             print(f"  [FAIL] Extraction failed: {e}")
             return None
 
-    def _extract_pages_with_llmwhisperer(self, pdf_path: Path, pages: List[int]) -> str:
-        """Extract specific pages using LLMWhisperer API with retry logic."""
-        import time
+    async def _extract_pages_with_llmwhisperer(self, pdf_path: Path, pages: List[int]) -> str:
+        """Extract specific pages using LLMWhisperer API with retry logic (async)."""
+        import asyncio
 
         # Convert pages list to comma-separated string
         pages_str = ",".join(map(str, pages))
@@ -441,14 +446,25 @@ class EndToEndPipeline:
                 if attempt > 0:
                     print(f"  [RETRY] Attempt {attempt + 1}/{max_retries} (timeout: {timeout}s)")
 
-                result = self.llm_client.whisper(
-                    file_path=str(pdf_path),
-                    mode="form",  # Preserve table structure
-                    output_mode="layout_preserving",
-                    pages_to_extract=pages_str,
-                    wait_for_completion=True,
-                    wait_timeout=timeout
-                )
+                # Call async wrapper if using async, otherwise sync SDK
+                if self.use_async:
+                    result = await self.llm_client.whisper(
+                        file_path=str(pdf_path),
+                        mode="form",  # Preserve table structure
+                        output_mode="layout_preserving",
+                        pages_to_extract=pages_str,
+                        wait_for_completion=True,
+                        wait_timeout=timeout
+                    )
+                else:
+                    result = self.llm_client.whisper(
+                        file_path=str(pdf_path),
+                        mode="form",
+                        output_mode="layout_preserving",
+                        pages_to_extract=pages_str,
+                        wait_for_completion=True,
+                        wait_timeout=timeout
+                    )
 
                 raw_text = result.get("extraction", {}).get("result_text", "")
 
@@ -470,7 +486,11 @@ class EndToEndPipeline:
                     wait_time = 5 * (attempt + 1)  # 5s, 10s exponential backoff
                     logger.warning(f"LLMWhisperer timeout/connection error (attempt {attempt + 1}/{max_retries}): {e}")
                     print(f"  [WARN] Connection error, retrying in {wait_time}s...")
-                    time.sleep(wait_time)
+                    if self.use_async:
+                        await asyncio.sleep(wait_time)
+                    else:
+                        import time
+                        time.sleep(wait_time)
                     continue
                 else:
                     # Last attempt or non-retryable error
@@ -1554,7 +1574,9 @@ Examples:
     pipeline = EndToEndPipeline(output_base=str(config.output_runs_dir.parent))
 
     try:
-        results = pipeline.run_full_pipeline(pdf_paths)
+        # Run async pipeline
+        import asyncio
+        results = asyncio.run(pipeline.run_full_pipeline(pdf_paths))
 
         # Save full results to run directory
         if pipeline.current_run:
