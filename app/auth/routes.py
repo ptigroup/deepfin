@@ -276,7 +276,7 @@ async def refresh_token(
 @router.get("/users/{user_id}", response_model=BaseResponse)
 async def get_user(
     user_id: int,
-    current_user: User = Depends(get_current_superuser),
+    _current_user: User = Depends(get_current_superuser),
     db: AsyncSession = Depends(get_db),
 ) -> dict:
     """Get user by ID (superuser only).

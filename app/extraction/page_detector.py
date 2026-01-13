@@ -15,7 +15,7 @@ import re
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 import fitz  # PyMuPDF
 
@@ -293,7 +293,7 @@ class PageDetector:
         self.min_confidence_score = 15
         logger.info("PageDetector initialized with 3-step validation")
 
-    def detect_financial_tables(self, pdf_path: str | Path) -> Dict[FinancialStatementType, List[int]]:
+    def detect_financial_tables(self, pdf_path: str | Path) -> dict[FinancialStatementType, list[int]]:
         """
         Detect ACTUAL financial statement pages using 3-step validation framework.
         Filters out TOC entries, footnotes, and references to find real statement pages.
@@ -343,7 +343,7 @@ class PageDetector:
             logger.error("Error during financial statement identification", extra={"error": str(e)})
             return {}
 
-    def _find_candidate_pages(self, doc) -> Dict[FinancialStatementType, List[int]]:
+    def _find_candidate_pages(self, doc) -> dict[FinancialStatementType, list[int]]:
         """
         STEP 1: Find ALL pages containing financial statement keywords.
         This is a broad search that will include TOC, footnotes, and actual statements.
@@ -383,7 +383,7 @@ class PageDetector:
 
         return candidates
 
-    def _validate_candidate_pages(self, doc, candidates: Dict[FinancialStatementType, List[int]]) -> Dict[FinancialStatementType, List[int]]:
+    def _validate_candidate_pages(self, doc, candidates: dict[FinancialStatementType, list[int]]) -> dict[FinancialStatementType, list[int]]:
         """
         STEP 2: Filter candidates using structural validation to remove TOC, footnotes, etc.
         """
@@ -412,7 +412,7 @@ class PageDetector:
 
         return validated
 
-    def _resolve_page_ambiguity(self, doc, validated_pages: Dict[FinancialStatementType, List[int]]) -> Dict[FinancialStatementType, List[int]]:
+    def _resolve_page_ambiguity(self, doc, validated_pages: dict[FinancialStatementType, list[int]]) -> dict[FinancialStatementType, list[int]]:
         """
         STEP 3: Resolve ambiguity using financial statement sequencing and content-based scoring.
         """
@@ -440,7 +440,7 @@ class PageDetector:
 
         return final_pages
 
-    def _find_consecutive_pairs(self, page_list: List[int]) -> List[List[int]]:
+    def _find_consecutive_pairs(self, page_list: list[int]) -> list[list[int]]:
         """Find consecutive page pairs in the list (e.g., [43, 44])."""
         consecutive_pairs = []
         for i in range(len(page_list) - 1):
@@ -448,7 +448,7 @@ class PageDetector:
                 consecutive_pairs.append([page_list[i], page_list[i+1]])
         return consecutive_pairs
 
-    def _select_best_page(self, doc, page_list: List[int], stmt_type: FinancialStatementType) -> int:
+    def _select_best_page(self, doc, page_list: list[int], stmt_type: FinancialStatementType) -> int:
         """Select the best page from multiple candidates based on confidence scores."""
         # Special handling for cash flow - check for consecutive pages first
         if stmt_type == FinancialStatementType.CASH_FLOW:
@@ -531,10 +531,7 @@ class PageDetector:
             return True
 
         # Pattern 2: "Page" label before number
-        if re.search(r"page\s+\d+", text[:200], re.IGNORECASE):
-            return True
-
-        return False
+        return bool(re.search(r"page\s+\d+", text[:200], re.IGNORECASE))
 
     def _is_footnote_reference(self, page) -> bool:
         """Detect footnote references (NOT actual statements)"""
@@ -545,10 +542,7 @@ class PageDetector:
         refer_count = len(re.findall(r"refer to (?:the )?notes? to", text, re.IGNORECASE))
 
         # If more than 3 footnote references, it's likely a footnote page
-        if see_note_count > 3 or refer_count > 1:
-            return True
-
-        return False
+        return bool(see_note_count > 3 or refer_count > 1)
 
     def _is_index_entry(self, page) -> bool:
         """
@@ -589,7 +583,7 @@ class PageDetector:
 
         return False
 
-    def _is_actual_statement_page(self, page, stmt_type: FinancialStatementType) -> Tuple[bool, float]:
+    def _is_actual_statement_page(self, page, stmt_type: FinancialStatementType) -> tuple[bool, float]:
         """
         Verify this is a REAL financial statement page using sophisticated multi-step validation.
 
@@ -650,7 +644,7 @@ class PageDetector:
 
         return False, 0.0
 
-    def _count_pattern_matches(self, text: str, patterns: List[str]) -> int:
+    def _count_pattern_matches(self, text: str, patterns: list[str]) -> int:
         """Count how many patterns match in the text."""
         count = 0
         for pattern in patterns:
@@ -690,7 +684,7 @@ class PageDetector:
         return result
 
     def get_page_ranges_for_extraction(
-        self, detected_tables: dict[int, list[DetectedTable]] | Dict[FinancialStatementType, List[int]]
+        self, detected_tables: dict[int, list[DetectedTable]] | dict[FinancialStatementType, list[int]]
     ) -> dict[FinancialStatementType, list[int]]:
         """
         Get page ranges for each financial statement type for targeted LLMWhisperer extraction.

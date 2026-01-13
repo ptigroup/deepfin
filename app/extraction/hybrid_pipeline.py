@@ -16,18 +16,15 @@ Architecture:
 7. Excel Export → Schema-aware formatting
 """
 
-import os
-import json
 import logging
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Any
 from datetime import datetime
+from pathlib import Path
+from typing import Any
 
-from app.extraction.document_detector import FinancialDocumentDetector, FinancialStatementType
-from app.schemas.income_statement_schema import IncomeStatementSchema, IncomeStatementLineItem
-from app.extraction.parsers.income_statement_parser import parse_income_statement_directly
+from app.core.output_manager import ExtractionRun, OutputManager, RunStatus
 from app.export.excel_exporter import SchemaBasedExcelExporter
-from app.core.output_manager import OutputManager, ExtractionRun, RunStatus
+from app.extraction.document_detector import FinancialDocumentDetector, FinancialStatementType
+from app.extraction.parsers.income_statement_parser import parse_income_statement_directly
 
 logger = logging.getLogger(__name__)
 
@@ -104,14 +101,14 @@ class HybridExtractionPipeline:
         self.excel_exporter = SchemaBasedExcelExporter()
 
         # Current run will be created when extract_with_hybrid_pipeline is called
-        self.current_run: Optional[ExtractionRun] = None
+        self.current_run: ExtractionRun | None = None
 
     def extract_with_hybrid_pipeline(
         self,
         pdf_path: str,
         raw_text: str,
-        pages_extracted: List[int]
-    ) -> Dict[str, Any]:
+        pages_extracted: list[int]
+    ) -> dict[str, Any]:
         """
         Execute full hybrid extraction pipeline.
 
@@ -236,7 +233,7 @@ class HybridExtractionPipeline:
             "run_dir": str(self.current_run.run_dir)
         }
 
-    def _save_raw_text(self, pdf_name: str, raw_text: str, pages: List[int]) -> Path:
+    def _save_raw_text(self, pdf_name: str, raw_text: str, pages: list[int]) -> Path:
         """Save raw LLMWhisperer text for direct parsing."""
         # Create PDF-specific directory in the run
         pdf_dir = self.current_run.extracted_dir / pdf_name
@@ -361,7 +358,7 @@ class HybridExtractionPipeline:
 
         return report
 
-    def _compare_extractions(self, direct_schema, pydantic_schema) -> List[Dict[str, Any]]:
+    def _compare_extractions(self, direct_schema, pydantic_schema) -> list[dict[str, Any]]:
         """
         Compare two extraction results for discrepancies.
 
@@ -416,8 +413,8 @@ class HybridExtractionPipeline:
         self,
         direct_result: ExtractionResult,
         pydantic_result: ExtractionResult,
-        validation_report: ValidationReport
-    ) -> Optional[ExtractionResult]:
+        _validation_report: ValidationReport
+    ) -> ExtractionResult | None:
         """
         Select final result based on quality gates.
 
@@ -442,7 +439,7 @@ class HybridExtractionPipeline:
         pdf_name: str,
         extraction_result: ExtractionResult,
         validation_report: ValidationReport
-    ) -> Dict[str, str]:
+    ) -> dict[str, str]:
         """
         Export extraction results to JSON, Excel, and validation report.
 

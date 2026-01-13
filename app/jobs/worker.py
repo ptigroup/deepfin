@@ -207,7 +207,7 @@ class BackgroundWorker:
                     result = await asyncio.wait_for(
                         task_func(**task_args), timeout=self.task_timeout
                     )
-                except asyncio.TimeoutError:
+                except TimeoutError:
                     logger.error(
                         "Task timed out",
                         extra={
@@ -218,7 +218,7 @@ class BackgroundWorker:
                     )
                     raise WorkerError(
                         f"Task timed out after {self.task_timeout} seconds"
-                    )
+                    ) from None
 
                 # Mark as completed
                 job.status = JobStatus.COMPLETED

@@ -8,7 +8,6 @@ Ported from brownfield/schemas/document_detector.py for hybrid architecture.
 """
 
 import re
-from typing import Optional, Dict, List, Tuple
 from enum import Enum
 
 
@@ -102,7 +101,7 @@ class FinancialDocumentDetector:
         """Initialize the document detector."""
         pass
 
-    def detect_document_type(self, extracted_text: str, document_title: str = "") -> Tuple[FinancialStatementType, float]:
+    def detect_document_type(self, extracted_text: str, document_title: str = "") -> tuple[FinancialStatementType, float]:
         """
         Detect the financial statement type from extracted text with confidence scoring.
 
@@ -123,7 +122,7 @@ class FinancialDocumentDetector:
         text_lower = extracted_text.lower()
         title_lower = document_title.lower()
 
-        scores = {doc_type: 0.0 for doc_type in FinancialStatementType}
+        scores = dict.fromkeys(FinancialStatementType, 0.0)
 
         # Check title patterns (high weight)
         for doc_type, patterns in self.TITLE_PATTERNS.items():
@@ -165,7 +164,7 @@ class FinancialDocumentDetector:
 
         return best_type, confidence
 
-    def get_detection_details(self, extracted_text: str, document_title: str = "") -> Dict:
+    def get_detection_details(self, extracted_text: str, document_title: str = "") -> dict:
         """
         Get detailed detection information for debugging and analysis.
 
@@ -186,7 +185,7 @@ class FinancialDocumentDetector:
             "confidence": 0.0
         }
 
-        scores = {doc_type: 0.0 for doc_type in FinancialStatementType}
+        scores = dict.fromkeys(FinancialStatementType, 0.0)
         matched_keywords = {doc_type: [] for doc_type in FinancialStatementType}
         matched_patterns = {doc_type: [] for doc_type in FinancialStatementType}
         negative_matches = {doc_type: [] for doc_type in FinancialStatementType}

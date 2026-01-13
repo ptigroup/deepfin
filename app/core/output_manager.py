@@ -28,14 +28,13 @@ Structure:
     └── RUN_HISTORY.md                  # Human-readable summary
 """
 
-import os
-import json
-import shutil
 import hashlib
-from pathlib import Path
-from datetime import datetime
-from typing import Dict, List, Optional, Any
+import json
 import logging
+import os
+import shutil
+from datetime import datetime
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -95,12 +94,12 @@ class ExtractionRun:
         self,
         pdf_name: str,
         statement_type: str,
-        json_data: Dict,
-        excel_path: Optional[str] = None,
-        raw_text: Optional[str] = None,
-        metadata: Optional[Dict] = None,
-        validation: Optional[Dict] = None,
-        page_detection: Optional[Dict] = None
+        json_data: dict,
+        excel_path: str | None = None,
+        raw_text: str | None = None,
+        metadata: dict | None = None,
+        validation: dict | None = None,
+        page_detection: dict | None = None
     ) -> Path:
         """Save extraction outputs for a single PDF."""
 
@@ -149,15 +148,15 @@ class ExtractionRun:
         self,
         filename: str,
         pages_total: int,
-        pages_extracted: List[int],
+        pages_extracted: list[int],
         status: str,
-        statements_found: List[str],
+        statements_found: list[str],
         extraction_method: str = "",
         accuracy: float = 0.0,
         cost_usd: float = 0.0,
         duration_seconds: float = 0.0,
         line_items: int = 0,
-        error: Optional[str] = None
+        error: str | None = None
     ):
         """Add PDF processing result to manifest."""
 
@@ -194,9 +193,9 @@ class ExtractionRun:
     def save_consolidated(
         self,
         statement_type: str,
-        years: List[str],
-        json_data: Dict,
-        excel_path: Optional[str] = None,
+        years: list[str],
+        json_data: dict,
+        excel_path: str | None = None,
         source_count: int = 0,
         line_items: int = 0
     ) -> Path:
@@ -236,7 +235,7 @@ class ExtractionRun:
         logger.info(f"Saved consolidated {statement_type} ({year_range}) -> {json_path}")
         return self.consolidated_dir
 
-    def set_settings(self, settings: Dict):
+    def set_settings(self, settings: dict):
         """Set processing settings in manifest."""
         self.manifest["settings"] = settings
         self._save_manifest()
@@ -362,7 +361,7 @@ class ExtractionRun:
         # Read existing history
         existing_entries = []
         if history_file.exists():
-            with open(history_file, 'r', encoding='utf-8') as f:
+            with open(history_file, encoding='utf-8') as f:
                 content = f.read()
                 # Keep header
                 if content.startswith("# Run History"):
@@ -409,7 +408,7 @@ class ExtractionRun:
                 f.write("\n\n---\n\n")
                 f.write(entry.strip())
 
-        logger.info(f"Updated RUN_HISTORY.md")
+        logger.info("Updated RUN_HISTORY.md")
 
     def _format_pdf_list(self) -> str:
         """Format PDF list for history entry."""
@@ -472,7 +471,7 @@ class OutputManager:
         run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
         return ExtractionRun(run_id, self.output_base, status)
 
-    def get_latest_run(self) -> Optional[Path]:
+    def get_latest_run(self) -> Path | None:
         """Get path to latest successful run.
 
         Returns:
@@ -493,7 +492,7 @@ class OutputManager:
 
         return None
 
-    def get_run_by_id(self, run_id: str) -> Optional[Path]:
+    def get_run_by_id(self, run_id: str) -> Path | None:
         """Get path to specific run by ID.
 
         Args:
@@ -511,7 +510,7 @@ class OutputManager:
 
         return None
 
-    def list_runs(self, status: Optional[str] = None) -> List[Dict]:
+    def list_runs(self, status: str | None = None) -> list[dict]:
         """List all runs with their metadata.
 
         Args:
@@ -536,7 +535,7 @@ class OutputManager:
 
         return runs
 
-    def get_latest_by_document(self, pdf_name: str) -> Optional[Path]:
+    def get_latest_by_document(self, pdf_name: str) -> Path | None:
         """Get latest extraction for a specific document.
 
         Args:

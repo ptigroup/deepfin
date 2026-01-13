@@ -2,10 +2,8 @@
 
 import asyncio
 from pathlib import Path
-from typing import Optional
 
 from unstract.llmwhisperer import LLMWhispererClientV2
-from unstract.llmwhisperer.client_v2 import LLMWhispererClientException
 
 from app.core.config import get_settings
 from app.core.logging import get_logger
@@ -31,7 +29,7 @@ class AsyncLLMWhispererClient:
         file_path: str | Path,
         mode: str = "form",
         output_mode: str = "layout_preserving",
-        pages_to_extract: Optional[str] = None,
+        pages_to_extract: str | None = None,
         wait_for_completion: bool = True,
         wait_timeout: int = 200,
         **kwargs

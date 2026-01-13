@@ -7,20 +7,28 @@ This schema handles income statements with straightforward structure:
 - Consistent column structure across all rows
 """
 
-from pydantic import BaseModel, Field
-from typing import List, Optional, Dict
-from .base_schema import BaseFinancialSchema, SimpleLineItem, FinancialStatementType, ExcelLayoutConfig, ExcelColumnMapping
+
+from pydantic import Field
+
+from .base_schema import (
+    BaseFinancialSchema,
+    ExcelColumnMapping,
+    ExcelLayoutConfig,
+    FinancialStatementType,
+    SimpleLineItem,
+)
+
 
 class IncomeStatementLineItem(SimpleLineItem):
     """Income statement specific line item with additional fields."""
-    account_category: Optional[str] = Field(description="Category: 'revenue', 'expense', 'income', 'other'", default="")
+    account_category: str | None = Field(description="Category: 'revenue', 'expense', 'income', 'other'", default="")
     is_calculated: bool = Field(description="Whether this is a calculated field (subtotal, etc.)", default=False)
-    calculation_formula: Optional[str] = Field(description="Formula if this is calculated", default="")
+    calculation_formula: str | None = Field(description="Formula if this is calculated", default="")
 
 class IncomeStatementSchema(BaseFinancialSchema):
     """
     Schema for Income Statements with simple row-based structure.
-    
+
     Example structure:
     Revenue                     $ 10,918    $ 11,716    $ 9,714
     Cost of revenue               4,150       4,545      3,892
@@ -30,50 +38,50 @@ class IncomeStatementSchema(BaseFinancialSchema):
       Sales and administrative    1,093         991        815
     Net income                  $ 2,796     $ 4,141    $ 3,047
     """
-    
+
     document_type: FinancialStatementType = Field(default=FinancialStatementType.INCOME_STATEMENT)
-    
-    line_items: List[IncomeStatementLineItem] = Field(
+
+    line_items: list[IncomeStatementLineItem] = Field(
         description="All line items in the income statement"
     )
-    
+
     # Key financial metrics (automatically extracted)
-    revenue_items: List[IncomeStatementLineItem] = Field(
+    revenue_items: list[IncomeStatementLineItem] = Field(
         description="Revenue-related line items",
         default=[]
     )
-    
-    expense_items: List[IncomeStatementLineItem] = Field(
-        description="Expense-related line items", 
+
+    expense_items: list[IncomeStatementLineItem] = Field(
+        description="Expense-related line items",
         default=[]
     )
-    
-    net_income_items: List[IncomeStatementLineItem] = Field(
+
+    net_income_items: list[IncomeStatementLineItem] = Field(
         description="Net income and profit-related items",
         default=[]
     )
-    
-    def get_revenue_total(self, period: str) -> Optional[str]:
+
+    def get_revenue_total(self, period: str) -> str | None:
         """Get total revenue for a specific period."""
         for item in self.revenue_items:
             if "revenue" in item.account_name.lower() and not item.is_calculated:
                 return item.values.get(period)
         return None
-    
-    def get_net_income(self, period: str) -> Optional[str]:
+
+    def get_net_income(self, period: str) -> str | None:
         """Get net income for a specific period."""
         for item in self.net_income_items:
             if "net income" in item.account_name.lower():
                 return item.values.get(period)
         return None
-    
+
     def get_excel_layout_config(self) -> ExcelLayoutConfig:
         """Generate Excel layout configuration for income statement."""
         # Build header rows
         header_rows = [self.company_name, self.document_title]
         if self.units_note:
             header_rows.append(self.units_note)
-        
+
         # Build column mappings from reporting periods
         excel_mappings = []
         for i, period in enumerate(self.reporting_periods):
@@ -84,12 +92,12 @@ class IncomeStatementSchema(BaseFinancialSchema):
                 span_columns=1,
                 data_type="currency"
             ))
-        
+
         # Calculate table positioning
         header_count = len(header_rows)
         table_start_row = header_count + 2
         data_start_row = table_start_row + 1
-        
+
         return ExcelLayoutConfig(
             header_rows=header_rows,
             column_mappings=excel_mappings,

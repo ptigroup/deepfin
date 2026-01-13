@@ -1,11 +1,11 @@
 """Pytest fixtures for auth tests."""
 
-import pytest
-from sqlalchemy.ext.asyncio import AsyncSession
 from unittest.mock import AsyncMock, MagicMock
 
+import pytest
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from app.auth.models import User
-from app.auth.service import AuthService
 
 
 @pytest.fixture

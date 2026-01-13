@@ -5,17 +5,17 @@ Ported from brownfield/schemas for hybrid architecture with 100% accuracy.
 """
 
 from .base_schema import (
-    FinancialStatementType,
     BaseFinancialSchema,
     BaseLineItem,
-    SimpleLineItem,
-    HierarchicalLineItem,
+    ColumnHeader,
     ExcelColumnMapping,
     ExcelLayoutConfig,
+    FinancialStatementType,
+    HierarchicalLineItem,
     MetadataInfo,
-    ColumnHeader
+    SimpleLineItem,
 )
-from .income_statement_schema import IncomeStatementSchema, IncomeStatementLineItem
+from .income_statement_schema import IncomeStatementLineItem, IncomeStatementSchema
 
 __all__ = [
     "FinancialStatementType",
