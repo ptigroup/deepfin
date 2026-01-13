@@ -2250,6 +2250,221 @@ No new dependencies - uses existing pathlib, json, shutil from stdlib.
 
 ---
 
+## Session 17.6: Async Pipeline Optimization
+
+✅ **Completed:** 2026-01-13
+**PR:** https://github.com/ptigroup/deepfin/pull/20
+**Linear:** BUD-25
+
+### Why This Session?
+
+**Performance Problem Identified:** Sequential extraction was taking 7.4 minutes for Google PDFs. Initial attempt to use ThreadPoolExecutor made it **54% slower** (443s → 686s) instead of faster.
+
+**Root Cause Analysis:** Thread-based parallelization failed because:
+1. Unstract SDK is synchronous and blocking
+2. Python GIL prevents true thread parallelism
+3. API rate limiting enforces sequential processing
+4. Thread overhead without parallelization benefit
+
+**Solution:** Convert pipeline to async/await using `asyncio.to_thread()` wrapper approach.
+
+### What We Built
+
+#### 1. Technical Investigation
+- Created `docs/PARALLEL_EXTRACTION_INVESTIGATION.md` documenting why ThreadPoolExecutor failed
+- Tested 3 approaches: ThreadPoolExecutor (failed), native async client (API errors), async wrapper (success)
+- Proved async wrapper works with benchmark test
+
+#### 2. Async Wrapper (`app/llm/async_wrapper.py`)
+```python
+class AsyncLLMWhispererClient:
+    """Async wrapper for LLMWhisperer sync SDK using asyncio.to_thread()."""
+
+    async def whisper(self, file_path, mode="form", ...):
+        # Runs blocking SDK call in thread pool without blocking event loop
+        result = await asyncio.to_thread(
+            self.client.whisper,
+            file_path=str(file_path),
+            mode=mode,
+            ...
+        )
+        return result
+```
+
+**Key Innovation:** `asyncio.to_thread()` delegates blocking SDK calls to thread pool while keeping async interface.
+
+#### 3. Pipeline Conversion
+- Converted `scripts/test_end_to_end_pipeline.py` to async/await
+- Added `use_async` parameter (default: True)
+- Made 5 methods async: `_extract_single_statement()`, `_extract_pages_with_llmwhisperer()`, `_phase2_extract_all_statements()`, `run_full_pipeline()`, `main()`
+- Phase 2 now uses `asyncio.gather()` for concurrent extraction
+
+#### 4. Test Suite
+- `scripts/test_async_wrapper.py` - Benchmark proves 1.84x speedup
+- `scripts/test_api_concurrency.py` - API concurrency testing
+- Tested with Google 2022-2024 and 2021-2023 PDFs
+
+### Performance Results
+
+**Async Wrapper Benchmark:**
+- Single request: 18.00s
+- Sequential (3x estimated): 54.01s
+- **Concurrent (actual): 29.34s**
+- **Speedup: 1.84x** ✅
+
+**Full Pipeline:**
+- All 10 extractions start simultaneously (verified in logs)
+- True concurrent execution working
+- Smart matching (87% improvement) preserved
+
+### Key Technical Decisions
+
+**Why async wrapper instead of native async client?**
+
+Attempted to fix native async client in `app/llm/clients.py` but hit persistent 415 API errors despite correct parameter mapping. `asyncio.to_thread()` wrapper approach:
+- ✅ Works immediately with existing SDK
+- ✅ True concurrency via event loop + thread pool
+- ✅ No need to reverse-engineer API
+- ✅ Proven speedup in tests
+
+**Why asyncio.gather() instead of ThreadPoolExecutor?**
+```python
+# Old approach (failed)
+with ThreadPoolExecutor() as executor:
+    futures = [executor.submit(extract, ...) for ...]
+    results = [f.result() for f in futures]  # 54% slower!
+
+# New approach (success)
+tasks = [extract_async(...) for ...]
+results = await asyncio.gather(*tasks)  # 1.84x faster!
+```
+
+Benefits:
+- Event loop handles I/O efficiently
+- No GIL blocking (I/O releases GIL)
+- No thread overhead
+- Better resource utilization
+
+### 🎯 Milestone Achieved
+
+**Concurrent async pipeline** - 1.84x speedup for multi-statement extraction with true parallelism
+
+### Files Created/Modified
+
+**Created:**
+- `app/llm/async_wrapper.py` (101 lines)
+- `docs/PARALLEL_EXTRACTION_INVESTIGATION.md` (284 lines)
+- `scripts/test_async_wrapper.py` (118 lines)
+- `scripts/test_api_concurrency.py` (77 lines)
+
+**Modified:**
+- `scripts/test_end_to_end_pipeline.py` (major refactor: 5 methods converted to async)
+
+### Challenges & Solutions
+
+#### Challenge 1: ThreadPoolExecutor Made It Slower (54%)
+
+**Initial Approach:**
+```python
+with ThreadPoolExecutor(max_workers=10) as executor:
+    futures = [executor.submit(self._extract_single_statement, ...) for ...]
+    for future in as_completed(futures):
+        result = future.result()
+```
+
+**Results:** 443s → 686s (54% slower!)
+
+**Root Cause:**
+- Blocking SDK holds GIL during API calls
+- Threads can't run in parallel (GIL limitation)
+- Thread creation/switching overhead without benefit
+- API rate limiting enforces sequential processing anyway
+
+**Solution:** Abandon ThreadPoolExecutor, use async/await instead.
+
+#### Challenge 2: Native Async Client API Errors
+
+**Attempted Fix:**
+```python
+# Changed parameters in app/llm/clients.py
+result = await client.whisper(
+    file_path=file_path,
+    mode=mode,  # Fixed: was processing_mode
+    page_seperator="<<<",  # Fixed: API uses typo "seperator"
+)
+```
+
+**Still Got:** `HTTPStatusError: 415 Unsupported Media Type`
+
+**Decision:** API parameter format too complex to reverse-engineer. Pivot to wrapper approach.
+
+#### Challenge 3: Making Sync SDK Async
+
+**Problem:** Unstract SDK is synchronous:
+```python
+client = LLMWhispererClientV2()  # Sync client
+result = client.whisper(...)  # Blocks event loop!
+```
+
+**Solution:** `asyncio.to_thread()` wrapper:
+```python
+async def whisper(self, ...):
+    result = await asyncio.to_thread(
+        self.client.whisper,  # Sync SDK method
+        ...
+    )
+    return result
+```
+
+**Why It Works:**
+- `asyncio.to_thread()` runs sync function in thread pool
+- Returns awaitable without blocking event loop
+- Event loop remains responsive during I/O
+- True concurrency for multiple requests
+
+### Testing & Validation
+
+**Benchmark Test** (`test_async_wrapper.py`):
+```
+[TEST 1] Single Async Request
+Duration: 18.00s
+Text length: 5514
+
+[TEST 2] 3 Concurrent Async Requests (True Parallelism)
+Processing 3 pages concurrently...
+Duration: 29.34s
+Results: 3 extractions
+
+ANALYSIS
+Single request:          18.00s
+Sequential (estimated):  54.01s (3x single)
+Concurrent (actual):     29.34s
+
+Speedup factor:          1.84x
+✓ GOOD - Significant speedup achieved
+```
+
+**Full Pipeline Test:**
+```bash
+python scripts/test_end_to_end_pipeline.py "input\Google 2022-2024.pdf" "input\Google 2021-2023.pdf"
+
+# Output shows concurrent execution:
+2026-01-13 10:38:12 [debug] Starting async whisper (Google 2022-2024.pdf/income_statement)
+2026-01-13 10:38:12 [debug] Starting async whisper (Google 2022-2024.pdf/balance_sheet)
+2026-01-13 10:38:12 [debug] Starting async whisper (Google 2022-2024.pdf/comprehensive_income)
+... (all 10 starting simultaneously)
+```
+
+### What's Next
+
+**Session 18: Deployment & CI/CD**
+- Integrate async pipeline with FastAPI endpoints
+- Containerize with Docker
+- Setup CI/CD pipeline
+- Production deployment
+
+---
+
 ## Session 18: Deployment & CI/CD
 
 📋 **Ready to Start**
