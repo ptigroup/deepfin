@@ -117,9 +117,7 @@ async def list_consolidated_statements(
     service = ConsolidationService(db)
     statements = await service.get_consolidated_statements(company_name, skip, limit)
 
-    statement_schemas = [
-        ConsolidatedStatementSchema.model_validate(stmt) for stmt in statements
-    ]
+    statement_schemas = [ConsolidatedStatementSchema.model_validate(stmt) for stmt in statements]
 
     return {
         "success": True,
@@ -159,7 +157,9 @@ async def delete_consolidated_statement(
     }
 
 
-@router.post("/{statement_id}/comparisons", response_model=BaseResponse, status_code=status.HTTP_201_CREATED)
+@router.post(
+    "/{statement_id}/comparisons", response_model=BaseResponse, status_code=status.HTTP_201_CREATED
+)
 async def add_period_comparison(
     statement_id: int,
     comparison_data: PeriodComparisonCreate,
@@ -225,9 +225,7 @@ async def get_period_comparisons(
     service = ConsolidationService(db)
     comparisons = await service.get_period_comparisons(statement_id)
 
-    comparison_schemas = [
-        PeriodComparisonSchema.model_validate(comp) for comp in comparisons
-    ]
+    comparison_schemas = [PeriodComparisonSchema.model_validate(comp) for comp in comparisons]
 
     return {
         "success": True,

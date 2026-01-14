@@ -14,6 +14,7 @@ from app.schemas.income_statement_schema import IncomeStatementLineItem, IncomeS
 
 logger = logging.getLogger(__name__)
 
+
 def parse_income_statement_directly(raw_text_file_path: str) -> IncomeStatementSchema:
     """
     Parse income statement directly from raw LLMWhisperer text.
@@ -26,7 +27,7 @@ def parse_income_statement_directly(raw_text_file_path: str) -> IncomeStatementS
     """
     logger.debug("Using direct raw text parsing for reliable table structure preservation")
 
-    with open(raw_text_file_path, encoding='utf-8') as f:
+    with open(raw_text_file_path, encoding="utf-8") as f:
         raw_text = f.read()
 
     # Extract company info and metadata
@@ -57,42 +58,47 @@ def parse_income_statement_directly(raw_text_file_path: str) -> IncomeStatementS
         line_items=line_items,
         revenue_items=revenue_items,
         expense_items=expense_items,
-        net_income_items=net_income_items
+        net_income_items=net_income_items,
     )
+
 
 def extract_company_name(_raw_text: str) -> str:
     """Extract company name from raw text."""
     # Return empty string to avoid unwanted company headers
     return ""
 
+
 def extract_document_title(_raw_text: str) -> str:
     """Extract document title from raw text."""
     # Return simple title to avoid unwanted headers
     return "Income Statement"
 
+
 def extract_units_note(raw_text: str) -> str:
     """Extract units note from raw text."""
     # Look for (In millions, except per share data) pattern
-    match = re.search(r'\(([^)]*millions[^)]*)\)', raw_text, re.IGNORECASE)
+    match = re.search(r"\(([^)]*millions[^)]*)\)", raw_text, re.IGNORECASE)
     if match:
         return match.group(1).strip()
     return "In millions"
+
 
 def extract_reporting_periods(raw_text: str) -> list[str]:
     """Extract reporting periods from table headers."""
     periods = []
 
     # Look for "January XX, XXXX" patterns in the table
-    matches = re.findall(r'January \d{1,2}, \d{4}', raw_text)
+    matches = re.findall(r"January \d{1,2}, \d{4}", raw_text)
     for match in matches:
         period = f"Year Ended {match}"
         if period not in periods:
             periods.append(period)
 
     # Sort by year (most recent first)
-    periods.sort(key=lambda x: int(re.search(r'(\d{4})', x).group(1)), reverse=True)
+    periods.sort(key=lambda x: int(re.search(r"(\d{4})", x).group(1)), reverse=True)
 
     return periods
+
 
 def parse_table_data(raw_text: str, reporting_periods: list[str]) -> list[IncomeStatementLineItem]:
     """Parse the actual table data from pipe-separated format."""
@@ -101,7 +107,9 @@ def parse_table_data(raw_text: str, reporting_periods: list[str]) -> list[Income
     # Find all table rows with at least 3 columns (flexible matching)
     # Matches: | col1 | col2 | col3 | (and optionally col4, col5)
     # Use [^|\n] to avoid matching across newlines
-    table_rows = re.findall(r'\|([^|\n]+)\|([^|\n]+)\|([^|\n]+)(?:\|([^|\n]+))?(?:\|([^|\n]+))?\|', raw_text)
+    table_rows = re.findall(
+        r"\|([^|\n]+)\|([^|\n]+)\|([^|\n]+)(?:\|([^|\n]+))?(?:\|([^|\n]+))?\|", raw_text
+    )
 
     logger.debug(f"Found {len(table_rows)} potential data rows to parse")
 
@@ -116,28 +124,44 @@ def parse_table_data(raw_text: str, reporting_periods: list[str]) -> list[Income
         # Note: row[3] and row[4] ($ Change, % Change) are ignored for income statement extraction
 
         # Skip header rows and empty rows
-        if not account_name or account_name.lower() in ['year ended', '']:
+        if not account_name or account_name.lower() in ["year ended", ""]:
             continue
 
         # Skip separator rows and metadata rows
-        if '---' in account_name or '+' in account_name or '===' in account_name:
+        if "---" in account_name or "+" in account_name or "===" in account_name:
             continue
-        if '($ in millions)' in account_name.lower() or '(in millions)' in account_name.lower():
+        if "($ in millions)" in account_name.lower() or "(in millions)" in account_name.lower():
             continue
-        if account_name.strip() == '' or len(account_name.strip()) == 0:
+        if account_name.strip() == "" or len(account_name.strip()) == 0:
             continue
-        if account_name.lower().startswith('january') or account_name.lower().startswith('fiscal'):
+        if account_name.lower().startswith("january") or account_name.lower().startswith("fiscal"):
             continue  # Skip date header rows
 
         # Skip rows that are just symbols (-, $, etc.)
-        if account_name.strip() in ['-', '$', '%', '(', ')', ',', '.']:
+        if account_name.strip() in ["-", "$", "%", "(", ")", ",", "."]:
             continue
 
         # Skip rows that look like numeric values (not account names)
         # Account names should be mostly text, not just numbers/symbols
-        stripped = account_name.strip().replace('%', '').replace('$', '').replace(',', '').replace('(', '').replace(')', '').replace('.', '').replace('-', '').strip()
-        if stripped.isdigit() or (stripped and len(stripped) > 0 and all(c.isdigit() or c in '.-()%$ ,' for c in account_name)):
-            logger.debug(f"  SKIP: Row looks like numeric value, not account name: {account_name[:30]}")
+        stripped = (
+            account_name.strip()
+            .replace("%", "")
+            .replace("$", "")
+            .replace(",", "")
+            .replace("(", "")
+            .replace(")", "")
+            .replace(".", "")
+            .replace("-", "")
+            .strip()
+        )
+        if stripped.isdigit() or (
+            stripped
+            and len(stripped) > 0
+            and all(c.isdigit() or c in ".-()%$ ," for c in account_name)
+        ):
+            logger.debug(
+                f"  SKIP: Row looks like numeric value, not account name: {account_name[:30]}"
+            )
             continue
 
         logger.debug(f"Parsing: {account_name[:50]}...")
@@ -155,7 +179,7 @@ def parse_table_data(raw_text: str, reporting_periods: list[str]) -> list[Income
                 is_section_header=True,
                 indent_level=0,  # Section headers are at main level
                 is_calculated=False,
-                parent_section=""
+                parent_section="",
             )
             line_items.append(line_item)
             logger.debug("  OK: Section header added to output")
@@ -190,14 +214,17 @@ def parse_table_data(raw_text: str, reporting_periods: list[str]) -> list[Income
                 is_section_header=False,  # We already handled section headers above
                 indent_level=indent_level,
                 is_calculated=is_calculated_field(account_name),
-                parent_section=parent_section
+                parent_section=parent_section,
             )
             line_items.append(line_item)
-            logger.debug(f"  OK: Mapped {len(values)} periods (indent: {indent_level}, parent: {parent_section})")
+            logger.debug(
+                f"  OK: Mapped {len(values)} periods (indent: {indent_level}, parent: {parent_section})"
+            )
         else:
             logger.debug("  WARNING: No values found, skipping")
 
     return line_items
+
 
 def clean_value(value: str) -> str:
     """Clean and standardize monetary values."""
@@ -208,29 +235,39 @@ def clean_value(value: str) -> str:
     value = value.strip()
 
     # Skip empty values or dashes
-    if value in ['-', '—', '']:
+    if value in ["-", "—", ""]:
         return ""
 
     # Keep the value as-is (including $ signs and parentheses)
     return value
+
 
 def categorize_account(account_name: str) -> str:
     """Categorize account into revenue, expense, or income."""
     name_lower = account_name.lower()
 
     # Revenue items
-    if any(keyword in name_lower for keyword in ['revenue', 'sales']):
+    if any(keyword in name_lower for keyword in ["revenue", "sales"]):
         return "revenue"
 
     # Expense items
-    if any(keyword in name_lower for keyword in [
-        'cost', 'expense', 'research and development', 'sales, general',
-        'operating expenses', 'interest expense', 'tax expense'
-    ]):
+    if any(
+        keyword in name_lower
+        for keyword in [
+            "cost",
+            "expense",
+            "research and development",
+            "sales, general",
+            "operating expenses",
+            "interest expense",
+            "tax expense",
+        ]
+    ):
         return "expense"
 
     # Income items (everything else)
     return "income"
+
 
 def determine_indent_level_with_context(account_name: str, current_section: str) -> int:
     """Determine indentation level based on context from current section."""
@@ -241,40 +278,45 @@ def determine_indent_level_with_context(account_name: str, current_section: str)
         section_lower = current_section.lower()
 
         # Items under "Operating expenses" section
-        if 'operating expenses' in section_lower:
+        if "operating expenses" in section_lower:
             return 1
 
         # Items under "Net income per share" section
-        if 'net income per share' in section_lower:
+        if "net income per share" in section_lower:
             return 1
 
         # Items under "Weighted average shares" section
-        if 'weighted average' in section_lower:
+        if "weighted average" in section_lower:
             return 1
 
     # Main level items (no current section context)
     return 0
+
 
 def determine_indent_level(account_name: str, _raw_text: str) -> int:
     """Legacy function - determine indentation level based on context."""
     name_lower = account_name.lower()
 
     # Sub-items under operating expenses
-    if any(keyword in name_lower for keyword in [
-        'research and development', 'sales, general'
-    ]):
+    if any(keyword in name_lower for keyword in ["research and development", "sales, general"]):
         return 1
 
     # Main level items
     return 0
 
+
 def is_section_header_account(account_name: str) -> bool:
     """Check if account is a section header (items that group other items but have no values)."""
     name_lower = account_name.lower()
-    return any(keyword in name_lower for keyword in [
-        'operating expenses', 'net income per share:',
-        'weighted average shares used in per share computation:'
-    ])
+    return any(
+        keyword in name_lower
+        for keyword in [
+            "operating expenses",
+            "net income per share:",
+            "weighted average shares used in per share computation:",
+        ]
+    )
+
 
 def get_parent_section_with_context(_account_name: str, current_section: str) -> str:
     """Get parent section based on current section context."""
@@ -282,50 +324,59 @@ def get_parent_section_with_context(_account_name: str, current_section: str) ->
         section_lower = current_section.lower()
 
         # Items under "Operating expenses"
-        if 'operating expenses' in section_lower:
+        if "operating expenses" in section_lower:
             return "Operating expenses"
 
         # Items under "Net income per share"
-        if 'net income per share' in section_lower:
+        if "net income per share" in section_lower:
             return "Net income per share"
 
         # Items under "Weighted average shares"
-        if 'weighted average' in section_lower:
+        if "weighted average" in section_lower:
             return "Weighted average shares used in per share computation"
 
     return ""
+
 
 def get_parent_section(account_name: str) -> str:
     """Legacy function - Get parent section for categorization."""
     name_lower = account_name.lower()
 
-    if any(keyword in name_lower for keyword in [
-        'research and development', 'sales, general'
-    ]):
+    if any(keyword in name_lower for keyword in ["research and development", "sales, general"]):
         return "Operating expenses"
 
-    if any(keyword in name_lower for keyword in ['basic', 'diluted']) and 'share' in name_lower:
-        if 'per share' in name_lower:
+    if any(keyword in name_lower for keyword in ["basic", "diluted"]) and "share" in name_lower:
+        if "per share" in name_lower:
             return "Net income per share"
         else:
             return "Weighted average shares used in per share computation"
 
     return ""
 
+
 def is_total_line_that_resets_context(account_name: str) -> bool:
     """Check if this is a total line that should reset section context."""
     name_lower = account_name.lower()
-    return any(keyword in name_lower for keyword in [
-        'total operating expenses', 'total other income', 'total'
-    ])
+    return any(
+        keyword in name_lower
+        for keyword in ["total operating expenses", "total other income", "total"]
+    )
+
 
 def is_calculated_field(account_name: str) -> bool:
     """Check if field is calculated (totals, etc.)."""
     name_lower = account_name.lower()
-    return any(keyword in name_lower for keyword in [
-        'total', 'gross profit', 'income from operations',
-        'income before', 'net income'
-    ])
+    return any(
+        keyword in name_lower
+        for keyword in [
+            "total",
+            "gross profit",
+            "income from operations",
+            "income before",
+            "net income",
+        ]
+    )
+
 
 if __name__ == "__main__":
     # Test the parser

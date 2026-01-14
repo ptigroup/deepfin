@@ -73,7 +73,9 @@ class ConsolidationService:
                 extra={"error": str(e)},
                 exc_info=True,
             )
-            raise ConsolidationServiceError(f"Failed to create consolidated statement: {str(e)}") from e
+            raise ConsolidationServiceError(
+                f"Failed to create consolidated statement: {str(e)}"
+            ) from e
 
     async def get_consolidated_statement(
         self,
@@ -164,9 +166,7 @@ class ConsolidationService:
             ConsolidationServiceError: If creation fails or statement not found
         """
         # Verify statement exists
-        statement = await self.get_consolidated_statement(
-            comparison_data.consolidated_statement_id
-        )
+        statement = await self.get_consolidated_statement(comparison_data.consolidated_statement_id)
         if not statement:
             raise ConsolidationServiceError(
                 f"Consolidated statement {comparison_data.consolidated_statement_id} not found"
@@ -271,9 +271,7 @@ class ConsolidationService:
             ConsolidationServiceError: If creation fails
         """
         # Calculate changes
-        change_amount, change_percentage = self.calculate_change(
-            current_value, previous_value
-        )
+        change_amount, change_percentage = self.calculate_change(current_value, previous_value)
 
         # Create comparison
         comparison_data = PeriodComparisonCreate(

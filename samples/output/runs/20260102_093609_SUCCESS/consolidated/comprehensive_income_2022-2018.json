@@ -1,0 +1,403 @@
+{
+  "statement_type": "comprehensive_income",
+  "fiscal_years": [
+    2022,
+    2021,
+    2020,
+    2019,
+    2018
+  ],
+  "periods": [
+    "January 31, 2021",
+    "January 30, 2022",
+    "January 28, 2018",
+    "January 27, 2019",
+    "January 26, 2020"
+  ],
+  "line_items": [
+    {
+      "account_name": " Net income",
+      "indent_level": 0,
+      "section": "Income",
+      "values": {
+        "January 26, 2020": "$         2,796",
+        "January 27, 2019": "$          4,141",
+        "January 28, 2018": "$          3,047",
+        "January 30, 2022": "$         9,752",
+        "January 31, 2021": "$          4,332"
+      }
+    },
+    {
+      "account_name": " Other comprehensive income (loss), net of tax",
+      "indent_level": 0,
+      "section": null,
+      "values": {
+        "January 26, 2020": "13",
+        "January 27, 2019": " ",
+        "January 28, 2018": "",
+        "January 30, 2022": "(30)",
+        "January 31, 2021": "18"
+      }
+    },
+    {
+      "account_name": " Available-for-sale debt securities:",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 26, 2020": "",
+        "January 27, 2019": " ",
+        "January 28, 2018": ""
+      }
+    },
+    {
+      "account_name": "   Net unrealized gain (loss)",
+      "indent_level": 2,
+      "section": "Income",
+      "values": {
+        "January 26, 2020": "10",
+        "January 27, 2019": "6",
+        "January 28, 2018": "(1)"
+      }
+    },
+    {
+      "account_name": "   Reclassification adjustments for net realized gain included in net income",
+      "indent_level": 2,
+      "section": "Income",
+      "values": {
+        "January 26, 2020": "-",
+        "January 27, 2019": "1",
+        "January 28, 2018": "1"
+      }
+    },
+    {
+      "account_name": "   Net change in unrealized gain (loss)",
+      "indent_level": 2,
+      "section": "Income",
+      "values": {
+        "January 26, 2020": "5",
+        "January 27, 2019": "(5)",
+        "January 28, 2018": "2"
+      }
+    },
+    {
+      "account_name": " Cash flow hedges:",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 26, 2020": "",
+        "January 27, 2019": " ",
+        "January 28, 2018": ""
+      }
+    },
+    {
+      "account_name": "   Reclassification adjustments for net realized gain (loss) included in net income",
+      "indent_level": 2,
+      "section": "Income",
+      "values": {
+        "January 26, 2020": "(5)",
+        "January 27, 2019": "(11)",
+        "January 28, 2018": "3"
+      }
+    },
+    {
+      "account_name": " Other comprehensive income (loss), net of tax",
+      "indent_level": 0,
+      "section": "Income",
+      "values": {
+        "January 26, 2020": "13",
+        "January 27, 2019": "6",
+        "January 28, 2018": "(2)"
+      }
+    },
+    {
+      "account_name": " Total comprehensive income",
+      "indent_level": 0,
+      "section": "Income",
+      "values": {
+        "January 26, 2020": "$         2,809",
+        "January 27, 2019": "$          4,147",
+        "January 28, 2018": "$          3,045",
+        "January 30, 2022": "$         9,722",
+        "January 31, 2021": "$          4,350"
+      }
+    },
+    {
+      "account_name": " Other comprehensive income (loss), net of tax",
+      "indent_level": 0,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": "   Net unrealized gain (loss)",
+      "indent_level": 2,
+      "section": null,
+      "values": {
+        "January 30, 2022": "(43)",
+        "January 31, 2021": "9",
+        "January 26, 2020": "10"
+      }
+    },
+    {
+      "account_name": "   Reclassification adjustments for net realized gain (loss) included in net income",
+      "indent_level": 2,
+      "section": null,
+      "values": {
+        "January 30, 2022": "29",
+        "January 31, 2021": "9",
+        "January 26, 2020": "(5)"
+      }
+    },
+    {
+      "account_name": "   Net change in unrealized gain (loss)",
+      "indent_level": 2,
+      "section": null,
+      "values": {
+        "January 30, 2022": "(14)",
+        "January 31, 2021": "18",
+        "January 26, 2020": "5"
+      }
+    }
+  ],
+  "consolidation_metadata": {
+    "merged_accounts": [
+      {
+        "consolidated_name": " Net income",
+        "section": "Income",
+        "merged_from": [
+          {
+            "name": " Net income",
+            "section": "Income",
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 3
+          },
+          {
+            "name": " Net income",
+            "section": "Income",
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Other comprehensive income (loss), net of tax",
+        "section": null,
+        "merged_from": [
+          {
+            "name": " Other comprehensive income (loss), net of tax",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 3
+          },
+          {
+            "name": " Other comprehensive income (loss), net of tax",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Available-for-sale debt securities:",
+        "section": null,
+        "merged_from": [
+          {
+            "name": " Available-for-sale debt securities:",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 3
+          },
+          {
+            "name": " Available-for-sale debt securities:",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": "   Net unrealized gain (loss)",
+        "section": "Income",
+        "merged_from": [
+          {
+            "name": "   Net unrealized gain (loss)",
+            "section": "Income",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "   Net unrealized gain (loss)",
+            "section": "Income",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "   Net change in unrealized gain (loss)",
+        "section": "Income",
+        "merged_from": [
+          {
+            "name": "   Net change in unrealized gain (loss)",
+            "section": "Income",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "   Net change in unrealized gain (loss)",
+            "section": "Income",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Cash flow hedges:",
+        "section": null,
+        "merged_from": [
+          {
+            "name": " Cash flow hedges:",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 3
+          },
+          {
+            "name": " Cash flow hedges:",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Total comprehensive income",
+        "section": "Income",
+        "merged_from": [
+          {
+            "name": " Total comprehensive income",
+            "section": "Income",
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 3
+          },
+          {
+            "name": " Total comprehensive income",
+            "section": "Income",
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "   Net unrealized gain (loss)",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "   Net unrealized gain (loss)",
+            "section": null,
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "   Net unrealized gain (loss)",
+            "section": null,
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "   Reclassification adjustments for net realized gain (loss) included in net income",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "   Reclassification adjustments for net realized gain (loss) included in net income",
+            "section": null,
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "   Reclassification adjustments for net realized gain (loss) included in net income",
+            "section": null,
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "   Net change in unrealized gain (loss)",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "   Net change in unrealized gain (loss)",
+            "section": null,
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "   Net change in unrealized gain (loss)",
+            "section": null,
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          }
+        ]
+      }
+    ],
+    "unmerged_accounts": [
+      {
+        "account_name": "   Reclassification adjustments for net realized gain included in net income",
+        "section": "Income",
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": "   Reclassification adjustments for net realized gain (loss) included in net income",
+        "section": "Income",
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": " Other comprehensive income (loss), net of tax",
+        "section": "Income",
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": " Other comprehensive income (loss), net of tax",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "empty_header_single_source",
+        "values_count": 0
+      }
+    ],
+    "duplicate_headers": [],
+    "total_accounts_merged": 10,
+    "total_accounts_unmerged": 4,
+    "total_duplicate_headers": 0,
+    "source_pdfs": [
+      "NVIDIA 10K 2020-2019.pdf",
+      "NVIDIA 10K 2022-2021.pdf"
+    ]
+  }
+}

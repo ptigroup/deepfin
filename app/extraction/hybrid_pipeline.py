@@ -46,7 +46,7 @@ class ExtractionResult:
             "success": self.success,
             "line_items_count": self.line_items_count,
             "extraction_time": self.extraction_time,
-            "error": self.error
+            "error": self.error,
         }
 
 
@@ -71,7 +71,7 @@ class ValidationReport:
             "discrepancies_count": len(self.discrepancies),
             "discrepancies": self.discrepancies,
             "accuracy_score": self.accuracy_score,
-            "recommendation": self.recommendation
+            "recommendation": self.recommendation,
         }
 
 
@@ -104,10 +104,7 @@ class HybridExtractionPipeline:
         self.current_run: ExtractionRun | None = None
 
     def extract_with_hybrid_pipeline(
-        self,
-        pdf_path: str,
-        raw_text: str,
-        pages_extracted: list[int]
+        self, pdf_path: str, raw_text: str, pages_extracted: list[int]
     ) -> dict[str, Any]:
         """
         Execute full hybrid extraction pipeline.
@@ -121,6 +118,7 @@ class HybridExtractionPipeline:
             Dictionary with extraction results and validation report
         """
         import time
+
         start_time = time.time()
 
         pdf_name = Path(pdf_path).stem
@@ -137,7 +135,9 @@ class HybridExtractionPipeline:
         logger.info(f"  Detected: {doc_type.value}, Confidence: {confidence:.2f}")
 
         if confidence < self.MIN_CONFIDENCE_THRESHOLD:
-            logger.warning(f"  WARNING: Low confidence ({confidence:.2f} < {self.MIN_CONFIDENCE_THRESHOLD})")
+            logger.warning(
+                f"  WARNING: Low confidence ({confidence:.2f} < {self.MIN_CONFIDENCE_THRESHOLD})"
+            )
             logger.warning("  This may be a summary page or incorrect document type")
 
         # Step 2: Save raw text for direct parsing
@@ -207,7 +207,7 @@ class HybridExtractionPipeline:
             cost_usd=0.0,  # TODO: Track actual cost from LLMWhisperer
             duration_seconds=duration,
             line_items=final_result.line_items_count if final_result.success else 0,
-            error=final_result.error if not final_result.success else None
+            error=final_result.error if not final_result.success else None,
         )
 
         # Complete the run
@@ -230,7 +230,7 @@ class HybridExtractionPipeline:
             "output_paths": output_paths,
             "accuracy": validation_report.accuracy_score,
             "run_id": self.current_run.run_id,
-            "run_dir": str(self.current_run.run_dir)
+            "run_dir": str(self.current_run.run_dir),
         }
 
     def _save_raw_text(self, pdf_name: str, raw_text: str, pages: list[int]) -> Path:
@@ -252,13 +252,15 @@ class HybridExtractionPipeline:
             f"{raw_text}"
         )
 
-        with open(raw_path, 'w', encoding='utf-8') as f:
+        with open(raw_path, "w", encoding="utf-8") as f:
             f.write(formatted_text)
 
         logger.info(f"  Raw text saved: {raw_path.name}")
         return raw_path
 
-    def _extract_with_direct_parser(self, raw_text_path: Path, doc_type: FinancialStatementType) -> ExtractionResult:
+    def _extract_with_direct_parser(
+        self, raw_text_path: Path, doc_type: FinancialStatementType
+    ) -> ExtractionResult:
         """
         Extract using direct parser (100% accurate, deterministic).
 
@@ -270,6 +272,7 @@ class HybridExtractionPipeline:
             ExtractionResult with parsed schema
         """
         import time
+
         result = ExtractionResult("direct_parser")
 
         try:
@@ -298,7 +301,7 @@ class HybridExtractionPipeline:
         doc_type: FinancialStatementType,
         confidence: float,
         direct_result: ExtractionResult,
-        pydantic_result: ExtractionResult
+        pydantic_result: ExtractionResult,
     ) -> ValidationReport:
         """
         Create validation report comparing extraction methods.
@@ -326,8 +329,7 @@ class HybridExtractionPipeline:
             if pydantic_result.success:
                 # Compare results if both succeeded
                 discrepancies = self._compare_extractions(
-                    direct_result.schema_instance,
-                    pydantic_result.schema_instance
+                    direct_result.schema_instance, pydantic_result.schema_instance
                 )
                 report.discrepancies = discrepancies
 
@@ -340,7 +342,9 @@ class HybridExtractionPipeline:
                     else:
                         report.recommendation = f"Significant discrepancies ({len(discrepancies)}) - Manual review recommended"
             else:
-                report.recommendation = "Direct parser succeeded - 100% accuracy (Pydantic AI not available)"
+                report.recommendation = (
+                    "Direct parser succeeded - 100% accuracy (Pydantic AI not available)"
+                )
 
         elif pydantic_result.success:
             # Only Pydantic AI succeeded
@@ -354,7 +358,9 @@ class HybridExtractionPipeline:
 
         # Add confidence warnings
         if confidence < self.MIN_CONFIDENCE_THRESHOLD:
-            report.recommendation += f" | WARNING: Low confidence ({confidence:.2f}) - Possible summary page"
+            report.recommendation += (
+                f" | WARNING: Low confidence ({confidence:.2f}) - Possible summary page"
+            )
 
         return report
 
@@ -379,33 +385,39 @@ class HybridExtractionPipeline:
         pydantic_count = len(pydantic_schema.line_items)
 
         if direct_count != pydantic_count:
-            discrepancies.append({
-                "type": "line_item_count",
-                "direct": direct_count,
-                "pydantic": pydantic_count,
-                "difference": abs(direct_count - pydantic_count)
-            })
+            discrepancies.append(
+                {
+                    "type": "line_item_count",
+                    "direct": direct_count,
+                    "pydantic": pydantic_count,
+                    "difference": abs(direct_count - pydantic_count),
+                }
+            )
 
         # Compare individual line items (simplified - could be more detailed)
         for i, direct_item in enumerate(direct_schema.line_items):
             if i >= len(pydantic_schema.line_items):
-                discrepancies.append({
-                    "type": "missing_item",
-                    "line": i + 1,
-                    "account": direct_item.account_name,
-                    "method": "pydantic_ai"
-                })
+                discrepancies.append(
+                    {
+                        "type": "missing_item",
+                        "line": i + 1,
+                        "account": direct_item.account_name,
+                        "method": "pydantic_ai",
+                    }
+                )
                 continue
 
             pydantic_item = pydantic_schema.line_items[i]
 
             if direct_item.account_name != pydantic_item.account_name:
-                discrepancies.append({
-                    "type": "account_name_mismatch",
-                    "line": i + 1,
-                    "direct": direct_item.account_name,
-                    "pydantic": pydantic_item.account_name
-                })
+                discrepancies.append(
+                    {
+                        "type": "account_name_mismatch",
+                        "line": i + 1,
+                        "direct": direct_item.account_name,
+                        "pydantic": pydantic_item.account_name,
+                    }
+                )
 
         return discrepancies
 
@@ -413,7 +425,7 @@ class HybridExtractionPipeline:
         self,
         direct_result: ExtractionResult,
         pydantic_result: ExtractionResult,
-        _validation_report: ValidationReport
+        _validation_report: ValidationReport,
     ) -> ExtractionResult | None:
         """
         Select final result based on quality gates.
@@ -438,7 +450,7 @@ class HybridExtractionPipeline:
         self,
         pdf_name: str,
         extraction_result: ExtractionResult,
-        validation_report: ValidationReport
+        validation_report: ValidationReport,
     ) -> dict[str, str]:
         """
         Export extraction results to JSON, Excel, and validation report.
@@ -465,7 +477,7 @@ class HybridExtractionPipeline:
                 "company_name": schema.company_name,
                 "extracted_at": datetime.now().isoformat(),
                 "line_items_count": len(schema.line_items),
-                "accuracy": validation_report.accuracy_score
+                "accuracy": validation_report.accuracy_score,
             },
             "data": {
                 "company_name": schema.company_name,
@@ -476,11 +488,11 @@ class HybridExtractionPipeline:
                     {
                         "account_name": item.account_name,
                         "values": [item.values.get(p, "") for p in schema.reporting_periods],
-                        "indent_level": item.indent_level
+                        "indent_level": item.indent_level,
                     }
                     for item in schema.line_items
-                ]
-            }
+                ],
+            },
         }
 
         # Prepare metadata
@@ -493,7 +505,7 @@ class HybridExtractionPipeline:
             "line_items_count": len(schema.line_items),
             "periods_count": len(schema.reporting_periods),
             "accuracy": validation_report.accuracy_score,
-            "confidence": validation_report.document_confidence
+            "confidence": validation_report.document_confidence,
         }
 
         # Prepare validation report
@@ -513,7 +525,7 @@ class HybridExtractionPipeline:
             excel_path=str(excel_path),
             raw_text=None,  # Already saved in _save_raw_text()
             metadata=metadata,
-            validation=validation_data
+            validation=validation_data,
         )
 
         output_paths["json"] = str(output_dir / f"{statement_type}.json")

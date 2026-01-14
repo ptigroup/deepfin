@@ -32,7 +32,7 @@ class AsyncLLMWhispererClient:
         pages_to_extract: str | None = None,
         wait_for_completion: bool = True,
         wait_timeout: int = 200,
-        **kwargs
+        **kwargs,
     ) -> dict:
         """Extract text from PDF asynchronously.
 
@@ -53,11 +53,7 @@ class AsyncLLMWhispererClient:
         """
         logger.debug(
             "Starting async whisper",
-            extra={
-                "file_path": str(file_path),
-                "mode": mode,
-                "pages": pages_to_extract
-            }
+            extra={"file_path": str(file_path), "mode": mode, "pages": pages_to_extract},
         )
 
         # Run blocking SDK call in thread pool
@@ -69,7 +65,7 @@ class AsyncLLMWhispererClient:
             pages_to_extract=pages_to_extract or "",
             wait_for_completion=wait_for_completion,
             wait_timeout=wait_timeout,
-            **kwargs
+            **kwargs,
         )
 
         logger.debug("Async whisper completed")

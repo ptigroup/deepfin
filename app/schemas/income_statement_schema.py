@@ -7,7 +7,6 @@ This schema handles income statements with straightforward structure:
 - Consistent column structure across all rows
 """
 
-
 from pydantic import Field
 
 from .base_schema import (
@@ -21,9 +20,15 @@ from .base_schema import (
 
 class IncomeStatementLineItem(SimpleLineItem):
     """Income statement specific line item with additional fields."""
-    account_category: str | None = Field(description="Category: 'revenue', 'expense', 'income', 'other'", default="")
-    is_calculated: bool = Field(description="Whether this is a calculated field (subtotal, etc.)", default=False)
+
+    account_category: str | None = Field(
+        description="Category: 'revenue', 'expense', 'income', 'other'", default=""
+    )
+    is_calculated: bool = Field(
+        description="Whether this is a calculated field (subtotal, etc.)", default=False
+    )
     calculation_formula: str | None = Field(description="Formula if this is calculated", default="")
+
 
 class IncomeStatementSchema(BaseFinancialSchema):
     """
@@ -47,18 +52,15 @@ class IncomeStatementSchema(BaseFinancialSchema):
 
     # Key financial metrics (automatically extracted)
     revenue_items: list[IncomeStatementLineItem] = Field(
-        description="Revenue-related line items",
-        default=[]
+        description="Revenue-related line items", default=[]
     )
 
     expense_items: list[IncomeStatementLineItem] = Field(
-        description="Expense-related line items",
-        default=[]
+        description="Expense-related line items", default=[]
     )
 
     net_income_items: list[IncomeStatementLineItem] = Field(
-        description="Net income and profit-related items",
-        default=[]
+        description="Net income and profit-related items", default=[]
     )
 
     def get_revenue_total(self, period: str) -> str | None:
@@ -85,13 +87,15 @@ class IncomeStatementSchema(BaseFinancialSchema):
         # Build column mappings from reporting periods
         excel_mappings = []
         for i, period in enumerate(self.reporting_periods):
-            excel_mappings.append(ExcelColumnMapping(
-                excel_column_index=i + 2,  # Start from column B
-                main_header=period,
-                sub_header="",
-                span_columns=1,
-                data_type="currency"
-            ))
+            excel_mappings.append(
+                ExcelColumnMapping(
+                    excel_column_index=i + 2,  # Start from column B
+                    main_header=period,
+                    sub_header="",
+                    span_columns=1,
+                    data_type="currency",
+                )
+            )
 
         # Calculate table positioning
         header_count = len(header_rows)
@@ -104,5 +108,5 @@ class IncomeStatementSchema(BaseFinancialSchema):
             has_multi_level_headers=False,
             units_note_position="top",
             table_start_row=table_start_row,
-            data_start_row=data_start_row
+            data_start_row=data_start_row,
         )

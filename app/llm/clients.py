@@ -257,9 +257,7 @@ class LLMWhispererClient:
 
                 # Check status
                 status_response = await http_client.get(
-                    status_url,
-                    headers=headers,
-                    params={"whisper_hash": whisper_hash}
+                    status_url, headers=headers, params={"whisper_hash": whisper_hash}
                 )
                 status_response.raise_for_status()
                 status_data = status_response.json()
@@ -270,9 +268,7 @@ class LLMWhispererClient:
                 if status == "processed":
                     # Retrieve result
                     retrieve_response = await http_client.get(
-                        retrieve_url,
-                        headers=headers,
-                        params={"whisper_hash": whisper_hash}
+                        retrieve_url, headers=headers, params={"whisper_hash": whisper_hash}
                     )
                     retrieve_response.raise_for_status()
                     extract_data = retrieve_response.json()

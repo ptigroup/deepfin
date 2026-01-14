@@ -117,7 +117,9 @@ class PeriodComparisonCreate(BaseModel):
 
     consolidated_statement_id: int = Field(..., gt=0, description="Consolidated statement ID")
     line_item_name: str = Field(..., min_length=1, max_length=255, description="Line item name")
-    current_period: str = Field(..., min_length=1, max_length=50, description="Current period label")
+    current_period: str = Field(
+        ..., min_length=1, max_length=50, description="Current period label"
+    )
     previous_period: str = Field(
         ..., min_length=1, max_length=50, description="Previous period label"
     )

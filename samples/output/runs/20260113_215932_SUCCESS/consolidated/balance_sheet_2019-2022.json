@@ -1,0 +1,1074 @@
+{
+  "statement_type": "balance_sheet",
+  "fiscal_years": [
+    2022,
+    2021,
+    2020,
+    2019
+  ],
+  "periods": [
+    "January 31, 2021",
+    "January 30, 2022",
+    "January 27, 2019",
+    "January 26, 2020"
+  ],
+  "line_items": [
+    {
+      "account_name": " ASSETS",
+      "indent_level": 0,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": " Current assets:",
+      "indent_level": 1,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": "      Cash and cash equivalents",
+      "indent_level": 2,
+      "section": "Assets",
+      "values": {
+        "January 26, 2020": "$         10,896",
+        "January 27, 2019": "$           782",
+        "January 30, 2022": "$         1,990",
+        "January 31, 2021": "$            847"
+      }
+    },
+    {
+      "account_name": "      Marketable securities",
+      "indent_level": 2,
+      "section": "Assets",
+      "values": {
+        "January 26, 2020": "$                1",
+        "January 27, 2019": "$           6,640",
+        "January 30, 2022": "19,218",
+        "January 31, 2021": "10,714"
+      }
+    },
+    {
+      "account_name": "      Accounts receivable, net",
+      "indent_level": 2,
+      "section": "Assets",
+      "values": {
+        "January 26, 2020": "$          1,657",
+        "January 27, 2019": "$          1,424",
+        "January 30, 2022": "4,650",
+        "January 31, 2021": "2,429"
+      }
+    },
+    {
+      "account_name": "      Inventories",
+      "indent_level": 2,
+      "section": "Assets",
+      "values": {
+        "January 26, 2020": "$          979",
+        "January 27, 2019": "$          1,575",
+        "January 30, 2022": "2,605",
+        "January 31, 2021": "1,826"
+      }
+    },
+    {
+      "account_name": "      Prepaid expenses and other current assets",
+      "indent_level": 2,
+      "section": "Assets",
+      "values": {
+        "January 26, 2020": "$          157",
+        "January 27, 2019": "$          136",
+        "January 30, 2022": "366",
+        "January 31, 2021": "239"
+      }
+    },
+    {
+      "account_name": " Total current assets",
+      "indent_level": 1,
+      "section": "Assets",
+      "values": {
+        "January 26, 2020": "$       13,690",
+        "January 27, 2019": "$       10,557",
+        "January 30, 2022": "28,829",
+        "January 31, 2021": "16,055"
+      }
+    },
+    {
+      "account_name": " Property and equipment, net",
+      "indent_level": 1,
+      "section": "Assets",
+      "values": {
+        "January 26, 2020": "$          1,674",
+        "January 27, 2019": "$          1,404",
+        "January 30, 2022": "2,778",
+        "January 31, 2021": "2,149"
+      }
+    },
+    {
+      "account_name": " Operating lease assets",
+      "indent_level": 1,
+      "section": "Assets",
+      "values": {
+        "January 26, 2020": "$          618",
+        "January 27, 2019": "$            -",
+        "January 30, 2022": "829",
+        "January 31, 2021": "707"
+      }
+    },
+    {
+      "account_name": " Goodwill",
+      "indent_level": 1,
+      "section": "Assets",
+      "values": {
+        "January 26, 2020": "$          618",
+        "January 27, 2019": "$          618",
+        "January 30, 2022": "4,349",
+        "January 31, 2021": "4,193"
+      }
+    },
+    {
+      "account_name": " Intangible assets, net",
+      "indent_level": 1,
+      "section": "Assets",
+      "values": {
+        "January 26, 2020": "$           49",
+        "January 27, 2019": "$           45",
+        "January 30, 2022": "2,339",
+        "January 31, 2021": "2,737"
+      }
+    },
+    {
+      "account_name": " Deferred income tax assets",
+      "indent_level": 1,
+      "section": "Assets",
+      "values": {
+        "January 26, 2020": "$          548",
+        "January 27, 2019": "$          560",
+        "January 30, 2022": "1,222",
+        "January 31, 2021": "806"
+      }
+    },
+    {
+      "account_name": " Other assets",
+      "indent_level": 1,
+      "section": "Assets",
+      "values": {
+        "January 26, 2020": "$          118",
+        "January 27, 2019": "$          108",
+        "January 30, 2022": "3,841",
+        "January 31, 2021": "2,144"
+      }
+    },
+    {
+      "account_name": " Total assets",
+      "indent_level": 0,
+      "section": "Assets",
+      "values": {
+        "January 26, 2020": "$       17,315",
+        "January 27, 2019": "$       13,292",
+        "January 30, 2022": "$        44,187",
+        "January 31, 2021": "$         28,791"
+      }
+    },
+    {
+      "account_name": " LIABILITIES AND SHAREHOLDERS' EQUITY",
+      "indent_level": 0,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": " Current liabilities:",
+      "indent_level": 1,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": "      Accounts payable",
+      "indent_level": 2,
+      "section": "Liabilities",
+      "values": {
+        "January 26, 2020": "$          687",
+        "January 27, 2019": "$          511",
+        "January 30, 2022": "$         1,783",
+        "January 31, 2021": "$          1,149"
+      }
+    },
+    {
+      "account_name": "      Accrued and other current liabilities",
+      "indent_level": 2,
+      "section": "Liabilities",
+      "values": {
+        "January 26, 2020": "$        1,097",
+        "January 27, 2019": "$          818",
+        "January 30, 2022": "2,552",
+        "January 31, 2021": "1,777"
+      }
+    },
+    {
+      "account_name": " Total current liabilities",
+      "indent_level": 1,
+      "section": "Liabilities",
+      "values": {
+        "January 26, 2020": "$        1,784",
+        "January 27, 2019": "$        1,329",
+        "January 30, 2022": "4,335",
+        "January 31, 2021": "3,925"
+      }
+    },
+    {
+      "account_name": " Long-term debt",
+      "indent_level": 1,
+      "section": "Liabilities",
+      "values": {
+        "January 26, 2020": "$        1,991",
+        "January 27, 2019": "$        1,988",
+        "January 30, 2022": "10,946",
+        "January 31, 2021": "5,964"
+      }
+    },
+    {
+      "account_name": " Long-term operating lease liabilities",
+      "indent_level": 1,
+      "section": "Liabilities",
+      "values": {
+        "January 26, 2020": "$          561",
+        "January 27, 2019": "$            -",
+        "January 30, 2022": "741",
+        "January 31, 2021": "634"
+      }
+    },
+    {
+      "account_name": " Other long-term liabilities",
+      "indent_level": 1,
+      "section": "Liabilities",
+      "values": {
+        "January 26, 2020": "$          775",
+        "January 27, 2019": "$          633",
+        "January 30, 2022": "1,553",
+        "January 31, 2021": "1,375"
+      }
+    },
+    {
+      "account_name": " Total liabilities",
+      "indent_level": 0,
+      "section": "Liabilities",
+      "values": {
+        "January 26, 2020": "$        5,111",
+        "January 27, 2019": "$        3,950",
+        "January 30, 2022": "17,575",
+        "January 31, 2021": "11,898"
+      }
+    },
+    {
+      "account_name": " Commitments and contingencies - see Note 13",
+      "indent_level": 0,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": " Shareholders' equity:",
+      "indent_level": 1,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": "      Preferred stock, $.001 par value; 2 shares authorized; none issued",
+      "indent_level": 2,
+      "section": "Equity",
+      "values": {
+        "January 26, 2020": "$            -",
+        "January 27, 2019": "$            -"
+      }
+    },
+    {
+      "account_name": "      Common stock, $.001 par value; 2,000 shares authorized; 955 shares issued and 612 outstanding as of January 26, 2020; 945 shares issued and 606 outstanding as of January 27, 2019",
+      "indent_level": 2,
+      "section": "Equity",
+      "values": {
+        "January 26, 2020": "$            1",
+        "January 27, 2019": "$            1"
+      }
+    },
+    {
+      "account_name": "      Additional paid-in capital",
+      "indent_level": 2,
+      "section": "Equity",
+      "values": {
+        "January 26, 2020": "$        7,045",
+        "January 27, 2019": "$        6,051",
+        "January 30, 2022": "10,385",
+        "January 31, 2021": "8,719"
+      }
+    },
+    {
+      "account_name": "      Treasury stock, at cost (342 shares in 2020 and 339 shares in 2019)",
+      "indent_level": 2,
+      "section": "Equity",
+      "values": {
+        "January 26, 2020": "($       9,814)",
+        "January 27, 2019": "($       9,263)"
+      }
+    },
+    {
+      "account_name": "      Accumulated other comprehensive income (loss)",
+      "indent_level": 2,
+      "section": "Equity",
+      "values": {
+        "January 26, 2020": "$            1",
+        "January 27, 2019": "$          (12)",
+        "January 30, 2022": "(11)",
+        "January 31, 2021": "19"
+      }
+    },
+    {
+      "account_name": "      Retained earnings",
+      "indent_level": 2,
+      "section": "Equity",
+      "values": {
+        "January 26, 2020": "$       14,971",
+        "January 27, 2019": "$       12,565",
+        "January 30, 2022": "16,235",
+        "January 31, 2021": "18,908"
+      }
+    },
+    {
+      "account_name": " Total shareholders' equity",
+      "indent_level": 1,
+      "section": "Equity",
+      "values": {
+        "January 26, 2020": "$       12,204",
+        "January 27, 2019": "$        9,342",
+        "January 30, 2022": "26,612",
+        "January 31, 2021": "16,893"
+      }
+    },
+    {
+      "account_name": " Total liabilities and shareholders' equity",
+      "indent_level": 0,
+      "section": null,
+      "values": {
+        "January 26, 2020": "$       17,315",
+        "January 27, 2019": "$       13,292",
+        "January 30, 2022": "$        44,187",
+        "January 31, 2021": "$         28,791"
+      }
+    },
+    {
+      "account_name": "      Short-term debt",
+      "indent_level": 2,
+      "section": "Liabilities",
+      "values": {
+        "January 30, 2022": "-",
+        "January 31, 2021": "999"
+      }
+    },
+    {
+      "account_name": "      Preferred stock, $0.001 par value; 2 shares authorized; none issued",
+      "indent_level": 2,
+      "section": "Equity",
+      "values": {
+        "January 30, 2022": "-",
+        "January 31, 2021": "-"
+      }
+    },
+    {
+      "account_name": "      Common stock, $0.001 par value; 4,000 shares authorized; 2,506 shares issued and outstanding as of January 30, 2022; 3,859 shares issued and 2,479 outstanding as of January 31, 2021",
+      "indent_level": 2,
+      "section": "Equity",
+      "values": {
+        "January 30, 2022": "3",
+        "January 31, 2021": "3"
+      }
+    },
+    {
+      "account_name": "      Treasury stock, at cost (None as of January 30, 2022 and 1,380 shares as of January 31, 2021)",
+      "indent_level": 2,
+      "section": "Equity",
+      "values": {
+        "January 30, 2022": "-",
+        "January 31, 2021": "(10,756)"
+      }
+    }
+  ],
+  "consolidation_metadata": {
+    "merged_accounts": [
+      {
+        "consolidated_name": " ASSETS",
+        "section": null,
+        "merged_from": [
+          {
+            "name": " ASSETS",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 0
+          },
+          {
+            "name": "ASSETS",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Current assets:",
+        "section": null,
+        "merged_from": [
+          {
+            "name": " Current assets:",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 0
+          },
+          {
+            "name": "Current assets:",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": "      Cash and cash equivalents",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "      Cash and cash equivalents",
+            "section": "Assets",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "      Cash and cash equivalents",
+            "section": "Assets",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "      Marketable securities",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "      Marketable securities",
+            "section": "Assets",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "      Marketable securities",
+            "section": "Assets",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "      Accounts receivable, net",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "      Accounts receivable, net",
+            "section": "Assets",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "      Accounts receivable, net",
+            "section": "Assets",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "      Inventories",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "      Inventories",
+            "section": "Assets",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "      Inventories",
+            "section": "Assets",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "      Prepaid expenses and other current assets",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "      Prepaid expenses and other current assets",
+            "section": "Assets",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "      Prepaid expenses and other current assets",
+            "section": "Assets",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Total current assets",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": " Total current assets",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Total current assets",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Property and equipment, net",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": " Property and equipment, net",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Property and equipment, net",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Operating lease assets",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": " Operating lease assets",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Operating lease assets",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Goodwill",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": " Goodwill",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Goodwill",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Intangible assets, net",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": " Intangible assets, net",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Intangible assets, net",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Deferred income tax assets",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": " Deferred income tax assets",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Deferred income tax assets",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Other assets",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": " Other assets",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Other assets",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Total assets",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": " Total assets",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Total assets",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " LIABILITIES AND SHAREHOLDERS' EQUITY",
+        "section": null,
+        "merged_from": [
+          {
+            "name": " LIABILITIES AND SHAREHOLDERS' EQUITY",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 0
+          },
+          {
+            "name": "LIABILITIES AND SHAREHOLDERS' EQUITY",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Current liabilities:",
+        "section": null,
+        "merged_from": [
+          {
+            "name": " Current liabilities:",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 0
+          },
+          {
+            "name": "Current liabilities:",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": "      Accounts payable",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": "      Accounts payable",
+            "section": "Liabilities",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "      Accounts payable",
+            "section": "Liabilities",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "      Accrued and other current liabilities",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": "      Accrued and other current liabilities",
+            "section": "Liabilities",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "      Accrued and other current liabilities",
+            "section": "Liabilities",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Total current liabilities",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": " Total current liabilities",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Total current liabilities",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Long-term debt",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": " Long-term debt",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Long-term debt",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Long-term operating lease liabilities",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": " Long-term operating lease liabilities",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Long-term operating lease liabilities",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Other long-term liabilities",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": " Other long-term liabilities",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Other long-term liabilities",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Total liabilities",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": " Total liabilities",
+            "section": "Liabilities",
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Total liabilities",
+            "section": "Liabilities",
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Commitments and contingencies - see Note 13",
+        "section": null,
+        "merged_from": [
+          {
+            "name": " Commitments and contingencies - see Note 13",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 0
+          },
+          {
+            "name": "Commitments and contingencies - see Note 13",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Shareholders' equity:",
+        "section": null,
+        "merged_from": [
+          {
+            "name": " Shareholders' equity:",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 0
+          },
+          {
+            "name": "Shareholders' equity:",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": "      Additional paid-in capital",
+        "section": "Equity",
+        "merged_from": [
+          {
+            "name": "      Additional paid-in capital",
+            "section": "Equity",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "      Additional paid-in capital",
+            "section": "Equity",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "      Accumulated other comprehensive income (loss)",
+        "section": "Equity",
+        "merged_from": [
+          {
+            "name": "      Accumulated other comprehensive income (loss)",
+            "section": "Equity",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "      Accumulated other comprehensive income (loss)",
+            "section": "Equity",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "      Retained earnings",
+        "section": "Equity",
+        "merged_from": [
+          {
+            "name": "      Retained earnings",
+            "section": "Equity",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "      Retained earnings",
+            "section": "Equity",
+            "indent_level": 2,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Total shareholders' equity",
+        "section": "Equity",
+        "merged_from": [
+          {
+            "name": " Total shareholders' equity",
+            "section": "Equity",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Total shareholders' equity",
+            "section": "Equity",
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": " Total liabilities and shareholders' equity",
+        "section": null,
+        "merged_from": [
+          {
+            "name": " Total liabilities and shareholders' equity",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 2
+          },
+          {
+            "name": " Total liabilities and shareholders' equity",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 2
+          }
+        ]
+      }
+    ],
+    "unmerged_accounts": [
+      {
+        "account_name": "      Preferred stock, $.001 par value; 2 shares authorized; none issued",
+        "section": "Equity",
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 2
+      },
+      {
+        "account_name": "      Common stock, $.001 par value; 2,000 shares authorized; 955 shares issued and 612 outstanding as of January 26, 2020; 945 shares issued and 606 outstanding as of January 27, 2019",
+        "section": "Equity",
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 2
+      },
+      {
+        "account_name": "      Treasury stock, at cost (342 shares in 2020 and 339 shares in 2019)",
+        "section": "Equity",
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 2
+      },
+      {
+        "account_name": "      Short-term debt",
+        "section": "Liabilities",
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 2
+      },
+      {
+        "account_name": "      Preferred stock, $0.001 par value; 2 shares authorized; none issued",
+        "section": "Equity",
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 2
+      },
+      {
+        "account_name": "      Common stock, $0.001 par value; 4,000 shares authorized; 2,506 shares issued and outstanding as of January 30, 2022; 3,859 shares issued and 2,479 outstanding as of January 31, 2021",
+        "section": "Equity",
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 2
+      },
+      {
+        "account_name": "      Treasury stock, at cost (None as of January 30, 2022 and 1,380 shares as of January 31, 2021)",
+        "section": "Equity",
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 2
+      }
+    ],
+    "duplicate_headers": [],
+    "total_accounts_merged": 31,
+    "total_accounts_unmerged": 7,
+    "total_duplicate_headers": 0,
+    "source_pdfs": [
+      "NVIDIA 10K 2020-2019.pdf",
+      "NVIDIA 10K 2022-2021.pdf"
+    ]
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "company_name": "NVIDIA CORPORATION AND SUBSIDIARIES",
+  "statement_type": "shareholders_equity",
+  "fiscal_year": "2022",
+  "currency": "USD",
+  "periods": [],
+  "line_items": [
+    {
+      "account_name": "Common Stock Outstanding",
+      "values": [
+        "2,423",
+        "2,450",
+        "2,479",
+        "2,506"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "     Additional Paid-in Capital",
+      "values": [
+        "$      3",
+        "$      3",
+        "$      3",
+        "$      3"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "     Treasury Stock",
+      "values": [
+        "$     6,049",
+        "$     6,049",
+        "$     8,719",
+        "$     10,385"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "     Comprehensive Income (Loss)",
+      "values": [
+        "$ (9,263)",
+        "$ (9,263)",
+        "$ (10,756)",
+        "$    -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "     Retained Earnings",
+      "values": [
+        "$ 12,565",
+        "$ 12,565",
+        "$ 18,908",
+        "$ 16,235"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "     Total Shareholders' Equity",
+      "values": [
+        "$     9,342",
+        "$     9,342",
+        "$ 16,893",
+        "$ 26,612"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Balances, January 27, 2019",
+      "values": [
+        "$     2,796",
+        "$     2,796",
+        "$     4,332",
+        "$ 12,204"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "     Net income",
+      "values": [
+        "$     13",
+        "$     18",
+        "$ (30)",
+        "$ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "     Other comprehensive income",
+      "values": [
+        "$    149",
+        "$    194",
+        "$    281",
+        "$    18"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "     Issuance of common stock from stock plans",
+      "values": [
+        "$     39",
+        "$     40",
+        "$     35",
+        "$  $ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "     Tax withholding related to vesting of restricted stock units",
+      "values": [
+        "$ (12)",
+        "$ (11)",
+        "$ (8)",
+        "$  $ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "     Cash dividends declared and paid ($0.16 per common share)",
+      "values": [
+        "$ (390)",
+        "$ (395)",
+        "$ (399)",
+        "$  $ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "     Stock-based compensation",
+      "values": [
+        "$     845",
+        "$     86",
+        "$     1,396",
+        "$ 12,046"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Balances, January 26, 2020",
+      "values": [
+        "$ 12,204",
+        "$ 12,204",
+        "$ 12,204",
+        "$ 16,893"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Balances, January 31, 2021",
+      "values": [
+        "$     9,752",
+        "$     9,752",
+        "$     9,752",
+        "$  $ -"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Balances, January 30, 2022",
+      "values": [
+        "$ 26,612",
+        "$ 26,612",
+        "$ 26,612",
+        "$ 26,612"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "     Fair value of partially vested equity awards assumed in connection with acquisitions",
+      "values": [
+        "$     18",
+        "$     18",
+        "$     18",
+        "$  $ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "     Retirement of Treasury Stock",
+      "values": [
+        "$ (20)",
+        "$ (20)",
+        "$ -",
+        "$ - "
+      ],
+      "indent_level": 1,
+      "section": null
+    }
+  ]
+}

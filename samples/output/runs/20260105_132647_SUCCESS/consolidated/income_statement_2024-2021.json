@@ -1,0 +1,466 @@
+{
+  "statement_type": "income_statement",
+  "fiscal_years": [
+    2024,
+    2023,
+    2022,
+    2021
+  ],
+  "periods": [
+    "Year Ended December 31, 2024",
+    "Year Ended December 31, 2023",
+    "Year Ended December 31, 2022",
+    "Year Ended December 31, 2021"
+  ],
+  "line_items": [
+    {
+      "account_name": "Revenues",
+      "indent_level": 0,
+      "section": "Revenue",
+      "values": {
+        "Year Ended December 31, 2022": "$      282,836",
+        "Year Ended December 31, 2023": "$       307,394",
+        "Year Ended December 31, 2024": "$      350,018",
+        "Year Ended December 31, 2021": "$      257,637"
+      }
+    },
+    {
+      "account_name": "Costs and expenses:",
+      "indent_level": 0,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": "   Cost of revenues",
+      "indent_level": 1,
+      "section": "Expenses",
+      "values": {
+        "Year Ended December 31, 2022": "126,203",
+        "Year Ended December 31, 2023": "133,332",
+        "Year Ended December 31, 2024": "146,306",
+        "Year Ended December 31, 2021": "110,939"
+      }
+    },
+    {
+      "account_name": "   Research and development",
+      "indent_level": 1,
+      "section": "Expenses",
+      "values": {
+        "Year Ended December 31, 2022": "39,500",
+        "Year Ended December 31, 2023": "45,427",
+        "Year Ended December 31, 2024": "49,326",
+        "Year Ended December 31, 2021": "31,562"
+      }
+    },
+    {
+      "account_name": "   Sales and marketing",
+      "indent_level": 1,
+      "section": "Expenses",
+      "values": {
+        "Year Ended December 31, 2022": "26,567",
+        "Year Ended December 31, 2023": "27,917",
+        "Year Ended December 31, 2024": "27,808",
+        "Year Ended December 31, 2021": "22,912"
+      }
+    },
+    {
+      "account_name": "   General and administrative",
+      "indent_level": 1,
+      "section": "Expenses",
+      "values": {
+        "Year Ended December 31, 2022": "15,724",
+        "Year Ended December 31, 2023": "16,425",
+        "Year Ended December 31, 2024": "14,188",
+        "Year Ended December 31, 2021": "13,510"
+      }
+    },
+    {
+      "account_name": "Total costs and expenses",
+      "indent_level": 0,
+      "section": "Expenses",
+      "values": {
+        "Year Ended December 31, 2022": "207,994",
+        "Year Ended December 31, 2023": "223,101",
+        "Year Ended December 31, 2024": "237,628",
+        "Year Ended December 31, 2021": "178,923"
+      }
+    },
+    {
+      "account_name": "Income from operations",
+      "indent_level": 0,
+      "section": "Income",
+      "values": {
+        "Year Ended December 31, 2022": "74,842",
+        "Year Ended December 31, 2023": "84,293",
+        "Year Ended December 31, 2024": "112,390",
+        "Year Ended December 31, 2021": "78,714"
+      }
+    },
+    {
+      "account_name": "Other income (expense), net",
+      "indent_level": 0,
+      "section": "Income",
+      "values": {
+        "Year Ended December 31, 2022": "(3,514)",
+        "Year Ended December 31, 2023": "1,424",
+        "Year Ended December 31, 2024": "7,425",
+        "Year Ended December 31, 2021": "12,020"
+      }
+    },
+    {
+      "account_name": "Income before income taxes",
+      "indent_level": 0,
+      "section": "Income",
+      "values": {
+        "Year Ended December 31, 2022": "71,328",
+        "Year Ended December 31, 2023": "85,717",
+        "Year Ended December 31, 2024": "119,815",
+        "Year Ended December 31, 2021": "90,734"
+      }
+    },
+    {
+      "account_name": "Provision for income taxes",
+      "indent_level": 0,
+      "section": "Expenses",
+      "values": {
+        "Year Ended December 31, 2022": "11,356",
+        "Year Ended December 31, 2023": "11,922",
+        "Year Ended December 31, 2024": "19,697",
+        "Year Ended December 31, 2021": "14,701"
+      }
+    },
+    {
+      "account_name": "Net income",
+      "indent_level": 0,
+      "section": "Income",
+      "values": {
+        "Year Ended December 31, 2022": "$       59,972",
+        "Year Ended December 31, 2023": "$        73,795",
+        "Year Ended December 31, 2024": "$       100,118",
+        "Year Ended December 31, 2021": "$       76,033"
+      }
+    },
+    {
+      "account_name": "Basic net income per share (Note 12)",
+      "indent_level": 0,
+      "section": "Income",
+      "values": {
+        "Year Ended December 31, 2022": "$         4.59",
+        "Year Ended December 31, 2023": "$         5.84",
+        "Year Ended December 31, 2024": "$          8.13"
+      }
+    },
+    {
+      "account_name": "Diluted net income per share (Note 12)",
+      "indent_level": 0,
+      "section": "Income",
+      "values": {
+        "Year Ended December 31, 2022": "$         4.56",
+        "Year Ended December 31, 2023": "$         5.80",
+        "Year Ended December 31, 2024": "$          8.04"
+      }
+    },
+    {
+      "account_name": "Basic net income per share of Class A, Class B, and Class C stock",
+      "indent_level": 0,
+      "section": "Income",
+      "values": {
+        "Year Ended December 31, 2021": "$         5.69",
+        "Year Ended December 31, 2022": "$         4.59",
+        "Year Ended December 31, 2023": "$          5.84"
+      }
+    },
+    {
+      "account_name": "Diluted net income per share of Class A, Class B, and Class C stock",
+      "indent_level": 0,
+      "section": "Income",
+      "values": {
+        "Year Ended December 31, 2021": "$         5.61",
+        "Year Ended December 31, 2022": "$         4.56",
+        "Year Ended December 31, 2023": "$          5.80"
+      }
+    }
+  ],
+  "consolidation_metadata": {
+    "merged_accounts": [
+      {
+        "consolidated_name": "Revenues",
+        "section": "Revenue",
+        "merged_from": [
+          {
+            "name": "Revenues",
+            "section": "Revenue",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "Revenues",
+            "section": "Revenue",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Costs and expenses:",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Costs and expenses:",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 0
+          },
+          {
+            "name": "Costs and expenses:",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": "   Cost of revenues",
+        "section": "Expenses",
+        "merged_from": [
+          {
+            "name": "   Cost of revenues",
+            "section": "Expenses",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "   Cost of revenues",
+            "section": "Expenses",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "   Research and development",
+        "section": "Expenses",
+        "merged_from": [
+          {
+            "name": "   Research and development",
+            "section": "Expenses",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "   Research and development",
+            "section": "Expenses",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "   Sales and marketing",
+        "section": "Expenses",
+        "merged_from": [
+          {
+            "name": "   Sales and marketing",
+            "section": "Expenses",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "   Sales and marketing",
+            "section": "Expenses",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "   General and administrative",
+        "section": "Expenses",
+        "merged_from": [
+          {
+            "name": "   General and administrative",
+            "section": "Expenses",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "   General and administrative",
+            "section": "Expenses",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Total costs and expenses",
+        "section": "Expenses",
+        "merged_from": [
+          {
+            "name": "Total costs and expenses",
+            "section": "Expenses",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "Total costs and expenses",
+            "section": "Expenses",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Income from operations",
+        "section": "Income",
+        "merged_from": [
+          {
+            "name": "Income from operations",
+            "section": "Income",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "Income from operations",
+            "section": "Income",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Other income (expense), net",
+        "section": "Income",
+        "merged_from": [
+          {
+            "name": "Other income (expense), net",
+            "section": "Income",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "Other income (expense), net",
+            "section": "Income",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Income before income taxes",
+        "section": "Income",
+        "merged_from": [
+          {
+            "name": "Income before income taxes",
+            "section": "Income",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "Income before income taxes",
+            "section": "Income",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Provision for income taxes",
+        "section": "Expenses",
+        "merged_from": [
+          {
+            "name": "Provision for income taxes",
+            "section": "Expenses",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "Provision for income taxes",
+            "section": "Expenses",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net income",
+        "section": "Income",
+        "merged_from": [
+          {
+            "name": "Net income",
+            "section": "Income",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 3
+          },
+          {
+            "name": "Net income",
+            "section": "Income",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 3
+          }
+        ]
+      }
+    ],
+    "unmerged_accounts": [
+      {
+        "account_name": "Basic net income per share (Note 12)",
+        "section": "Income",
+        "source_pdf": "Google 2022-2024.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": "Diluted net income per share (Note 12)",
+        "section": "Income",
+        "source_pdf": "Google 2022-2024.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": "Basic net income per share of Class A, Class B, and Class C stock",
+        "section": "Income",
+        "source_pdf": "Google 2021-2023.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": "Diluted net income per share of Class A, Class B, and Class C stock",
+        "section": "Income",
+        "source_pdf": "Google 2021-2023.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      }
+    ],
+    "duplicate_headers": [],
+    "total_accounts_merged": 12,
+    "total_accounts_unmerged": 4,
+    "total_duplicate_headers": 0,
+    "source_pdfs": [
+      "Google 2021-2023.pdf",
+      "Google 2022-2024.pdf"
+    ]
+  }
+}

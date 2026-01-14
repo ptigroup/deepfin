@@ -1,0 +1,42 @@
+# MD5 Checksums for Run Output Files
+# Generated: 2026-01-05T13:38:14.969754
+# Run ID: 20260105_132647
+
+ff1afea06e6fee01fdf2fbe221715d81  consolidated\all_statements_2024-2020.json
+c16f8480886d6c5f1dae629c3f18b1e8  consolidated\all_statements_2024-2020.xlsx
+8261cdad4bf4a68a5ae7cf13f3a8ca05  consolidated\balance_sheet_2022-2024.json
+9cff9e18ada19078810085dff9f6f64c  consolidated\balance_sheet_2022-2024.xlsx
+8261cdad4bf4a68a5ae7cf13f3a8ca05  consolidated\balance_sheet_2024-2022.json
+9cff9e18ada19078810085dff9f6f64c  consolidated\balance_sheet_2024-2022.xlsx
+3feb4b5ab7c58e00529a13c4b37bc6c7  consolidated\cash_flow_2021-2024.json
+be13b2a6d430d443b06120837a0826a5  consolidated\cash_flow_2021-2024.xlsx
+3feb4b5ab7c58e00529a13c4b37bc6c7  consolidated\cash_flow_2024-2021.json
+be13b2a6d430d443b06120837a0826a5  consolidated\cash_flow_2024-2021.xlsx
+b2b7930e27b18f16f7bbeb0b39cc0227  consolidated\comprehensive_income_2021-2024.json
+a53fcdecc880ad5f89d2293d34b5cf1f  consolidated\comprehensive_income_2021-2024.xlsx
+b2b7930e27b18f16f7bbeb0b39cc0227  consolidated\comprehensive_income_2024-2021.json
+a53fcdecc880ad5f89d2293d34b5cf1f  consolidated\comprehensive_income_2024-2021.xlsx
+2eb860df03dd84debe4482a9413f3c5b  consolidated\income_statement_2021-2024.json
+4ccab0f4a243989bf85cec01924a3dae  consolidated\income_statement_2021-2024.xlsx
+2eb860df03dd84debe4482a9413f3c5b  consolidated\income_statement_2024-2021.json
+4ccab0f4a243989bf85cec01924a3dae  consolidated\income_statement_2024-2021.xlsx
+a96b8918c2eb83fa64f3a5575dea87d1  consolidated\shareholders_equity_2020-2024.json
+974a33ed27917e1d80cc4bfe2e5c9271  consolidated\shareholders_equity_2020-2024.xlsx
+a96b8918c2eb83fa64f3a5575dea87d1  consolidated\shareholders_equity_2024-2020.json
+974a33ed27917e1d80cc4bfe2e5c9271  consolidated\shareholders_equity_2024-2020.xlsx
+6a3dfe6b3ed3312288e6ce57d835f6a1  extracted\Google_2021-2023\balance_sheet.json
+d0ef7339b13bdfeac3c2c0c80f02077e  extracted\Google_2021-2023\cash_flow.json
+d27750861be7b8f40616644310813324  extracted\Google_2021-2023\comprehensive_income.json
+289f90a2a10739b8a99ebd51a0fad0a5  extracted\Google_2021-2023\income_statement.json
+8585dd30ce29c4c29c2b22d2f02aaebe  extracted\Google_2021-2023\metadata.json
+3b076a2129466879f710531cf4262289  extracted\Google_2021-2023\page_detection.json
+beca17ddfbbc2c278378299b9c90ec11  extracted\Google_2021-2023\raw_text.txt
+eba6a85463dc7cee396348df918584cb  extracted\Google_2021-2023\shareholders_equity.json
+78012d1242a7ac233bc916c8a01b1b68  extracted\Google_2022-2024\balance_sheet.json
+7d7c0df0e432215fb505144960c5ebdb  extracted\Google_2022-2024\cash_flow.json
+103bb6c15bad17acb8bbab3c3a71ca55  extracted\Google_2022-2024\comprehensive_income.json
+21c94eadc2001b74715d2a8dac509f89  extracted\Google_2022-2024\income_statement.json
+d337318c2fe75567ec6d4932f6014ed1  extracted\Google_2022-2024\metadata.json
+efe27d8cf8d10b92974debc47f342b69  extracted\Google_2022-2024\page_detection.json
+f7b608667a75d2431a26f03b3037a4c7  extracted\Google_2022-2024\raw_text.txt
+2efbe6db3c1b7fa256938a0b1796c580  extracted\Google_2022-2024\shareholders_equity.json

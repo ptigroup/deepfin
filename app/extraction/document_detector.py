@@ -13,6 +13,7 @@ from enum import Enum
 
 class FinancialStatementType(str, Enum):
     """Supported financial statement types."""
+
     INCOME_STATEMENT = "income_statement"
     BALANCE_SHEET = "balance_sheet"
     SHAREHOLDERS_EQUITY = "shareholders_equity"
@@ -27,52 +28,86 @@ class FinancialDocumentDetector:
     # Keywords that strongly indicate specific document types
     STRONG_INDICATORS = {
         FinancialStatementType.INCOME_STATEMENT: [
-            "net income", "revenue", "cost of revenue", "operating expenses",
-            "gross profit", "net earnings", "earnings per share", "diluted shares"
+            "net income",
+            "revenue",
+            "cost of revenue",
+            "operating expenses",
+            "gross profit",
+            "net earnings",
+            "earnings per share",
+            "diluted shares",
         ],
         FinancialStatementType.BALANCE_SHEET: [
-            "total assets", "current assets", "total liabilities", "shareholders' equity",
-            "cash and cash equivalents", "accounts receivable", "inventory",
-            "retained earnings", "common stock"
+            "total assets",
+            "current assets",
+            "total liabilities",
+            "shareholders' equity",
+            "cash and cash equivalents",
+            "accounts receivable",
+            "inventory",
+            "retained earnings",
+            "common stock",
         ],
         FinancialStatementType.CASH_FLOW: [
-            "cash flows from operating activities", "cash flows from investing activities",
-            "cash flows from financing activities", "net cash provided by",
-            "depreciation and amortization", "capital expenditures", "free cash flow"
+            "cash flows from operating activities",
+            "cash flows from investing activities",
+            "cash flows from financing activities",
+            "net cash provided by",
+            "depreciation and amortization",
+            "capital expenditures",
+            "free cash flow",
         ],
         FinancialStatementType.SHAREHOLDERS_EQUITY: [
-            "common stock outstanding", "shares", "additional paid-in capital",
-            "treasury stock", "accumulated other comprehensive income",
-            "retained earnings", "stockholders' equity", "shareholders' equity"
+            "common stock outstanding",
+            "shares",
+            "additional paid-in capital",
+            "treasury stock",
+            "accumulated other comprehensive income",
+            "retained earnings",
+            "stockholders' equity",
+            "shareholders' equity",
         ],
         FinancialStatementType.COMPREHENSIVE_INCOME: [
-            "comprehensive income", "other comprehensive income", "foreign currency translation",
-            "unrealized gains", "unrealized losses", "total comprehensive income"
-        ]
+            "comprehensive income",
+            "other comprehensive income",
+            "foreign currency translation",
+            "unrealized gains",
+            "unrealized losses",
+            "total comprehensive income",
+        ],
     }
 
     # Title patterns that indicate document type
     TITLE_PATTERNS = {
         FinancialStatementType.INCOME_STATEMENT: [
-            r"statement.*of.*income", r"statement.*of.*operations", r"statement.*of.*earnings",
-            r"income.*statement", r"profit.*and.*loss", r"p\s*&\s*l",
-            r"consolidated.*statements?.*of.*income"
+            r"statement.*of.*income",
+            r"statement.*of.*operations",
+            r"statement.*of.*earnings",
+            r"income.*statement",
+            r"profit.*and.*loss",
+            r"p\s*&\s*l",
+            r"consolidated.*statements?.*of.*income",
         ],
         FinancialStatementType.BALANCE_SHEET: [
-            r"balance.*sheet", r"statement.*of.*financial.*position",
-            r"consolidated.*balance.*sheet"
+            r"balance.*sheet",
+            r"statement.*of.*financial.*position",
+            r"consolidated.*balance.*sheet",
         ],
         FinancialStatementType.CASH_FLOW: [
-            r"statement.*of.*cash.*flows", r"cash.*flow.*statement",
-            r"consolidated.*statements?.*of.*cash.*flows"
+            r"statement.*of.*cash.*flows",
+            r"cash.*flow.*statement",
+            r"consolidated.*statements?.*of.*cash.*flows",
         ],
         FinancialStatementType.SHAREHOLDERS_EQUITY: [
-            r"statement.*of.*shareholders.*equity", r"statement.*of.*stockholders.*equity",
-            r"equity.*statement", r"statement.*of.*equity"
+            r"statement.*of.*shareholders.*equity",
+            r"statement.*of.*stockholders.*equity",
+            r"equity.*statement",
+            r"statement.*of.*equity",
         ],
         FinancialStatementType.COMPREHENSIVE_INCOME: [
-            r"statement.*of.*comprehensive.*income", r"comprehensive.*income.*statement"
-        ]
+            r"statement.*of.*comprehensive.*income",
+            r"comprehensive.*income.*statement",
+        ],
     }
 
     # Structural patterns that suggest specific document types
@@ -80,12 +115,12 @@ class FinancialDocumentDetector:
         FinancialStatementType.SHAREHOLDERS_EQUITY: [
             r"shares\s*\|\s*amount",  # Multi-column headers
             r"common stock outstanding.*shares.*amount",
-            r"balances.*shares.*amount.*capital"
+            r"balances.*shares.*amount.*capital",
         ],
         FinancialStatementType.CASH_FLOW: [
             r"operating activities.*investing activities.*financing activities",
-            r"net cash.*operating.*investing.*financing"
-        ]
+            r"net cash.*operating.*investing.*financing",
+        ],
     }
 
     # Negative indicators that suggest it's NOT the target type (e.g., summary pages)
@@ -93,7 +128,7 @@ class FinancialDocumentDetector:
         FinancialStatementType.INCOME_STATEMENT: [
             r"fiscal\s+year.*summary",  # Summary tables, not full statements
             r"selected\s+financial\s+data",
-            r"financial\s+highlights"
+            r"financial\s+highlights",
         ]
     }
 
@@ -101,7 +136,9 @@ class FinancialDocumentDetector:
         """Initialize the document detector."""
         pass
 
-    def detect_document_type(self, extracted_text: str, document_title: str = "") -> tuple[FinancialStatementType, float]:
+    def detect_document_type(
+        self, extracted_text: str, document_title: str = ""
+    ) -> tuple[FinancialStatementType, float]:
         """
         Detect the financial statement type from extracted text with confidence scoring.
 
@@ -182,7 +219,7 @@ class FinancialDocumentDetector:
             "matched_patterns": {},
             "negative_matches": {},
             "detected_type": None,
-            "confidence": 0.0
+            "confidence": 0.0,
         }
 
         scores = dict.fromkeys(FinancialStatementType, 0.0)
@@ -231,7 +268,9 @@ class FinancialDocumentDetector:
         best_type = max(scores, key=scores.get)
         confidence = scores[best_type]
 
-        details["detected_type"] = best_type if confidence >= 0.2 else FinancialStatementType.UNKNOWN
+        details["detected_type"] = (
+            best_type if confidence >= 0.2 else FinancialStatementType.UNKNOWN
+        )
         details["confidence"] = confidence
 
         return details

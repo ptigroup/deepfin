@@ -1,0 +1,318 @@
+{
+  "company_name": "Alphabet Inc.",
+  "statement_type": "balance_sheet",
+  "fiscal_year": "2024",
+  "currency": "USD",
+  "periods": [
+    "As of December 31, 2023",
+    "As of December 31, 2024"
+  ],
+  "line_items": [
+    {
+      "account_name": "Assets",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Current assets:",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "    Cash and cash equivalents",
+      "values": [
+        "$             24,048",
+        "$               23,466"
+      ],
+      "indent_level": 1,
+      "section": "Assets"
+    },
+    {
+      "account_name": "    Marketable securities",
+      "values": [
+        "$              86,868",
+        "$              72,191"
+      ],
+      "indent_level": 1,
+      "section": "Assets"
+    },
+    {
+      "account_name": "     Total cash, cash equivalents, and marketable securities",
+      "values": [
+        "$             110,916",
+        "$              95,657"
+      ],
+      "indent_level": 1,
+      "section": "Assets"
+    },
+    {
+      "account_name": "    Accounts receivable, net",
+      "values": [
+        "$              47,964",
+        "$              52,340"
+      ],
+      "indent_level": 1,
+      "section": "Assets"
+    },
+    {
+      "account_name": "    Other current assets",
+      "values": [
+        "$              12,650",
+        "$              15,714"
+      ],
+      "indent_level": 1,
+      "section": "Assets"
+    },
+    {
+      "account_name": "        Total current assets",
+      "values": [
+        "$             171,530",
+        "$            163,711"
+      ],
+      "indent_level": 2,
+      "section": "Assets"
+    },
+    {
+      "account_name": "Non-marketable securities",
+      "values": [
+        "$              31,008",
+        "$              37,982"
+      ],
+      "indent_level": 0,
+      "section": "Assets"
+    },
+    {
+      "account_name": "Deferred income taxes",
+      "values": [
+        "$              12,169",
+        "$              17,180"
+      ],
+      "indent_level": 0,
+      "section": "Assets"
+    },
+    {
+      "account_name": "Property and equipment, net",
+      "values": [
+        "$             134,345",
+        "$            171,036"
+      ],
+      "indent_level": 0,
+      "section": "Assets"
+    },
+    {
+      "account_name": "Operating lease assets",
+      "values": [
+        "$              14,091",
+        "$              13,588"
+      ],
+      "indent_level": 0,
+      "section": "Assets"
+    },
+    {
+      "account_name": "Goodwill",
+      "values": [
+        "$              29,198",
+        "$              31,885"
+      ],
+      "indent_level": 0,
+      "section": "Assets"
+    },
+    {
+      "account_name": "Other non-current assets",
+      "values": [
+        "$              10,051",
+        "$              14,874"
+      ],
+      "indent_level": 0,
+      "section": "Assets"
+    },
+    {
+      "account_name": "        Total assets",
+      "values": [
+        "$            402,392",
+        "$            450,256"
+      ],
+      "indent_level": 0,
+      "section": "Assets"
+    },
+    {
+      "account_name": "Liabilities and Stockholders' Equity",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Current liabilities:",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "    Accounts payable",
+      "values": [
+        "$              7,493",
+        "$              7,987"
+      ],
+      "indent_level": 1,
+      "section": "Liabilities"
+    },
+    {
+      "account_name": "    Accrued compensation and benefits",
+      "values": [
+        "$             15,140",
+        "$             15,069"
+      ],
+      "indent_level": 1,
+      "section": "Liabilities"
+    },
+    {
+      "account_name": "    Accrued expenses and other current liabilities",
+      "values": [
+        "$             46,168",
+        "$             51,228"
+      ],
+      "indent_level": 1,
+      "section": "Liabilities"
+    },
+    {
+      "account_name": "    Accrued revenue share",
+      "values": [
+        "$              8,876",
+        "$              9,802"
+      ],
+      "indent_level": 1,
+      "section": "Liabilities"
+    },
+    {
+      "account_name": "    Deferred revenue",
+      "values": [
+        "$              4,137",
+        "$              5,036"
+      ],
+      "indent_level": 1,
+      "section": "Liabilities"
+    },
+    {
+      "account_name": "        Total current liabilities",
+      "values": [
+        "$             81,814",
+        "$             89,122"
+      ],
+      "indent_level": 2,
+      "section": "Liabilities"
+    },
+    {
+      "account_name": "Long-term debt",
+      "values": [
+        "$             11,870",
+        "$             10,883"
+      ],
+      "indent_level": 0,
+      "section": "Liabilities"
+    },
+    {
+      "account_name": "Income taxes payable, non-current",
+      "values": [
+        "$              8,474",
+        "$              8,782"
+      ],
+      "indent_level": 0,
+      "section": "Liabilities"
+    },
+    {
+      "account_name": "Operating lease liabilities",
+      "values": [
+        "$             12,460",
+        "$             11,691"
+      ],
+      "indent_level": 0,
+      "section": "Liabilities"
+    },
+    {
+      "account_name": "Other long-term liabilities",
+      "values": [
+        "$              4,395",
+        "$              4,694"
+      ],
+      "indent_level": 0,
+      "section": "Liabilities"
+    },
+    {
+      "account_name": "        Total liabilities",
+      "values": [
+        "$            119,013",
+        "$            125,172"
+      ],
+      "indent_level": 0,
+      "section": "Liabilities"
+    },
+    {
+      "account_name": "Commitments and Contingencies (Note 10)",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Stockholders' equity:",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "    Preferred stock, $0.001 par value per share, 100 shares authorized; no shares issued and outstanding",
+      "values": [
+        "$                  0",
+        "$                  0"
+      ],
+      "indent_level": 1,
+      "section": "Equity"
+    },
+    {
+      "account_name": "    Class A, Class B, and Class C stock and additional paid-in capital, $0.001 par value per share: 300,000 shares authorized (Class A 180,000, Class B 60,000, Class C 60,000); 12,460 (Class A 5,899, Class B 870, Class C 5,691) and 12,211 (Class A 5,835, Class B 861, Class C 5,515) shares issued and outstanding",
+      "values": [
+        "$             76,534",
+        "$             84,800"
+      ],
+      "indent_level": 1,
+      "section": "Equity"
+    },
+    {
+      "account_name": "    Accumulated other comprehensive income (loss)",
+      "values": [
+        "$            (4,402)",
+        "$            (4,800)"
+      ],
+      "indent_level": 1,
+      "section": "Equity"
+    },
+    {
+      "account_name": "    Retained earnings",
+      "values": [
+        "$            211,247",
+        "$            245,084"
+      ],
+      "indent_level": 1,
+      "section": "Equity"
+    },
+    {
+      "account_name": "        Total stockholders' equity",
+      "values": [
+        "$            283,379",
+        "$            325,084"
+      ],
+      "indent_level": 2,
+      "section": "Equity"
+    },
+    {
+      "account_name": "        Total liabilities and stockholders' equity",
+      "values": [
+        "$            402,392",
+        "$            450,256"
+      ],
+      "indent_level": 0,
+      "section": null
+    }
+  ]
+}

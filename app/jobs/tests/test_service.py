@@ -245,12 +245,14 @@ class TestJobService:
         """Test getting job statistics."""
         # Mock the query result to return tuples of (status, count)
         mock_result = MagicMock()
-        mock_result.__iter__.return_value = iter([
-            (JobStatus.PENDING, 1),
-            (JobStatus.RUNNING, 1),
-            (JobStatus.COMPLETED, 1),
-            (JobStatus.FAILED, 1),
-        ])
+        mock_result.__iter__.return_value = iter(
+            [
+                (JobStatus.PENDING, 1),
+                (JobStatus.RUNNING, 1),
+                (JobStatus.COMPLETED, 1),
+                (JobStatus.FAILED, 1),
+            ]
+        )
         mock_db.execute.return_value = mock_result
 
         stats = await service.get_job_stats()

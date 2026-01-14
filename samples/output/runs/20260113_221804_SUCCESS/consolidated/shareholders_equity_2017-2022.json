@@ -1,0 +1,851 @@
+{
+  "statement_type": "shareholders_equity",
+  "fiscal_years": [
+    2022,
+    2021,
+    2020,
+    2019,
+    2018,
+    2017
+  ],
+  "periods": [
+    "January 31, 2021",
+    "January 30, 2022",
+    "January 29, 2017",
+    "January 28, 2018",
+    "January 27, 2019",
+    "January 26, 2020"
+  ],
+  "line_items": [
+    {
+      "account_name": "Balances, January 29, 2017",
+      "indent_level": 0,
+      "section": null,
+      "values": {
+        "January 29, 2017": "585",
+        "January 28, 2018": "$        1",
+        "January 27, 2019": "$    4,708",
+        "January 26, 2020": "$ (5,039)"
+      }
+    },
+    {
+      "account_name": "Retained earnings adjustment due to adoption of an accounting",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "standard related to stock-based compensation",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Other comprehensive loss",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Net income",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-",
+        "January 31, 2021": "13"
+      }
+    },
+    {
+      "account_name": "Issuance of common stock in exchange for warrants",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "(7)",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Convertible debt conversion",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "1",
+        "January 28, 2018": "-",
+        "January 27, 2019": "137",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Issuance of common stock from stock plans",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "39",
+        "January 31, 2021": "-"
+      }
+    },
+    {
+      "account_name": "Tax withholding related to vesting of restricted stock units (4)",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "(1,579)",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Share repurchase",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "(9)",
+        "January 28, 2018": "-",
+        "January 27, 2019": "2",
+        "January 26, 2020": "(2)"
+      }
+    },
+    {
+      "account_name": "Exercise of convertible note hedges",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "(1)",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Cash dividends declared and paid ($0.570 per common share)",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "391",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Stock-based compensation",
+      "indent_level": 0,
+      "section": null,
+      "values": {
+        "January 29, 2017": "612",
+        "January 28, 2018": "$       1",
+        "January 27, 2019": "$ (551)",
+        "January 26, 2020": "$  86",
+        "January 31, 2021": "$  1,396"
+      }
+    },
+    {
+      "account_name": "Reclassification of convertible debt conversion obligation",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Balances, January 28, 2018",
+      "indent_level": 0,
+      "section": null,
+      "values": {
+        "January 29, 2017": "606",
+        "January 28, 2018": "$       1",
+        "January 27, 2019": "$    5,351",
+        "January 26, 2020": "$ (6,650)"
+      }
+    },
+    {
+      "account_name": "standard related to income tax consequences of an intra-entity",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "transfer of an asset",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Other comprehensive income",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-",
+        "January 31, 2021": "149"
+      }
+    },
+    {
+      "account_name": "Cash dividends declared and paid ($0.610 per common share)",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "561",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Balances, January 27, 2019",
+      "indent_level": 0,
+      "section": null,
+      "values": {
+        "January 29, 2017": "606",
+        "January 28, 2018": "-",
+        "January 27, 2019": "$         (12)",
+        "January 26, 2020": "$  12,565",
+        "January 31, 2021": "$     9,342"
+      }
+    },
+    {
+      "account_name": "Tax withholding related to vesting of restricted stock units (3)",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "-",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Cash dividends declared and paid ($0.640 per common share)",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "845",
+        "January 26, 2020": "-"
+      }
+    },
+    {
+      "account_name": "Balances, January 26, 2020",
+      "indent_level": 0,
+      "section": null,
+      "values": {
+        "January 29, 2017": "-",
+        "January 28, 2018": "-",
+        "January 27, 2019": "$     12,204",
+        "January 26, 2020": "-",
+        "January 31, 2021": "$  16,893"
+      }
+    },
+    {
+      "account_name": "    Common Stock Outstanding Shares",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 27, 2019": "2,423 $      3",
+        "January 26, 2020": "$     6,049",
+        "January 31, 2021": "$ (9,263)"
+      }
+    },
+    {
+      "account_name": "    Additional Paid-in Capital",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 27, 2019": "-",
+        "January 26, 2020": "-",
+        "January 31, 2021": "-"
+      }
+    },
+    {
+      "account_name": "    Treasury Stock",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 27, 2019": "-",
+        "January 26, 2020": "-",
+        "January 31, 2021": "-"
+      }
+    },
+    {
+      "account_name": "    Accumulated Other Comprehensive Income (Loss)",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 27, 2019": "$  2,796",
+        "January 26, 2020": "$  2,796",
+        "January 31, 2021": "-"
+      }
+    },
+    {
+      "account_name": "    Retained Earnings",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 27, 2019": "$  4,332",
+        "January 26, 2020": "$  4,332",
+        "January 31, 2021": "$  9,752"
+      }
+    },
+    {
+      "account_name": "Tax withholding related to vesting of restricted stock units",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 27, 2019": "(12)",
+        "January 26, 2020": "(11)",
+        "January 31, 2021": "(8)"
+      }
+    },
+    {
+      "account_name": "Cash dividends declared and paid ($0.16 per common share)",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 27, 2019": "-",
+        "January 26, 2020": "845",
+        "January 31, 2021": "-"
+      }
+    },
+    {
+      "account_name": "Balances, January 31, 2021",
+      "indent_level": 0,
+      "section": null,
+      "values": {
+        "January 27, 2019": "-",
+        "January 26, 2020": "-",
+        "January 31, 2021": "-"
+      }
+    },
+    {
+      "account_name": "Balances, January 30, 2022",
+      "indent_level": 0,
+      "section": null,
+      "values": {
+        "January 27, 2019": "$  3",
+        "January 26, 2020": "$     10,385",
+        "January 31, 2021": "$    -"
+      }
+    },
+    {
+      "account_name": "Retirement of Treasury Stock",
+      "indent_level": 1,
+      "section": null,
+      "values": {
+        "January 27, 2019": "-",
+        "January 26, 2020": "$           (11)",
+        "January 31, 2021": "$  16,235"
+      }
+    }
+  ],
+  "consolidation_metadata": {
+    "merged_accounts": [
+      {
+        "consolidated_name": "Retained earnings adjustment due to adoption of an accounting",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Retained earnings adjustment due to adoption of an accounting",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Retained earnings adjustment due to adoption of an accounting",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Net income",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Net income",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Net income",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Net income",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Net income",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Convertible debt conversion",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Convertible debt conversion",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Convertible debt conversion",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Issuance of common stock from stock plans",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Issuance of common stock from stock plans",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Issuance of common stock from stock plans",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Issuance of common stock from stock plans",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Issuance of common stock from stock plans",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Tax withholding related to vesting of restricted stock units (4)",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Tax withholding related to vesting of restricted stock units (4)",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Tax withholding related to vesting of restricted stock units (4)",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Share repurchase",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Share repurchase",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Share repurchase",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Exercise of convertible note hedges",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Exercise of convertible note hedges",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Exercise of convertible note hedges",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Stock-based compensation",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Stock-based compensation",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Stock-based compensation",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 6
+          },
+          {
+            "name": "Stock-based compensation",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Stock-based compensation",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Other comprehensive income",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Other comprehensive income",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Other comprehensive income",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Other comprehensive income",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Balances, January 27, 2019",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Balances, January 27, 2019",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Balances, January 27, 2019",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Balances, January 26, 2020",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Balances, January 26, 2020",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Balances, January 26, 2020",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          }
+        ]
+      }
+    ],
+    "unmerged_accounts": [
+      {
+        "account_name": "Balances, January 29, 2017",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 4
+      },
+      {
+        "account_name": "standard related to stock-based compensation",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 4
+      },
+      {
+        "account_name": "Other comprehensive loss",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 4
+      },
+      {
+        "account_name": "Issuance of common stock in exchange for warrants",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 4
+      },
+      {
+        "account_name": "Cash dividends declared and paid ($0.570 per common share)",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 4
+      },
+      {
+        "account_name": "Reclassification of convertible debt conversion obligation",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 4
+      },
+      {
+        "account_name": "Balances, January 28, 2018",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 4
+      },
+      {
+        "account_name": "standard related to income tax consequences of an intra-entity",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 4
+      },
+      {
+        "account_name": "transfer of an asset",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 4
+      },
+      {
+        "account_name": "Cash dividends declared and paid ($0.610 per common share)",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 4
+      },
+      {
+        "account_name": "Tax withholding related to vesting of restricted stock units (3)",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 4
+      },
+      {
+        "account_name": "Cash dividends declared and paid ($0.640 per common share)",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 4
+      },
+      {
+        "account_name": "    Common Stock Outstanding Shares",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": "    Additional Paid-in Capital",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": "    Treasury Stock",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": "    Accumulated Other Comprehensive Income (Loss)",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": "    Retained Earnings",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": "Tax withholding related to vesting of restricted stock units",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": "Cash dividends declared and paid ($0.16 per common share)",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": "Balances, January 31, 2021",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": "Balances, January 30, 2022",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      },
+      {
+        "account_name": "Retirement of Treasury Stock",
+        "section": null,
+        "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 3
+      }
+    ],
+    "duplicate_headers": [
+      {
+        "header_name": "Stock-based compensation",
+        "occurrences": [
+          {
+            "name": "Stock-based compensation",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Stock-based compensation",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 6
+          },
+          {
+            "name": "Stock-based compensation",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "NVIDIA 10K 2020-2019.pdf",
+            "values_count": 7
+          },
+          {
+            "name": "Stock-based compensation",
+            "section": null,
+            "indent_level": 1,
+            "source_pdf": "NVIDIA 10K 2022-2021.pdf",
+            "values_count": 3
+          }
+        ]
+      }
+    ],
+    "total_accounts_merged": 11,
+    "total_accounts_unmerged": 22,
+    "total_duplicate_headers": 1,
+    "source_pdfs": [
+      "NVIDIA 10K 2020-2019.pdf",
+      "NVIDIA 10K 2022-2021.pdf"
+    ]
+  }
+}

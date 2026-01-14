@@ -47,9 +47,7 @@ class Job(Base, TimestampMixin):
     result: Mapped[str | None] = mapped_column(Text, nullable=True)  # JSON string
     error: Mapped[str | None] = mapped_column(Text, nullable=True)
     started_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
-    completed_at: Mapped[datetime | None] = mapped_column(
-        DateTime(timezone=True), nullable=True
-    )
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     progress: Mapped[int] = mapped_column(Integer, default=0)  # 0-100
     retries: Mapped[int] = mapped_column(Integer, default=0)
     max_retries: Mapped[int] = mapped_column(Integer, default=3)

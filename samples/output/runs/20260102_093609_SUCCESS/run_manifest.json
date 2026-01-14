@@ -1,0 +1,97 @@
+{
+  "run_id": "20260102_093609",
+  "status": "SUCCESS",
+  "started_at": "2026-01-02T09:36:09.685443",
+  "completed_at": "2026-01-02T09:43:03.437577",
+  "duration_seconds": 413.752134,
+  "total_cost_usd": 0.0,
+  "settings": {},
+  "pdfs_processed": [],
+  "consolidated": [
+    {
+      "statement_type": "income_statement",
+      "years": [
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018"
+      ],
+      "source_count": 1,
+      "line_items": 26,
+      "output_files": [
+        "consolidated/income_statement_2022-2018.json",
+        "consolidated/income_statement_2022-2018.xlsx"
+      ]
+    },
+    {
+      "statement_type": "balance_sheet",
+      "years": [
+        "2020",
+        "2019"
+      ],
+      "source_count": 1,
+      "line_items": 34,
+      "output_files": [
+        "consolidated/balance_sheet_2020-2019.json",
+        "consolidated/balance_sheet_2020-2019.xlsx"
+      ]
+    },
+    {
+      "statement_type": "comprehensive_income",
+      "years": [
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018"
+      ],
+      "source_count": 1,
+      "line_items": 14,
+      "output_files": [
+        "consolidated/comprehensive_income_2022-2018.json",
+        "consolidated/comprehensive_income_2022-2018.xlsx"
+      ]
+    },
+    {
+      "statement_type": "shareholders_equity",
+      "years": [
+        "2020",
+        "2019",
+        "2018",
+        "2017"
+      ],
+      "source_count": 1,
+      "line_items": 40,
+      "output_files": [
+        "consolidated/shareholders_equity_2020-2017.json",
+        "consolidated/shareholders_equity_2020-2017.xlsx"
+      ]
+    },
+    {
+      "statement_type": "cash_flow",
+      "years": [
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018"
+      ],
+      "source_count": 1,
+      "line_items": 53,
+      "output_files": [
+        "consolidated/cash_flow_2022-2018.json",
+        "consolidated/cash_flow_2022-2018.xlsx"
+      ]
+    }
+  ],
+  "summary": {
+    "total_pdfs": 0,
+    "successful": 0,
+    "failed": 0,
+    "total_statements": 5,
+    "total_line_items": 0,
+    "total_cost_usd": 0.0,
+    "cost_savings_percent": 0.0
+  }
+}

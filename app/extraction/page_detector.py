@@ -26,7 +26,7 @@ logger = get_logger(__name__)
 # Enhanced scoring patterns with context-aware validation
 STATEMENT_PATTERNS = {
     "income_statement": {
-        'primary_indicators': [
+        "primary_indicators": [
             r"consolidated\s+statements?\s+of\s+(?:income|operations|comprehensive\s+income\s+and\s+operations)",
             r"statements?\s+of\s+(?:income|operations|comprehensive\s+income)",
             r"income\s+statement(?:s)?",
@@ -34,9 +34,9 @@ STATEMENT_PATTERNS = {
             r"revenue",
             r"net\s+(?:income|profit|loss)",
             r"consolidated\s+statements?\s+of\s+operations",
-            r"earnings\s+per\s+share"
+            r"earnings\s+per\s+share",
         ],
-        'content_indicators': [
+        "content_indicators": [
             r"(?:net\s+)?(?:revenue|sales|turnover)",
             r"cost\s+of\s+(?:revenue|goods\s+sold|sales)",
             r"gross\s+(?:profit|margin)",
@@ -55,16 +55,16 @@ STATEMENT_PATTERNS = {
             r"net\s+income\s+per\s+share",
             r"basic\s*\$",
             r"diluted\s*\$",
-            r"weighted\s+average\s+shares\s+used\s+in\s+per\s+share\s+computation"
+            r"weighted\s+average\s+shares\s+used\s+in\s+per\s+share\s+computation",
         ],
-        'structure_indicators': [
+        "structure_indicators": [
             r"(?:revenue.*?\$|revenue.*?\d{1,3}(?:,\d{3})*(?:\.\d+)?)",
             r"(?:net\s+income.*?\$|net\s+income.*?\d{1,3}(?:,\d{3})*(?:\.\d+)?)",
             r"(?:for\s+the\s+(?:years?|periods?)\s+ended|fiscal\s+year\s+ended)",
             r"(?:total\s+revenue|total\s+sales)",
-            r"(?:net\s+profit\s+before\s+tax|profit\s+before\s+tax)"
+            r"(?:net\s+profit\s+before\s+tax|profit\s+before\s+tax)",
         ],
-        'negative_indicators': [
+        "negative_indicators": [
             r"selected\s+financial\s+data",
             r"consolidated\s+statements?\s+of\s+income\s+data",
             r"should\s+be\s+read\s+in\s+conjunction",
@@ -91,34 +91,34 @@ STATEMENT_PATTERNS = {
             r"combination\s+of\s+factors",
             r"benefit\s+from\s+strong\s+demand",
             # NEW: MD&A-specific patterns (critical for filtering page 32-style summaries)
-            r"up \d+%",                              # "up 61%"
-            r"down \d+%",                            # "down 25%"
-            r"increased \d+%",                       # "increased 40%"
-            r"decreased \d+%",                       # "decreased 15%"
-            r"from a year ago",                      # Narrative comparison
-            r"was \$[\d,.]+ (?:billion|million)",   # "was $26.91 billion"
-            r"driven by",                            # Analytical language
-            r"primarily due to",                     # Explanatory language
-            r"resulted from a",                      # Causal explanation
+            r"up \d+%",  # "up 61%"
+            r"down \d+%",  # "down 25%"
+            r"increased \d+%",  # "increased 40%"
+            r"decreased \d+%",  # "decreased 15%"
+            r"from a year ago",  # Narrative comparison
+            r"was \$[\d,.]+ (?:billion|million)",  # "was $26.91 billion"
+            r"driven by",  # Analytical language
+            r"primarily due to",  # Explanatory language
+            r"resulted from a",  # Causal explanation
         ],
-        'required_patterns': [
+        "required_patterns": [
             r"(?:revenue|sales)",
             r"(?:net\s+income|net\s+profit)",
             r"(?:cost\s+of\s+revenue|gross\s+profit)",
-            r"(?:operating\s+expenses|research\s+and\s+development)"
+            r"(?:operating\s+expenses|research\s+and\s+development)",
         ],
-        'min_content_matches': 4,
-        'min_structure_matches': 0  # Reduced from 2 - rely on content+header validation
+        "min_content_matches": 4,
+        "min_structure_matches": 0,  # Reduced from 2 - rely on content+header validation
     },
     "balance_sheet": {
-        'primary_indicators': [
+        "primary_indicators": [
             r"consolidated\s+balance\s+sheets?",
             r"balance\s+sheets?",
             r"statements?\s+of\s+financial\s+position",
             r"total\s+assets",
             r"total\s+liabilities",
         ],
-        'content_indicators': [
+        "content_indicators": [
             r"current\s+assets",
             r"cash\s+and\s+cash\s+equivalents",
             r"marketable\s+securities",
@@ -134,26 +134,22 @@ STATEMENT_PATTERNS = {
             r"shareholders.?\s+equity",
             r"common\s+stock",
             r"retained\s+earnings",
-            r"total\s+shareholders.?\s+equity"
+            r"total\s+shareholders.?\s+equity",
         ],
-        'structure_indicators': [
+        "structure_indicators": [
             r"(?:total\s+assets.*?total\s+(?:liabilities|liabilities\s+and\s+equity))",
-            r"(?:as\s+of\s+(?:\w+\s+\d{1,2},\s+\d{4}|fiscal\s+year\s+ended))"
+            r"(?:as\s+of\s+(?:\w+\s+\d{1,2},\s+\d{4}|fiscal\s+year\s+ended))",
         ],
-        'negative_indicators': [
-            r"see\s+note\s+\d+",
-            r"refer\s+to\s+notes?",
-            r"\.{4,}\s*\d+\s*$"
-        ],
-        'required_patterns': [
+        "negative_indicators": [r"see\s+note\s+\d+", r"refer\s+to\s+notes?", r"\.{4,}\s*\d+\s*$"],
+        "required_patterns": [
             r"total\s+assets",
-            r"total\s+(?:liabilities|liabilities\s+and\s+shareholders.?\s+equity)"
+            r"total\s+(?:liabilities|liabilities\s+and\s+shareholders.?\s+equity)",
         ],
-        'min_content_matches': 5,
-        'min_structure_matches': 1
+        "min_content_matches": 5,
+        "min_structure_matches": 1,
     },
     "cash_flow": {
-        'primary_indicators': [
+        "primary_indicators": [
             r"consolidated\s+statements?\s+of\s+cash\s+flows?",
             r"statements?\s+of\s+cash\s+flows?",
             r"cash\s+flow\s+statements?",
@@ -162,24 +158,20 @@ STATEMENT_PATTERNS = {
             r"cash\s+paid\s+for\s+income\s+taxes",
             r"non-cash\s+investing\s+and\s+financing\s+activity",
         ],
-        'content_indicators': [
+        "content_indicators": [
             r"cash\s+flows?\s+from\s+operating\s+activities",
             r"cash\s+flows?\s+from\s+investing\s+activities",
             r"cash\s+flows?\s+from\s+financing\s+activities",
             r"net\s+increase\s+in\s+cash",
             r"cash\s+and\s+cash\s+equivalents,\s+beginning\s+of\s+(?:year|period)",
-            r"cash\s+and\s+cash\s+equivalents,\s+end\s+of\s+(?:year|period)"
+            r"cash\s+and\s+cash\s+equivalents,\s+end\s+of\s+(?:year|period)",
         ],
-        'structure_indicators': [
+        "structure_indicators": [
             r"(?:cash\s+flows?\s+from\s+operating.*?cash\s+flows?\s+from\s+investing)",
-            r"(?:for\s+the\s+(?:years?|periods?)\s+ended|fiscal\s+year\s+ended)"
+            r"(?:for\s+the\s+(?:years?|periods?)\s+ended|fiscal\s+year\s+ended)",
         ],
-        'negative_indicators': [
-            r"see\s+note\s+\d+",
-            r"refer\s+to\s+notes?",
-            r"\.{4,}\s*\d+\s*$"
-        ],
-        'required_patterns': [
+        "negative_indicators": [r"see\s+note\s+\d+", r"refer\s+to\s+notes?", r"\.{4,}\s*\d+\s*$"],
+        "required_patterns": [
             # Format 1: "Cash flows from X activities" (NVIDIA format)
             r"cash\s+flows?\s+from\s+operating\s+activities",
             r"cash\s+flows?\s+from\s+investing\s+activities",
@@ -195,48 +187,44 @@ STATEMENT_PATTERNS = {
             # Supplemental cash flow pages
             r"supplemental\s+disclosures?\s+of\s+cash\s+flow",
         ],
-        'min_content_matches': 0,  # Reduced from 1 - supplemental pages have NO standard content indicators
-        'min_structure_matches': 0  # Reduced from 1 - supplemental pages have minimal structure
+        "min_content_matches": 0,  # Reduced from 1 - supplemental pages have NO standard content indicators
+        "min_structure_matches": 0,  # Reduced from 1 - supplemental pages have minimal structure
     },
     "comprehensive_income": {
-        'primary_indicators': [
+        "primary_indicators": [
             r"consolidated\s+statements?\s+of\s+comprehensive\s+income",
             r"statements?\s+of\s+comprehensive\s+income",
             r"other\s+comprehensive\s+(?:income|loss)",
             r"total\s+comprehensive\s+(?:income|loss)",
         ],
-        'content_indicators': [
+        "content_indicators": [
             r"net\s+income",
             r"other\s+comprehensive\s+(?:income|loss)",
             r"unrealized\s+(?:gain|loss)",
             r"net\s+of\s+tax",
-            r"total\s+comprehensive\s+(?:income|loss)"
+            r"total\s+comprehensive\s+(?:income|loss)",
         ],
-        'structure_indicators': [
+        "structure_indicators": [
             r"(?:net\s+income.*?other\s+comprehensive\s+income)",
-            r"(?:for\s+the\s+(?:years?|periods?)\s+ended|fiscal\s+year\s+ended)"
+            r"(?:for\s+the\s+(?:years?|periods?)\s+ended|fiscal\s+year\s+ended)",
         ],
-        'negative_indicators': [
-            r"see\s+note\s+\d+",
-            r"refer\s+to\s+notes?",
-            r"\.{4,}\s*\d+\s*$"
-        ],
-        'required_patterns': [
+        "negative_indicators": [r"see\s+note\s+\d+", r"refer\s+to\s+notes?", r"\.{4,}\s*\d+\s*$"],
+        "required_patterns": [
             r"other\s+comprehensive\s+(?:income|loss)",
-            r"total\s+comprehensive\s+(?:income|loss)"
+            r"total\s+comprehensive\s+(?:income|loss)",
         ],
-        'min_content_matches': 0,
-        'min_structure_matches': 0
+        "min_content_matches": 0,
+        "min_structure_matches": 0,
     },
     "shareholders_equity": {
-        'primary_indicators': [
+        "primary_indicators": [
             r"consolidated\s+statements?\s+of\s+shareholders?\.?\s+equity",
             r"statements?\s+of\s+stockholders?\.?\s+equity",
             r"statements?\s+of\s+changes\s+in\s+equity",
             r"common\s+stock",
-            r"retained\s+earnings"
+            r"retained\s+earnings",
         ],
-        'content_indicators': [
+        "content_indicators": [
             r"common\s+stock\s+outstanding",
             r"additional\s+paid-in\s+capital",
             r"treasury\s+stock",
@@ -244,28 +232,20 @@ STATEMENT_PATTERNS = {
             r"retained\s+earnings",
             r"total\s+shareholders.?\s+equity",
             r"stock-based\s+compensation",
-            r"share\s+repurchase"
+            r"share\s+repurchase",
         ],
-        'structure_indicators': [
-            r"balances,\s+\w+\s+\d+,\s+20\d{2}"
-        ],
-        'negative_indicators': [
-            r"see\s+note\s+\d+",
-            r"refer\s+to\s+notes?",
-            r"\.{4,}\s*\d+\s*$"
-        ],
-        'required_patterns': [
-            r"common\s+stock",
-            r"retained\s+earnings"
-        ],
-        'min_content_matches': 3,
-        'min_structure_matches': 0
-    }
+        "structure_indicators": [r"balances,\s+\w+\s+\d+,\s+20\d{2}"],
+        "negative_indicators": [r"see\s+note\s+\d+", r"refer\s+to\s+notes?", r"\.{4,}\s*\d+\s*$"],
+        "required_patterns": [r"common\s+stock", r"retained\s+earnings"],
+        "min_content_matches": 3,
+        "min_structure_matches": 0,
+    },
 }
 
 
 class FinancialStatementType(Enum):
     """Types of financial statements we can detect."""
+
     INCOME_STATEMENT = "income_statement"
     BALANCE_SHEET = "balance_sheet"
     COMPREHENSIVE_INCOME = "comprehensive_income"
@@ -277,6 +257,7 @@ class FinancialStatementType(Enum):
 @dataclass
 class DetectedTable:
     """Represents a detected table with validation information."""
+
     page_number: int
     bbox: tuple[float, float, float, float]  # x1, y1, x2, y2
     statement_type: FinancialStatementType
@@ -293,7 +274,9 @@ class PageDetector:
         self.min_confidence_score = 15
         logger.info("PageDetector initialized with 3-step validation")
 
-    def detect_financial_tables(self, pdf_path: str | Path) -> dict[FinancialStatementType, list[int]]:
+    def detect_financial_tables(
+        self, pdf_path: str | Path
+    ) -> dict[FinancialStatementType, list[int]]:
         """
         Detect ACTUAL financial statement pages using 3-step validation framework.
         Filters out TOC entries, footnotes, and references to find real statement pages.
@@ -350,21 +333,35 @@ class PageDetector:
         """
         patterns = {
             FinancialStatementType.INCOME_STATEMENT: [
-                r"income statement", r"consolidated statements? of income", r"statements? of operations",
-                r"revenue", r"net income", r"gross profit", r"operating income"
+                r"income statement",
+                r"consolidated statements? of income",
+                r"statements? of operations",
+                r"revenue",
+                r"net income",
+                r"gross profit",
+                r"operating income",
             ],
             FinancialStatementType.COMPREHENSIVE_INCOME: [
-                r"comprehensive income", r"other comprehensive income", r"unrealized"
+                r"comprehensive income",
+                r"other comprehensive income",
+                r"unrealized",
             ],
             FinancialStatementType.BALANCE_SHEET: [
-                r"balance sheet", r"consolidated balance sheets", r"total assets", r"total liabilities"
+                r"balance sheet",
+                r"consolidated balance sheets",
+                r"total assets",
+                r"total liabilities",
             ],
             FinancialStatementType.CASH_FLOW: [
-                r"cash flows?", r"cash flows? from operating", r"cash flows? from investing"
+                r"cash flows?",
+                r"cash flows? from operating",
+                r"cash flows? from investing",
             ],
             FinancialStatementType.SHAREHOLDERS_EQUITY: [
-                r"shareholders.?\s+equity", r"stockholders.?\s+equity", r"retained earnings"
-            ]
+                r"shareholders.?\s+equity",
+                r"stockholders.?\s+equity",
+                r"retained earnings",
+            ],
         }
 
         candidates = {stmt_type: [] for stmt_type in FinancialStatementType}
@@ -383,7 +380,9 @@ class PageDetector:
 
         return candidates
 
-    def _validate_candidate_pages(self, doc, candidates: dict[FinancialStatementType, list[int]]) -> dict[FinancialStatementType, list[int]]:
+    def _validate_candidate_pages(
+        self, doc, candidates: dict[FinancialStatementType, list[int]]
+    ) -> dict[FinancialStatementType, list[int]]:
         """
         STEP 2: Filter candidates using structural validation to remove TOC, footnotes, etc.
         """
@@ -396,9 +395,11 @@ class PageDetector:
                 page = doc[page_num - 1]  # Convert to 0-indexed
 
                 # Apply basic filtering first
-                if (self._is_toc_entry(page) or
-                    self._is_footnote_reference(page) or
-                    self._is_index_entry(page)):
+                if (
+                    self._is_toc_entry(page)
+                    or self._is_footnote_reference(page)
+                    or self._is_index_entry(page)
+                ):
                     continue
 
                 # Apply sophisticated validation
@@ -412,7 +413,9 @@ class PageDetector:
 
         return validated
 
-    def _resolve_page_ambiguity(self, doc, validated_pages: dict[FinancialStatementType, list[int]]) -> dict[FinancialStatementType, list[int]]:
+    def _resolve_page_ambiguity(
+        self, doc, validated_pages: dict[FinancialStatementType, list[int]]
+    ) -> dict[FinancialStatementType, list[int]]:
         """
         STEP 3: Resolve ambiguity using financial statement sequencing and content-based scoring.
         """
@@ -444,11 +447,13 @@ class PageDetector:
         """Find consecutive page pairs in the list (e.g., [43, 44])."""
         consecutive_pairs = []
         for i in range(len(page_list) - 1):
-            if page_list[i+1] == page_list[i] + 1:
-                consecutive_pairs.append([page_list[i], page_list[i+1]])
+            if page_list[i + 1] == page_list[i] + 1:
+                consecutive_pairs.append([page_list[i], page_list[i + 1]])
         return consecutive_pairs
 
-    def _select_best_page(self, doc, page_list: list[int], stmt_type: FinancialStatementType) -> int:
+    def _select_best_page(
+        self, doc, page_list: list[int], stmt_type: FinancialStatementType
+    ) -> int:
         """Select the best page from multiple candidates based on confidence scores."""
         # Special handling for cash flow - check for consecutive pages first
         if stmt_type == FinancialStatementType.CASH_FLOW:
@@ -490,35 +495,26 @@ class PageDetector:
         header_text = page.get_text("text", clip=header_region).upper()
 
         # Clean up Unicode artifacts (�) and normalize whitespace
-        header_text = re.sub(r'[^\w\s\(\)]', ' ', header_text)
-        header_text = re.sub(r'\s+', ' ', header_text)
+        header_text = re.sub(r"[^\w\s\(\)]", " ", header_text)
+        header_text = re.sub(r"\s+", " ", header_text)
 
         if stmt_type == FinancialStatementType.INCOME_STATEMENT:
             # Must have "CONSOLIDATED STATEMENTS OF INCOME" or similar in header
-            return bool(re.search(
-                r"CONSOLIDATED\s+STATEMENTS?\s+OF\s+(?:INCOME|OPERATIONS)",
-                header_text
-            ))
+            return bool(
+                re.search(r"CONSOLIDATED\s+STATEMENTS?\s+OF\s+(?:INCOME|OPERATIONS)", header_text)
+            )
         elif stmt_type == FinancialStatementType.COMPREHENSIVE_INCOME:
-            return bool(re.search(
-                r"CONSOLIDATED\s+STATEMENTS?\s+OF\s+COMPREHENSIVE\s+INCOME",
-                header_text
-            ))
+            return bool(
+                re.search(r"CONSOLIDATED\s+STATEMENTS?\s+OF\s+COMPREHENSIVE\s+INCOME", header_text)
+            )
         elif stmt_type == FinancialStatementType.BALANCE_SHEET:
-            return bool(re.search(
-                r"CONSOLIDATED\s+BALANCE\s+SHEETS?",
-                header_text
-            ))
+            return bool(re.search(r"CONSOLIDATED\s+BALANCE\s+SHEETS?", header_text))
         elif stmt_type == FinancialStatementType.SHAREHOLDERS_EQUITY:
-            return bool(re.search(
-                r"CONSOLIDATED\s+STATEMENTS?\s+OF\s+SHAREHOLDERS?\s+EQUITY",
-                header_text
-            ))
+            return bool(
+                re.search(r"CONSOLIDATED\s+STATEMENTS?\s+OF\s+SHAREHOLDERS?\s+EQUITY", header_text)
+            )
         elif stmt_type == FinancialStatementType.CASH_FLOW:
-            return bool(re.search(
-                r"CONSOLIDATED\s+STATEMENTS?\s+OF\s+CASH\s+FLOWS?",
-                header_text
-            ))
+            return bool(re.search(r"CONSOLIDATED\s+STATEMENTS?\s+OF\s+CASH\s+FLOWS?", header_text))
 
         return False
 
@@ -572,7 +568,9 @@ class PageDetector:
             ]
 
             # If it has TOC indicators, it's likely a real TOC page
-            toc_count = sum(1 for pattern in toc_indicators if re.search(pattern, text, re.IGNORECASE))
+            toc_count = sum(
+                1 for pattern in toc_indicators if re.search(pattern, text, re.IGNORECASE)
+            )
             if toc_count >= 2:
                 return True
 
@@ -583,7 +581,9 @@ class PageDetector:
 
         return False
 
-    def _is_actual_statement_page(self, page, stmt_type: FinancialStatementType) -> tuple[bool, float]:
+    def _is_actual_statement_page(
+        self, page, stmt_type: FinancialStatementType
+    ) -> tuple[bool, float]:
         """
         Verify this is a REAL financial statement page using sophisticated multi-step validation.
 
@@ -598,7 +598,7 @@ class PageDetector:
             return False, 0.0
 
         # STEP 1: Check primary indicators (must have at least one)
-        primary_matches = self._count_pattern_matches(text, patterns.get('primary_indicators', []))
+        primary_matches = self._count_pattern_matches(text, patterns.get("primary_indicators", []))
         if primary_matches == 0:
             return False, 0.0
 
@@ -607,12 +607,14 @@ class PageDetector:
         has_proper_header = self._has_consolidated_header(page, stmt_type)
 
         # STEP 2: Check negative indicators (too many disqualify)
-        negative_matches = self._count_pattern_matches(text, patterns.get('negative_indicators', []))
+        negative_matches = self._count_pattern_matches(
+            text, patterns.get("negative_indicators", [])
+        )
         if negative_matches > 3:  # Allow up to 3 negative indicators
             return False, 0.0
 
         # STEP 3: Check required patterns (most should be present)
-        required_patterns = patterns.get('required_patterns', [])
+        required_patterns = patterns.get("required_patterns", [])
         required_found = 0
         for pattern in required_patterns:
             if re.search(pattern, text, re.IGNORECASE):
@@ -623,12 +625,14 @@ class PageDetector:
             return False, 0.0
 
         # STEP 4: Count content and structure indicators
-        content_matches = self._count_pattern_matches(text, patterns.get('content_indicators', []))
-        structure_matches = self._count_pattern_matches(text, patterns.get('structure_indicators', []))
+        content_matches = self._count_pattern_matches(text, patterns.get("content_indicators", []))
+        structure_matches = self._count_pattern_matches(
+            text, patterns.get("structure_indicators", [])
+        )
 
         # Calculate confidence score
-        min_content = patterns.get('min_content_matches', 0)
-        min_structure = patterns.get('min_structure_matches', 0)
+        min_content = patterns.get("min_content_matches", 0)
+        min_structure = patterns.get("min_structure_matches", 0)
 
         if content_matches >= min_content and structure_matches >= min_structure:
             # Base confidence from content and structure
@@ -684,7 +688,8 @@ class PageDetector:
         return result
 
     def get_page_ranges_for_extraction(
-        self, detected_tables: dict[int, list[DetectedTable]] | dict[FinancialStatementType, list[int]]
+        self,
+        detected_tables: dict[int, list[DetectedTable]] | dict[FinancialStatementType, list[int]],
     ) -> dict[FinancialStatementType, list[int]]:
         """
         Get page ranges for each financial statement type for targeted LLMWhisperer extraction.
@@ -697,7 +702,9 @@ class PageDetector:
             Dictionary mapping statement types to page lists
         """
         # Handle new format (already in correct structure)
-        if detected_tables and isinstance(next(iter(detected_tables.keys())), FinancialStatementType):
+        if detected_tables and isinstance(
+            next(iter(detected_tables.keys())), FinancialStatementType
+        ):
             # New format: expand pages with surrounding context
             page_ranges: dict[FinancialStatementType, list[int]] = {}
             for stmt_type, pages in detected_tables.items():

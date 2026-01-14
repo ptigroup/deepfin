@@ -1,0 +1,121 @@
+{
+  "company_name": "NVIDIA CORPORATION AND SUBSIDIARIES",
+  "statement_type": "comprehensive_income",
+  "fiscal_year": "2022",
+  "currency": "USD",
+  "periods": [
+    "January 30, 2022",
+    "January 31, 2021",
+    "January 26, 2020"
+  ],
+  "line_items": [
+    {
+      "account_name": "Net income",
+      "values": [
+        "$         9,752",
+        "$          4,332",
+        "$         2,796"
+      ],
+      "indent_level": 0,
+      "section": "Income"
+    },
+    {
+      "account_name": "Other comprehensive income (loss), net of tax",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Available-for-sale debt securities:",
+      "values": [],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Net unrealized gain (loss)",
+      "values": [
+        "(16)",
+        "2",
+        "8"
+      ],
+      "indent_level": 2,
+      "section": null
+    },
+    {
+      "account_name": "   Reclassification adjustments for net realized gain (loss) included in net income",
+      "values": [
+        "-",
+        "(2)",
+        ""
+      ],
+      "indent_level": 2,
+      "section": null
+    },
+    {
+      "account_name": "   Net change in unrealized gain (loss)",
+      "values": [
+        "(16)",
+        "-",
+        "8"
+      ],
+      "indent_level": 2,
+      "section": null
+    },
+    {
+      "account_name": "Cash flow hedges:",
+      "values": [],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Net unrealized gain (loss)",
+      "values": [
+        "(43)",
+        "9",
+        "10"
+      ],
+      "indent_level": 2,
+      "section": null
+    },
+    {
+      "account_name": "   Reclassification adjustments for net realized gain (loss) included in net income",
+      "values": [
+        "29",
+        "9",
+        "(5)"
+      ],
+      "indent_level": 2,
+      "section": null
+    },
+    {
+      "account_name": "   Net change in unrealized gain (loss)",
+      "values": [
+        "(14)",
+        "18",
+        "5"
+      ],
+      "indent_level": 2,
+      "section": null
+    },
+    {
+      "account_name": "Other comprehensive income (loss), net of tax",
+      "values": [
+        "(30)",
+        "18",
+        "13"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Total comprehensive income",
+      "values": [
+        "$         9,722",
+        "$          4,350",
+        "$         2,809"
+      ],
+      "indent_level": 0,
+      "section": "Income"
+    }
+  ]
+}

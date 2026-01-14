@@ -36,7 +36,7 @@ class FinancialLineItem(BaseModel):
     )
     section: str | None = Field(
         default=None,
-        description="Major section: Assets, Liabilities, Equity, Operating, Investing, or Financing"
+        description="Major section: Assets, Liabilities, Equity, Operating, Investing, or Financing",
     )
 
 
@@ -181,9 +181,7 @@ Do NOT:
         Raises:
             Exception: If extraction fails after retries
         """
-        logger.info(
-            "Starting Pydantic AI extraction", extra={"text_length": len(raw_text)}
-        )
+        logger.info("Starting Pydantic AI extraction", extra={"text_length": len(raw_text)})
 
         try:
             # Run the agent asynchronously (compatible with existing event loop)
@@ -208,9 +206,7 @@ Do NOT:
             return financial_data.model_dump()
 
         except Exception as e:
-            logger.error(
-                "Extraction failed", extra={"error": str(e)}, exc_info=True
-            )
+            logger.error("Extraction failed", extra={"error": str(e)}, exc_info=True)
             raise
 
 

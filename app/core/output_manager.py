@@ -41,6 +41,7 @@ logger = logging.getLogger(__name__)
 
 class RunStatus:
     """Run status constants."""
+
     IN_PROGRESS = "IN_PROGRESS"
     SUCCESS = "SUCCESS"
     PARTIAL = "PARTIAL"
@@ -83,8 +84,8 @@ class ExtractionRun:
                 "total_statements": 0,
                 "total_line_items": 0,
                 "total_cost_usd": 0.0,
-                "cost_savings_percent": 0.0
-            }
+                "cost_savings_percent": 0.0,
+            },
         }
 
         self._save_manifest()
@@ -99,7 +100,7 @@ class ExtractionRun:
         raw_text: str | None = None,
         metadata: dict | None = None,
         validation: dict | None = None,
-        page_detection: dict | None = None
+        page_detection: dict | None = None,
     ) -> Path:
         """Save extraction outputs for a single PDF."""
 
@@ -109,7 +110,7 @@ class ExtractionRun:
 
         # Save JSON
         json_path = pdf_dir / f"{statement_type}.json"
-        with open(json_path, 'w', encoding='utf-8') as f:
+        with open(json_path, "w", encoding="utf-8") as f:
             json.dump(json_data, f, indent=2)
 
         # Save Excel if provided
@@ -120,25 +121,25 @@ class ExtractionRun:
         # Save raw text if provided
         if raw_text:
             raw_path = pdf_dir / "raw_text.txt"
-            with open(raw_path, 'w', encoding='utf-8') as f:
+            with open(raw_path, "w", encoding="utf-8") as f:
                 f.write(raw_text)
 
         # Save metadata if provided
         if metadata:
             meta_path = pdf_dir / "metadata.json"
-            with open(meta_path, 'w', encoding='utf-8') as f:
+            with open(meta_path, "w", encoding="utf-8") as f:
                 json.dump(metadata, f, indent=2)
 
         # Save validation if provided
         if validation:
             val_path = pdf_dir / "validation.json"
-            with open(val_path, 'w', encoding='utf-8') as f:
+            with open(val_path, "w", encoding="utf-8") as f:
                 json.dump(validation, f, indent=2)
 
         # Save page detection if provided
         if page_detection:
             pd_path = pdf_dir / "page_detection.json"
-            with open(pd_path, 'w', encoding='utf-8') as f:
+            with open(pd_path, "w", encoding="utf-8") as f:
                 json.dump(page_detection, f, indent=2)
 
         logger.info(f"Saved extraction for {pdf_name} -> {pdf_dir}")
@@ -156,7 +157,7 @@ class ExtractionRun:
         cost_usd: float = 0.0,
         duration_seconds: float = 0.0,
         line_items: int = 0,
-        error: str | None = None
+        error: str | None = None,
     ):
         """Add PDF processing result to manifest."""
 
@@ -170,7 +171,7 @@ class ExtractionRun:
             "accuracy": accuracy,
             "cost_usd": cost_usd,
             "duration_seconds": duration_seconds,
-            "line_items": line_items
+            "line_items": line_items,
         }
 
         if error:
@@ -197,7 +198,7 @@ class ExtractionRun:
         json_data: dict,
         excel_path: str | None = None,
         source_count: int = 0,
-        line_items: int = 0
+        line_items: int = 0,
     ) -> Path:
         """Save consolidated multi-PDF output."""
 
@@ -209,7 +210,7 @@ class ExtractionRun:
 
         # Save JSON
         json_path = self.consolidated_dir / f"{statement_type}_{year_range}.json"
-        with open(json_path, 'w', encoding='utf-8') as f:
+        with open(json_path, "w", encoding="utf-8") as f:
             json.dump(json_data, f, indent=2)
 
         # Save Excel if provided
@@ -218,16 +219,18 @@ class ExtractionRun:
             shutil.copy2(excel_path, excel_dest)
 
         # Add to manifest
-        self.manifest["consolidated"].append({
-            "statement_type": statement_type,
-            "years": years,
-            "source_count": source_count,
-            "line_items": line_items,
-            "output_files": [
-                f"consolidated/{statement_type}_{year_range}.json",
-                f"consolidated/{statement_type}_{year_range}.xlsx" if excel_path else None
-            ]
-        })
+        self.manifest["consolidated"].append(
+            {
+                "statement_type": statement_type,
+                "years": years,
+                "source_count": source_count,
+                "line_items": line_items,
+                "output_files": [
+                    f"consolidated/{statement_type}_{year_range}.json",
+                    f"consolidated/{statement_type}_{year_range}.xlsx" if excel_path else None,
+                ],
+            }
+        )
 
         self.manifest["summary"]["total_statements"] += 1
         self._save_manifest()
@@ -278,7 +281,7 @@ class ExtractionRun:
     def _save_manifest(self):
         """Save run manifest to file."""
         manifest_path = self.run_dir / "run_manifest.json"
-        with open(manifest_path, 'w', encoding='utf-8') as f:
+        with open(manifest_path, "w", encoding="utf-8") as f:
             json.dump(self.manifest, f, indent=2)
 
     def _update_latest_symlink(self):
@@ -299,7 +302,7 @@ class ExtractionRun:
             # Symlinks might not work on Windows without admin rights
             logger.warning(f"Could not create symlink: {e}")
             # Fallback: create a text file with the path
-            with open(runs_dir / "latest.txt", 'w') as f:
+            with open(runs_dir / "latest.txt", "w") as f:
                 f.write(self.run_dir.name)
             logger.info(f"Created latest.txt -> {self.run_dir.name}")
 
@@ -311,7 +314,7 @@ class ExtractionRun:
         for file_path in sorted(self.run_dir.rglob("*")):
             if file_path.is_file() and file_path.name not in ["checksums.md5", "run_manifest.json"]:
                 md5_hash = hashlib.md5()
-                with open(file_path, 'rb') as f:
+                with open(file_path, "rb") as f:
                     for chunk in iter(lambda: f.read(4096), b""):
                         md5_hash.update(chunk)
 
@@ -321,11 +324,11 @@ class ExtractionRun:
 
         # Write checksums file
         checksum_file = self.run_dir / "checksums.md5"
-        with open(checksum_file, 'w') as f:
+        with open(checksum_file, "w") as f:
             f.write("# MD5 Checksums for Run Output Files\n")
             f.write(f"# Generated: {datetime.now().isoformat()}\n")
             f.write(f"# Run ID: {self.run_id}\n\n")
-            f.write('\n'.join(checksums))
+            f.write("\n".join(checksums))
 
         logger.info(f"Generated checksums for {len(checksums)} files")
 
@@ -361,7 +364,7 @@ class ExtractionRun:
         # Read existing history
         existing_entries = []
         if history_file.exists():
-            with open(history_file, encoding='utf-8') as f:
+            with open(history_file, encoding="utf-8") as f:
                 content = f.read()
                 # Keep header
                 if content.startswith("# Run History"):
@@ -397,7 +400,7 @@ class ExtractionRun:
 """.strip()
 
         # Write history file
-        with open(history_file, 'w', encoding='utf-8') as f:
+        with open(history_file, "w", encoding="utf-8") as f:
             f.write("# Run History\n\n")
             f.write("**Latest runs shown first**\n\n")
             f.write("---\n\n")
@@ -421,19 +424,21 @@ class ExtractionRun:
                 f"{pdf.get('line_items', 0)} line items, "
                 f"${pdf.get('cost_usd', 0):.2f}"
             )
-        return '\n'.join(lines) if lines else "- (No PDFs processed)"
+        return "\n".join(lines) if lines else "- (No PDFs processed)"
 
     def _format_consolidated_list(self) -> str:
         """Format consolidated outputs for history entry."""
         lines = []
         for item in self.manifest.get("consolidated", []):
             years = item.get("years", [])
-            year_range = f"{years[0]}-{years[-1]}" if len(years) > 1 else years[0] if years else "unknown"
+            year_range = (
+                f"{years[0]}-{years[-1]}" if len(years) > 1 else years[0] if years else "unknown"
+            )
             lines.append(
                 f"- **{item['statement_type']}** ({year_range}): "
                 f"{item.get('source_count', 0)} sources, {item.get('line_items', 0)} line items"
             )
-        return '\n'.join(lines) if lines else "- (No consolidated outputs)"
+        return "\n".join(lines) if lines else "- (No consolidated outputs)"
 
 
 class OutputManager:
@@ -575,7 +580,7 @@ class OutputManager:
         # Get all run folders sorted by name (timestamp)
         run_folders = sorted(
             [f for f in runs_dir.iterdir() if f.is_dir() and not f.name.startswith("latest")],
-            reverse=True
+            reverse=True,
         )
 
         # Remove old runs beyond keep_count
