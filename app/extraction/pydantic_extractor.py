@@ -169,7 +169,7 @@ Do NOT:
 
         logger.info("PydanticExtractor initialized with gpt-4o-mini")
 
-    def extract_from_text(self, raw_text: str) -> dict[str, Any]:
+    async def extract_from_text(self, raw_text: str) -> dict[str, Any]:
         """Extract structured financial data from raw LLMWhisperer text.
 
         Args:
@@ -186,12 +186,12 @@ Do NOT:
         )
 
         try:
-            # Run the agent synchronously
-            result = self.agent.run_sync(
+            # Run the agent asynchronously (compatible with existing event loop)
+            result = await self.agent.run(
                 f"Extract financial statement data from this text:\n\n{raw_text}"
             )
 
-            # Get the validated data
+            # Get the validated data (use .output for async agent.run())
             financial_data = result.output
 
             logger.info(
@@ -214,7 +214,7 @@ Do NOT:
             raise
 
 
-def extract_financial_data(raw_text: str) -> dict[str, Any]:
+async def extract_financial_data(raw_text: str) -> dict[str, Any]:
     """Convenience function to extract financial data.
 
     Args:
@@ -224,4 +224,4 @@ def extract_financial_data(raw_text: str) -> dict[str, Any]:
         Dictionary with extracted financial statement data
     """
     extractor = PydanticExtractor()
-    return extractor.extract_from_text(raw_text)
+    return await extractor.extract_from_text(raw_text)

@@ -44,6 +44,14 @@ from typing import Dict, List, Tuple, Optional, TYPE_CHECKING
 from collections import defaultdict
 from difflib import SequenceMatcher
 
+# Fix Windows console encoding for Unicode characters
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except AttributeError:
+        pass  # Python < 3.7
+
 if TYPE_CHECKING:
     from openpyxl import Workbook
 
@@ -379,8 +387,8 @@ class EndToEndPipeline:
             # EXTRACT ONLY DETECTED PAGES!
             raw_text = await self._extract_pages_with_llmwhisperer(pdf_path, pages)
 
-            # Parse with Pydantic AI
-            structured_dict = self.extractor.extract_from_text(raw_text)
+            # Parse with Pydantic AI (now async)
+            structured_dict = await self.extractor.extract_from_text(raw_text)
 
             # Convert to object for easier access
             from app.extraction.pydantic_extractor import FinancialStatement
@@ -1134,7 +1142,15 @@ class EndToEndPipeline:
             all_years.update(data.get("fiscal_years", []))
 
         all_years = sorted(all_years, reverse=True)
-        year_range = f"{all_years[0]}-{all_years[-1]}" if len(all_years) > 1 else str(all_years[0])
+
+        # Handle case when no years are found
+        if not all_years:
+            print("  [WARNING] No fiscal years found in consolidated data, using timestamp")
+            year_range = datetime.now().strftime("%Y%m%d")
+        elif len(all_years) > 1:
+            year_range = f"{all_years[0]}-{all_years[-1]}"
+        else:
+            year_range = str(all_years[0])
 
         # File paths
         combined_json_path = output_dir / f"all_statements_{year_range}.json"
@@ -1574,9 +1590,27 @@ Examples:
     pipeline = EndToEndPipeline(output_base=str(config.output_runs_dir.parent))
 
     try:
-        # Run async pipeline
+        # Run async pipeline with timing
         import asyncio
+        import time
+
+        print("\n" + "=" * 70)
+        print("STARTING ASYNC PIPELINE WITH TIMING MEASUREMENTS")
+        print("=" * 70)
+        start_time = time.time()
+
         results = asyncio.run(pipeline.run_full_pipeline(pdf_paths))
+
+        end_time = time.time()
+        total_duration = end_time - start_time
+
+        print("\n" + "=" * 70)
+        print("PIPELINE TIMING RESULTS")
+        print("=" * 70)
+        print(f"Total processing time: {total_duration:.2f} seconds ({total_duration/60:.2f} minutes)")
+        print(f"PDFs processed: {len(pdf_paths)}")
+        print(f"Average time per PDF: {total_duration/len(pdf_paths):.2f} seconds")
+        print("=" * 70)
 
         # Save full results to run directory
         if pipeline.current_run:
