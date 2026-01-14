@@ -1,0 +1,10 @@
+{
+  "document_confidence": 0.25,
+  "detected_type": "income_statement",
+  "direct_parser_success": true,
+  "pydantic_ai_success": false,
+  "discrepancies_count": 0,
+  "discrepancies": [],
+  "accuracy_score": 1.0,
+  "recommendation": "Direct parser succeeded - 100% accuracy (Pydantic AI not available) | WARNING: Low confidence (0.25) - Possible summary page"
+}

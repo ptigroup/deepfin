@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
 from app.extraction.models import ExtractionStatus
-from app.extraction.service import ExtractionService, ExtractionServiceError
+from app.extraction.service import ExtractionService
 from app.jobs.models import JobType
 from app.jobs.schemas import JobCreate
 from app.jobs.service import JobService

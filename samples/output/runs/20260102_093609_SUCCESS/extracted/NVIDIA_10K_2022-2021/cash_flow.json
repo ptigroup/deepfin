@@ -1,0 +1,379 @@
+{
+  "company_name": "NVIDIA CORPORATION AND SUBSIDIARIES",
+  "statement_type": "cash_flow",
+  "fiscal_year": "2022",
+  "currency": "USD",
+  "periods": [
+    "January 30, 2022",
+    "January 31, 2021",
+    "January 26, 2020"
+  ],
+  "line_items": [
+    {
+      "account_name": "Cash flows from operating activities:",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Net income",
+      "values": [
+        "$          9,752",
+        "$           4,332",
+        "$          2,796"
+      ],
+      "indent_level": 1,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Adjustments to reconcile net income to net cash provided by operating activities:",
+      "values": [],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "      Stock-based compensation expense",
+      "values": [
+        "$            2,004",
+        "$           1,397",
+        "$            844"
+      ],
+      "indent_level": 2,
+      "section": "Expenses"
+    },
+    {
+      "account_name": "      Depreciation and amortization",
+      "values": [
+        "$            1,174",
+        "$           1,098",
+        "$            381"
+      ],
+      "indent_level": 2,
+      "section": "Expenses"
+    },
+    {
+      "account_name": "      Deferred income taxes",
+      "values": [
+        "($            406)",
+        "($            282)",
+        "$               18"
+      ],
+      "indent_level": 2,
+      "section": "Expenses"
+    },
+    {
+      "account_name": "      (Gains) losses on investments in non-affiliates, net",
+      "values": [
+        "($            100)",
+        "$               -",
+        "$                1"
+      ],
+      "indent_level": 2,
+      "section": "Expenses"
+    },
+    {
+      "account_name": "      Other",
+      "values": [
+        "$               47",
+        "($            20)",
+        "$                4"
+      ],
+      "indent_level": 2,
+      "section": "Expenses"
+    },
+    {
+      "account_name": "Changes in operating assets and liabilities, net of acquisitions:",
+      "values": [],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "      Accounts receivable",
+      "values": [
+        "($          2,215)",
+        "($            550)",
+        "($            233)"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "      Inventories",
+      "values": [
+        "($            774)",
+        "($            524)",
+        "$            597"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "      Prepaid expenses and other assets",
+      "values": [
+        "($          1,715)",
+        "($            394)",
+        "$               77"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "      Accounts payable",
+      "values": [
+        "$              568",
+        "$              312",
+        "$              194"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "      Accrued and other current liabilities",
+      "values": [
+        "$              581",
+        "$              290",
+        "$               54"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "      Other long-term liabilities",
+      "values": [
+        "$              192",
+        "$              163",
+        "$               28"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Net cash provided by operating activities",
+      "values": [
+        "$          9,108",
+        "$          5,822",
+        "$          4,761"
+      ],
+      "indent_level": 0,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Cash flows from investing activities:",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "      Proceeds from maturities of marketable securities",
+      "values": [
+        "$          15,197",
+        "$          8,792",
+        "$          4,744"
+      ],
+      "indent_level": 1,
+      "section": "Investing"
+    },
+    {
+      "account_name": "      Proceeds from sales of marketable securities",
+      "values": [
+        "$           1,023",
+        "$             527",
+        "$          3,365"
+      ],
+      "indent_level": 1,
+      "section": "Investing"
+    },
+    {
+      "account_name": "      Purchases of marketable securities",
+      "values": [
+        "($         24,787)",
+        "($         19,308)",
+        "($          1,461)"
+      ],
+      "indent_level": 1,
+      "section": "Investing"
+    },
+    {
+      "account_name": "      Purchases related to property and equipment and intangible assets",
+      "values": [
+        "($            976)",
+        "($          1,128)",
+        "($            489)"
+      ],
+      "indent_level": 1,
+      "section": "Investing"
+    },
+    {
+      "account_name": "      Acquisitions, net of cash acquired",
+      "values": [
+        "($            263)",
+        "($          8,524)",
+        "($              4)"
+      ],
+      "indent_level": 1,
+      "section": "Investing"
+    },
+    {
+      "account_name": "      Investments and other, net",
+      "values": [
+        "($             24)",
+        "($             34)",
+        "($             10)"
+      ],
+      "indent_level": 1,
+      "section": "Investing"
+    },
+    {
+      "account_name": "Net cash provided by (used in) investing activities",
+      "values": [
+        "($         9,830)",
+        "($        19,675)",
+        "$          6,145"
+      ],
+      "indent_level": 0,
+      "section": "Investing"
+    },
+    {
+      "account_name": "Cash flows from financing activities:",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "      Issuance of debt, net of issuance costs",
+      "values": [
+        "$          4,977",
+        "$          4,968",
+        "$                -"
+      ],
+      "indent_level": 1,
+      "section": "Financing"
+    },
+    {
+      "account_name": "      Proceeds related to employee stock plans",
+      "values": [
+        "$            281",
+        "$            194",
+        "$            149"
+      ],
+      "indent_level": 1,
+      "section": "Financing"
+    },
+    {
+      "account_name": "      Payments related to tax on restricted stock units",
+      "values": [
+        "($          1,904)",
+        "($            942)",
+        "($            551)"
+      ],
+      "indent_level": 1,
+      "section": "Financing"
+    },
+    {
+      "account_name": "      Repayment of debt",
+      "values": [
+        "($          1,000)",
+        "$               -",
+        "$               -"
+      ],
+      "indent_level": 1,
+      "section": "Financing"
+    },
+    {
+      "account_name": "      Dividends paid",
+      "values": [
+        "($            399)",
+        "($            395)",
+        "($            390)"
+      ],
+      "indent_level": 1,
+      "section": "Financing"
+    },
+    {
+      "account_name": "      Principal payments on property and equipment",
+      "values": [
+        "($             83)",
+        "($             17)",
+        "$               -"
+      ],
+      "indent_level": 1,
+      "section": "Financing"
+    },
+    {
+      "account_name": "      Other",
+      "values": [
+        "($               7)",
+        "($               4)",
+        "$               -"
+      ],
+      "indent_level": 1,
+      "section": "Financing"
+    },
+    {
+      "account_name": "Net cash provided by (used in) financing activities",
+      "values": [
+        "$          1,865",
+        "$          3,804",
+        "($          792)"
+      ],
+      "indent_level": 0,
+      "section": "Financing"
+    },
+    {
+      "account_name": "Change in cash and cash equivalents",
+      "values": [
+        "$          1,143",
+        "($        10,049)",
+        "$         10,114"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Cash and cash equivalents at beginning of period",
+      "values": [
+        "$            847",
+        "$          10,896",
+        "$            782"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Cash and cash equivalents at end of period",
+      "values": [
+        "$          1,990",
+        "$            847",
+        "$         10,896"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Supplemental disclosures of cash flow information:",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Cash paid for income taxes, net",
+      "values": [
+        "$            396",
+        "$            249",
+        "$            176"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Cash paid for interest",
+      "values": [
+        "$            246",
+        "$            138",
+        "$             54"
+      ],
+      "indent_level": 1,
+      "section": null
+    }
+  ]
+}

@@ -1,0 +1,1158 @@
+{
+  "statement_type": "balance_sheet",
+  "fiscal_years": [
+    2024,
+    2023,
+    2022
+  ],
+  "periods": [
+    "As of December 31, 2024",
+    "As of December 31, 2023",
+    "As of December 31, 2022"
+  ],
+  "line_items": [
+    {
+      "account_name": "Assets",
+      "indent_level": 0,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": "Current assets:",
+      "indent_level": 0,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": "    Cash and cash equivalents",
+      "indent_level": 1,
+      "section": "Assets",
+      "values": {
+        "As of December 31, 2023": "$               24,048",
+        "As of December 31, 2024": "$               23,466",
+        "As of December 31, 2022": "$              21,879"
+      }
+    },
+    {
+      "account_name": "    Marketable securities",
+      "indent_level": 1,
+      "section": "Assets",
+      "values": {
+        "As of December 31, 2023": "$               86,868",
+        "As of December 31, 2024": "$              72,191",
+        "As of December 31, 2022": "$              91,883"
+      }
+    },
+    {
+      "account_name": "     Total cash, cash equivalents, and marketable securities",
+      "indent_level": 1,
+      "section": "Assets",
+      "values": {
+        "As of December 31, 2023": "$             110,916",
+        "As of December 31, 2024": "$              95,657",
+        "As of December 31, 2022": "$             113,762"
+      }
+    },
+    {
+      "account_name": "    Accounts receivable, net",
+      "indent_level": 1,
+      "section": "Assets",
+      "values": {
+        "As of December 31, 2023": "$               47,964",
+        "As of December 31, 2024": "$              52,340",
+        "As of December 31, 2022": "$              40,258"
+      }
+    },
+    {
+      "account_name": "    Other current assets",
+      "indent_level": 1,
+      "section": "Assets",
+      "values": {
+        "As of December 31, 2023": "$               12,650",
+        "As of December 31, 2024": "$              15,714",
+        "As of December 31, 2022": "$              10,775"
+      }
+    },
+    {
+      "account_name": "        Total current assets",
+      "indent_level": 2,
+      "section": "Assets",
+      "values": {
+        "As of December 31, 2023": "$             171,530",
+        "As of December 31, 2024": "$            163,711",
+        "As of December 31, 2022": "$             164,795"
+      }
+    },
+    {
+      "account_name": "Non-marketable securities",
+      "indent_level": 0,
+      "section": "Assets",
+      "values": {
+        "As of December 31, 2023": "$               31,008",
+        "As of December 31, 2024": "$              37,982",
+        "As of December 31, 2022": "$              30,492"
+      }
+    },
+    {
+      "account_name": "Deferred income taxes",
+      "indent_level": 0,
+      "section": "Assets",
+      "values": {
+        "As of December 31, 2023": "$               12,169",
+        "As of December 31, 2024": "$              17,180",
+        "As of December 31, 2022": "$               5,261"
+      }
+    },
+    {
+      "account_name": "Property and equipment, net",
+      "indent_level": 0,
+      "section": "Assets",
+      "values": {
+        "As of December 31, 2023": "$             134,345",
+        "As of December 31, 2024": "$            171,036",
+        "As of December 31, 2022": "$             112,668"
+      }
+    },
+    {
+      "account_name": "Operating lease assets",
+      "indent_level": 0,
+      "section": "Assets",
+      "values": {
+        "As of December 31, 2023": "$               14,091",
+        "As of December 31, 2024": "$              13,588",
+        "As of December 31, 2022": "$              14,381"
+      }
+    },
+    {
+      "account_name": "Goodwill",
+      "indent_level": 0,
+      "section": "Assets",
+      "values": {
+        "As of December 31, 2023": "$               29,198",
+        "As of December 31, 2024": "$              31,885",
+        "As of December 31, 2022": "$              28,960"
+      }
+    },
+    {
+      "account_name": "Other non-current assets",
+      "indent_level": 0,
+      "section": "Assets",
+      "values": {
+        "As of December 31, 2023": "$               10,051",
+        "As of December 31, 2024": "$              14,874",
+        "As of December 31, 2022": "$               8,707"
+      }
+    },
+    {
+      "account_name": "        Total assets",
+      "indent_level": 0,
+      "section": "Assets",
+      "values": {
+        "As of December 31, 2023": "$             402,392",
+        "As of December 31, 2024": "$            450,256",
+        "As of December 31, 2022": "$             365,264"
+      }
+    },
+    {
+      "account_name": "Liabilities and Stockholders' Equity",
+      "indent_level": 0,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": "Current liabilities:",
+      "indent_level": 0,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": "    Accounts payable",
+      "indent_level": 1,
+      "section": "Liabilities",
+      "values": {
+        "As of December 31, 2023": "$               7,493",
+        "As of December 31, 2024": "$              7,987",
+        "As of December 31, 2022": "$               5,128"
+      }
+    },
+    {
+      "account_name": "    Accrued compensation and benefits",
+      "indent_level": 1,
+      "section": "Liabilities",
+      "values": {
+        "As of December 31, 2023": "$              15,140",
+        "As of December 31, 2024": "$             15,069",
+        "As of December 31, 2022": "$              14,028"
+      }
+    },
+    {
+      "account_name": "    Accrued expenses and other current liabilities",
+      "indent_level": 1,
+      "section": "Liabilities",
+      "values": {
+        "As of December 31, 2023": "$              46,168",
+        "As of December 31, 2024": "$             51,228",
+        "As of December 31, 2022": "$              37,866"
+      }
+    },
+    {
+      "account_name": "    Accrued revenue share",
+      "indent_level": 1,
+      "section": "Liabilities",
+      "values": {
+        "As of December 31, 2023": "$               8,876",
+        "As of December 31, 2024": "$              9,802",
+        "As of December 31, 2022": "$               8,370"
+      }
+    },
+    {
+      "account_name": "    Deferred revenue",
+      "indent_level": 1,
+      "section": "Liabilities",
+      "values": {
+        "As of December 31, 2023": "$               4,137",
+        "As of December 31, 2024": "$              5,036",
+        "As of December 31, 2022": "$               3,908"
+      }
+    },
+    {
+      "account_name": "        Total current liabilities",
+      "indent_level": 2,
+      "section": "Liabilities",
+      "values": {
+        "As of December 31, 2023": "$              81,814",
+        "As of December 31, 2024": "$             89,122",
+        "As of December 31, 2022": "$              69,300"
+      }
+    },
+    {
+      "account_name": "Long-term debt",
+      "indent_level": 0,
+      "section": "Liabilities",
+      "values": {
+        "As of December 31, 2023": "$              13,253",
+        "As of December 31, 2024": "$             10,883",
+        "As of December 31, 2022": "$              14,701"
+      }
+    },
+    {
+      "account_name": "Income taxes payable, non-current",
+      "indent_level": 0,
+      "section": "Liabilities",
+      "values": {
+        "As of December 31, 2023": "$               8,474",
+        "As of December 31, 2024": "$              8,782",
+        "As of December 31, 2022": "$               9,258"
+      }
+    },
+    {
+      "account_name": "Operating lease liabilities",
+      "indent_level": 0,
+      "section": "Liabilities",
+      "values": {
+        "As of December 31, 2023": "$              12,460",
+        "As of December 31, 2024": "$             11,691",
+        "As of December 31, 2022": "$              12,501"
+      }
+    },
+    {
+      "account_name": "Other long-term liabilities",
+      "indent_level": 0,
+      "section": "Liabilities",
+      "values": {
+        "As of December 31, 2023": "$               1,616",
+        "As of December 31, 2024": "$              4,694",
+        "As of December 31, 2022": "$               2,247"
+      }
+    },
+    {
+      "account_name": "        Total liabilities",
+      "indent_level": 0,
+      "section": "Liabilities",
+      "values": {
+        "As of December 31, 2023": "$             119,013",
+        "As of December 31, 2024": "$            125,172",
+        "As of December 31, 2022": "$             109,120"
+      }
+    },
+    {
+      "account_name": "Commitments and Contingencies (Note 10)",
+      "indent_level": 0,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": "Stockholders' equity:",
+      "indent_level": 0,
+      "section": null,
+      "values": {}
+    },
+    {
+      "account_name": "    Preferred stock, $0.001 par value per share, 100 shares authorized; no shares issued and outstanding",
+      "indent_level": 1,
+      "section": "Equity",
+      "values": {
+        "As of December 31, 2023": "$                  0",
+        "As of December 31, 2024": "$                  0",
+        "As of December 31, 2022": "$                  0"
+      }
+    },
+    {
+      "account_name": "    Class A, Class B, and Class C stock and additional paid-in capital, $0.001 par value per share: 300,000 shares authorized (Class A 180,000, Class B 60,000, Class C 60,000); 12,460 (Class A 5,899, Class B 870, Class C 5,691) and 12,211 (Class A 5,835, Class B 861, Class C 5,515) shares issued and outstanding",
+      "indent_level": 1,
+      "section": "Equity",
+      "values": {
+        "As of December 31, 2023": "$             76,534",
+        "As of December 31, 2024": "$             84,800"
+      }
+    },
+    {
+      "account_name": "    Accumulated other comprehensive income (loss)",
+      "indent_level": 1,
+      "section": "Equity",
+      "values": {
+        "As of December 31, 2023": "$             (4,402)",
+        "As of December 31, 2024": "$            (4,800)",
+        "As of December 31, 2022": "$             (7,603)"
+      }
+    },
+    {
+      "account_name": "    Retained earnings",
+      "indent_level": 1,
+      "section": "Equity",
+      "values": {
+        "As of December 31, 2023": "$             211,247",
+        "As of December 31, 2024": "$            245,084",
+        "As of December 31, 2022": "$             195,563"
+      }
+    },
+    {
+      "account_name": "        Total stockholders' equity",
+      "indent_level": 0,
+      "section": "Equity",
+      "values": {
+        "As of December 31, 2023": "$             283,379",
+        "As of December 31, 2024": "$            325,084",
+        "As of December 31, 2022": "$             256,144"
+      }
+    },
+    {
+      "account_name": "        Total liabilities and stockholders' equity",
+      "indent_level": 0,
+      "section": "Equity",
+      "values": {
+        "As of December 31, 2023": "$              402,392",
+        "As of December 31, 2024": "$            450,256",
+        "As of December 31, 2022": "$             365,264"
+      }
+    },
+    {
+      "account_name": "Deferred revenue, non-current",
+      "indent_level": 0,
+      "section": "Liabilities",
+      "values": {
+        "As of December 31, 2022": "$                 599",
+        "As of December 31, 2023": "$                 911"
+      }
+    },
+    {
+      "account_name": "Deferred income taxes",
+      "indent_level": 0,
+      "section": "Liabilities",
+      "values": {
+        "As of December 31, 2022": "$                 514",
+        "As of December 31, 2023": "$                 485"
+      }
+    },
+    {
+      "account_name": "    Class A, Class B, and Class C stock and additional paid-in capital, $0.001 par value per share: 300,000 shares authorized (Class A 180,000, Class B 60,000, Class C 60,000): 12,849 (Class A 5,964, Class B 883, Class C 6,002) and 12,460 (Class A 5,899, Class B 870, Class C 5,691) shares issued and outstanding",
+      "indent_level": 1,
+      "section": "Equity",
+      "values": {
+        "As of December 31, 2022": "$             68,184",
+        "As of December 31, 2023": "$             76,534"
+      }
+    }
+  ],
+  "consolidation_metadata": {
+    "merged_accounts": [
+      {
+        "consolidated_name": "Assets",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Assets",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 0
+          },
+          {
+            "name": "Assets",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Current assets:",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Current assets:",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 0
+          },
+          {
+            "name": "Current assets:",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": "    Cash and cash equivalents",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "    Cash and cash equivalents",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "    Cash and cash equivalents",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "    Marketable securities",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "    Marketable securities",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "    Marketable securities",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "     Total cash, cash equivalents, and marketable securities",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "     Total cash, cash equivalents, and marketable securities",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "     Total cash, cash equivalents, and marketable securities",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "    Accounts receivable, net",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "    Accounts receivable, net",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "    Accounts receivable, net",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "    Other current assets",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "    Other current assets",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "    Other current assets",
+            "section": "Assets",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "        Total current assets",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "        Total current assets",
+            "section": "Assets",
+            "indent_level": 2,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "        Total current assets",
+            "section": "Assets",
+            "indent_level": 2,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Non-marketable securities",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "Non-marketable securities",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "Non-marketable securities",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Deferred income taxes",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "Deferred income taxes",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "Deferred income taxes",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Property and equipment, net",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "Property and equipment, net",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "Property and equipment, net",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Operating lease assets",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "Operating lease assets",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "Operating lease assets",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Goodwill",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "Goodwill",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "Goodwill",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Other non-current assets",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "Other non-current assets",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "Other non-current assets",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "        Total assets",
+        "section": "Assets",
+        "merged_from": [
+          {
+            "name": "        Total assets",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "        Total assets",
+            "section": "Assets",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Liabilities and Stockholders' Equity",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Liabilities and Stockholders' Equity",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 0
+          },
+          {
+            "name": "Liabilities and Stockholders' Equity",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Current liabilities:",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Current liabilities:",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 0
+          },
+          {
+            "name": "Current liabilities:",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": "    Accounts payable",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": "    Accounts payable",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "    Accounts payable",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "    Accrued compensation and benefits",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": "    Accrued compensation and benefits",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "    Accrued compensation and benefits",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "    Accrued expenses and other current liabilities",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": "    Accrued expenses and other current liabilities",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "    Accrued expenses and other current liabilities",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "    Accrued revenue share",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": "    Accrued revenue share",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "    Accrued revenue share",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "    Deferred revenue",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": "    Deferred revenue",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "    Deferred revenue",
+            "section": "Liabilities",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "        Total current liabilities",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": "        Total current liabilities",
+            "section": "Liabilities",
+            "indent_level": 2,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "        Total current liabilities",
+            "section": "Liabilities",
+            "indent_level": 2,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Long-term debt",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": "Long-term debt",
+            "section": "Liabilities",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "Long-term debt",
+            "section": "Liabilities",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Income taxes payable, non-current",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": "Income taxes payable, non-current",
+            "section": "Liabilities",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "Income taxes payable, non-current",
+            "section": "Liabilities",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Operating lease liabilities",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": "Operating lease liabilities",
+            "section": "Liabilities",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "Operating lease liabilities",
+            "section": "Liabilities",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Other long-term liabilities",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": "Other long-term liabilities",
+            "section": "Liabilities",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "Other long-term liabilities",
+            "section": "Liabilities",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "        Total liabilities",
+        "section": "Liabilities",
+        "merged_from": [
+          {
+            "name": "        Total liabilities",
+            "section": "Liabilities",
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "        Total liabilities",
+            "section": "Liabilities",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Commitments and Contingencies (Note 10)",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Commitments and Contingencies (Note 10)",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 0
+          },
+          {
+            "name": "Commitments and Contingencies (Note 10)",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": "Stockholders' equity:",
+        "section": null,
+        "merged_from": [
+          {
+            "name": "Stockholders' equity:",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 0
+          },
+          {
+            "name": "Stockholders' equity:",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 0
+          }
+        ]
+      },
+      {
+        "consolidated_name": "    Preferred stock, $0.001 par value per share, 100 shares authorized; no shares issued and outstanding",
+        "section": "Equity",
+        "merged_from": [
+          {
+            "name": "    Preferred stock, $0.001 par value per share, 100 shares authorized; no shares issued and outstanding",
+            "section": "Equity",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "    Preferred stock, $0.001 par value per share, 100 shares authorized; no shares issued and outstanding",
+            "section": "Equity",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "    Accumulated other comprehensive income (loss)",
+        "section": "Equity",
+        "merged_from": [
+          {
+            "name": "    Accumulated other comprehensive income (loss)",
+            "section": "Equity",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "    Accumulated other comprehensive income (loss)",
+            "section": "Equity",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "    Retained earnings",
+        "section": "Equity",
+        "merged_from": [
+          {
+            "name": "    Retained earnings",
+            "section": "Equity",
+            "indent_level": 1,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "    Retained earnings",
+            "section": "Equity",
+            "indent_level": 1,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "        Total stockholders' equity",
+        "section": "Equity",
+        "merged_from": [
+          {
+            "name": "        Total stockholders' equity",
+            "section": "Equity",
+            "indent_level": 2,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "        Total stockholders' equity",
+            "section": "Equity",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "consolidated_name": "        Total liabilities and stockholders' equity",
+        "section": "Equity",
+        "merged_from": [
+          {
+            "name": "        Total liabilities and stockholders' equity",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "        Total liabilities and stockholders' equity",
+            "section": "Equity",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      }
+    ],
+    "unmerged_accounts": [
+      {
+        "account_name": "    Class A, Class B, and Class C stock and additional paid-in capital, $0.001 par value per share: 300,000 shares authorized (Class A 180,000, Class B 60,000, Class C 60,000); 12,460 (Class A 5,899, Class B 870, Class C 5,691) and 12,211 (Class A 5,835, Class B 861, Class C 5,515) shares issued and outstanding",
+        "section": "Equity",
+        "source_pdf": "Google 2022-2024.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 2
+      },
+      {
+        "account_name": "Deferred revenue, non-current",
+        "section": "Liabilities",
+        "source_pdf": "Google 2021-2023.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 2
+      },
+      {
+        "account_name": "Deferred income taxes",
+        "section": "Liabilities",
+        "source_pdf": "Google 2021-2023.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 2
+      },
+      {
+        "account_name": "    Class A, Class B, and Class C stock and additional paid-in capital, $0.001 par value per share: 300,000 shares authorized (Class A 180,000, Class B 60,000, Class C 60,000): 12,849 (Class A 5,964, Class B 883, Class C 6,002) and 12,460 (Class A 5,899, Class B 870, Class C 5,691) shares issued and outstanding",
+        "section": "Equity",
+        "source_pdf": "Google 2021-2023.pdf",
+        "reason": "only_in_one_pdf",
+        "values_count": 2
+      }
+    ],
+    "duplicate_headers": [
+      {
+        "header_name": "        Total stockholders' equity",
+        "occurrences": [
+          {
+            "name": "        Total stockholders' equity",
+            "section": "Equity",
+            "indent_level": 2,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "        Total stockholders' equity",
+            "section": "Equity",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      },
+      {
+        "header_name": "        Total liabilities and stockholders' equity",
+        "occurrences": [
+          {
+            "name": "        Total liabilities and stockholders' equity",
+            "section": null,
+            "indent_level": 0,
+            "source_pdf": "Google 2022-2024.pdf",
+            "values_count": 2
+          },
+          {
+            "name": "        Total liabilities and stockholders' equity",
+            "section": "Equity",
+            "indent_level": 0,
+            "source_pdf": "Google 2021-2023.pdf",
+            "values_count": 2
+          }
+        ]
+      }
+    ],
+    "total_accounts_merged": 35,
+    "total_accounts_unmerged": 4,
+    "total_duplicate_headers": 2,
+    "source_pdfs": [
+      "Google 2021-2023.pdf",
+      "Google 2022-2024.pdf"
+    ]
+  }
+}

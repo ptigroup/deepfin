@@ -1,0 +1,264 @@
+{
+  "company_name": "NVIDIA CORPORATION AND SUBSIDIARIES",
+  "statement_type": "shareholders_equity",
+  "fiscal_year": null,
+  "currency": "USD",
+  "periods": [
+    "January 27, 2019",
+    "January 26, 2020",
+    "January 31, 2021",
+    "January 30, 2022"
+  ],
+  "line_items": [
+    {
+      "account_name": "Balances, January 27, 2019",
+      "values": [
+        "$ (12)",
+        "$ 12,565",
+        "$ 9,342"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Net income",
+      "values": [
+        "$ -",
+        "$ -",
+        "$ 13"
+      ],
+      "indent_level": 1,
+      "section": "Income"
+    },
+    {
+      "account_name": "Other comprehensive income",
+      "values": [
+        "$ -",
+        "$ 149",
+        "$ -"
+      ],
+      "indent_level": 1,
+      "section": "Income"
+    },
+    {
+      "account_name": "Issuance of common stock from stock plans",
+      "values": [
+        "$ 39",
+        "$ -",
+        "$ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Tax withholding related to vesting of restricted stock units",
+      "values": [
+        "$ (12)",
+        "$ -",
+        "$ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Cash dividends declared and paid ($0.16 per common share)",
+      "values": [
+        "$ -",
+        "$ -",
+        "$ 845"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Stock-based compensation",
+      "values": [
+        "$ 3",
+        "$ 7,043",
+        "$ (9,814)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Balances, January 26, 2020",
+      "values": [
+        "$ -",
+        "$ -",
+        "$ 4,332"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Net income",
+      "values": [
+        "$ -",
+        "$ -",
+        "$ 18"
+      ],
+      "indent_level": 1,
+      "section": "Income"
+    },
+    {
+      "account_name": "Other comprehensive income",
+      "values": [
+        "$ -",
+        "$ 194",
+        "$ -"
+      ],
+      "indent_level": 1,
+      "section": "Income"
+    },
+    {
+      "account_name": "Issuance of common stock from stock plans",
+      "values": [
+        "$ 40",
+        "$ -",
+        "$ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Tax withholding related to vesting of restricted stock units",
+      "values": [
+        "$ (11)",
+        "$ -",
+        "$ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Cash dividends declared and paid ($0.16 per common share)",
+      "values": [
+        "$ -",
+        "$ -",
+        "$ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Fair value of partially vested equity awards assumed in connection with acquisitions",
+      "values": [
+        "$ -",
+        "$ -",
+        "$ 86"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Stock-based compensation",
+      "values": [
+        "$ -",
+        "$ 1,396",
+        "$ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Balances, January 31, 2021",
+      "values": [
+        "$ -",
+        "$ -",
+        "$ 9,752"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Net income",
+      "values": [
+        "$ -",
+        "$ -",
+        "$ (30)"
+      ],
+      "indent_level": 1,
+      "section": "Income"
+    },
+    {
+      "account_name": "Other comprehensive loss",
+      "values": [
+        "$ -",
+        "$ -",
+        "$ 281"
+      ],
+      "indent_level": 1,
+      "section": "Income"
+    },
+    {
+      "account_name": "Issuance of common stock from stock plans",
+      "values": [
+        "$ 35",
+        "$ -",
+        "$ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Tax withholding related to vesting of restricted stock units",
+      "values": [
+        "$ (8)",
+        "$ -",
+        "$ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Cash dividends declared and paid ($0.16 per common share)",
+      "values": [
+        "$ -",
+        "$ -",
+        "$ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Fair value of partially vested equity awards assumed in connection with acquisitions",
+      "values": [
+        "$ -",
+        "$ -",
+        "$ 18"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Stock-based compensation",
+      "values": [
+        "$ -",
+        "$ -",
+        "$ 2,001"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Retirement of Treasury Stock",
+      "values": [
+        "$ -",
+        "$ -",
+        "$ -"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Balances, January 30, 2022",
+      "values": [
+        "$ 3",
+        "$ 10,385",
+        "$ 26,612"
+      ],
+      "indent_level": 0,
+      "section": null
+    }
+  ]
+}

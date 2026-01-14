@@ -1,0 +1,211 @@
+{
+  "company_name": "NVIDIA CORPORATION AND SUBSIDIARIES",
+  "statement_type": "income_statement",
+  "fiscal_year": "2022",
+  "currency": "USD",
+  "periods": [
+    "January 30, 2022",
+    "January 31, 2021",
+    "January 26, 2020"
+  ],
+  "line_items": [
+    {
+      "account_name": "Revenue",
+      "values": [
+        "$       26,914",
+        "$        16,675",
+        "$         10,918"
+      ],
+      "indent_level": 0,
+      "section": "Revenue"
+    },
+    {
+      "account_name": "     Cost of revenue",
+      "values": [
+        "9,439",
+        "6,279",
+        "4,150"
+      ],
+      "indent_level": 1,
+      "section": "Expenses"
+    },
+    {
+      "account_name": "Gross profit",
+      "values": [
+        "17,475",
+        "10,396",
+        "6,768"
+      ],
+      "indent_level": 0,
+      "section": "Income"
+    },
+    {
+      "account_name": "Operating expenses",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "     Research and development",
+      "values": [
+        "5,268",
+        "3,924",
+        "2,829"
+      ],
+      "indent_level": 1,
+      "section": "Expenses"
+    },
+    {
+      "account_name": "     Sales, general and administrative",
+      "values": [
+        "2,166",
+        "1,940",
+        "1,093"
+      ],
+      "indent_level": 1,
+      "section": "Expenses"
+    },
+    {
+      "account_name": "       Total operating expenses",
+      "values": [
+        "7,434",
+        "5,864",
+        "3,922"
+      ],
+      "indent_level": 2,
+      "section": "Expenses"
+    },
+    {
+      "account_name": "Income from operations",
+      "values": [
+        "10,041",
+        "4,532",
+        "2,846"
+      ],
+      "indent_level": 0,
+      "section": "Income"
+    },
+    {
+      "account_name": "     Interest income",
+      "values": [
+        "29",
+        "57",
+        "178"
+      ],
+      "indent_level": 1,
+      "section": "Operating"
+    },
+    {
+      "account_name": "     Interest expense",
+      "values": [
+        "(236)",
+        "(184)",
+        "(52)"
+      ],
+      "indent_level": 1,
+      "section": "Operating"
+    },
+    {
+      "account_name": "     Other, net",
+      "values": [
+        "107",
+        "4",
+        "(2)"
+      ],
+      "indent_level": 1,
+      "section": "Operating"
+    },
+    {
+      "account_name": "       Other income (expense), net",
+      "values": [
+        "(100)",
+        "(123)",
+        "124"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Income before income tax",
+      "values": [
+        "9,941",
+        "4,409",
+        "2,970"
+      ],
+      "indent_level": 0,
+      "section": "Income"
+    },
+    {
+      "account_name": "Income tax expense",
+      "values": [
+        "189",
+        "77",
+        "174"
+      ],
+      "indent_level": 0,
+      "section": "Expenses"
+    },
+    {
+      "account_name": "Net income",
+      "values": [
+        "$        9,752",
+        "$         4,332",
+        "$          2,796"
+      ],
+      "indent_level": 0,
+      "section": "Income"
+    },
+    {
+      "account_name": "Net income per share:",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "      Basic",
+      "values": [
+        "$         3.91",
+        "$           1.76",
+        "$          1.15"
+      ],
+      "indent_level": 1,
+      "section": "Income"
+    },
+    {
+      "account_name": "      Diluted",
+      "values": [
+        "$         3.85",
+        "$           1.73",
+        "$          1.13"
+      ],
+      "indent_level": 1,
+      "section": "Income"
+    },
+    {
+      "account_name": "Weighted average shares used in per share computation:",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "      Basic",
+      "values": [
+        "2,496",
+        "2,467",
+        "2,439"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "      Diluted",
+      "values": [
+        "2,535",
+        "2,510",
+        "2,472"
+      ],
+      "indent_level": 1,
+      "section": null
+    }
+  ]
+}

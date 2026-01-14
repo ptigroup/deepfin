@@ -1,0 +1,143 @@
+{
+  "company_name": "Alphabet Inc.",
+  "statement_type": "comprehensive_income",
+  "fiscal_year": "2024",
+  "currency": "USD",
+  "periods": [
+    "Year Ended December 31, 2022",
+    "Year Ended December 31, 2023",
+    "Year Ended December 31, 2024"
+  ],
+  "line_items": [
+    {
+      "account_name": "Net income",
+      "values": [
+        "$       59,972",
+        "$       73,795",
+        "$       100,118"
+      ],
+      "indent_level": 0,
+      "section": "Income"
+    },
+    {
+      "account_name": "Other comprehensive income (loss):",
+      "values": [
+        "",
+        "",
+        ""
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "    Change in foreign currency translation adjustment, net of income tax benefit (expense) of $(134), $63 and $(49)",
+      "values": [
+        "(1,836)",
+        "735",
+        "(1,673)"
+      ],
+      "indent_level": 1,
+      "section": "Income"
+    },
+    {
+      "account_name": "   Available-for-sale investments:",
+      "values": [
+        "",
+        "",
+        ""
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "       Change in net unrealized gains (losses)",
+      "values": [
+        "(4,720)",
+        "1,344",
+        "(116)"
+      ],
+      "indent_level": 2,
+      "section": "Income"
+    },
+    {
+      "account_name": "       Less: reclassification adjustment for net (gains) losses included in net income",
+      "values": [
+        "1,007",
+        "1,168",
+        "782"
+      ],
+      "indent_level": 2,
+      "section": "Income"
+    },
+    {
+      "account_name": "       Net change, net of income tax benefit (expense) of $1,056, $(698), and $(190)",
+      "values": [
+        "(3,713)",
+        "2,512",
+        "666"
+      ],
+      "indent_level": 2,
+      "section": "Income"
+    },
+    {
+      "account_name": "   Cash flow hedges:",
+      "values": [
+        "",
+        "",
+        ""
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "       Change in net unrealized gains (losses)",
+      "values": [
+        "1,275",
+        "168",
+        "775"
+      ],
+      "indent_level": 2,
+      "section": "Income"
+    },
+    {
+      "account_name": "       Less: reclassification adjustment for net (gains) losses included in net income",
+      "values": [
+        "(1,706)",
+        "(214)",
+        "(166)"
+      ],
+      "indent_level": 2,
+      "section": "Income"
+    },
+    {
+      "account_name": "       Net change, net of income tax benefit (expense) of $110, $2, and $(151)",
+      "values": [
+        "(431)",
+        "(46)",
+        "609"
+      ],
+      "indent_level": 2,
+      "section": "Income"
+    },
+    {
+      "account_name": "Other comprehensive income (loss)",
+      "values": [
+        "(5,980)",
+        "3,201",
+        "(398)"
+      ],
+      "indent_level": 0,
+      "section": "Income"
+    },
+    {
+      "account_name": "Comprehensive income",
+      "values": [
+        "$       53,992",
+        "$       76,996",
+        "$        99,720"
+      ],
+      "indent_level": 0,
+      "section": "Income"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+
+
+Table of Contents 
+
+                                             NVIDIA CORPORATION AND SUBSIDIARIES 
+                                                 CONSOLIDATED BALANCE SHEETS 
+                                                    (In millions, except par value) 
+                                                                                                     January 30,      January 31, 
+                                                                                                        2022              2021 
+ ASSETS 
+ Current assets: 
+      Cash and cash equivalents                                                                    $         1,990 $            847 
+      Marketable securities                                                                                 19,218           10,714 
+      Accounts receivable, net                                                                               4,650            2,429 
+      Inventories                                                                                            2,605            1,826 
+      Prepaid expenses and other current assets                                                               366               239 
+ Total current assets                                                                                       28,829           16,055 
+ Property and equipment, net                                                                                 2,778            2,149 
+ Operating lease assets                                                                                       829               707 
+ Goodwill                                                                                                    4,349            4,193 
+ Intangible assets, net                                                                                      2,339            2,737 
+ Deferred income tax assets                                                                                  1,222              806 
+ Other assets                                                                                                3,841            2,144 
+ Total assets                                                                                      $        44,187 $         28,791 
+
+ LIABILITIES AND SHAREHOLDERS' EQUITY 
+ Current liabilities: 
+      Accounts payable                                                                             $         1,783 $          1,149 
+      Accrued and other current liabilities                                                                  2,552            1,777 
+      Short-term debt                                                                                           -               999 
+ Total current liabilities                                                                                   4,335            3,925 
+ Long-term debt                                                                                             10,946            5,964 
+ Long-term operating lease liabilities                                                                        741               634 
+ Other long-term liabilities                                                                                 1,553            1,375 
+ Total liabilities                                                                                          17,575           11,898 
+
+ Commitments and contingencies - see Note 13 
+
+ Shareholders' equity: 
+      Preferred stock, $0.001 par value; 2 shares authorized; none issued                                       -                - 
+      Common stock, $0.001 par value; 4,000 shares authorized; 2,506 shares issued and outstanding as of 
+      January 30, 2022; 3,859 shares issued and 2,479 outstanding as of January 31, 2021                         3                3 
+      Additional paid-in capital                                                                            10,385            8,719 
+      Treasury stock, at cost (None as of January 30, 2022 and 1,380 shares as of January 31, 2021)             -           (10,756) 
+      Accumulated other comprehensive income (loss)                                                            (11)              19 
+      Retained earnings                                                                                     16,235           18,908 
+ Total shareholders' equity                                                                                 26,612           16,893 
+ Total liabilities and shareholders' equity                                                        $        44,187 $         28,791 
+
+                                     See accompanying notes to the consolidated financial statements. 
+
+                                                                 49 
+<<<

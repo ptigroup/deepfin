@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field
 
 from app.jobs.models import JobStatus, JobType
 
@@ -20,9 +20,7 @@ class JobUpdate(BaseModel):
     """Schema for updating job status."""
 
     status: JobStatus | None = None
-    progress: int | None = Field(
-        None, ge=0, le=100, description="Progress percentage (0-100)"
-    )
+    progress: int | None = Field(None, ge=0, le=100, description="Progress percentage (0-100)")
     result: str | None = None
     error: str | None = None
 

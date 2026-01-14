@@ -3,7 +3,6 @@
 import pytest
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.auth.models import User
 from app.auth.schemas import UserCreate
 from app.auth.service import AuthService, AuthServiceError
 

@@ -1,0 +1,274 @@
+# Raw LLMWhisperer Output
+# Source PDF: NVIDIA 10K 2020-2019
+# Pages Extracted: [28, 29, 30, 31]
+# Extraction Time: 2025-12-27T13:31:31.821974
+# Text Length: 20744 characters
+================================================================================
+
+
+
+Table of Contents 
+
+ GPU and Tegra Processor, for the purposes of completing our goodwill analysis. Goodwill assigned to the GPU and Tegra Processor reporting units 
+ as of January 26, 2020 was $210 million and $408 million, respectively. Determining the fair value of a reporting unit requires us to make judgments 
+ and involves the use of significant estimates and assumptions. We also make judgments and assumptions in allocating assets and liabilities to each 
+ of our reporting units. We base our fair value estimates on assumptions we believe to be reasonable but that are unpredictable and inherently 
+ uncertain. 
+
+We performed our annual goodwill assessment during the fourth quarter of fiscal year 2020 using a qualitative assessment and concluded there was 
+ no goodwill impairment. 
+ Refer to Note 6 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for additional 
+ information. 
+
+ Results of Operations 
+ A discussion regarding our financial condition and results of operations for fiscal year 2020 compared to fiscal year 2019 is presented below. A 
+ discussion regarding our financial condition and results of operations for fiscal year 2019 compared to fiscal year 2018 can be found under Item 7 in 
+ our Annual Report on Form 10-K for the fiscal year ended January 27, 2019, filed with the SEC on February 21, 2019, which is available free of 
+ charge on the SEC's website at http://www.sec.gov and at our investor relations website, http://investor.nvidia.com. 
+ The following table sets forth, for the periods indicated, certain items in our Consolidated Statements of Income expressed as a percentage of 
+ revenue. 
+
++-----------------------------------+------------------+------------------+ 
+|                                   | Year Ended                           | 
++                                   +------------------+------------------+ 
+|                                   | January 26, 2020 | January 27, 2019 | 
++-----------------------------------+------------------+------------------+ 
+| Revenue                           | 100.0 %          | 100.0 %          | 
++-----------------------------------+------------------+------------------+ 
+| Cost of revenue                   | 38.0             | 38.8             | 
++-----------------------------------+------------------+------------------+ 
+| Gross profit                      | 62.0             | 61.2             | 
++-----------------------------------+------------------+------------------+ 
+| Operating expenses:               |                  |                  | 
++-----------------------------------+------------------+------------------+ 
+| Research and development          | 25.9             | 20.3             | 
++-----------------------------------+------------------+------------------+ 
+| Sales, general and administrative | 10.0             | 8.5              | 
++-----------------------------------+------------------+------------------+ 
+| Total operating expenses          | 35.9             | 28.7             | 
++-----------------------------------+------------------+------------------+ 
+| Income from operations            | 26.1             | 32.5             | 
++-----------------------------------+------------------+------------------+ 
+| Interest income                   | 1.6              | 1.2              | 
++-----------------------------------+------------------+------------------+ 
+| Interest expense                  | (0.5)            | (0.5)            | 
++-----------------------------------+------------------+------------------+ 
+| Other, net                        | -                | 0.1              | 
++-----------------------------------+------------------+------------------+ 
+| Total other income                | 1.1              | 0.8              | 
++-----------------------------------+------------------+------------------+ 
+| Income before income tax expense  | 27.2             | 33.3             | 
++-----------------------------------+------------------+------------------+ 
+| Income tax expense (benefit)      | 1.6              | (2.1)            | 
++-----------------------------------+------------------+------------------+ 
+| Net income                        | 25.6 %           | 35.3 %           | 
++-----------------------------------+------------------+------------------+ 
+
+
+
+ Revenue 
+
+ Revenue by Reportable Segments 
+
++-----------------+------------------+------------------+----------+----------+ 
+|                 | Year Ended                                                   | 
++                 +------------------+------------------+----------+----------+ 
+|                 | January 26, 2020 | January 27, 2019 | $ Change | % Change | 
++-----------------+------------------+------------------+----------+----------+ 
+|                 | ($ in millions)                                              | 
++-----------------+------------------+------------------+----------+----------+ 
+| GPU             | $ 9,465          | $ 10,175         | $ (710)  | (7)%     | 
++-----------------+------------------+------------------+----------+----------+ 
+| Tegra Processor | 1,453            | 1,541            | (88)     | (6)%     | 
++-----------------+------------------+------------------+----------+----------+ 
+| Total           | $ 10,918         | $ 11,716         | $ (798)  | (7)%     | 
++-----------------+------------------+------------------+----------+----------+ 
+
+
+
+ GPU Business. GPU business revenue decreased by 7% in fiscal year 2020 compared to fiscal year 2019, which reflects a decline in GPUs sold 
+ for gaming. GeForce GPU product sales for gaming decreased by 10%, reflecting lower sales of GeForce 
+
+                                                                        28 
+<<<
+
+Table of Contents 
+
+desktop GPUs and SoCs for gaming platforms, partially offset by growth in GeForce notebook GPUs. Revenue from Quadro GPUs for professional 
+visualization increased by 7%, reflecting strength in desktop and notebook workstations. Data Center revenue, which includes Tesla, GRID and 
+DGX, increased by 2%, driven by vertical industry growth partially offset by lower hyperscale sales. 
+
+Tegra Processor Business. Tegra Processor business revenue decreased by 6% in fiscal year 2020 compared to fiscal year 2019. This was 
+driven by a decline in revenue from SoCs for gaming platforms, which was partially offset by an increase of 9% in Automotive revenue, reflecting 
+growth in Al cockpit solutions and development services agreements. 
+
+Concentration of Revenue 
+Revenue from sales to customers outside of the United States accounted for 92% and 87% of total revenue for fiscal years 2020 and 2019, 
+respectively. Revenue by geographic region is allocated to individual countries based on the location to which the products are initially billed even if 
+the revenue is attributable to end customers in a different location. 
+Dell represented approximately 11% of our total revenue for fiscal year 2020 and was attributable to the GPU business. No customer represented 
+10% or more of total revenue for fiscal year 2019. 
+
+Gross Profit and Gross Margin 
+Gross profit consists of total revenue, net of allowances, less cost of revenue. Cost of revenue consists primarily of the cost of semiconductors 
+purchased from subcontractors, including wafer fabrication, assembly, testing and packaging, board and device costs, manufacturing support costs, 
+including labor and overhead associated with such purchases, final test yield fallout, inventory and warranty provisions, memory and component 
+costs, and shipping costs. Cost of revenue also includes development costs for license and service arrangements and stock-based compensation 
+related to personnel associated with manufacturing. 
+Our overall gross margin was 62.0% and 61.2% for fiscal years 2020 and 2019, respectively. The increase in fiscal year 2020 was driven by 
+reduced inventory provisions and the sale of previously written-off components. 
+Inventory provisions totaled $161 million and $270 million for fiscal years 2020 and 2019, respectively. Sales of inventory that was previously 
+written-off or written-down totaled $145 million and $41 million for fiscal years 2020 and 2019, respectively. As a result, the overall net effect on our 
+gross margin was insignificant in fiscal year 2020 and an unfavorable impact of 2.0% in fiscal year 2019. 
+A discussion of our gross margin results for each of our reportable segments is as follows: 
+  GPU Business. The gross margin of our GPU business increased during fiscal year 2020 when compared to fiscal year 2019, primarily driven by 
+  reduced inventory provisions and the sale of previously written-off components. 
+  Tegra Processor Business. The gross margin of our Tegra Processor business was relatively flat during fiscal year 2020 when compared to fiscal 
+  year 2019. 
+
+Operating Expenses 
+
++--------------------------------------------+------------------+------------------+----------+----------+ 
+|                                            | Year Ended                                                   | 
++                                            +------------------+------------------+----------+----------+ 
+|                                            | January 26, 2020 | January 27, 2019 | $ Change | % Change | 
++--------------------------------------------+------------------+------------------+----------+----------+ 
+|                                            | ($ in millions)                                              | 
++--------------------------------------------+------------------+------------------+----------+----------+ 
+| Research and development expenses          | $ 2,829          | $ 2,376          | $ 453    | 19%      | 
++--------------------------------------------+------------------+------------------+----------+----------+ 
+| % of net revenue                           | 25.9%            | 20.3%            |          |          | 
++--------------------------------------------+------------------+------------------+----------+----------+ 
+| Sales, general and administrative expenses | 1,093            | 991              | 102      | 10%      | 
++--------------------------------------------+------------------+------------------+----------+----------+ 
+| % of net revenue                           | 10.0%            | 8.5%             |          |          | 
++--------------------------------------------+------------------+------------------+----------+----------+ 
+| Total operating expenses                   | $ 3,922          | $ 3,367          | $ 555    | 16%      | 
++--------------------------------------------+------------------+------------------+----------+----------+ 
+
+
+
+Research and Development 
+Research and development expenses increased by 19% in fiscal year 2020 compared to fiscal year 2019, driven primarily by employee additions 
+and increases in employee compensation and other related costs, including infrastructure costs and stock-based compensation expense. 
+
+                                                                         29 
+<<<
+
+ Table of Contents 
+
+ Sales, General and Administrative 
+ Sales, general and administrative expenses increased by 10% in fiscal year 2020 compared to fiscal year 2019, driven primarily by employee 
+ additions and increases in employee compensation and other related costs, including infrastructure costs and stock-based compensation expense. 
+
+ Total Other Income, Net 
+ Interest Income and Interest Expense 
+ Interest income consists of interest earned on cash, cash equivalents and marketable securities. Interest income was $178 million and $136 million 
+ in fiscal years 2020 and 2019, respectively. The increase in interest income was primarily due to higher average invested balances. 
+ Interest expense is primarily comprised of coupon interest and debt discount amortization related to the 2.20% Notes Due 2021 and 3.20% Notes 
+ Due 2026 issued in September 2016. Interest expense was $52 million and $58 million in fiscal years 2020 and 2019, respectively. 
+
+ Other, Net 
+ Other, net, consists primarily of realized or unrealized gains and losses from non-affiliated investments and the impact of changes in foreign 
+ currency rates. Other, net, was not significant during fiscal year 2020 and was $14 million of income during fiscal year 2019, consisting primarily of 
+ $12 million unrealized gains from non-affiliated investments. 
+
+ Income Taxes 
+ We recognized income tax expense of $174 million for fiscal year 2020 and income tax benefit of $245 million for fiscal year 2019. Our annual 
+ effective tax rate was 5.9% and (6.3)% for fiscal years 2020 and 2019, respectively. The increase in our effective tax rate in fiscal year 2020 as 
+ compared to fiscal year 2019 was primarily due to a decrease of tax benefits from stock-based compensation and an absence of tax benefits related 
+ to the enactment of the TCJA. 
+
+ Our effective tax rate for fiscal years 2020 and 2019 was lower than the U.S. federal statutory rate of 21% due primarily to income earned in 
+ jurisdictions, including the British Virgin Islands and Hong Kong, where the tax rate was lower than the U.S. federal statutory tax rates, favorable 
+ recognition of U.S. federal research tax credits, excess tax benefits related to stock-based compensation, and the finalization of the enactment-date 
+ income tax effects of the TCJA in 2019. 
+ Refer to Note 14 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for additional 
+ information. 
+
+ Liquidity and Capital Resources 
+
++---------------------------------------------------+------------------+------------------+ 
+|                                                   | January 26, 2020 | January 27, 2019 | 
++---------------------------------------------------+------------------+------------------+ 
+|                                                   | (In millions)                        | 
++---------------------------------------------------+------------------+------------------+ 
+| Cash and cash equivalents                         | $ 10,896         | $ 782            | 
++---------------------------------------------------+------------------+------------------+ 
+| Marketable securities                             | 1                | 6,640            | 
++---------------------------------------------------+------------------+------------------+ 
+| Cash, cash equivalents, and marketable securities | $ 10,897         | $ 7,422          | 
++---------------------------------------------------+------------------+------------------+ 
+
+
+
++-----------------------------------------------------+------------------+------------------+ 
+|                                                     | Year Ended                           | 
++                                                     +------------------+------------------+ 
+|                                                     | January 26, 2020 | January 27, 2019 | 
++-----------------------------------------------------+------------------+------------------+ 
+|                                                     | (In millions)                        | 
++-----------------------------------------------------+------------------+------------------+ 
+| Net cash provided by operating activities           | $ 4,761          | $ 3,743          | 
++-----------------------------------------------------+------------------+------------------+ 
+| Net cash provided by (used in) investing activities | $ 6,145          | $ (4,097)        | 
++-----------------------------------------------------+------------------+------------------+ 
+| Net cash used in financing activities               | $ (792)          | $ (2,866)        | 
++-----------------------------------------------------+------------------+------------------+ 
+
+
+ As of January 26, 2020, we had $10.90 billion in cash, cash equivalents and marketable securities, an increase of $3.48 billion from the end of fiscal 
+ year 2019. Our investment policy requires the purchase of highly rated fixed income securities, the diversification of investment types and credit 
+ exposures, and certain limits on our portfolio duration. 
+
+                                                                         30 
+<<<
+
+Table of Contents 
+
+Cash provided by operating activities increased in fiscal year 2020 compared to fiscal year 2019, primarily due to changes in working capital driven 
+by a reduction in inventory, partially offset by a decrease in operating income. 
+Cash used in investing activities decreased in fiscal year 2020 compared to fiscal year 2019, primarily due to lower purchases, higher sales, and 
+lower maturities of marketable securities in preparation for the acquisition of Mellanox. 
+Cash used in financing activities decreased in fiscal year 2020 compared to fiscal year 2019, primarily due to no share repurchases in fiscal year 
+2020 and lower tax payments related to employee stock plans. 
+
+Liquidity 
+Our primary sources of liquidity are our cash and cash equivalents, our marketable securities, and the cash generated by our operations. As of 
+January 26, 2020, we had $10.90 billion in cash, cash equivalents and marketable securities. We believe that we have sufficient liquidity to meet our 
+operating requirements for at least the next twelve months, including our proposed acquisition of Mellanox. Refer to Note 2 of the Notes to the 
+Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for additional information. 
+Our marketable securities consist of debt securities issued by the United States government and its agencies, highly rated corporations and financial 
+institutions, asset-backed issuers, and foreign government entities. These marketable securities are denominated in United States dollars. Refer to 
+Note 8 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for additional information. 
+During fiscal year 2021, we expect our capital investment to be approximately $700 million to $900 million to fund property and equipment including 
+construction of a new building at our Santa Clara campus. 
+As a result of the TCJA, substantially all of our cash, cash equivalents and marketable securities held outside of the United States as of January 26, 
+2020 are available for use in the United States without incurring additional U.S. federal income taxes. Refer to Note 14 of the Notes to the 
+Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for additional information. 
+
+Capital Return to Shareholders 
+In November 2018, we communicated our intent to return $3.00 billion to shareholders by the end of fiscal year 2020, including $700 million in share 
+repurchases made during the fourth quarter of fiscal year 2019. In fiscal year 2020, we returned $390 million in quarterly cash dividends. We did not 
+repurchase any shares during fiscal year 2020. We intend to return to repurchasing shares after closing the acquisition of Mellanox. As of January 
+26, 2020, we are authorized, subject to certain specifications, to repurchase shares of our common stock up to $7.24 billion through December 
+2022. 
+
+Our cash dividend program and the payment of future cash dividends under that program are subject to our Board's continuing determination that 
+the dividend program and the declaration of dividends thereunder are in the best interests of our shareholders. Refer to Note 15 of the Notes to the 
+Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for further discussion. 
+
+Outstanding Indebtedness and Credit Facilities 
+We have outstanding $1.00 billion of Notes due 2021 and $1.00 billion of Notes due 2026, collectively, the Notes. 
+We have a Credit Agreement under which we may borrow up to $575 million for general corporate purposes and can obtain revolving loan 
+commitments up to $425 million. As of January 26, 2020, we had not borrowed any amounts under this agreement. 
+We have a $575 million commercial paper program to support general corporate purposes. As of January 26, 2020, we had not issued any 
+commercial paper. 
+Refer to Note 12 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for further 
+discussion. 
+
+Off-Balance Sheet Arrangements 
+As of January 26, 2020, we had no material off-balance sheet arrangements as defined by applicable SEC regulations. 
+
+                                                                        31 
+<<<

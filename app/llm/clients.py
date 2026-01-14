@@ -1,5 +1,6 @@
 """LLMWhisperer API client implementation."""
 
+import asyncio
 import time
 from pathlib import Path
 
@@ -215,41 +216,74 @@ class LLMWhispererClient:
         except Exception as e:
             raise LLMWhispererError(f"Failed to read file: {request.file_path}") from e
 
-        # Prepare request
+        # Prepare request with correct LLMWhisperer API parameter names
         url = f"{self.base_url}/whisper"
         headers = {"unstract-key": self.api_key}
         files = {"file": (Path(request.file_path).name, file_content, "application/pdf")}
         data = {
-            "processing_mode": request.processing_mode.value,
-            "output_format": request.output_format,
-            "page_separator": request.page_separator,
+            "mode": request.processing_mode.value,  # API uses 'mode' not 'processing_mode'
+            "output_mode": "layout_preserving",  # Always preserve layout for tables
+            "page_seperator": request.page_separator,  # Note: API uses 'seperator' (typo)
             "force_text_processing": str(request.force_text_processing).lower(),
         }
 
         if request.pages_to_extract:
             data["pages_to_extract"] = request.pages_to_extract
 
-        # Make API call
-        async with httpx.AsyncClient(timeout=self.timeout) as client:
-            response = await client.post(url, headers=headers, files=files, data=data)
+        # Make API call and poll for result
+        async with httpx.AsyncClient(timeout=self.timeout) as http_client:
+            # Submit whisper job
+            response = await http_client.post(url, headers=headers, files=files, data=data)
             response.raise_for_status()
 
-            # Parse response
             result = response.json()
+            whisper_hash = result.get("whisper_hash")
 
-            # Debug: Log response structure
-            logger.debug(
-                "API response received",
-                extra={"response_keys": list(result.keys()), "status": response.status_code}
-            )
+            if not whisper_hash:
+                raise LLMWhispererError("No whisper_hash in API response")
 
-            return WhisperResponse(
-                whisper_hash=result.get("whisper_hash", ""),
-                extracted_text=result.get("extracted_text", ""),
-                status_code=response.status_code,
-                processing_time=0.0,  # Will be set by caller
-                page_count=result.get("page_count"),
-            )
+            logger.debug(f"Whisper job submitted: {whisper_hash}")
+
+            # Poll for completion (similar to SDK's wait_for_completion=True)
+            status_url = f"{self.base_url}/whisper-status"
+            retrieve_url = f"{self.base_url}/whisper-retrieve"
+            max_wait = 200  # seconds
+            poll_interval = 2  # seconds
+            elapsed = 0
+
+            while elapsed < max_wait:
+                await asyncio.sleep(poll_interval)
+                elapsed += poll_interval
+
+                # Check status
+                status_response = await http_client.get(
+                    status_url, headers=headers, params={"whisper_hash": whisper_hash}
+                )
+                status_response.raise_for_status()
+                status_data = status_response.json()
+
+                status = status_data.get("status")
+                logger.debug(f"Whisper status: {status} (elapsed: {elapsed}s)")
+
+                if status == "processed":
+                    # Retrieve result
+                    retrieve_response = await http_client.get(
+                        retrieve_url, headers=headers, params={"whisper_hash": whisper_hash}
+                    )
+                    retrieve_response.raise_for_status()
+                    extract_data = retrieve_response.json()
+
+                    return WhisperResponse(
+                        whisper_hash=whisper_hash,
+                        extracted_text=extract_data.get("extracted_text", ""),
+                        status_code=200,
+                        processing_time=0.0,  # Will be set by caller
+                        page_count=extract_data.get("page_count"),
+                    )
+                elif status == "failed":
+                    raise LLMWhispererError(f"Whisper job failed: {status_data.get('message')}")
+
+            raise LLMWhispererError(f"Whisper timeout after {max_wait}s")
 
     async def clear_cache(
         self, file_path: str | None = None, processing_mode: ProcessingMode | None = None

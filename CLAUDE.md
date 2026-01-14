@@ -1,7 +1,7 @@
 # Financial Document Processing Pipeline - Project Guide
 
 > **Project**: Production-ready async financial document processing using FastAPI
-> **Status**: 94% Complete (Session 17/18 done)
+> **Status**: 100% Ready for Deployment (Session 17.5 complete)
 > **Stack**: FastAPI 0.115+ | SQLAlchemy 2.0 | PostgreSQL | Python 3.12
 
 ---
@@ -111,6 +111,63 @@ uv run mypy app/
 
 # Auto-fix linting issues
 uv run ruff check --fix app/
+```
+
+### Multi-PDF Processing & Output Management
+
+**Process Multiple PDFs with Auto-Consolidation**:
+```bash
+# Process multiple PDFs in ONE run with automatic consolidation
+python scripts/process_multiple_pdfs.py \\
+  "samples/input/NVIDIA 10K 2020-2019.pdf" \\
+  "samples/input/NVIDIA 10K 2022-2021.pdf"
+
+# Output structure:
+output/runs/20251227_134500_SUCCESS/
+├── extracted/                        # Individual PDF outputs
+│   ├── NVIDIA_10K_2020-2019/
+│   │   ├── income_statement.json     # Structured data
+│   │   ├── income_statement.xlsx     # Formatted Excel
+│   │   ├── raw_text.txt             # LLMWhisperer output
+│   │   ├── metadata.json            # Processing metadata
+│   │   └── validation.json          # Quality report
+│   └── NVIDIA_10K_2022-2021/
+│       └── ... (same structure)
+└── consolidated/                     # Auto-consolidated outputs
+    ├── income_statement_2022-2018.json   # 5-year timeline
+    └── income_statement_2022-2018.xlsx   # Excel with consolidation summary
+```
+
+**Manual Consolidation (for existing outputs)**:
+```bash
+# Consolidate existing JSON files
+python scripts/consolidate_hybrid_outputs.py \\
+  "output1.json" \\
+  "output2.json"
+
+# Outputs:
+# - samples/output/consolidated/consolidated_income_statement_YYYY-YYYY.json
+# - samples/output/consolidated/consolidated_income_statement_YYYY-YYYY.xlsx
+```
+
+**Output Structure Features**:
+- ✅ **Run Isolation**: Each processing session in timestamped folder
+- ✅ **Historical Tracking**: All runs preserved for comparison
+- ✅ **Quick Access**: `output/runs/latest` symlink (or latest.txt on Windows)
+- ✅ **Complete Metadata**: Run manifests track costs, timing, accuracy, line items
+- ✅ **Status Tracking**: SUCCESS/PARTIAL/FAILED indicated in folder name
+- ✅ **Consolidation**: Intelligent fuzzy matching merges similar accounts across PDFs
+
+**Validate Production Readiness**:
+```bash
+# Run all validation checks
+python scripts/validate_production_ready.py
+
+# Checks:
+# 1. OutputManager structure correctness
+# 2. Consolidation exports JSON + Excel
+# 3. Run manifest completeness
+# 4. Script functionality
 ```
 
 ---

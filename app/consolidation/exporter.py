@@ -184,7 +184,11 @@ class ConsolidationExporter:
             ws.cell(
                 row=row_idx,
                 column=8,
-                value="Yes" if comparison.is_favorable else "No" if comparison.is_favorable is False else "N/A",
+                value="Yes"
+                if comparison.is_favorable
+                else "No"
+                if comparison.is_favorable is False
+                else "N/A",
             )
 
             # Apply formatting

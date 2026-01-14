@@ -1,0 +1,343 @@
+{
+  "company_name": "Alphabet Inc.",
+  "statement_type": "cash_flow",
+  "fiscal_year": "2023",
+  "currency": "USD",
+  "periods": [
+    "Year Ended December 31, 2021",
+    "Year Ended December 31, 2022",
+    "Year Ended December 31, 2023"
+  ],
+  "line_items": [
+    {
+      "account_name": "Net income",
+      "values": [
+        "$       76,033",
+        "$        59,972",
+        "$       73,795"
+      ],
+      "indent_level": 0,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Depreciation of property and equipment",
+      "values": [
+        "10,273",
+        "13,475",
+        "11,946"
+      ],
+      "indent_level": 1,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Stock-based compensation expense",
+      "values": [
+        "15,376",
+        "19,362",
+        "22,460"
+      ],
+      "indent_level": 1,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Deferred income taxes",
+      "values": [
+        "1,808",
+        "(8,081)",
+        "(7,763)"
+      ],
+      "indent_level": 1,
+      "section": "Operating"
+    },
+    {
+      "account_name": "(Gain) loss on debt and equity securities, net",
+      "values": [
+        "(12,270)",
+        "5,519",
+        "823"
+      ],
+      "indent_level": 1,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Other",
+      "values": [
+        "1,955",
+        "3,483",
+        "4,330"
+      ],
+      "indent_level": 1,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Accounts receivable, net",
+      "values": [
+        "(9,095)",
+        "(2,317)",
+        "(7,833)"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Income taxes, net",
+      "values": [
+        "(625)",
+        "584",
+        "523"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Other assets",
+      "values": [
+        "(1,846)",
+        "(5,046)",
+        "(2,143)"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Accounts payable",
+      "values": [
+        "283",
+        "707",
+        "664"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Accrued expenses and other liabilities",
+      "values": [
+        "7,304",
+        "3,915",
+        "3,937"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Accrued revenue share",
+      "values": [
+        "1,682",
+        "(445)",
+        "482"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Deferred revenue",
+      "values": [
+        "774",
+        "367",
+        "525"
+      ],
+      "indent_level": 2,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Net cash provided by operating activities",
+      "values": [
+        "91,652",
+        "91,495",
+        "101,746"
+      ],
+      "indent_level": 0,
+      "section": "Operating"
+    },
+    {
+      "account_name": "Purchases of property and equipment",
+      "values": [
+        "(24,640)",
+        "(31,485)",
+        "(32,251)"
+      ],
+      "indent_level": 0,
+      "section": "Investing"
+    },
+    {
+      "account_name": "Purchases of marketable securities",
+      "values": [
+        "(135,196)",
+        "(78,874)",
+        "(77,858)"
+      ],
+      "indent_level": 0,
+      "section": "Investing"
+    },
+    {
+      "account_name": "Maturities and sales of marketable securities",
+      "values": [
+        "128,294",
+        "97,822",
+        "86,672"
+      ],
+      "indent_level": 0,
+      "section": "Investing"
+    },
+    {
+      "account_name": "Purchases of non-marketable securities",
+      "values": [
+        "(2,838)",
+        "(2,531)",
+        "(3,027)"
+      ],
+      "indent_level": 0,
+      "section": "Investing"
+    },
+    {
+      "account_name": "Maturities and sales of non-marketable securities",
+      "values": [
+        "934",
+        "150",
+        "947"
+      ],
+      "indent_level": 0,
+      "section": "Investing"
+    },
+    {
+      "account_name": "Acquisitions, net of cash acquired, and purchases of intangible assets",
+      "values": [
+        "(2,618)",
+        "(6,969)",
+        "(495)"
+      ],
+      "indent_level": 0,
+      "section": "Investing"
+    },
+    {
+      "account_name": "Other investing activities",
+      "values": [
+        "541",
+        "1,589",
+        "(1,051)"
+      ],
+      "indent_level": 0,
+      "section": "Investing"
+    },
+    {
+      "account_name": "Net cash used in investing activities",
+      "values": [
+        "(35,523)",
+        "(20,298)",
+        "(27,063)"
+      ],
+      "indent_level": 0,
+      "section": "Investing"
+    },
+    {
+      "account_name": "Net payments related to stock-based award activities",
+      "values": [
+        "(10,162)",
+        "(9,300)",
+        "(9,837)"
+      ],
+      "indent_level": 0,
+      "section": "Financing"
+    },
+    {
+      "account_name": "Repurchases of stock",
+      "values": [
+        "(50,274)",
+        "(59,296)",
+        "(61,504)"
+      ],
+      "indent_level": 0,
+      "section": "Financing"
+    },
+    {
+      "account_name": "Proceeds from issuance of debt, net of costs",
+      "values": [
+        "20,199",
+        "52,872",
+        "10,790"
+      ],
+      "indent_level": 0,
+      "section": "Financing"
+    },
+    {
+      "account_name": "Repayments of debt",
+      "values": [
+        "(21,435)",
+        "(54,068)",
+        "(11,550)"
+      ],
+      "indent_level": 0,
+      "section": "Financing"
+    },
+    {
+      "account_name": "Proceeds from sale of interest in consolidated entities, net",
+      "values": [
+        "310",
+        "35",
+        "8"
+      ],
+      "indent_level": 0,
+      "section": "Financing"
+    },
+    {
+      "account_name": "Net cash used in financing activities",
+      "values": [
+        "(61,362)",
+        "(69,757)",
+        "(72,093)"
+      ],
+      "indent_level": 0,
+      "section": "Financing"
+    },
+    {
+      "account_name": "Effect of exchange rate changes on cash and cash equivalents",
+      "values": [
+        "(287)",
+        "(506)",
+        "(421)"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Net increase (decrease) in cash and cash equivalents",
+      "values": [
+        "(5,520)",
+        "934",
+        "2,169"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Cash and cash equivalents at beginning of period",
+      "values": [
+        "26,465",
+        "20,945",
+        "21,879"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Cash and cash equivalents at end of period",
+      "values": [
+        "$       20,945",
+        "$      21,879",
+        "$       24,048"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Cash paid for income taxes, net of refunds",
+      "values": [
+        "$       13,412",
+        "$         18,892",
+        "$        19,164"
+      ],
+      "indent_level": 1,
+      "section": null
+    }
+  ]
+}

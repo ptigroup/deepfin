@@ -1,0 +1,429 @@
+{
+  "company_name": "NVIDIA CORPORATION AND SUBSIDIARIES",
+  "statement_type": "shareholders_equity",
+  "fiscal_year": "2020",
+  "currency": "USD",
+  "periods": [],
+  "line_items": [
+    {
+      "account_name": "Balances, January 29, 2017",
+      "values": [
+        "585 $        1",
+        "$    4,708",
+        "$ (5,039)",
+        "$          (16)",
+        "$    6,108",
+        "$    5,762"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Retained earnings adjustment due to adoption of an accounting standard related to stock-based compensation",
+      "values": [
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "(27)",
+        "(27)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Other comprehensive loss",
+      "values": [
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "3,047",
+        "3,047"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Net income",
+      "values": [
+        "13",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Issuance of common stock in exchange for warrants",
+      "values": [
+        "-",
+        "(7)",
+        "-",
+        "-",
+        "-",
+        "-",
+        "(7)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Convertible debt conversion",
+      "values": [
+        "33",
+        "-",
+        "138",
+        "-",
+        "-",
+        "-",
+        "138"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Issuance of common stock from stock plans",
+      "values": [
+        "18",
+        "-",
+        "-",
+        "(612)",
+        "-",
+        "-",
+        "(612)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Tax withholding related to vesting of restricted stock units",
+      "values": [
+        "(4)",
+        "-",
+        "-",
+        "(909)",
+        "-",
+        "-",
+        "(909)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Share repurchase",
+      "values": [
+        "(6)",
+        "-",
+        "90",
+        "(90)",
+        "-",
+        "-",
+        "-"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Exercise of convertible note hedges",
+      "values": [
+        "(33)",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "(341)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Cash dividends declared and paid ($0.570 per common share)",
+      "values": [
+        "-",
+        "-",
+        "391",
+        "-",
+        "-",
+        "-",
+        "391"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Stock-based compensation",
+      "values": [
+        "-",
+        "-",
+        "31",
+        "-",
+        "-",
+        "-",
+        "31"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Balances, January 28, 2018",
+      "values": [
+        "606",
+        "1",
+        "5,351",
+        "(6,650)",
+        "(18)",
+        "8,787",
+        "7,471"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Retained earnings adjustment due to adoption of an accounting standard related to income tax consequences of an intra-entity transfer of an asset",
+      "values": [
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "8",
+        "8"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Other comprehensive income",
+      "values": [
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "4,141",
+        "4,141"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Net income",
+      "values": [
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Convertible debt conversion",
+      "values": [
+        "1",
+        "-",
+        "137",
+        "-",
+        "-",
+        "-",
+        "137"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Issuance of common stock from stock plans",
+      "values": [
+        "-",
+        "-",
+        "(1,032)",
+        "-",
+        "-",
+        "(1,032)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Tax withholding related to vesting of restricted stock units",
+      "values": [
+        "(4)",
+        "-",
+        "(1,579)",
+        "-",
+        "-",
+        "-",
+        "(1,579)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Share repurchase",
+      "values": [
+        "(9)",
+        "-",
+        "2",
+        "(2)",
+        "-",
+        "-",
+        "-"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Exercise of convertible note hedges",
+      "values": [
+        "(1)",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "(371)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Cash dividends declared and paid ($0.610 per common share)",
+      "values": [
+        "-",
+        "-",
+        "561",
+        "-",
+        "-",
+        "-",
+        "561"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Stock-based compensation",
+      "values": [
+        "1",
+        "6,051",
+        "(9,263)",
+        "(12)",
+        "12,565",
+        "9,342"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Balances, January 27, 2019",
+      "values": [
+        "606",
+        "-",
+        "-",
+        "-",
+        "-",
+        "13",
+        "-",
+        "13"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Other comprehensive income",
+      "values": [
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "2,796",
+        "2,796"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Net income",
+      "values": [
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "149"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Issuance of common stock from stock plans",
+      "values": [
+        "-",
+        "-",
+        "(551)",
+        "-",
+        "-",
+        "(551)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Tax withholding related to vesting of restricted stock units",
+      "values": [
+        "(3)",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "(390)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Cash dividends declared and paid ($0.640 per common share)",
+      "values": [
+        "-",
+        "-",
+        "845",
+        "-",
+        "-",
+        "-",
+        "845"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Stock-based compensation",
+      "values": [
+        "612",
+        "$       1",
+        "$      7,045",
+        "$ (9,814)",
+        "$           1",
+        "$ 14,971",
+        "$    12,204"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "Balances, January 26, 2020",
+      "values": [],
+      "indent_level": 0,
+      "section": null
+    }
+  ]
+}

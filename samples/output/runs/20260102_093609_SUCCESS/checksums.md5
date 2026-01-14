@@ -1,0 +1,41 @@
+# MD5 Checksums for Run Output Files
+# Generated: 2026-01-02T09:43:03.799372
+# Run ID: 20260102_093609
+
+bb18616bf8ded337c5b5021ffd50e958  consolidated\all_statements_2022-2017.json
+1b7edfeccebd28de7b99feb36abab8f6  consolidated\all_statements_2022-2017.xlsx
+14339b618bcbf9ee4023e14b1eda84b4  consolidated\balance_sheet_2019-2020.json
+a38a9407c377b760542a2226fe419ebc  consolidated\balance_sheet_2019-2020.xlsx
+14339b618bcbf9ee4023e14b1eda84b4  consolidated\balance_sheet_2020-2019.json
+a38a9407c377b760542a2226fe419ebc  consolidated\balance_sheet_2020-2019.xlsx
+f40c2666e505fce66d72b1b33c68c955  consolidated\cash_flow_2018-2022.json
+b292db52f134d4d699f41aed99205e6f  consolidated\cash_flow_2018-2022.xlsx
+f40c2666e505fce66d72b1b33c68c955  consolidated\cash_flow_2022-2018.json
+b292db52f134d4d699f41aed99205e6f  consolidated\cash_flow_2022-2018.xlsx
+87eec8e7794b0c8290c7db4866825915  consolidated\comprehensive_income_2018-2022.json
+6cb8c1c19cbe4d038f1e85fae85da01f  consolidated\comprehensive_income_2018-2022.xlsx
+87eec8e7794b0c8290c7db4866825915  consolidated\comprehensive_income_2022-2018.json
+6cb8c1c19cbe4d038f1e85fae85da01f  consolidated\comprehensive_income_2022-2018.xlsx
+74cd511b4c96a1c72245e2bcbaed6013  consolidated\income_statement_2018-2022.json
+905085b7387034ed878b018f70a42b75  consolidated\income_statement_2018-2022.xlsx
+74cd511b4c96a1c72245e2bcbaed6013  consolidated\income_statement_2022-2018.json
+905085b7387034ed878b018f70a42b75  consolidated\income_statement_2022-2018.xlsx
+35c78c00052a278643512d8c01562a46  consolidated\shareholders_equity_2017-2020.json
+c84611eb607a8616f30b52996ab13473  consolidated\shareholders_equity_2017-2020.xlsx
+35c78c00052a278643512d8c01562a46  consolidated\shareholders_equity_2020-2017.json
+c84611eb607a8616f30b52996ab13473  consolidated\shareholders_equity_2020-2017.xlsx
+f39fc6b6c4c85ead7671a05a9182d1ef  extracted\NVIDIA_10K_2020-2019\balance_sheet.json
+8bb0c7b1793c29b3b2d3ffd94a1585ab  extracted\NVIDIA_10K_2020-2019\cash_flow.json
+a211e350a738220a230e6c9d39726d2e  extracted\NVIDIA_10K_2020-2019\comprehensive_income.json
+4038428ce4b93cc0cb1d838d0d27b677  extracted\NVIDIA_10K_2020-2019\income_statement.json
+d04264140ef1c8bb05595f261dec820c  extracted\NVIDIA_10K_2020-2019\metadata.json
+38ab06acbf991c3b2a9456e0d50aa960  extracted\NVIDIA_10K_2020-2019\page_detection.json
+6acd752633b7c1442e0a2e861b2b3b6e  extracted\NVIDIA_10K_2020-2019\raw_text.txt
+6dc9051ed53683e0a3a3e5f7ed9b3a6f  extracted\NVIDIA_10K_2020-2019\shareholders_equity.json
+0e1ba386b0ec6ff78687486c42b82388  extracted\NVIDIA_10K_2022-2021\cash_flow.json
+111619261d933513599111aac8d61325  extracted\NVIDIA_10K_2022-2021\comprehensive_income.json
+99d069a80dab18f08efc42adb3bba198  extracted\NVIDIA_10K_2022-2021\income_statement.json
+acd9ae291b989d3ceba62e640f2cfd31  extracted\NVIDIA_10K_2022-2021\metadata.json
+97b4e0f405ebfb604ea2aa869e2a7148  extracted\NVIDIA_10K_2022-2021\page_detection.json
+e4d9aae219125bebf3951bebda9ff5ba  extracted\NVIDIA_10K_2022-2021\raw_text.txt
+bbcf047ef856e10a87e76b90170f1dbb  extracted\NVIDIA_10K_2022-2021\shareholders_equity.json

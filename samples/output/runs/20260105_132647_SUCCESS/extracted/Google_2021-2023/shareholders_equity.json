@@ -1,0 +1,279 @@
+{
+  "company_name": "Alphabet Inc.",
+  "statement_type": "shareholders_equity",
+  "fiscal_year": null,
+  "currency": "USD",
+  "periods": [
+    "December 31, 2020",
+    "December 31, 2021",
+    "December 31, 2022",
+    "December 31, 2023"
+  ],
+  "line_items": [
+    {
+      "account_name": "Balance as of December 31, 2020",
+      "values": [
+        "$       58,510",
+        "$            633",
+        "$       163,401",
+        "$      222,544"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "   Stock issued",
+      "values": [
+        "             12",
+        "                0",
+        "               0",
+        "             12"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Stock-based compensation expense",
+      "values": [
+        "         15,539",
+        "                0",
+        "               0",
+        "          15,539"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Tax withholding related to vesting of restricted stock ",
+      "values": [
+        "   units and other",
+        "         (10,273)",
+        "              0",
+        "               0",
+        "         (10,273)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Repurchases of stock",
+      "values": [
+        "         (2,324)",
+        "              0",
+        "         (47,950)",
+        "        (50,274)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Sale of interest in consolidated entities",
+      "values": [
+        "            310",
+        "                0",
+        "               0",
+        "            310"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Net income",
+      "values": [
+        "              0",
+        "                0",
+        "          76,033",
+        "          76,033"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Other comprehensive income (loss)",
+      "values": [
+        "              0",
+        "            (2,256)",
+        "              0",
+        "          (2,256)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Balance as of December 31, 2021",
+      "values": [
+        "         61,774",
+        "            (1,623)",
+        "       191,484",
+        "         251,635"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "   Stock issued",
+      "values": [
+        "              8",
+        "                0",
+        "               0",
+        "              8"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Stock-based compensation expense",
+      "values": [
+        "         19,525",
+        "                0",
+        "               0",
+        "          19,525"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Tax withholding related to vesting of restricted stock ",
+      "values": [
+        "   units and other",
+        "          (9,754)",
+        "              (1)",
+        "         (9,755)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Repurchases of stock",
+      "values": [
+        "         (3,404)",
+        "              0",
+        "         (55,892)",
+        "        (59,296)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Sale of interest in consolidated entities",
+      "values": [
+        "             35",
+        "                0",
+        "               0",
+        "             35"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Net income",
+      "values": [
+        "              0",
+        "                0",
+        "          59,972",
+        "          59,972"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Other comprehensive income (loss)",
+      "values": [
+        "              0",
+        "            (5,980)",
+        "              0",
+        "          (5,980)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Balance as of December 31, 2022",
+      "values": [
+        "         68,184",
+        "            (7,603)",
+        "       195,563",
+        "         256,144"
+      ],
+      "indent_level": 0,
+      "section": null
+    },
+    {
+      "account_name": "   Stock issued",
+      "values": [
+        "              0",
+        "                0",
+        "               0",
+        "              0"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Stock-based compensation expense",
+      "values": [
+        "         22,578",
+        "                0",
+        "               0",
+        "          22,578"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Tax withholding related to vesting of restricted stock ",
+      "values": [
+        "   units and other",
+        "         (10,164)",
+        "               9",
+        "         (10,155)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Repurchases of stock",
+      "values": [
+        "         (4,064)",
+        "              0",
+        "         (58,120)",
+        "        (62,184)"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Net income",
+      "values": [
+        "              0",
+        "                0",
+        "          73,795",
+        "          73,795"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "   Other comprehensive income (loss)",
+      "values": [
+        "              0",
+        "             3,201",
+        "              0",
+        "           3,201"
+      ],
+      "indent_level": 1,
+      "section": null
+    },
+    {
+      "account_name": "Balance as of December 31, 2023",
+      "values": [
+        "$       76,534",
+        "          (4,402)",
+        "     211,247",
+        "       283,379"
+      ],
+      "indent_level": 0,
+      "section": null
+    }
+  ]
+}

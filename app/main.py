@@ -28,6 +28,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import ValidationError
 from sqlalchemy.exc import SQLAlchemyError
 
+from app.auth import router as auth_router
+from app.consolidation import router as consolidation_router
 from app.core.config import get_settings
 from app.core.database import close_db, init_db
 from app.core.exceptions import (
@@ -38,8 +40,6 @@ from app.core.exceptions import (
 from app.core.health import router as health_router
 from app.core.logging import get_logger
 from app.core.middleware import LoggingMiddleware, RequestIDMiddleware
-from app.auth import router as auth_router
-from app.consolidation import router as consolidation_router
 from app.detection import router as detection_router
 from app.extraction import router as extraction_router
 from app.jobs import router as jobs_router

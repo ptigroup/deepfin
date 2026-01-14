@@ -1,0 +1,162 @@
+{
+  "page_detection": {
+    "pass": true,
+    "accuracy_percent": 100.0,
+    "total_detections": 10,
+    "correct_detections": 10,
+    "checks": []
+  },
+  "extraction_quality": {
+    "pass": true,
+    "accuracy_percent": 90.0,
+    "checks_passed": 9,
+    "total_checks": 10,
+    "checks": [
+      {
+        "statement": "income_statement",
+        "check": "line_item_count",
+        "pass": true,
+        "actual": 24,
+        "expected_min": 20
+      },
+      {
+        "statement": "income_statement",
+        "check": "required_accounts",
+        "pass": true,
+        "missing": []
+      },
+      {
+        "statement": "balance_sheet",
+        "check": "line_item_count",
+        "pass": true,
+        "actual": 52,
+        "expected_min": 30
+      },
+      {
+        "statement": "balance_sheet",
+        "check": "required_accounts",
+        "pass": false,
+        "missing": [
+          "stockholders' equity"
+        ]
+      },
+      {
+        "statement": "cash_flow",
+        "check": "line_item_count",
+        "pass": true,
+        "actual": 75,
+        "expected_min": 25
+      },
+      {
+        "statement": "cash_flow",
+        "check": "required_accounts",
+        "pass": true,
+        "missing": []
+      },
+      {
+        "statement": "comprehensive_income",
+        "check": "line_item_count",
+        "pass": true,
+        "actual": 10,
+        "expected_min": 8
+      },
+      {
+        "statement": "comprehensive_income",
+        "check": "required_accounts",
+        "pass": true,
+        "missing": []
+      },
+      {
+        "statement": "shareholders_equity",
+        "check": "line_item_count",
+        "pass": true,
+        "actual": 39,
+        "expected_min": 15
+      },
+      {
+        "statement": "shareholders_equity",
+        "check": "required_accounts",
+        "pass": true,
+        "missing": []
+      }
+    ]
+  },
+  "consolidation_accuracy": {
+    "pass": true,
+    "accuracy_percent": 100.0,
+    "checks_passed": 3,
+    "total_checks": 3,
+    "checks": [
+      {
+        "check": "all_statement_types_present",
+        "pass": true,
+        "expected": 5,
+        "actual": 5
+      },
+      {
+        "check": "fiscal_year_timeline",
+        "pass": true,
+        "years": [
+          2022,
+          2021,
+          2020,
+          2019,
+          2018,
+          2017
+        ]
+      },
+      {
+        "check": "no_duplicates",
+        "pass": true,
+        "duplicates": []
+      }
+    ]
+  },
+  "data_integrity": {
+    "pass": true,
+    "accuracy_percent": 100.0,
+    "checks_passed": 3,
+    "total_checks": 3,
+    "checks": [
+      {
+        "check": "revenue_2022",
+        "pass": true,
+        "expected": 26974,
+        "actual": 26914
+      },
+      {
+        "check": "revenue_2020",
+        "pass": true,
+        "expected": 10918,
+        "actual": 10918
+      },
+      {
+        "check": "excel_sheets",
+        "pass": true,
+        "expected": [
+          "Summary",
+          "Income Statement",
+          "Balance Sheet",
+          "Comprehensive Income",
+          "Shareholders Equity",
+          "Cash Flow"
+        ],
+        "actual": [
+          "Summary",
+          "Income Statement",
+          "Balance Sheet",
+          "Comprehensive Income",
+          "Shareholders Equity",
+          "Cash Flow"
+        ]
+      }
+    ]
+  },
+  "performance_metrics": {
+    "duration_seconds": 324.114998,
+    "duration_minutes": 5.401916633333333,
+    "time_limit_pass": true,
+    "max_acceptable_seconds": 600
+  },
+  "overall_pass": true
+}

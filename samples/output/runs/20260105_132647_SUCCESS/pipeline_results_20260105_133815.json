@@ -1,0 +1,31 @@
+{
+  "report": "\n================================================================================\nEND-TO-END PIPELINE TEST REPORT\n================================================================================\n\nPHASE 1: DETECTION\n--------------------------------------------------------------------------------\n[OK] Status: PASS\n   PDFs Processed: 2\n   PDFs with Statements: 2\n   Total Statement Types Found: 10\n\nPHASE 2: EXTRACTION\n--------------------------------------------------------------------------------\n[OK] Status: PASS\n   Total Extractions: 10\n   Successful: 10\n   Average Line Items: 24.7\n\nPHASE 3: CONSOLIDATION\n--------------------------------------------------------------------------------\n[OK] Status: PASS\n   Statement Types Consolidated: 5\n   Fiscal Year Range: 2020-2024\n   Total Fiscal Years: 5\n\nPHASE 4: OUTPUTS\n--------------------------------------------------------------------------------\n[OK] Status: PASS\n   Statement Types: 5\n   JSON Files: 5\n   Excel Files: 5\n\n================================================================================\nOVERALL RESULT: [OK] SUCCESS\nDuration: 686.1 seconds\n================================================================================\n",
+  "validation": {
+    "detection": {
+      "success": true,
+      "total_pdfs": 2,
+      "pdfs_with_detections": 2,
+      "total_statement_types_found": 10
+    },
+    "extraction": {
+      "success": true,
+      "total_extractions": 10,
+      "successful_extractions": 10,
+      "average_line_items": 24.7
+    },
+    "consolidation": {
+      "success": true,
+      "total_statement_types": 5,
+      "fiscal_year_range": "2020-2024",
+      "total_fiscal_years": 5
+    },
+    "outputs": {
+      "success": true,
+      "total_statement_types": 5,
+      "json_files_created": 5,
+      "excel_files_created": 5
+    },
+    "overall_success": true
+  },
+  "duration_seconds": 686.084281
+}

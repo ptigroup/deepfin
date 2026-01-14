@@ -58,9 +58,7 @@ class BackgroundWorker:
                 self._tasks = {t for t in self._tasks if not t.done()}
                 # Clean up completed job tracking
                 self._running_jobs = {
-                    job_id: task
-                    for job_id, task in self._running_jobs.items()
-                    if not task.done()
+                    job_id: task for job_id, task in self._running_jobs.items() if not task.done()
                 }
 
                 # Check if we can start more jobs
@@ -138,12 +136,7 @@ class BackgroundWorker:
         Returns:
             Next job to process or None
         """
-        stmt = (
-            select(Job)
-            .where(Job.status == JobStatus.PENDING)
-            .order_by(Job.created_at)
-            .limit(1)
-        )
+        stmt = select(Job).where(Job.status == JobStatus.PENDING).order_by(Job.created_at).limit(1)
 
         result = await db.execute(stmt)
         job = result.scalar_one_or_none()
@@ -207,7 +200,7 @@ class BackgroundWorker:
                     result = await asyncio.wait_for(
                         task_func(**task_args), timeout=self.task_timeout
                     )
-                except asyncio.TimeoutError:
+                except TimeoutError:
                     logger.error(
                         "Task timed out",
                         extra={
@@ -216,9 +209,7 @@ class BackgroundWorker:
                             "timeout": self.task_timeout,
                         },
                     )
-                    raise WorkerError(
-                        f"Task timed out after {self.task_timeout} seconds"
-                    )
+                    raise WorkerError(f"Task timed out after {self.task_timeout} seconds") from None
 
                 # Mark as completed
                 job.status = JobStatus.COMPLETED

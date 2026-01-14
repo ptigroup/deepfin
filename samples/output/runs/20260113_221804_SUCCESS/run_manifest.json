@@ -1,0 +1,101 @@
+{
+  "run_id": "20260113_221804",
+  "status": "SUCCESS",
+  "started_at": "2026-01-13T22:18:04.762434",
+  "completed_at": "2026-01-13T22:19:17.178810",
+  "duration_seconds": 72.416376,
+  "total_cost_usd": 0.0,
+  "settings": {},
+  "pdfs_processed": [],
+  "consolidated": [
+    {
+      "statement_type": "income_statement",
+      "years": [
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018"
+      ],
+      "source_count": 1,
+      "line_items": 24,
+      "output_files": [
+        "consolidated/income_statement_2022-2018.json",
+        "consolidated/income_statement_2022-2018.xlsx"
+      ]
+    },
+    {
+      "statement_type": "balance_sheet",
+      "years": [
+        "2022",
+        "2021",
+        "2020",
+        "2019"
+      ],
+      "source_count": 1,
+      "line_items": 42,
+      "output_files": [
+        "consolidated/balance_sheet_2022-2019.json",
+        "consolidated/balance_sheet_2022-2019.xlsx"
+      ]
+    },
+    {
+      "statement_type": "comprehensive_income",
+      "years": [
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018"
+      ],
+      "source_count": 1,
+      "line_items": 10,
+      "output_files": [
+        "consolidated/comprehensive_income_2022-2018.json",
+        "consolidated/comprehensive_income_2022-2018.xlsx"
+      ]
+    },
+    {
+      "statement_type": "shareholders_equity",
+      "years": [
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018",
+        "2017"
+      ],
+      "source_count": 1,
+      "line_items": 33,
+      "output_files": [
+        "consolidated/shareholders_equity_2022-2017.json",
+        "consolidated/shareholders_equity_2022-2017.xlsx"
+      ]
+    },
+    {
+      "statement_type": "cash_flow",
+      "years": [
+        "2022",
+        "2021",
+        "2020",
+        "2019",
+        "2018"
+      ],
+      "source_count": 1,
+      "line_items": 47,
+      "output_files": [
+        "consolidated/cash_flow_2022-2018.json",
+        "consolidated/cash_flow_2022-2018.xlsx"
+      ]
+    }
+  ],
+  "summary": {
+    "total_pdfs": 0,
+    "successful": 0,
+    "failed": 0,
+    "total_statements": 5,
+    "total_line_items": 0,
+    "total_cost_usd": 0.0,
+    "cost_savings_percent": 0.0
+  }
+}

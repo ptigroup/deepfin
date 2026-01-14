@@ -1,0 +1,69 @@
+
+
+Table of Contents 
+
+                                                NVIDIA CORPORATION AND SUBSIDIARIES 
+                                             CONSOLIDATED STATEMENTS OF CASH FLOWS 
+                                                                (In millions) 
+
+                                                                                                         Year Ended 
+                                                                                     January 26,         January 27,         January 28, 
+                                                                                        2020                2019                2018 
+ Cash flows from operating activities: 
+ Net income                                                                      $           2,796   $           4,141   $           3,047 
+ Adjustments to reconcile net income to net cash provided by operating activities: 
+      Stock-based compensation expense                                                         844                 557                 391 
+      Depreciation and amortization                                                            381                 262                 199 
+      Deferred income taxes                                                                     18                (315)               (359) 
+      Loss on early debt conversions                                                            -                   -                   19 
+      Other                                                                                      5                 (45)                 20 
+ Changes in operating assets and liabilities: 
+      Accounts receivable                                                                     (233)               (149)               (440) 
+      Inventories                                                                              597                (776)                 - 
+      Prepaid expenses and other assets                                                         77                 (55)                 21 
+      Accounts payable                                                                         194                (135)                 90 
+      Accrued and other current liabilities                                                     54                 256                  33 
+      Other long-term liabilities                                                               28                   2                 481 
+ Net cash provided by operating activities                                                   4,761               3,743               3,502 
+ Cash flows from investing activities: 
+      Proceeds from maturities of marketable securities                                      4,744               7,232               1,078 
+      Proceeds from sales of marketable securities                                           3,365                 428                 863 
+      Purchases of marketable securities                                                     (1,461)            (11,148)               (36) 
+      Purchases of property and equipment and intangible assets                               (489)               (600)               (593) 
+      Investments and other, net                                                               (14)                 (9)                (36) 
+      Proceeds from sale of long-lived assets and investments                                    -                  -                    2 
+ Net cash provided by (used in) investing activities                                         6,145               (4,097)             1,278 
+ Cash flows from financing activities: 
+
+      Payments related to repurchases of common stock                                           - 
+                                                                                                                 (1,579)              (909) 
+      Repayment of Convertible Notes                                                             -                 (16)               (812) 
+      Dividends paid                                                                          (390)               (371)               (341) 
+       Proceeds related to employee stock plans                                                149                 137                 139 
+       Payments related to tax on restricted stock units                                      (551)              (1,032)              (612) 
+       Other                                                                                     -                   (5)                 (9) 
+ Net cash used in financing activities                                                        (792)              (2,866)             (2,544) 
+ Change in cash and cash equivalents                                                        10,114               (3,220)             2,236 
+ Cash and cash equivalents at beginning of period                                              782               4,002               1,766 
+ Cash and cash equivalents at end of period                                      $          10,896   $             782   $           4,002 
+
+                                                                     43 
+<<<
+
+Table of Contents 
+
+                                                                                                Year Ended 
+                                                                           January 26,          January 27,         January 28, 
+                                                                              2020                 2019                2018 
+
+ Supplemental disclosures of cash flow information: 
+ Cash paid for income taxes, net                                       $             176    $               61 $                22 
+ Cash paid for interest                                                $              54    $               55 $                55 
+
+ Non-cash investing and financing activity: 
+Assets acquired by assuming related liabilities                        $             212    $               76 $                36 
+
+                                    See accompanying notes to the consolidated financial statements. 
+
+                                                                 44 
+<<<
